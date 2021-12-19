@@ -27,8 +27,6 @@ in
   networking.hostName = "finch"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Set your time zone.
-  time.timeZone = "Europe/Brussels";
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -64,12 +62,9 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.arne = {
-    createHome = true;
-    group = "arne";
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker"]; # Enable ‘sudo’ for the user.
-  };
+  custom.user = "arne";
+  custom.bspwm.enable = true;
+  custom.hostname = "finch"
 
   services.picom = {
   	enable = true;
@@ -94,9 +89,6 @@ in
   	enable = true;
 	layout = "us";
 	xkbOptions = "eurosign:e";
-	windowManager.bspwm = {
-		enable = true;
-	};
   };
   hardware.nvidia = {
   	nvidiaSettings = true;
@@ -113,17 +105,6 @@ in
   };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    kitty
-    nvidia-offload
-    git
-    git-lfs
-    killall
-    ntfs3g
-    sxhkd
-  ];
   virtualisation.docker = {
   	enable = true;
   };

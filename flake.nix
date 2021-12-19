@@ -13,12 +13,12 @@
     nixosConfigurations.finch = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [ 
-      	./machines/finch 
 	home-manager.nixosModules.home-manager {
 		home-manager.useGlobalPkgs = true;
 		home-manager.useUserPackages = true;
-		home-manager.users.arne = import ./machines/finch/home.nix;
 	}
+	(./modules)
+      	./machines/finch 
 	];
     };
 
