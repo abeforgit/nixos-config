@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ config, pkgs, home, programs, services, ...}:
 {
 	home.packages = [ 
 		pkgs.httpie 

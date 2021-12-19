@@ -70,7 +70,6 @@ in
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "docker"]; # Enable ‘sudo’ for the user.
   };
-  users.groups.arne = {};
 
   services.picom = {
   	enable = true;
