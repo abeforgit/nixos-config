@@ -1,28 +1,35 @@
 {config, lib, pkgs, ...}:
 let cfg = config.custom;
-
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec -a "$0" "$@"
+  '';
 in {
 imports = [
 	./bspwm.nix
 ];
 
 options.custom = {
-user = lib.mkOption {
-	example = "arne";
-	default = "arne";
-};
-
-hostname = lib.mkOption {
-	type = lib.types.str;
+	user = lib.mkOption {
+		example = "arne";
+		default = "arne";
 	};
 
-extraSystemPackages = lib.mkOption {
-	default = [];
-	example = [ pkgs.unzip ];
+	hostname = lib.mkOption {
+		type = lib.types.str;
+		};
+
+	extraSystemPackages = lib.mkOption {
+		default = [];
+		example = [ pkgs.unzip ];
+		};
+	extraHomePackages = lib.mkOption {
+		default = [];
+		example = [ pkgs.spotify-tui ];
 	};
-extraHomePackages = lib.mkOption {
-	default = [];
-	example = [ pkgs.spotify-tui ];
 };
 
 config = {
@@ -128,14 +135,14 @@ config = {
 				term = "xterm-kitty";
 			};
 		};
-	}
+	};
 
 	nix = {
 		package = pkgs.nixFlakes;
 		extraOptions = ''
 			experimental-features = nix command flakes
 			'';
-	}
+	};
 
 
 

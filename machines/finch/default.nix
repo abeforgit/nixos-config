@@ -64,7 +64,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   custom.user = "arne";
   custom.bspwm.enable = true;
-  custom.hostname = "finch"
+  custom.hostname = "finch";
 
   services.picom = {
   	enable = true;
@@ -89,6 +89,15 @@ in
   	enable = true;
 	layout = "us";
 	xkbOptions = "eurosign:e";
+	desktopManager.session = [
+	 {
+	 	name = "home-manager";
+		start = ''
+		${pkgs.runtimeShell} $HOME/.hm-xsession &
+		waitPID=$!
+		'';
+	 }
+	];
   };
   hardware.nvidia = {
   	nvidiaSettings = true;
