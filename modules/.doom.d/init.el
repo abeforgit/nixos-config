@@ -108,7 +108,7 @@
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :lang
-       semantic-web
+       ;; semantic-web
        ;;agda              ; types of types of types of types...
        (cc +lsp)                ; C/C++/Obj-C madness>
        ;;clojure           ; java with a lisp
