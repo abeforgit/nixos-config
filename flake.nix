@@ -13,6 +13,7 @@
 
     nixosConfigurations.finch = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+		extraArgs = {  inherit nix-doom-emacs; };
       modules = [ 
 	home-manager.nixosModules.home-manager {
 		home-manager.useGlobalPkgs = true;

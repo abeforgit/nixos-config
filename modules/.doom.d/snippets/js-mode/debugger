@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: debugger
+# uuid:
+# key: d
+# condition: t
+# --
+console.clear();debugger;

@@ -1,0 +1,15 @@
+# key: trigger-key
+# name: editor-test
+# condition: t
+# --
+test("$1", async function (assert) {
+const initial = \`$2\`
+const expected = \`$3\`
+this.set("rdfaEditorInit", (editor: RdfaDocument) => {
+    editor.setHtmlContent(initial);
+});
+const editor = await renderEditor();
+const selection = getWindowSelection();
+
+assert.equal(editor.innerHTML, expected);
+});

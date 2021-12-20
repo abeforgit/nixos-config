@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: compdoc
+# key: ///c
+# condition: t
+# --
+/**
+ * @typedef {Object} Args
+ */
+
+/** @extends {Component<Args>} */

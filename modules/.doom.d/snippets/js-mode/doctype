@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: doctype
+# key: //type
+# condition: t
+# --
+/** @type {${type}} */

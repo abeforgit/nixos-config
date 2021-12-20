@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: what
+# uuid:
+# key: trigger-key
+# condition: t
+# --
+test
