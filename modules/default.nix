@@ -10,6 +10,7 @@ let cfg = config.custom;
 in {
 imports = [
 	./bspwm.nix
+	./emacs.nix
 ];
 
 options.custom = {
@@ -51,6 +52,12 @@ config = {
 		createHome = true;
 		extraGroups = [ "wheel" "audio" "input" "video" "graphical" "vboxusers" "docker" "networkmanager" ];
 	};
+	nix = {
+		package = pkgs.nixFlakes;
+		extraOptions = ''
+			experimental-features = nix command flakes
+			'';
+	};
 	home-manager.users.${cfg.user} = { pkgs, home, ...}: {
 		home.packages = with pkgs; [
 			httpie 
@@ -69,6 +76,38 @@ config = {
 		]++ cfg.extraHomePackages;
 
 
+		xdg = {
+			enable = true;
+			userDirs = {
+			  desktop = "\$HOME/desktop";
+			  documents = "\$HOME/documents";
+			  download = "\$HOME/downloads";
+			  music = "\$HOME/music";
+			  pictures = "\$HOME/pictures";
+			  publicShare = "\$HOME/desktop";
+			  templates = "\$HOME/templates";
+			  videos = "\$HOME/videos";
+			};
+			mime.enable = true;
+			configFile."mimeapps.list".force = true;
+			mimeApps = {
+			  enable = true;
+			  defaultApplications = {
+			    "image/png" = [ "org.kde.okular.desktop" ];
+			    "image/jpg" = [ "org.kde.okular.desktop" ];
+			    "image/jpeg" = [ "org.kde.okular.desktop" ];
+			    "application/pdf" = [ "org.pwmt.zathura.desktop" ];
+
+			    "text/html" = [ "firefox.desktop" ];
+			    "x-scheme-handler/about" = [ "firefox.desktop" ];
+			    "x-scheme-handler/http" = [ "firefox.desktop" ];
+			    "x-scheme-handler/https" = [ "firefox.desktop" ];
+			    "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+
+			    "x-scheme-handler/msteams" = [ "teams.desktop" ];
+			  };
+			};
+		      };
 		services.udiskie = {
 			enable = true;
 			automount = true;
@@ -81,7 +120,7 @@ config = {
 			userEmail = "arnebertrand@gmail.com";
 		};
 		programs.autorandr = {
-			enable = true;
+			enable = false;
 			profiles = {
 				"home" = {
 					fingerprint = {
@@ -110,14 +149,6 @@ config = {
 			};
 		};
 		programs.zsh.enable = true;
-		programs.rofi = {
-			enable = true;
-			font = "Fira Code 24";
-			theme = "Monokai";
-		};
-		services.polybar = {
-			enable = false;
-		};
 
 		programs.kitty = {
 			enable = true;
@@ -136,16 +167,6 @@ config = {
 			};
 		};
 	};
-
-	nix = {
-		package = pkgs.nixFlakes;
-		extraOptions = ''
-			experimental-features = nix command flakes
-			'';
-	};
-
-
-
 };
 	
 

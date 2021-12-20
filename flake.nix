@@ -6,9 +6,10 @@
 	  	url = "github:nix-community/home-manager/master";
 		inputs.nixpkgs.follows = "nixpkgs";
 	  };
+	  nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
   };
 
-  outputs = { self, nixpkgs, home-manager }: {
+  outputs = { self, nixpkgs, home-manager, nix-doom-emacs }: {
 
     nixosConfigurations.finch = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -18,7 +19,7 @@
 		home-manager.useUserPackages = true;
 	}
 	(./modules)
-      	./machines/finch 
+      	(./machines/finch)
 	];
     };
 

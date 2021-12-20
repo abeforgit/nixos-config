@@ -4,15 +4,6 @@
 
 { config, pkgs, ... }:
 
-let
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec -a "$0" "$@"
-  '';
-in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -62,56 +53,29 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  custom.user = "arne";
-  custom.bspwm.enable = true;
-  custom.hostname = "finch";
 
-  services.picom = {
-  	enable = true;
-	experimentalBackends = true;
-	vSync = true;
-  };
   services.gvfs.enable = true;
 
-  # Configure keymap in X11
   services.xserver = {
-  	libinput = {
-		enable = true;
-		touchpad = {
-			tapping = true;
-			clickMethod = "clickfinger";
-			accelProfile = "adaptive";
-			accelSpeed = "2";
-		};
-	};
   	videoDrivers = [ "nvidia" ];
   	dpi = 192;
-  	enable = true;
-	layout = "us";
-	xkbOptions = "eurosign:e";
-	desktopManager.session = [
-	 {
-	 	name = "home-manager";
-		start = ''
-		${pkgs.runtimeShell} $HOME/.hm-xsession &
-		waitPID=$!
-		'';
-	 }
-	];
+  	layout = "us";
+  	xkbOptions = "eurosign:e";
   };
   hardware.nvidia = {
-  	nvidiaSettings = true;
+  	# nvidiaSettings = true;
 	modesetting.enable = true;
   	prime = {
-		offload.enable = true; 
+		sync.enable = true; 
 		intelBusId = "PCI:0:2:0";
 		nvidiaBusId = "PCI:1:0:0";
 	};
-	powerManagement = {
-		enable = true;
-		finegrained = true;
-	};
   };
+
+  custom.user = "arne";
+  custom.bspwm.enable = true;
+  custom.emacs.enable = true;
+  custom.hostname = "finch";
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   virtualisation.docker = {
@@ -152,15 +116,15 @@ in
   	enable = true;
 	powerOnBoot = true;
   };
-  specialisation = {
-  	external-display.configuration = {
-        	system.nixos.tags = [ "external-display" ];
-        	hardware.nvidia.prime.offload.enable = pkgs.lib.mkForce false;
-        	hardware.nvidia.prime.sync.enable = pkgs.lib.mkForce true;
-        	hardware.nvidia.powerManagement.enable = pkgs.lib.mkForce false;
-        	hardware.nvidia.powerManagement.finegrained = pkgs.lib.mkForce false;
-        };
-  };
+  # specialisation = {
+  # 	external-display.configuration = {
+  #       	system.nixos.tags = [ "external-display" ];
+  #       	hardware.nvidia.prime.offload.enable = pkgs.lib.mkForce false;
+  #       	hardware.nvidia.prime.sync.enable = pkgs.lib.mkForce true;
+  #       	hardware.nvidia.powerManagement.enable = pkgs.lib.mkForce false;
+  #       	hardware.nvidia.powerManagement.finegrained = pkgs.lib.mkForce false;
+  #       };
+  # };
 
 }
 

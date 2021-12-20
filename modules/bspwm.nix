@@ -1,3 +1,4 @@
+# takes care of graphical env
 { pkgs, config, lib, ... }:
 with lib;
 let cfg = config.custom.bspwm;
@@ -9,6 +10,31 @@ in {
 			};
 	};
 	config = mkIf cfg.enable {
+		services.xserver = {
+			enable = true;
+			libinput = {
+				enable = true;
+				touchpad = {
+					tapping = true;
+					clickMethod = "clickfinger";
+					accelProfile = "adaptive";
+					accelSpeed = "2";
+				};
+			};
+			desktopManager.session = [
+			 {
+				name = "home-manager";
+				start = ''
+				${pkgs.runtimeShell} $HOME/.hm-xsession &
+				waitPID=$!
+				'';
+			 }
+			];
+		};
+		services.picom = {
+			enable = true;
+			experimentalBackends = true;
+		};
 		home-manager.users.${config.custom.user} = { pkgs, ...}: {
 			xsession = {
 				enable = true;
@@ -30,6 +56,14 @@ in {
 					};
 				};
 				scriptPath = ".hm-xsession";
+			};
+			programs.rofi = {
+				enable = true;
+				font = "Fira Code 24";
+				theme = "Monokai";
+			};
+			services.polybar = {
+				enable = false;
 			};
 			services.sxhkd = {
 				enable = true;
