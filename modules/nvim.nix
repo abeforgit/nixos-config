@@ -22,6 +22,10 @@ in {
   };
   config = mkIf cfg.enable {
     home-manager.users.${config.custom.user} = { pkgs, home, ... }: {
+
+      home.sessionVariables = {
+        EDITOR = "nvim";
+      };
       programs.neovim = {
         enable = true;
         plugins = with pkgs.vimPlugins; [ vim-nix nerdcommenter firenvim ];
