@@ -8,12 +8,13 @@ let cfg = config.custom.nvim;
         owner = "glacambre";
         repo = "firenvim";
         rev = "7320a805f51b4cf03de4e3b30088838d3f84adda";
+        hash = "sha256-BtnCgnrpwo+ziOyufyv1kmnwdzA4La5d3Cu5BLZU0k8=";
       };
 
     };
 in {
   options = {
-    enable = mkOption {
+    custom.nvim.enable = mkOption {
 
       example = true;
       default = false;

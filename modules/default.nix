@@ -18,6 +18,7 @@ in {
     ./keyring.nix
     ./audio.nix
     ./nvim.nix
+    ./git.nix
   ];
 
   options.custom = {

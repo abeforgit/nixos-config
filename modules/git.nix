@@ -6,14 +6,14 @@ in
 {
   imports = [ ./nvim.nix ];
   options =  {
-    enable = mkOption {
+    custom.git.enable = mkOption {
       example = true;
       default = false;
     };
   };
   config = mkIf cfg.enable {
+    custom.nvim.enable = true;
     home-manager.users.${config.custom.user} = { pkgs, home, ... }: {
-      custom.nvim.enable = true;
       programs.git = {
         enable = true;
         userName = "abeforgit";
