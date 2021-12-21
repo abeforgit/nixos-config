@@ -14,6 +14,7 @@ in
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.packages = with pkgs; [
         wacomtablet
+        xf86_input_wacom
       ];
     };
 

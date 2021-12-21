@@ -11,7 +11,7 @@ in
     };
   };
   config = mkIf cfg.enable {
-    custom.bswpm.enable = true;
+    custom.bspwm.enable = true;
     custom.wacom.enable = true;
 
     services.picom = {

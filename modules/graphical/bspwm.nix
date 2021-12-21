@@ -47,7 +47,7 @@ in {
         font = "Fira Code 24";
         theme = "Monokai";
       };
-      programs.flameshot = {
+      services.flameshot = {
         enable = true;
       };
 
