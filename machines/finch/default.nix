@@ -5,11 +5,15 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
+  boot.extraModprobeConfig = ''
+    options hid_apple swap_opt_cmd=1
+    options hid_apple swap_fn_leftctrl=1
+    options hid_apple fnmode=2
+  '';
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -17,7 +21,6 @@
 
   networking.hostName = "finch"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -39,10 +42,6 @@
 
   # Enable the X11 windowing system.
 
-
-  
-
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   nixpkgs.config.allowUnfree = true;
@@ -57,30 +56,29 @@
   services.gvfs.enable = true;
 
   services.xserver = {
-  	videoDrivers = [ "nvidia" ];
-  	dpi = 192;
-  	layout = "us";
-  	xkbOptions = "eurosign:e";
+    videoDrivers = [ "nvidia" ];
+    dpi = 192;
+    layout = "us";
+    xkbOptions = "eurosign:e";
   };
   hardware.nvidia = {
-  	# nvidiaSettings = true;
-	modesetting.enable = true;
-  	prime = {
-		sync.enable = true; 
-		intelBusId = "PCI:0:2:0";
-		nvidiaBusId = "PCI:1:0:0";
-	};
+    # nvidiaSettings = true;
+    modesetting.enable = true;
+    prime = {
+      sync.enable = true;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
   };
 
   custom.user = "arne";
   custom.bspwm.enable = true;
   custom.emacs.enable = true;
+  custom.zsh.enable = true;
   custom.hostname = "finch";
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  virtualisation.docker = {
-  	enable = true;
-  };
+  virtualisation.docker = { enable = true; };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -108,13 +106,11 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
-  networking.networkmanager = { 
-  	enable = true;
-  };
-  
+  networking.networkmanager = { enable = true; };
+
   hardware.bluetooth = {
-  	enable = true;
-	powerOnBoot = true;
+    enable = true;
+    powerOnBoot = true;
   };
   # specialisation = {
   # 	external-display.configuration = {
