@@ -82,6 +82,8 @@
   custom.keychain.enable = true;
   custom.keyring.enable = true;
   custom.audio.enable = true;
+  custom.nvim.enable = true;
+  custom.git.enable = true;
   custom.hostname = "finch";
   users.users.arne = { shell = pkgs.zsh; };
   # List packages installed in system profile. To search, run:

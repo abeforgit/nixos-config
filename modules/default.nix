@@ -17,6 +17,7 @@ in {
     ./keychain.nix
     ./keyring.nix
     ./audio.nix
+    ./nvim.nix
   ];
 
   options.custom = {
@@ -119,11 +120,6 @@ in {
         automount = true;
         notify = true;
         tray = "auto";
-      };
-      programs.git = {
-        enable = true;
-        userName = "abeforgit";
-        userEmail = "arnebertrand@gmail.com";
       };
       programs.autorandr = {
         enable = true;

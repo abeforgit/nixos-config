@@ -14,6 +14,7 @@ in {
       home.packages = with pkgs; [
         hasklig
         nixfmt
+        ripgrep
 
       ];
       programs.doom-emacs = {
