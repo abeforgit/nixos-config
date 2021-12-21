@@ -32,6 +32,7 @@ in {
     services.picom = {
       enable = true;
       experimentalBackends = true;
+      backend = "xrender";
     };
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       xsession = {

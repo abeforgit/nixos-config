@@ -46,8 +46,6 @@
   # services.printing.enable = true;
   nixpkgs.config.allowUnfree = true;
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
 
@@ -60,9 +58,14 @@
     dpi = 192;
     layout = "us";
     xkbOptions = "eurosign:e";
+    screenSection = ''
+      Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
+      Option         "AllowIndirectGLXProtocol" "off"
+      Option         "TripleBuffer" "o
+    '';
   };
   hardware.nvidia = {
-    # nvidiaSettings = true;
+    nvidiaSettings = true;
     modesetting.enable = true;
     prime = {
       sync.enable = true;
@@ -78,10 +81,9 @@
   custom.vscode.enable = true;
   custom.keychain.enable = true;
   custom.keyring.enable = true;
+  custom.audio.enable = true;
   custom.hostname = "finch";
-  users.users.arne = {
-    shell = pkgs.zsh;
-  };
+  users.users.arne = { shell = pkgs.zsh; };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   virtualisation.docker = { enable = true; };

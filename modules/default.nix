@@ -16,6 +16,7 @@ in {
     ./vscode.nix
     ./keychain.nix
     ./keyring.nix
+    ./audio.nix
   ];
 
   options.custom = {
