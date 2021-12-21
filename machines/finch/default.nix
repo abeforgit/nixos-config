@@ -75,7 +75,7 @@
   };
 
   custom.user = "arne";
-  custom.bspwm.enable = true;
+  custom.graphical.enable = true;
   custom.emacs.enable = true;
   custom.zsh.enable = true;
   custom.vscode.enable = true;

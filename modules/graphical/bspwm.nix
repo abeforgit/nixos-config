@@ -10,31 +10,11 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    services.xserver = {
-      enable = true;
-      libinput = {
-        enable = true;
-        touchpad = {
-          tapping = true;
-          clickMethod = "clickfinger";
-          accelProfile = "adaptive";
-          accelSpeed = "2";
-        };
-      };
-      desktopManager.session = [{
-        name = "home-manager";
-        start = ''
-          ${pkgs.runtimeShell} $HOME/.hm-xsession &
-          waitPID=$!
-        '';
-      }];
-    };
-    services.picom = {
-      enable = true;
-      experimentalBackends = true;
-      backend = "xrender";
-    };
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
+      home.packages = with pkgs; [
+          fira-code
+          tdrop
+      ];
       xsession = {
         enable = true;
         windowManager.bspwm = {
@@ -61,11 +41,16 @@ in {
         };
         scriptPath = ".hm-xsession";
       };
+
       programs.rofi = {
         enable = true;
         font = "Fira Code 24";
         theme = "Monokai";
       };
+      programs.flameshot = {
+        enable = true;
+      };
+
       services.polybar = { enable = false; };
       services.sxhkd = {
         enable = true;
@@ -77,9 +62,6 @@ in {
           "super + space; b ; b" = "swap-window";
           "super + space; super + space" = "swap-window";
           "super + d" = "rofi -show combi";
-          "super + p" = "bwmenu";
-          "super + shift + c" =
-            "echo '' | /home/arne/bin/configrun | rofi -show run -dmenu | /home/arne/bin/configrun";
           "super + Escape" =
             "bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel";
           "super + space; r; s" = "pkill -USR1 -x sxhkd";

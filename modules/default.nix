@@ -10,7 +10,7 @@ let
   '';
 in {
   imports = [
-    ./bspwm.nix
+    ./graphical
     ./emacs.nix
     ./zsh.nix
     ./vscode.nix
@@ -74,7 +74,6 @@ in {
           fira-code
           pciutils
           blueman
-          tdrop
           docker-compose
           bat
           xfce.thunar
