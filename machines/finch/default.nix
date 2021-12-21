@@ -77,6 +77,7 @@
   custom.zsh.enable = true;
   custom.vscode.enable = true;
   custom.keychain.enable = true;
+  custom.keyring.enable = true;
   custom.hostname = "finch";
   users.users.arne = {
     shell = pkgs.zsh;

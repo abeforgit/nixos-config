@@ -15,7 +15,7 @@ in {
       programs.vscode = {
         enable = true;
         # add extension-specific deps here
-        package = pkgs.vscode-fhsWithPackages (ps: with ps; [ ]);
+        package = pkgs.vscode-fhsWithPackages (ps: with ps; [ keychain ]);
       };
     };
 

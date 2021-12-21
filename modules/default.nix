@@ -9,7 +9,14 @@ let
     exec -a "$0" "$@"
   '';
 in {
-  imports = [ ./bspwm.nix ./emacs.nix ./zsh.nix ./vscode.nix ./keychain.nix ];
+  imports = [
+    ./bspwm.nix
+    ./emacs.nix
+    ./zsh.nix
+    ./vscode.nix
+    ./keychain.nix
+    ./keyring.nix
+  ];
 
   options.custom = {
     user = lib.mkOption {
