@@ -74,12 +74,13 @@
   custom.user = "arne";
   custom.bspwm.enable = true;
   custom.emacs.enable = true;
+  custom.zsh.enable = true;
+  custom.vscode.enable = true;
+  custom.keychain.enable = true;
+  custom.hostname = "finch";
   users.users.arne = {
     shell = pkgs.zsh;
   };
-  custom.zsh.enable = true;
-  custom.vscode.enable = true;
-  custom.hostname = "finch";
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   virtualisation.docker = { enable = true; };

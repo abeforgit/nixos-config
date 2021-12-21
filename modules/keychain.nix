@@ -1,24 +1,23 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-let cfg = config.custom.vscode;
+let cfg = config.custom.keychain;
 in {
-  options = {
-    custom.vscode.enable = mkOption {
+
+  options.custom.keychain = {
+    enable = mkOption {
       example = true;
       default = false;
     };
-
   };
   config = mkIf cfg.enable {
     home-manager.users.${config.custom.user} = { pkgs, home, ... }: {
-      programs.vscode = {
+      programs.keychain = {
         enable = true;
-        # add extension-specific deps here
-        package = pkgs.vscode-fhsWithPackages (ps: with ps; [ ]);
+        enableZshIntegration = true;
       };
     };
 
-  };
 
+  };
 }

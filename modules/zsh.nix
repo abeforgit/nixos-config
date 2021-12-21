@@ -9,13 +9,14 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    environment.pathsToLink = ["/share/zsh"];
+    environment.pathsToLink = [ "/share/zsh" ];
     home-manager.users.${config.custom.user} = { pkgs, home, ... }: {
 
       programs.starship = {
         enable = true;
         enableZshIntegration = true;
       };
+      programs.lsd = { enable = true; };
 
       programs.zsh = {
         enable = true;
@@ -49,7 +50,8 @@ in {
           gc = "git checkout";
           extip = "curl ifconfig.co";
           icat = "kitty +kitten icat";
-          rebuild = "sudo nixos-rebuild switch --flake ~/repos/nixos-config#finch";
+          rebuild =
+            "sudo nixos-rebuild switch --flake ~/repos/nixos-config#finch";
         };
       };
     };
