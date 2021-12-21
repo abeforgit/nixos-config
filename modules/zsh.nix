@@ -8,7 +8,8 @@ in {
       default = false;
     };
   };
-  config = {
+  config = mkIf cfg.enable {
+    environment.pathsToLink = ["/share/zsh"];
     home-manager.users.${config.custom.user} = { pkgs, home, ... }: {
 
       programs.starship = {

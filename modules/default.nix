@@ -9,7 +9,7 @@ let
     exec -a "$0" "$@"
   '';
 in {
-  imports = [ ./bspwm.nix ./emacs.nix ];
+  imports = [ ./bspwm.nix ./emacs.nix ./zsh.nix ./vscode.nix ];
 
   options.custom = {
     user = lib.mkOption {
@@ -143,7 +143,7 @@ in {
               };
             };
           };
-					# workarounds for stupid monitor renaming issue
+          # workarounds for stupid monitor renaming issue
           "home-1" = {
             fingerprint = {
               eDP-1-1 =
