@@ -15,6 +15,8 @@ in {
         hasklig
         nixfmt
         ripgrep
+        sqlite
+        git
 
       ];
       programs.doom-emacs = {

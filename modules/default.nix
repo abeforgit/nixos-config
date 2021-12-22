@@ -19,6 +19,7 @@ in {
     ./audio.nix
     ./nvim.nix
     ./git.nix
+    ./intellij.nix
   ];
 
   options.custom = {
