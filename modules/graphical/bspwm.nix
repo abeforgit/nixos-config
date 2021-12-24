@@ -11,7 +11,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    config.custom.polybar.enable = true;
+    custom.polybar.enable = true;
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.packages = with pkgs; [ fira-code tdrop wmname ];
       xsession = {
