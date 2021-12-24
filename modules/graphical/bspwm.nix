@@ -3,6 +3,7 @@
 with lib;
 let cfg = config.custom.bspwm;
 in {
+  imports = [ ./polybar.nix ];
   options.custom.bspwm = {
     enable = mkOption {
       example = true;
@@ -10,11 +11,9 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    config.custom.polybar.enable = true;
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
-      home.packages = with pkgs; [
-          fira-code
-          tdrop
-      ];
+      home.packages = with pkgs; [ fira-code tdrop wmname ];
       xsession = {
         enable = true;
         windowManager.bspwm = {
@@ -38,6 +37,7 @@ in {
             "__scratch:scratch" = { state = "floating"; };
             Peek = { state = "floating"; };
           };
+          startupPrograms = [ "wmname LG3D" ];
         };
         scriptPath = ".hm-xsession";
       };
@@ -47,9 +47,7 @@ in {
         font = "Fira Code 24";
         theme = "Monokai";
       };
-      services.flameshot = {
-        enable = true;
-      };
+      services.flameshot = { enable = true; };
 
       services.polybar = { enable = false; };
       services.sxhkd = {

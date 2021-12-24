@@ -11,7 +11,7 @@ in {
   config = mkIf cfg.enable {
     home-manager.users.${config.custom.user} = let
       devSDKs = with pkgs; {
-        rustc = synlinkJoin {
+        rustc = symlinkJoin {
           name = rustc.pname;
           paths = [ rustc cargo gcc ];
         };
