@@ -49,7 +49,6 @@ in {
       };
       services.flameshot = { enable = true; };
 
-      services.polybar = { enable = false; };
       services.sxhkd = {
         enable = true;
         keybindings = {
