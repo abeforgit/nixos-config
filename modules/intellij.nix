@@ -13,10 +13,10 @@ in {
     custom.rustup.enable = true;
     home-manager.users.${config.custom.user} = let
       devSDKs = with pkgs; {
+        rustup = rustup;
         java11 = jdk11;
         java = jdk;
         python = python3;
-
       };
       extraPath = makeBinPath (builtins.attrValues devSDKs);
       intellij = pkgs.runCommand "intellij" {
