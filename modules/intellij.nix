@@ -2,6 +2,7 @@
 with lib;
 let cfg = config.custom.intellij;
 in {
+  imports = [ ./rustup.nix ];
   options.custom.intellij = {
     enable = mkOption {
       example = true;
@@ -9,13 +10,9 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    custom.rustup.enable = true;
     home-manager.users.${config.custom.user} = let
       devSDKs = with pkgs; {
-        rustc = symlinkJoin {
-          name = rustc.pname;
-          paths = [ rustc cargo gcc ];
-        };
-        rust-src = rust.packages.stable.rustPlatform.rustLibSrc;
         java11 = jdk11;
         java = jdk;
         python = python3;
@@ -39,7 +36,6 @@ in {
         };
         entries = mapAttrsToList mkEntry devSDKs;
       in pkgs.linkFarm "local-dev" entries;
-
     };
   };
 

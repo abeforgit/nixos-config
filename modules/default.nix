@@ -20,6 +20,7 @@ in {
     ./nvim.nix
     ./git.nix
     ./intellij.nix
+    ./rustup.nix
   ];
 
   options.custom = {
