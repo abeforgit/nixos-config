@@ -20,6 +20,13 @@ in
         userEmail = "arnebertrand@gmail.com";
         delta.enable = true;
         lfs.enable = true;
+        ignores = [
+          ".direnv"
+          ".envrc"
+          "shell.nix"
+          ".idea/*"
+          "*.iml"
+        ];
       };
     };
 
