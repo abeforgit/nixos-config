@@ -11,7 +11,6 @@ in {
   config = mkIf cfg.enable {
     environment.pathsToLink = [ "/share/zsh" ];
     home-manager.users.${config.custom.user} = { pkgs, home, ... }: {
-      home.packages = with pkgs; [ fzf ];
 
       programs.starship = {
         enable = true;
@@ -27,6 +26,10 @@ in {
         enable = true;
         enableZshIntegration = true;
         options = ["--cmd j"];
+      };
+      programs.fzf = {
+        enable = true;
+        enableZshIntegration = true;
       };
 
       programs.zsh = {
