@@ -21,6 +21,7 @@ in {
     ./git.nix
     ./intellij.nix
     ./rustup.nix
+    ./tmux.nix
   ];
 
   options.custom = {

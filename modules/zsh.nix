@@ -10,6 +10,7 @@ in {
   };
   config = mkIf cfg.enable {
     environment.pathsToLink = [ "/share/zsh" ];
+    custom.tmux.enable = true;
     home-manager.users.${config.custom.user} = { pkgs, home, ... }: {
 
       programs.starship = {
