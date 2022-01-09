@@ -88,6 +88,7 @@ in
   custom.nvim.enable = true;
   custom.git.enable = true;
   custom.intellij.enable = true;
+  custom.webstorm.enable = true;
   custom.rustup.enable = true;
   custom.hostname = "finch";
   users.users.arne = { shell = pkgs.zsh; };
