@@ -26,7 +26,7 @@ in {
       programs.zoxide = {
         enable = true;
         enableZshIntegration = true;
-        options = ["--cmd j"];
+        options = [ "--cmd j" ];
       };
       programs.fzf = {
         enable = true;
@@ -42,15 +42,24 @@ in {
 
         zplug = {
           enable = true;
+          plugins = [
+            { name = "laurenkt/zsh-vimto"; }
+            { name = "zsh-users/zsh-history-substring-search"; }
+            { name = "wfxr/forgit"; }
+            { name = "ael-code/zsh-colored-man-pages"; }
+            { name = "lukechilds/zsh-better-npm-completion"; }
+          ];
         };
         oh-my-zsh = {
           enable = true;
           plugins = [
             "docker"
             "docker-compose"
-            "npm"
             "tmux"
             "vi-mode"
+            "rust"
+            "cargo"
+            "python"
           ];
         };
         shellAliases = {
