@@ -10,7 +10,7 @@ in {
   };
   config = mkIf cfg.enable {
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
-      home.packages = with pkgs; [ jetbrains.webstorm ];
+      home.packages = with pkgs; [ nodejs nodejs-14_x jetbrains.webstorm ];
     };
 
     # for future reference
