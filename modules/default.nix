@@ -48,10 +48,24 @@ in {
 
     i18n.defaultLocale = "en_US.UTF-8";
     time.timeZone = "Europe/Brussels";
+    users.groups.${cfg.user} = {
+      gid = 1000;
+    };
     users.users.${cfg.user} = {
+      group = cfg.user;
+      uid = 1000;
+      subUidRanges = [{
+        count = 65534;
+        startUid = 1000;
+      }];
+      subGidRanges = [{
+        count = 65534;
+        startGid = 1000;
+      }];
       isNormalUser = true;
       createHome = true;
       extraGroups = [
+        "users"
         "wheel"
         "audio"
         "input"

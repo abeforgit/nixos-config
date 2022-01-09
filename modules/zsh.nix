@@ -22,12 +22,32 @@ in {
         enableZshIntegration = true;
         nix-direnv.enable = true;
       };
+      programs.zoxide = {
+        enable = true;
+        enableZshIntegration = true;
+        options = ["--cmd j"];
+      };
 
       programs.zsh = {
         enable = true;
+        enableCompletion = true;
         enableAutosuggestions = true;
         enableSyntaxHighlighting = true;
         defaultKeymap = "viins";
+
+        zplug = {
+          enable = true;
+        };
+        oh-my-zsh = {
+          enable = true;
+          plugins = [
+            "docker"
+            "docker-compose"
+            "npm"
+            "tmux"
+            "vi-mode"
+          ];
+        };
         shellAliases = {
           mux = "tmuxinator";
           docker-stopall = "docker stop $(docker ps -q)";

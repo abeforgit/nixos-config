@@ -4,6 +4,9 @@
 
 { config, pkgs, ... }:
 
+let
+  username = "arne";
+in
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -74,7 +77,7 @@
     };
   };
 
-  custom.user = "arne";
+  custom.user = username;
   custom.graphical.enable = true;
   custom.emacs.enable = true;
   custom.zsh.enable = true;
@@ -90,7 +93,10 @@
   users.users.arne = { shell = pkgs.zsh; };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  virtualisation.docker = { enable = true; };
+  virtualisation.docker = {
+    enable = true;
+    extraOptions = "--userns-remap=${username}";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
