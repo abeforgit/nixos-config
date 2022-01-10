@@ -2,6 +2,7 @@
 with lib;
 let cfg = config.custom.webstorm;
 in {
+  imports = [ ./jetbrains-core.nix ];
   options.custom.webstorm = {
     enable = mkOption {
       example = true;
@@ -9,9 +10,6 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    imports = [
-      ./jetbrains-core.nix
-    ];
 
     home-manager.users.${config.custom.user} = let
       devSDKs = with pkgs; {
