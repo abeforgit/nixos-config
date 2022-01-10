@@ -83,6 +83,15 @@ in {
       extraOptions = ''
         experimental-features = nix-command flakes
       '';
+      gc = {
+        automatic = true;
+        dates = "daily";
+        options = "--delete-older-than 7d";
+      };
+      optimise = {
+        automatic = true;
+        dates = [ "daily" ];
+      };
     };
     home-manager.users.${cfg.user} = { pkgs, home, ... }: {
       home.packages = with pkgs;
