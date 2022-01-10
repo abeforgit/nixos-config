@@ -102,10 +102,10 @@ in {
           "super + {Left,Down,Up,Right}" =
             "bspc node -v {-20 0,0 20,0 -20,20 0}";
           "super + space ; t" = "tdrop -ma -w -5 -h 60% --wm bspwm  kitty";
-          "super + F12" = "tdrop -ma -w -5 -h 60% --wm bspwm  kitty";
-          "super + Return" = "kitty";
-          # "super + F12" =
-          #   "tdrop -ma -n rocket --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Chromium -o state=floating' chromium --app=https://chat.semte.ch";
+          "super + Return" = "tdrop -ma -w -5 -h 60% --wm bspwm  kitty";
+          "super + shift + Return" = "kitty";
+          "super + F12" =
+            "tdrop -ma -n rocket --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Chromium -o state=floating' chromium --app=https://chat.semte.ch";
           "super + F11" =
             "tdrop -ma -n mmost --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Chromium -o state=floating' chromium --app=https://mattermost.zeus.gent";
           "super + F10" =
