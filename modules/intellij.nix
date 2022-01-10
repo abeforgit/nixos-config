@@ -2,7 +2,7 @@
 with lib;
 let cfg = config.custom.intellij;
 in {
-  imports = [ ./rustup.nix ];
+  imports = [ ./rustup.nix ./jetbrains-core.nix ];
   options.custom.intellij = {
     enable = mkOption {
       example = true;

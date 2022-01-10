@@ -9,6 +9,9 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    imports = [
+      ./jetbrains-core.nix
+    ];
 
     home-manager.users.${config.custom.user} = let
       devSDKs = with pkgs; {
