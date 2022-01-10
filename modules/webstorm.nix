@@ -14,6 +14,7 @@ in {
       devSDKs = with pkgs; {
         node = nodejs;
         node14 = nodejs-14_x;
+        node16 = nodejs-16_x;
       };
       extraPath = makeBinPath (builtins.attrValues devSDKs);
       webstorm = pkgs.runCommand "webstorm" {
