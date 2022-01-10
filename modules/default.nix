@@ -89,6 +89,7 @@ in {
         [
           httpie
           firefox
+          chromium
           fira-code
           pciutils
           blueman
