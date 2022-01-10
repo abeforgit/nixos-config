@@ -105,11 +105,11 @@ in {
           "super + Return" = "tdrop -ma -w -5 -h 60% --wm bspwm  kitty";
           "super + shift + Return" = "kitty";
           "super + F12" =
-            "tdrop -ma -n rocket --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Chromium -o state=floating' chromium --app=https://chat.semte.ch";
+            "tdrop -ma -n rocket --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Chromium-browser -o state=floating' chromium --app=https://chat.semte.ch";
           "super + F11" =
-            "tdrop -ma -n mmost --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Chromium -o state=floating' chromium --app=https://mattermost.zeus.gent";
+            "tdrop -ma -n mmost --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Chromium-browser -o state=floating' chromium --app=https://mattermost.zeus.gent";
           "super + F10" =
-            "tdrop -ma -n toggl --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Chromium -o state=floating' chromium --app=https://track.toggl.com/timer";
+            "tdrop -ma -n toggl --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Chromium-browser -o state=floating' chromium --app=https://track.toggl.com/timer";
           "super + F9" = "flameshot gui";
           "super + {grave}" =
             "tdrop -ma -n emacs --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Emacs -o state=floating' emacs";
