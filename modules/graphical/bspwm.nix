@@ -49,6 +49,16 @@ in {
       };
       services.flameshot = { enable = true; };
 
+      home.file."reload-wm" = {
+        source = ./reload-wm.sh;
+        executable = true;
+        target = ".local/bin/reload-wm";
+      };
+      home.file."swap-window" = {
+        source = ./swap-window.sh;
+        executable = true;
+        target = ".local/bin/swap-window";
+      };
       services.sxhkd = {
         enable = true;
         keybindings = {
@@ -62,6 +72,7 @@ in {
           "super + Escape" =
             "bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel";
           "super + space; r; s" = "pkill -USR1 -x sxhkd";
+          "super + space; r; r" = "reload-wm";
           "super + space; b; {p,n}" = ''
               bspc wm -h off ;\
             	bspc node -s {older,newer} ;\

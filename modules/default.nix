@@ -111,6 +111,7 @@ in {
           arandr
         ] ++ cfg.extraHomePackages;
 
+      home.sessionPath = [ "$HOME/.local/bin" ];
       xdg = {
         enable = true;
         userDirs = {
