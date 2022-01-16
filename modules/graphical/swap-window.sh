@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /usr/bin/env bash
 declare -A windowmap
 
 result=$(rofi -kb-accept-entry Alt+Shift+Control+Return -kb-accept-alt Return -show combi -run-command 'echo run:{cmd}' -window-command 'echo window:{window}')
