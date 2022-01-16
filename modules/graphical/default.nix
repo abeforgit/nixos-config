@@ -23,6 +23,7 @@ in {
       backend = "xrender";
     };
     services.dbus = { enable = true; };
+    programs.dconf.enable = true;
     services.xserver = {
       enable = true;
       synaptics = {

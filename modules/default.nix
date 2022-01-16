@@ -76,6 +76,7 @@ in {
         "vboxusers"
         "docker"
         "networkmanager"
+        "lp"
       ];
     };
     nix = {
