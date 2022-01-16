@@ -17,6 +17,7 @@ in {
         ripgrep
         sqlite
         git
+        nodePackages.bash-language-server
 
       ];
       programs.doom-emacs = {

@@ -17,6 +17,7 @@ in {
         escapeTime = 0;
         baseIndex = 1;
         tmuxinator = { enable = true; };
+        shell = "${pkgs.zsh}/bin/zsh";
         plugins = with pkgs; [
           tmuxPlugins.sensible
           tmuxPlugins.vim-tmux-navigator

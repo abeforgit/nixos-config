@@ -1,8 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let cfg = config.custom.audio;
-in
-{
+in {
   options = {
     custom.audio.enable = mkOption {
       example = true;
@@ -12,11 +11,16 @@ in
   };
   config = mkIf cfg.enable {
     sound.enable = true;
-    hardware.pulseaudio.enable = true;
-    home-manager.users.${config.custom.user} = {pkgs, ...}: {
-      home.packages = with pkgs; [
-        pavucontrol
-      ];
+    hardware.pulseaudio = {
+      enable = true;
+      extraConfig = "load-module module-switch-on-connect";
+      extraModules = [ pkgs.pulseaudio-modules-bt ];
+      package = pkgs.pulseaudioFull;
+    };
+    home-manager.users.${config.custom.user} = { pkgs, ... }: {
+      home.packages = with pkgs; [ pavucontrol ];
+      services.mpris-proxy.enable = true;
+
 
     };
 

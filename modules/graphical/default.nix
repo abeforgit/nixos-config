@@ -1,8 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let cfg = config.custom.graphical;
-in
-{
+in {
   imports = [ ./bspwm.nix ./wacom.nix ./polybar.nix ];
   options.custom.graphical = {
     enable = mkOption {
@@ -23,26 +22,32 @@ in
       experimentalBackends = true;
       backend = "xrender";
     };
+    services.dbus = { enable = true; };
     services.xserver = {
       enable = true;
-      libinput = {
+      synaptics = {
         enable = true;
-        touchpad = {
-          tapping = true;
-          clickMethod = "clickfinger";
-          accelProfile = "adaptive";
-          accelSpeed = "2";
-        };
+        vertTwoFingerScroll = true;
+        horizTwoFingerScroll = true;
+        buttonsMap = [ 1 3 2 ];
+        maxSpeed = "10";
+        minSpeed = "10";
       };
-      desktopManager.session = [{
-        name = "home-manager";
-        start = ''
-          ${pkgs.runtimeShell} $HOME/.hm-xsession &
-          waitPID=$!
-        '';
-      }];
-    };
+      displayManager = {
+        lightdm = {
+          enable = true;
+        };
 
+        session = [{
+          name = "bspwm";
+          manage = "window";
+          start = ''
+            ${pkgs.runtimeShell} $HOME/.hm-xsession &
+            waitPID=$!
+          '';
+        }];
+      };
+    };
 
   };
 

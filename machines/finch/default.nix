@@ -4,10 +4,8 @@
 
 { config, pkgs, ... }:
 
-let
-  username = "arne";
-in
-{
+let username = "arne";
+in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
@@ -130,7 +128,9 @@ in
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+    package = pkgs.bluezFull;
   };
+  services.blueman = { enable = true; };
   # specialisation = {
   # 	external-display.configuration = {
   #       	system.nixos.tags = [ "external-display" ];

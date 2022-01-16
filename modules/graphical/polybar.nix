@@ -14,7 +14,19 @@ in {
       services.polybar = {
         enable = true;
         script = ''
-          polybar bar1 &
+
+killall -q polybar
+
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+polybar -m | while read -r monitor; do
+
+	if  echo "$monitor" | grep "primary";  then
+		MONITOR=''${monitor//:*/} polybar primary &
+	else
+		MONITOR=''${monitor//:*/} polybar secondary &
+	fi
+done
         '';
         settings = {
           colors = {
@@ -55,9 +67,9 @@ in {
             };
           };
 
-          "bar/bar1" = {
+          "bar/primary" = {
             dpi = 192;
-            # monitor = "\${"env:MONITOR"}";
+            monitor = "\${env:MONITOR}";
             bottom = true;
             height = 50;
 
@@ -96,6 +108,11 @@ in {
             cursor-click = "pointer";
             cursor-scroll = "ns-resize";
 
+          };
+          "bar/secondary" = {
+            "inherit" = "bar/primary";
+            modules-right = "";
+            tray-position = "none";
           };
           "module/bspwm" = { type = "internal/bspwm"; };
           "module/backlight" = {

@@ -101,7 +101,6 @@ in {
           chromium
           fira-code
           pciutils
-          blueman
           docker-compose
           bat
           xfce.thunar
