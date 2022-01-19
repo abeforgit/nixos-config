@@ -7,23 +7,45 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-doom-emacs }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, nix-doom-emacs, utils }:
+    let
+      customPackages = callPackage: {
+        jetbrains-jre-jcef = callPackage ./packages/jetbrains-jre-jcef { };
 
-    nixosConfigurations.finch = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ({ config._module.args = { inherit nix-doom-emacs; }; })
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-        }
-        (./modules)
-        (./machines/finch)
-      ];
+      };
+    in utils.lib.mkFlake {
+
+      inherit self inputs;
+
+      channels.nixpkgs = {
+        input = nixpkgs;
+        overlaysBuilder = _: [ (self: super: customPackages self.callPackage) ];
+      };
+      hostDefaults = {
+
+        modules = [
+          ({ config._module.args = { inherit nix-doom-emacs; }; })
+          { nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; }
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+          }
+          (./modules)
+          (./machines/finch)
+        ];
+
+      };
+      hosts = { finch.modules = [ ./machines/finch ]; };
+      outputsBuilder = channels:
+        let pkgs = channels.nixpkgs;
+        in {
+          packages = customPackages pkgs.callPackage;
+
+        };
     };
 
-  };
 }

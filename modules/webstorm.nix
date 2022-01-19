@@ -16,6 +16,7 @@ in {
         node = nodejs;
         node14 = nodejs-14_x;
         node16 = nodejs-16_x;
+        jre=  callPackage ../packages/jetbrains-jre-jcef/default.nix {};
       };
       extraPath = makeBinPath (builtins.attrValues devSDKs);
       webstorm = pkgs.runCommand "webstorm" {

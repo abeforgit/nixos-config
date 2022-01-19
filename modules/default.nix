@@ -45,7 +45,7 @@ in {
 
   config = {
     environment.systemPackages = with pkgs;
-      [ neovim wget kitty nvidia-offload git git-lfs killall ntfs3g ]
+      [ neovim wget kitty nvidia-offload git git-lfs killall ntfs3g file nix-index zip unzip ]
       ++ cfg.extraSystemPackages;
 
     i18n.defaultLocale = "en_US.UTF-8";

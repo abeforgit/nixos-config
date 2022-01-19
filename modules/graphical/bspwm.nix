@@ -122,11 +122,11 @@ in {
           "super + Return" = "tdrop -ma -w -5 -h 60% --wm bspwm  kitty";
           "super + shift + Return" = "kitty";
           "super + F12" =
-            "tdrop -m -a -h 60% -n 0 --wm bspwm --class Chromium-browser chromium --app=https://chat.semte.ch";
+            "tdrop -m -a -h 60% -n 1 --wm bspwm --class Chromium-browser chromium --app=https://chat.semte.ch";
           "super + F11" =
-            "tdrop -m -a -h 60% -n 1 --wm bspwm --class Chromium-browser chromium --app=https://mattermost.zeus.gent";
+            "tdrop -m -a -h 60% -n 2 --wm bspwm --class Chromium-browser chromium --app=https://mattermost.zeus.gent";
           "super + F10" =
-            "tdrop -m -a -h 60% -n 2 --wm bspwm --class Chromium-browser chromium --app=https://track.toggl.com/timer";
+            "tdrop -m -a -h 60% -n 3 --wm bspwm --class Chromium-browser chromium --app=https://track.toggl.com/timer";
           "super + F9" = "flameshot gui";
           "super + {grave}" =
             "tdrop -m -a -n emacs --wm bspwm -h 60% --class Emacs emacs";
