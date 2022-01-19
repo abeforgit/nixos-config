@@ -27,7 +27,7 @@ in {
                 --prefix PATH : ${extraPath}
         #     '';
     in { ... }: {
-      home.packages = [ webstorm ];
+      home.packages = with pkgs; [ webstorm google-chrome ];
       home.file.".local/webstorm-dev".source = let
         mkEntry = name: value: {
           inherit name;

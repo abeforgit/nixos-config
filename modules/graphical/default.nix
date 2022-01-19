@@ -86,8 +86,8 @@ in {
         vertTwoFingerScroll = true;
         horizTwoFingerScroll = true;
         buttonsMap = [ 1 3 2 ];
-        maxSpeed = "10";
-        minSpeed = "10";
+        maxSpeed = "1";
+        minSpeed = "1";
       };
       displayManager = {
         lightdm = { enable = true; };

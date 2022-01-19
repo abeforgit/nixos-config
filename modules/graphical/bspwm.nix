@@ -13,7 +13,13 @@ in {
   config = mkIf cfg.enable {
     custom.polybar.enable = true;
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
-      home.packages = with pkgs; [ fira-code tdrop wmname ];
+      home.packages = with pkgs; [
+        fira-code
+        tdrop
+        wmname
+        xorg.xwininfo
+        xdotool
+      ];
       xsession = {
         enable = true;
         windowManager.bspwm = {
@@ -116,14 +122,14 @@ in {
           "super + Return" = "tdrop -ma -w -5 -h 60% --wm bspwm  kitty";
           "super + shift + Return" = "kitty";
           "super + F12" =
-            "tdrop -ma -n rocket --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Chromium-browser -o state=floating' chromium --app=https://chat.semte.ch";
+            "tdrop -m -a -h 60% -n 0 --wm bspwm --class Chromium-browser chromium --app=https://chat.semte.ch";
           "super + F11" =
-            "tdrop -ma -n mmost --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Chromium-browser -o state=floating' chromium --app=https://mattermost.zeus.gent";
+            "tdrop -m -a -h 60% -n 1 --wm bspwm --class Chromium-browser chromium --app=https://mattermost.zeus.gent";
           "super + F10" =
-            "tdrop -ma -n toggl --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Chromium-browser -o state=floating' chromium --app=https://track.toggl.com/timer";
+            "tdrop -m -a -h 60% -n 2 --wm bspwm --class Chromium-browser chromium --app=https://track.toggl.com/timer";
           "super + F9" = "flameshot gui";
           "super + {grave}" =
-            "tdrop -ma -n emacs --wm bswpm -w -4 -y 0 -h 60% --pre-map-float-command 'bspc rule -a Emacs -o state=floating' emacs";
+            "tdrop -m -a -n emacs --wm bspwm -h 60% --class Emacs emacs";
           "XF86MonBrightnessUp" = "xbacklight -inc 20";
           "XF86MonBrightnessDown" = "xbacklight -dec 20";
           "XF86AudioRaiseVolume" = "pactl set-sink-volume 0 +5%";
