@@ -16,8 +16,9 @@ in {
         node = nodejs;
         node14 = nodejs-14_x;
         node16 = nodejs-16_x;
-        jre=  callPackage ../packages/jetbrains-jre-jcef/default.nix {};
       };
+      jetbrains-jre = with pkgs;
+        callPackage ../packages/jetbrains-jre-jcef/default.nix { };
       extraPath = makeBinPath (builtins.attrValues devSDKs);
       webstorm = pkgs.runCommand "webstorm" {
         nativeBuildInputs = [ pkgs.makeWrapper ];
@@ -28,7 +29,16 @@ in {
                 --prefix PATH : ${extraPath}
         #     '';
     in { ... }: {
-      home.packages = with pkgs; [ webstorm google-chrome ];
+      home.packages = with pkgs; [
+        webstorm
+        google-chrome
+        fontconfig
+        dejavu_fonts
+        jetbrains-jre
+        nerdfonts
+        font-manager
+      ];
+      fonts.fontconfig.enable = true;
       home.file.".local/webstorm-dev".source = let
         mkEntry = name: value: {
           inherit name;
