@@ -1,11 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let cfg = config.custom.git;
-in
 
-{
+in {
   imports = [ ./nvim.nix ];
-  options =  {
+  options = {
     custom.git.enable = mkOption {
       example = true;
       default = false;
@@ -20,13 +19,19 @@ in
         userEmail = "arnebertrand@gmail.com";
         delta.enable = true;
         lfs.enable = true;
-        ignores = [
-          ".direnv"
-          ".envrc"
-          "shell.nix"
-          ".idea/*"
-          "*.iml"
-        ];
+        ignores = [ ".direnv" ".envrc" "shell.nix" ".idea/*" "*.iml" ];
+        extraConfig = {
+          merge.conflictstyle = "diff3";
+          rerere.enabled = true;
+
+        };
+      };
+      programs.gh = {
+        enable = true;
+        settings = {
+          editor = "emacs";
+          git_protocol = "ssh";
+        };
       };
     };
 
