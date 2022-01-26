@@ -8,7 +8,7 @@
     };
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-    activitywatch.url = "path:flakes/activitywatch.nix";
+    activitywatch.url = "path:flakes/activitywatch";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, nix-doom-emacs, activitywatch
