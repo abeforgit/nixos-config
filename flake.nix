@@ -8,9 +8,11 @@
     };
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    activitywatch.url = "path:flakes/activitywatch.nix";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nix-doom-emacs, utils }:
+  outputs = inputs@{ self, nixpkgs, home-manager, nix-doom-emacs, activitywatch
+    , utils }:
     let
       customPackages = callPackage: {
         jetbrains-jre-jcef = callPackage ./packages/jetbrains-jre-jcef { };
@@ -27,7 +29,12 @@
       hostDefaults = {
 
         modules = [
-          ({ config._module.args = { inherit nix-doom-emacs; }; })
+          ({
+            config._module.args = {
+              inherit nix-doom-emacs;
+              inherit activitywatch;
+            };
+          })
           { nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; }
           home-manager.nixosModules.home-manager
           {

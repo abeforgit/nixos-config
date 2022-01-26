@@ -19,6 +19,7 @@ in {
         wmname
         xorg.xwininfo
         xdotool
+        activitywatch
       ];
       xsession = {
         enable = true;

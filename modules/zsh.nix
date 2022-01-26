@@ -60,6 +60,7 @@ in {
             "rust"
             "cargo"
             "python"
+            "gh"
           ];
         };
         shellAliases = {
@@ -91,6 +92,7 @@ in {
           icat = "kitty +kitten icat";
           rebuild =
             "sudo nixos-rebuild switch --flake ~/repos/nixos-config#finch";
+          srcrc = "source ~/.zshrc";
         };
       };
     };
