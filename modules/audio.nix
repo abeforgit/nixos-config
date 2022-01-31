@@ -10,7 +10,11 @@ in {
 
   };
   config = mkIf cfg.enable {
-    age.secrets.spotify.file = ../secrets/spotify.age;
+    age.secrets.spotify = {
+      file = ../secrets/spotify.age;
+      owner = config.custom.user;
+    };
+
     sound.enable = true;
     hardware.pulseaudio = {
       enable = true;
@@ -19,15 +23,21 @@ in {
       package = pkgs.pulseaudioFull;
     };
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
-      home.packages = with pkgs; [ pavucontrol ];
+      home.packages = with pkgs; [ pavucontrol spotify-tui ];
       services.mpris-proxy.enable = true;
       services.spotifyd = {
         enable = true;
+        package = pkgs.spotifyd.override {
+          withKeyring = true;
+          withPulseAudio = true;
+          withMpris = true;
+        };
         settings = {
           global = {
             username = "arnebertrand@gmail.com";
-            password = config.age.secrets.spotify.path;
             device_name = "finch";
+            password_cmd = "${pkgs.coreutils}/bin/cat ${config.age.secrets.spotify.path}";
+            bitrate = 320;
           };
         };
       };

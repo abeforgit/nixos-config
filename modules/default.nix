@@ -105,7 +105,29 @@ in {
         dates = [ "daily" ];
       };
     };
-    services.openssh.enable = true;
+    services.openssh = {
+      enable = true;
+      passwordAuthentication = false;
+      permitRootLogin = "prohibit-password";
+      hostKeys = [
+        {
+          bits = 4096;
+          path = "/etc/ssh/ssh_host_rsa_key";
+          type = "rsa";
+        }
+        {
+          path = "/etc/ssh/ssh_host_ed25519_key";
+          type = "ed25519";
+        }
+      ];
+      authorizedKeysFiles = [ "/run/agenix/authorized_keys/%u" ];
+    };
+    age.secrets."authorized_keys/root".file =
+      ../secrets/authorized_keys/root.age;
+    age.secrets."authorized_keys/arne" = {
+      file = ../secrets/authorized_keys/arne.age;
+      owner = "arne";
+    };
     home-manager.users.${cfg.user} = { pkgs, home, ... }: {
       home.packages = with pkgs;
         [
