@@ -1,5 +1,5 @@
 # takes care of graphical env
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, activitywatch, ... }:
 with lib;
 let cfg = config.custom.bspwm;
 in {
@@ -19,7 +19,6 @@ in {
         wmname
         xorg.xwininfo
         xdotool
-        activitywatch
       ];
       xsession = {
         enable = true;

@@ -18,7 +18,7 @@ in {
         sqlite
         git
         nodePackages.bash-language-server
-
+        wakatime
       ];
       programs.doom-emacs = {
         enable = true;

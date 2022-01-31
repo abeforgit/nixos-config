@@ -8,11 +8,15 @@
     };
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-    activitywatch.url = "path:flakes/activitywatch";
+    agenix = {
+      url = "github:ryantm/agenix/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nix-doom-emacs, activitywatch
-    , utils }:
+  outputs =
+    inputs@{ self, nixpkgs, home-manager, nix-doom-emacs, utils, agenix }:
     let
       customPackages = callPackage: {
         jetbrains-jre-jcef = callPackage ./packages/jetbrains-jre-jcef { };
@@ -32,7 +36,7 @@
           ({
             config._module.args = {
               inherit nix-doom-emacs;
-              inherit activitywatch;
+              agenix-cli = agenix.defaultPackage.x86_64-linux;
             };
           })
           { nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; }
@@ -43,6 +47,7 @@
           }
           (./modules)
           (./machines/finch)
+          agenix.nixosModules.age
         ];
 
       };

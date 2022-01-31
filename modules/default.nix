@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, agenix-cli, ... }:
 let
   cfg = config.custom;
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
@@ -45,14 +45,25 @@ in {
 
   config = {
     environment.systemPackages = with pkgs;
-      [ neovim wget kitty nvidia-offload git git-lfs killall ntfs3g file nix-index zip unzip ]
-      ++ cfg.extraSystemPackages;
+      [
+        neovim
+        wget
+        kitty
+        nvidia-offload
+        git
+        git-lfs
+        killall
+        ntfs3g
+        file
+        nix-index
+        zip
+        unzip
+        agenix-cli
+      ] ++ cfg.extraSystemPackages;
 
     i18n.defaultLocale = "en_US.UTF-8";
     time.timeZone = "Europe/Brussels";
-    users.groups.${cfg.user} = {
-      gid = 1000;
-    };
+    users.groups.${cfg.user} = { gid = 1000; };
     users.users.${cfg.user} = {
       group = cfg.user;
       uid = 1000;
@@ -94,6 +105,7 @@ in {
         dates = [ "daily" ];
       };
     };
+    services.openssh.enable = true;
     home-manager.users.${cfg.user} = { pkgs, home, ... }: {
       home.packages = with pkgs;
         [
