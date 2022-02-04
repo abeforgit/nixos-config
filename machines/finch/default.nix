@@ -89,6 +89,7 @@ in {
   custom.webstorm.enable = true;
   custom.rustup.enable = true;
   custom.hostname = "finch";
+  custom.extraHomePackages = with pkgs; [ thunderbird ];
   users.users.arne = { shell = pkgs.zsh; };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
