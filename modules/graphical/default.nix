@@ -15,7 +15,7 @@ in {
     custom.polybar.enable = true;
 
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
-      home.packages = with pkgs; [ wpgtk ];
+      home.packages = with pkgs; [ wpgtk xorg.xev ];
 
       programs.autorandr = {
         enable = true;

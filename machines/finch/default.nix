@@ -74,6 +74,15 @@ in {
       nvidiaBusId = "PCI:1:0:0";
     };
   };
+  age.secrets.github_auth = {
+    file = ../../secrets/github_auth.age;
+    owner = config.custom.user;
+  };
+  home-manager.users.arne = { pkgs, home, ... }: {
+    programs.zsh.profileExtra = ''
+      source ${config.age.secrets.github_auth.path}
+    '';
+  };
 
   custom.user = username;
   custom.graphical.enable = true;
@@ -89,7 +98,7 @@ in {
   custom.webstorm.enable = true;
   custom.rustup.enable = true;
   custom.hostname = "finch";
-  custom.extraHomePackages = with pkgs; [ thunderbird ];
+  custom.extraHomePackages = with pkgs; [ thunderbird discord btop ];
   users.users.arne = { shell = pkgs.zsh; };
   # List packages installed in system profile. To search, run:
   # $ nix search wget

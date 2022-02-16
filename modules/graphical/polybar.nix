@@ -13,21 +13,25 @@ in {
       home.packages = with pkgs; [ fira-code nerdfonts ];
       services.polybar = {
         enable = true;
+        package = pkgs.polybar.override {
+          pulseSupport = true;
+          mpdSupport = true;
+        };
         script = ''
 
-killall -q polybar
+          killall -q polybar
 
-while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+          while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-polybar -m | while read -r monitor; do
+          polybar -m | while read -r monitor; do
 
-	if  echo "$monitor" | grep "primary";  then
-		MONITOR=''${monitor//:*/} polybar primary &
-	else
-		MONITOR=''${monitor//:*/} polybar secondary &
-	fi
-done
-        '';
+          	if  echo "$monitor" | grep "primary";  then
+          		MONITOR=''${monitor//:*/} polybar primary &
+          	else
+          		MONITOR=''${monitor//:*/} polybar secondary &
+          	fi
+          done
+                  '';
         settings = {
           colors = {
             background-alt = "\${xrdb:color4}";
@@ -137,14 +141,17 @@ done
           };
           "module/pulseaudio" = {
             type = "internal/pulseaudio";
-            bar.volume = {
-              width = 10;
-              gradient = false;
-              indicator = "|";
-              fill = "-";
-              empty = "-";
-
+            format = {
+              volume = {
+                text = "<label-volume>";
+                prefix = "VOL ";
+              };
             };
+            label = {
+              volume = "%percentage%";
+              muted = "muted";
+            };
+            click.right = "pavucontrol";
           };
           "module/filesystem" = {
             type = "internal/fs";
