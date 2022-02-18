@@ -104,9 +104,6 @@ in {
         automatic = true;
         dates = [ "daily" ];
       };
-      settings = {
-        sandbox = false;
-      };
     };
     services.openssh = {
       enable = true;

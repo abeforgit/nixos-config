@@ -10,7 +10,6 @@
 ;(package! some-package)
 
 (package! all-the-icons)
-(package! indium)
 (package! ssh-agency)
 (package! wakatime-mode)
 
