@@ -45,7 +45,11 @@ in {
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    permittedInsecurePackages = [ "xen-4.10.4" ];
+
+    allowUnfree = true;
+  };
   # Enable sound.
 
   # Enable touchpad support (enabled default in most desktopManager).
