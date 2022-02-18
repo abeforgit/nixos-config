@@ -105,7 +105,10 @@ in {
   custom.extraHomePackages = with pkgs; [ thunderbird discord btop ];
   users.users.arne = { shell = pkgs.zsh; };
   services.flatpak.enable = true;
-  xdg.portal.enable = true;
+  xdg.portal = {
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    enable = true;
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
