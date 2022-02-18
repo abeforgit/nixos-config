@@ -7,7 +7,7 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs?rev=f7a7a154f2335bd673116a6f38a45f974559f9aa";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     agenix = {
       url = "github:ryantm/agenix/main";
