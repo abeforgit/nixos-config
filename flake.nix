@@ -14,10 +14,7 @@
     };
     nix-doom-emacs = {
       url =
-        "github:nix-community/nix-doom-emacs?rev=f7a7a154f2335bd673116a6f38a45f974559f9aa";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.emacs-overlay.follows = "emacs-overlay";
-
+        "github:nix-community/nix-doom-emacs?rev=9d05798e16691e832f97aacf2bbb884adbe4bfed";
     };
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     agenix = {
