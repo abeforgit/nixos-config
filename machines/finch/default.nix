@@ -98,17 +98,12 @@ in {
   custom.audio.enable = true;
   custom.nvim.enable = true;
   custom.git.enable = true;
-  custom.intellij.enable = false;
-  custom.webstorm.enable = false;
+  custom.intellij.enable = true;
+  custom.webstorm.enable = true;
   custom.rustup.enable = true;
   custom.hostname = "finch";
   custom.extraHomePackages = with pkgs; [ thunderbird discord btop ];
   users.users.arne = { shell = pkgs.zsh; };
-  services.flatpak.enable = true;
-  xdg.portal = {
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    enable = true;
-  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
