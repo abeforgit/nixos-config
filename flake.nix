@@ -8,8 +8,17 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-doom-emacs.url =
-      "github:nix-community/nix-doom-emacs?rev=f7a7a154f2335bd673116a6f38a45f974559f9aa";
+    emacs-overlay = {
+      url = "github/nix-community/emacs-overlay";
+      flake = false;
+    };
+    nix-doom-emacs = {
+      url =
+        "github:nix-community/nix-doom-emacs?rev=f7a7a154f2335bd673116a6f38a45f974559f9aa";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.emacs-overlay.follows = "emacs-overlay";
+
+    };
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     agenix = {
       url = "github:ryantm/agenix/main";
