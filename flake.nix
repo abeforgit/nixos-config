@@ -1,6 +1,7 @@
 {
   description = "NixOS Configurattion";
   inputs = {
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -15,8 +16,8 @@
     };
   };
 
-  outputs =
-    inputs@{ self, nixpkgs, home-manager, nix-doom-emacs, utils, agenix }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-master, home-manager, nix-doom-emacs
+    , utils, agenix }:
     let
       customPackages = callPackage: {
         jetbrains-jre-jcef = callPackage ./packages/jetbrains-jre-jcef { };
@@ -25,10 +26,19 @@
     in utils.lib.mkFlake {
 
       inherit self inputs;
+      channels.master = {
+        input = nixpkgs-master;
+
+      };
 
       channels.nixpkgs = {
         input = nixpkgs;
-        overlaysBuilder = _: [ (self: super: customPackages self.callPackage) ];
+        overlaysBuilder = channels: [
+          (self: super: customPackages self.callPackage)
+          (self: super: { inherit (channels.master) kitty;
+                          inherit (channels.master) remarshal;
+                        })
+        ];
       };
       hostDefaults = {
 
