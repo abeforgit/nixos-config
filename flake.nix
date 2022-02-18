@@ -28,7 +28,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-unstable-small
-    , home-manager, nix-doom-emacs, utils, agenix }:
+    , home-manager, nix-doom-emacs, utils, agenix, emacs-overlay }:
     let
       customPackages = callPackage: {
         jetbrains-jre-jcef = callPackage ./packages/jetbrains-jre-jcef { };
