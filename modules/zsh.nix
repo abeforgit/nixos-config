@@ -58,7 +58,6 @@ in {
             "tmux"
             "vi-mode"
             "rust"
-            "cargo"
             "python"
             "gh"
           ];
