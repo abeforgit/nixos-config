@@ -23,8 +23,14 @@ in {
       package = pkgs.pulseaudioFull;
     };
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
-      home.packages = with pkgs; [ pavucontrol spotify-tui ncspot ];
+      home.packages = with pkgs; [ pavucontrol spotify-tui ];
       services.mpris-proxy.enable = true;
+      programs.ncspot = {
+        enable = true;
+        package = pkgs.ncspot.override {
+          withMPRIS = true;
+        };
+      };
       services.spotifyd = {
         enable = true;
         package = pkgs.spotifyd.override {
