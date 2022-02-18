@@ -252,6 +252,7 @@
       "original": {
         "owner": "nix-community",
         "repo": "nix-doom-emacs",
+        "rev": "f7a7a154f2335bd673116a6f38a45f974559f9aa",
         "type": "github"
       }
     },
@@ -293,6 +294,22 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "5a4251a77698c1df569bd09bf412b0b9d3139879",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable-small": {
+      "locked": {
+        "lastModified": 1645185333,
+        "narHash": "sha256-PpaC41KMjijPpMk1qE7gQEnHKYtGD2mV4m9lQyRWnNs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "cd436064205744f6ba78fe2a36038e55bac70b82",
         "type": "github"
       },
       "original": {
@@ -437,6 +454,7 @@
         "nix-doom-emacs": "nix-doom-emacs",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-unstable-small": "nixpkgs-unstable-small",
         "utils": "utils"
       }
     },
