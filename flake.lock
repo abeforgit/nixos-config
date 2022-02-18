@@ -24,16 +24,16 @@
     "doom-emacs": {
       "flake": false,
       "locked": {
-        "lastModified": 1645129059,
-        "narHash": "sha256-ARevYDIHNin0srNHyVFbxvD11NMTBWRBdW28xyGCJfg=",
+        "lastModified": 1642165074,
+        "narHash": "sha256-Sl8/Pmq+AZ4y1U0/96Ka/BXRroBDoW1VXQKUKEAyuaA=",
         "owner": "hlissner",
         "repo": "doom-emacs",
-        "rev": "89deac190de140a65a357fd4632de125f2d188d4",
+        "rev": "35865ef5e89442e3809b8095199977053dd4210f",
         "type": "github"
       },
       "original": {
         "owner": "hlissner",
-        "ref": "master",
+        "ref": "develop",
         "repo": "doom-emacs",
         "type": "github"
       }
@@ -55,6 +55,22 @@
       }
     },
     "emacs-overlay": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645179483,
+        "narHash": "sha256-Q11wkzvQvtUNgMpPxE0fofp5XT9K2wglhOi4nNG6nyg=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "6a753da27cd3d5c0be49be6faaf2ed1feabdb240",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "type": "github"
+      }
+    },
+    "emacs-overlay_2": {
       "flake": false,
       "locked": {
         "lastModified": 1645179483,
@@ -222,9 +238,7 @@
       "inputs": {
         "doom-emacs": "doom-emacs",
         "doom-snippets": "doom-snippets",
-        "emacs-overlay": [
-          "emacs-overlay"
-        ],
+        "emacs-overlay": "emacs-overlay_2",
         "emacs-so-long": "emacs-so-long",
         "evil-markdown": "evil-markdown",
         "evil-org-mode": "evil-org-mode",
@@ -233,9 +247,7 @@
         "flake-utils": "flake-utils",
         "format-all": "format-all",
         "nix-straight": "nix-straight",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs",
         "nose": "nose",
         "ob-racket": "ob-racket",
         "org": "org",
@@ -246,17 +258,17 @@
         "rotate-text": "rotate-text"
       },
       "locked": {
-        "lastModified": 1645146748,
-        "narHash": "sha256-teXmONMeudBE1UCKgLkzsf9eUTGfSXghE4aAAqiDjbs=",
+        "lastModified": 1642124317,
+        "narHash": "sha256-51SQCJSRExl7MuzenYUJgegC1u87Ag9VfS1vkDnfQf0=",
         "owner": "nix-community",
         "repo": "nix-doom-emacs",
-        "rev": "f7a7a154f2335bd673116a6f38a45f974559f9aa",
+        "rev": "9d05798e16691e832f97aacf2bbb884adbe4bfed",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "nix-doom-emacs",
-        "rev": "f7a7a154f2335bd673116a6f38a45f974559f9aa",
+        "rev": "9d05798e16691e832f97aacf2bbb884adbe4bfed",
         "type": "github"
       }
     },
@@ -278,18 +290,17 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1644525281,
-        "narHash": "sha256-D3VuWLdnLmAXIkooWAtbTGSQI9Fc1lkvAr94wTxhnTU=",
+        "lastModified": 1644972330,
+        "narHash": "sha256-6V2JFpTUzB9G+KcqtUR1yl7f6rd9495YrFECslEmbGw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "48d63e924a2666baf37f4f14a18f19347fbd54a2",
+        "rev": "19574af0af3ffaf7c9e359744ed32556f34536bd",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "id": "nixpkgs",
+        "ref": "nixpkgs-unstable",
+        "type": "indirect"
       }
     },
     "nixpkgs-master": {
@@ -320,6 +331,22 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixos-unstable-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1644525281,
+        "narHash": "sha256-D3VuWLdnLmAXIkooWAtbTGSQI9Fc1lkvAr94wTxhnTU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "48d63e924a2666baf37f4f14a18f19347fbd54a2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -442,7 +469,7 @@
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
         "nix-doom-emacs": "nix-doom-emacs",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable-small": "nixpkgs-unstable-small",
         "utils": "utils"
