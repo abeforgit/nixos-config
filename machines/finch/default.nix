@@ -102,7 +102,7 @@ in {
   custom.webstorm.enable = true;
   custom.rustup.enable = true;
   custom.hostname = "finch";
-  custom.extraHomePackages = with pkgs; [ thunderbird discord btop filezilla ];
+  custom.extraHomePackages = with pkgs; [ thunderbird discord btop filezilla calibre ];
   users.users.arne = { shell = pkgs.zsh; };
 
   # List packages installed in system profile. To search, run:
