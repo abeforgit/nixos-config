@@ -78,14 +78,23 @@ in {
       nvidiaBusId = "PCI:1:0:0";
     };
   };
-  age.secrets.github_auth = {
-    file = ../../secrets/github_auth.age;
-    owner = config.custom.user;
+  age.secrets = {
+    github_auth = {
+      file = ../../secrets/github_auth.age;
+      owner = config.custom.user;
+    };
+    gn_prod_backup = {
+      file = ../../secrets/gn_prod_backup.age;
+      owner = config.custom.user;
+      mode = "0700";
+    };
   };
+
   home-manager.users.arne = { pkgs, home, ... }: {
     programs.zsh.profileExtra = ''
       source ${config.age.secrets.github_auth.path}
     '';
+    home.sessionPath = [ config.age.secrets.gn_prod_backup.path ];
   };
 
   custom.user = username;
@@ -102,7 +111,14 @@ in {
   custom.webstorm.enable = true;
   custom.rustup.enable = true;
   custom.hostname = "finch";
-  custom.extraHomePackages = with pkgs; [ thunderbird discord btop filezilla calibre ];
+  custom.extraHomePackages = with pkgs; [
+    thunderbird
+    discord
+    btop
+    filezilla
+    calibre
+    evince
+  ];
   users.users.arne = { shell = pkgs.zsh; };
 
   # List packages installed in system profile. To search, run:
