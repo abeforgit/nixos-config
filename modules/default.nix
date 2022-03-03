@@ -20,6 +20,7 @@ in {
     ./nvim.nix
     ./git.nix
     ./intellij.nix
+    ./rider.nix
     ./webstorm.nix
     ./rustup.nix
     ./tmux.nix

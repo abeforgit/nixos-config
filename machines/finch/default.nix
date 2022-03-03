@@ -83,18 +83,13 @@ in {
       file = ../../secrets/github_auth.age;
       owner = config.custom.user;
     };
-    gn_prod_backup = {
-      file = ../../secrets/gn_prod_backup.age;
-      owner = config.custom.user;
-      mode = "0700";
-    };
+
   };
 
   home-manager.users.arne = { pkgs, home, ... }: {
     programs.zsh.profileExtra = ''
       source ${config.age.secrets.github_auth.path}
     '';
-    home.sessionPath = [ config.age.secrets.gn_prod_backup.path ];
   };
 
   custom.user = username;
@@ -111,6 +106,7 @@ in {
   custom.webstorm.enable = true;
   custom.rustup.enable = true;
   custom.hostname = "finch";
+  custom.rider.enable = true;
   custom.extraHomePackages = with pkgs; [
     thunderbird
     discord
@@ -118,6 +114,7 @@ in {
     filezilla
     calibre
     evince
+    godot-mono
   ];
   users.users.arne = { shell = pkgs.zsh; };
 
