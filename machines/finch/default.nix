@@ -69,6 +69,10 @@ in {
       Option         "TripleBuffer" "o
     '';
   };
+
+  services.postgresql = {
+    enable = true;
+  };
   hardware.nvidia = {
     nvidiaSettings = true;
     modesetting.enable = true;

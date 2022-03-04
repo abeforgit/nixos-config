@@ -17,6 +17,8 @@ in {
         java11 = jdk11;
         java = jdk;
         python = python3;
+        gradle = gradle;
+        gradle6 = gradle_6;
       };
       extraPath = makeBinPath (builtins.attrValues devSDKs);
       intellij = pkgs.runCommand "intellij" {
