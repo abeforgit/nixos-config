@@ -35,9 +35,7 @@ in {
                 mode = "3840x2160";
                 rotate = "normal";
               };
-              HDMI0 = {
-                enable = false;
-              };
+              HDMI0 = { enable = false; };
             };
             hooks.postswitch = readFile ./reload-wm.sh;
           };
@@ -56,9 +54,7 @@ in {
                 mode = "3840x2160";
                 rotate = "normal";
               };
-              HDMI-0 = {
-                enable = false;
-              };
+              HDMI-0 = { enable = false; };
             };
             hooks.postswitch = readFile ./reload-wm.sh;
           };
@@ -123,13 +119,39 @@ in {
     programs.dconf.enable = true;
     services.xserver = {
       enable = true;
+      libinput = {
+        enable = false;
+        touchpad = {
+          tapping = true;
+          scrollMethod = "twofinger";
+          horizontalScrolling = true;
+          disableWhileTyping = true;
+          accelProfile = "adaptive";
+          accelSpeed = "1.0";
+#          additionalOptions = ''
+#            Option "DPIScaleFactor" 2.0
+#            '';
+        };
+
+      };
       synaptics = {
         enable = true;
         vertTwoFingerScroll = true;
         horizTwoFingerScroll = true;
         buttonsMap = [ 1 3 2 ];
-        maxSpeed = "1";
-        minSpeed = "1";
+        maxSpeed = "2.0";
+        # minSpeed = "1";
+        accelFactor = "0.08";
+        tapButtons = false;
+        palmDetect = true;
+        palmMinWidth = 8;
+        palmMinZ = 100;
+        additionalOptions = ''
+Option "FingerHigh" "60"
+Option "ClickTime" "50"
+'';
+
+
       };
       displayManager = {
         lightdm = { enable = true; };
@@ -144,7 +166,5 @@ in {
         }];
       };
     };
-
   };
-
 }

@@ -57,6 +57,11 @@ in {
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
   services.gvfs.enable = true;
+  environment.variables = {
+    GDK_SCALE = "2";
+    GDK_DPI_SCALE = "0.5";
+    _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+  };
 
   services.xserver = {
     videoDrivers = [ "nvidia" ];
@@ -70,9 +75,7 @@ in {
     '';
   };
 
-  services.postgresql = {
-    enable = true;
-  };
+  services.postgresql = { enable = true; };
   hardware.nvidia = {
     nvidiaSettings = true;
     modesetting.enable = true;
