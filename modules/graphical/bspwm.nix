@@ -19,6 +19,7 @@ in {
         wmname
         xorg.xwininfo
         xdotool
+        xorg.xbacklight
       ];
       xsession = {
         enable = true;

@@ -28,7 +28,7 @@
     , home-manager, nix-doom-emacs, utils, agenix, emacs-overlay }:
     let
       customPackages = callPackage: {
-        jetbrains-jre-jcef = callPackage ./packages/jetbrains-jre-jcef { };
+        # jetbrains-jre-jcef = callPackage ./packages/jetbrains-jre-jcef { };
 
       };
     in utils.lib.mkFlake {
