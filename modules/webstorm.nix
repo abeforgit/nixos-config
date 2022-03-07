@@ -17,8 +17,6 @@ in {
         node14 = nodejs-14_x;
         node16 = nodejs-16_x;
       };
-      jetbrains-jre = with pkgs;
-        callPackage ../packages/jetbrains-jre-jcef/default.nix { };
       extraPath = makeBinPath (builtins.attrValues devSDKs);
       webstorm = pkgs.runCommand "webstorm" {
         nativeBuildInputs = [ pkgs.makeWrapper ];
@@ -34,7 +32,6 @@ in {
         google-chrome
         fontconfig
         dejavu_fonts
-        jetbrains-jre
         nerdfonts
         font-manager
       ];
