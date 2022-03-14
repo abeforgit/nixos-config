@@ -2,7 +2,7 @@
 with lib;
 let cfg = config.custom.graphical;
 in {
-  imports = [ ./bspwm.nix ./wacom.nix ./polybar.nix ];
+  imports = [ ./bspwm.nix ./wacom.nix ./polybar.nix ./herbstluftwm.nix ];
   options.custom.graphical = {
     enable = mkOption {
       example = true;
@@ -10,7 +10,8 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    custom.bspwm.enable = true;
+    custom.bspwm.enable = false;
+    custom.herbstluft.enable = true;
     custom.wacom.enable = true;
     custom.polybar.enable = true;
 
@@ -128,9 +129,9 @@ in {
           disableWhileTyping = true;
           accelProfile = "adaptive";
           accelSpeed = "1.0";
-#          additionalOptions = ''
-#            Option "DPIScaleFactor" 2.0
-#            '';
+          #          additionalOptions = ''
+          #            Option "DPIScaleFactor" 2.0
+          #            '';
         };
 
       };
@@ -147,23 +148,22 @@ in {
         palmMinWidth = 8;
         palmMinZ = 100;
         additionalOptions = ''
-Option "FingerHigh" "60"
-Option "ClickTime" "50"
-'';
-
+          Option "FingerHigh" "60"
+          Option "ClickTime" "50"
+        '';
 
       };
       displayManager = {
         lightdm = { enable = true; };
 
-        session = [{
-          name = "bspwm";
-          manage = "window";
-          start = ''
-            ${pkgs.runtimeShell} $HOME/.hm-xsession &
-            waitPID=$!
-          '';
-        }];
+        # session = [{
+        #   name = "bspwm";
+        #   manage = "window";
+        #   start = ''
+        #     ${pkgs.runtimeShell} $HOME/.hm-xsession &
+        #     waitPID=$!
+        #   '';
+        # }];
       };
     };
   };

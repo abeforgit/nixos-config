@@ -2,9 +2,23 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
-let username = "arne";
+let
+  username = "arne";
+
+  brightness_udev = pkgs.writeTextFile {
+    name = "brightness_udev";
+    text = ''
+      SUBSYSTEM=="backlight", ACTION=="add", \
+        RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness", \
+        RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
+      SUBSYSTEM=="leds", ACTION=="add", KERNEL=="*::kbd_backlight", \
+        RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/leds/%k/brightness", \
+        RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness"
+          '';
+    destination = "/etc/udev/rules.d/90-backlight.rules";
+  };
 in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -37,7 +51,7 @@ in {
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
   # console = {
-  #   font = "Lat2-Terminus16";
+  #  font = "Lat2-Terminus16";
   #   keyMap = "us";
   # };
 
@@ -56,6 +70,7 @@ in {
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
+  services.udev.packages = [ brightness_udev ];
   services.gvfs.enable = true;
   environment.variables = {
     GDK_SCALE = "2";
@@ -76,6 +91,7 @@ in {
   };
 
   services.postgresql = { enable = true; };
+  boot.kernelParams = [ "i915.enable_dcpcd_backlight=1" ];
   hardware.nvidia = {
     nvidiaSettings = true;
     modesetting.enable = true;

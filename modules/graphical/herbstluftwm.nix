@@ -1,10 +1,10 @@
-# takes care of graphical env
+
 { pkgs, config, lib, activitywatch, ... }:
 with lib;
-let cfg = config.custom.bspwm;
+let cfg = config.custom.herbstluft;
 in {
   imports = [ ./polybar.nix ];
-  options.custom.bspwm = {
+  options.custom.herbstluft = {
     enable = mkOption {
       example = true;
       default = false;
@@ -12,6 +12,9 @@ in {
   };
   config = mkIf cfg.enable {
     custom.polybar.enable = true;
+    services.xserver.windowManager.herbstluftwm = {
+      enable = true;
+    };
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.packages = with pkgs; [
         fira-code
@@ -21,33 +24,6 @@ in {
         xdotool
         acpilight
       ];
-      xsession = {
-        enable = true;
-        windowManager.bspwm = {
-          enable = true;
-          settings = {
-            border_width = 10;
-            window_gap = 12;
-            split_ratio = 0.52;
-            borderless_monocle = true;
-            gapless_monocle = true;
-            focus_follows_pointer = true;
-            pointer_follows_monitor = true;
-
-          };
-          monitors = {
-            "^1" = [ "I" "III" "IV" "V" "__" ];
-            "^2" = [ "II" ];
-          };
-          rules = {
-            Emacs = { state = "tiled"; };
-            "__scratch:scratch" = { state = "floating"; };
-            Peek = { state = "floating"; };
-          };
-          startupPrograms = [ "wmname LG3D" ];
-        };
-        scriptPath = ".hm-xsession";
-      };
 
       programs.rofi = {
         enable = true;
@@ -67,7 +43,7 @@ in {
         target = ".local/bin/swap-window";
       };
       services.sxhkd = {
-        enable = true;
+        enable = false;
         keybindings = {
           "super + {1-5}" = "bspc desktop -f '{I,II,III,IV,V}'";
           "super + w; {s,v}" = "bspc node -p {south,east}";
