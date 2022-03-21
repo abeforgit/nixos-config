@@ -40,9 +40,9 @@ stdenv.mkDerivation rec {
     freetype
   ];
 
-  patches = [
-    ./test-path-environment.patch
-  ];
+  # patches = [
+  #   ./test-path-environment.patch
+  # ];
 
   postPatch = ''
     patchShebangs doc/gendoc.py
@@ -55,7 +55,7 @@ stdenv.mkDerivation rec {
     substituteInPlace tests/test_herbstluftwm.py --replace "/usr/bin/env bash" ${runtimeShell}
   '';
 
-  doCheck = true;
+  doCheck = false;
 
   checkInputs = [
     (python3.withPackages (ps: with ps; [ ewmh pytest xlib ]))

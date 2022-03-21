@@ -28,7 +28,7 @@
     , home-manager, nix-doom-emacs, utils, agenix, emacs-overlay }:
     let
       customPackages = callPackage: {
-        hwm_latest = callPackage ./packages/herbstluftwm.nix {};
+        hwm_latest = callPackage ./packages/herbstluftwm {};
       };
     in utils.lib.mkFlake {
 
