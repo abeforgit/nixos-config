@@ -11,7 +11,10 @@ in {
   };
   config = mkIf cfg.enable {
     custom.polybar.enable = true;
-    services.xserver.windowManager.herbstluftwm = { enable = true; };
+    services.xserver.windowManager.herbstluftwm = {
+      enable = true;
+      package = pkgs.hwm_latest;
+    };
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.packages = with pkgs; [
         fira-code
