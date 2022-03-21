@@ -96,7 +96,7 @@ in {
             font-1 = "Symbols Nerd Font:style=2048-em:size=28;8";
             font-2 = "Fura Code Nerd Font:style=Regular:size=16;8";
 
-            modules-left = "bspwm";
+            modules-left = "xworkspaces";
             modules-right =
               "backlight pulseaudio filesystem memory cpu wlan temperature battery date";
 
@@ -119,6 +119,60 @@ in {
             tray-position = "none";
           };
           "module/bspwm" = { type = "internal/bspwm"; };
+          "module/xworkspaces" = {
+            type = "internal/xworkspaces";
+            # icon-0 = code;♚
+            # icon-1 = office;♛
+            # icon-2 = graphics;♜
+            # icon-3 = mail;♝
+            # icon-4 = web;♞
+            # icon-default = ♟
+
+            format = "<label-state>";
+
+            label = {
+
+              monitor = "%name%";
+
+              active = "%name%";
+              active-foreground = "#ffffff";
+              active-background = "#3f3f3f";
+              active-underline = "#fba922";
+              active-padding = 4;
+            };
+
+            # ; Available tokens:
+            # ;   %name%
+            # ;   %icon%
+            # ;   %index%
+            # ;   %nwin% (New in version 3.6.0)
+            # ; Default: %icon% %name%
+            label-occupied = "%name%";
+            label-occupied-underline = "#555555";
+            label-occupied-padding = 2;
+
+            # ; Available tokens:
+            # ;   %name%
+            # ;   %icon%
+            # ;   %index%
+            # ;   %nwin% (New in version 3.6.0)
+            # ; Default: %icon% %name%
+            label-urgent = "%name%";
+            label-urgent-foreground = "#000000";
+            label-urgent-background = "#bd2c40";
+            label-urgent-underline = "#9b0a20";
+            label-urgent-padding = 4;
+
+            # ; Available tokens:
+            # ;   %name%
+            # ;   %icon%
+            # ;   %index%
+            # ;   %nwin% (New in version 3.6.0)
+            # ; Default: %icon% %name%
+            label-empty = "%name%";
+            label-empty-foreground = "#55";
+            label-empty-padding = 2;
+          };
           "module/backlight" = {
             type = "internal/backlight";
             card = "intel_backlight";

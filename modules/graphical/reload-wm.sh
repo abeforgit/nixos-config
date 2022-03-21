@@ -12,3 +12,4 @@ polybar -m | while read -r monitor; do
 		MONITOR=''${monitor//:*/} polybar secondary >$XDG_DATA_HOME/polybar.log 2>&1 &
 	fi
 done
+herbstclient reload
