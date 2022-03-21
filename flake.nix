@@ -12,10 +12,7 @@
       url = "github:nix-community/emacs-overlay";
       flake = false;
     };
-    nix-doom-emacs = {
-      url =
-        "github:nix-community/nix-doom-emacs";
-    };
+    nix-doom-emacs = { url = "github:nix-community/nix-doom-emacs"; };
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     agenix = {
       url = "github:ryantm/agenix/main";
@@ -26,10 +23,7 @@
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-unstable-small
     , home-manager, nix-doom-emacs, utils, agenix, emacs-overlay }:
-    let
-      customPackages = callPackage: {
-        hwm_latest = callPackage ./packages/herbstluftwm {};
-      };
+    let customPackages = callPackage: { };
     in utils.lib.mkFlake {
 
       inherit self inputs;
@@ -49,6 +43,23 @@
           (self: super: {
             inherit (channels.small) kitty;
             inherit (channels.small) remarshal;
+          })
+          (self: super: {
+            herbstluftwm = let version = "0.9.4";
+            in super.herbstluftwm.overrideAttrs (old: {
+              inherit version;
+              src = super.fetchurl {
+                url =
+                  "https://herbstluftwm.org/tarballs/herbstluftwm-${version}.tar.gz";
+                sha256 = "sha256-7vju0HavM68qdZEcD7EhX9s0J2BqA06otE/naHLLA8w=";
+              };
+              doCheck = false;
+              buildInputs = old.buildInputs ++ [
+                super.xorg.libXdmcp
+                super.xorg.libXfixes
+              ];
+            });
+
           })
           (self: super: {
             godot-mono = with super;
