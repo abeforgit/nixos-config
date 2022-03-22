@@ -1,6 +1,7 @@
 { pkgs, config, lib, activitywatch, ... }:
 with lib;
-let cfg = config.custom.herbstluft;
+let
+  cfg = config.custom.herbstluft;
 in {
   imports = [ ./polybar.nix ];
   options.custom.herbstluft = {
@@ -51,14 +52,14 @@ in {
         enable = true;
         keybindings = let hc = "herbstclient";
         in {
-          "super + shift + q" = "${hc} close";
+          "super + shift + q" = "${hc} close_or_remove";
           "super + Return" = "tdrop -ma -w -5 -h 60% kitty";
           "super + shift + Return" = "kitty";
           "super + w; {s,v}" = "${hc} split {bottom, right} 0.5";
           "super + w; d" = "${hc} remove";
 
-          "super + space; b; p" = "${hc} cycle -1";
-          "super + space; b; n" = "${hc} cycle +1";
+          "super + space; b; p" = "${hc} substitute LAST my_lastwin jumpto LAST";
+          # "super + space; b; n" = "focus-last";
           "super + space; r; s" = "pkill -USR1 -x sxhkd";
           "super + space; r; r" = "reload-wm";
           # "super + {1-5}" = "bspc desktop -f '{I,II,III,IV,V}'";

@@ -23,7 +23,7 @@ in {
       package = pkgs.pulseaudioFull;
     };
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
-      home.packages = with pkgs; [ pavucontrol spotify-tui ];
+      home.packages = with pkgs; [ spotify pavucontrol spotify-tui ];
       services.mpris-proxy.enable = true;
       programs.ncspot = {
         enable = true;
