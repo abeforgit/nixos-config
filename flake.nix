@@ -54,12 +54,22 @@
                 sha256 = "sha256-7vju0HavM68qdZEcD7EhX9s0J2BqA06otE/naHLLA8w=";
               };
               doCheck = false;
-              buildInputs = old.buildInputs ++ [
-                super.xorg.libXdmcp
-                super.xorg.libXfixes
-              ];
+              buildInputs = old.buildInputs
+                ++ [ super.xorg.libXdmcp super.xorg.libXfixes ];
             });
 
+          })
+          (self: super: {
+            tdrop = let version = "ca08ab9371eda3ba19b4857ee337b371cb95c56c";
+            in super.tdrop.overrideAttrs (old: {
+              inherit version;
+              src = super.fetchFromGitHub {
+                owner = "noctuid";
+                repo = "tdrop";
+                rev = version;
+                sha256 = "sha256-d5YaRH0D3G05eWjHWJjEK/FIulyeb2JaQv3fjqyw6ks=";
+              };
+            });
           })
           (self: super: {
             godot-mono = with super;
