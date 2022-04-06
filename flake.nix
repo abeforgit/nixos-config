@@ -23,7 +23,14 @@
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-unstable-small
     , home-manager, nix-doom-emacs, utils, agenix, emacs-overlay }:
-    let customPackages = callPackage: { };
+    let
+      customPackages = callPackage: {
+
+        customPackages = callPackage: {
+          spotify-spicetified =
+            callPackage (import ./packages/spotify-spicetified) { };
+        };
+      };
     in utils.lib.mkFlake {
 
       inherit self inputs;

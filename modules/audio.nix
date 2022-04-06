@@ -23,13 +23,17 @@ in {
       package = pkgs.pulseaudioFull;
     };
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
-      home.packages = with pkgs; [ spotify pavucontrol spotify-tui ];
+      home.packages = with pkgs; [
+        # spotify
+        pavucontrol
+        spotify-tui
+        # spicetify-cli
+        spotify-spicetified
+      ];
       services.mpris-proxy.enable = true;
       programs.ncspot = {
         enable = true;
-        package = pkgs.ncspot.override {
-          withMPRIS = true;
-        };
+        package = pkgs.ncspot.override { withMPRIS = true; };
       };
       services.spotifyd = {
         enable = true;
@@ -42,7 +46,8 @@ in {
           global = {
             username = "arnebertrand@gmail.com";
             device_name = "finch";
-            password_cmd = "${pkgs.coreutils}/bin/cat ${config.age.secrets.spotify.path}";
+            password_cmd =
+              "${pkgs.coreutils}/bin/cat ${config.age.secrets.spotify.path}";
             bitrate = 320;
           };
         };

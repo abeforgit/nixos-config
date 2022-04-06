@@ -9,6 +9,7 @@
     let
       customPackages = callPackage:
         {
+          spotify-spicetified = callPackage (import ./packages/spotify-spicetified) {};
 
         };
     in utils.lib.mkFlake {
