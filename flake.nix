@@ -1,6 +1,7 @@
 {
   description = "NixOS Configurattion";
   inputs = {
+    dan-flk.url = "github:danielphan2003/flk";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -22,15 +23,8 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-unstable-small
-    , home-manager, nix-doom-emacs, utils, agenix, emacs-overlay }:
-    let
-      customPackages = callPackage: {
-
-        customPackages = callPackage: {
-          spotify-spicetified =
-            callPackage (import ./packages/spotify-spicetified) { };
-        };
-      };
+    , home-manager, nix-doom-emacs, utils, agenix, emacs-overlay, dan-flk }:
+    let customPackages = callPackage: { };
     in utils.lib.mkFlake {
 
       inherit self inputs;
@@ -46,10 +40,14 @@
       channels.nixpkgs = {
         input = nixpkgs;
         overlaysBuilder = channels: [
-          (self: super: customPackages self.callPackage)
+          # dan-flk.overlays."nixos/spotify"
           (self: super: {
             inherit (channels.small) kitty;
             inherit (channels.small) remarshal;
+          })
+          (self: super: {
+            spotify-spicetified = dan-flk.packages.x86_64-linux.spotify-spicetified;
+            dribbblish-dynamic-theme = dan-flk.packages.x86_64-linux.dribbblish-dynamic-theme;
           })
           (self: super: {
             herbstluftwm = let version = "0.9.4";
