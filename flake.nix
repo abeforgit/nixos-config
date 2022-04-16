@@ -46,9 +46,41 @@
             inherit (channels.small) remarshal;
           })
           (self: super: {
-            spotify-spicetified = dan-flk.packages.x86_64-linux.spotify-spicetified;
-            dribbblish-dynamic-theme = dan-flk.packages.x86_64-linux.dribbblish-dynamic-theme;
+            spotify-spicetified =
+              dan-flk.packages.x86_64-linux.spotify-spicetified;
+            dribbblish-dynamic-theme =
+              dan-flk.packages.x86_64-linux.dribbblish-dynamic-theme;
           })
+          (overlayFinal: overlayPrev:
+            let
+              packageOverrides = (pythonFinal: pythonPrev: {
+                apsw = pythonPrev.apsw.overridePythonAttrs (oldAttrs: {
+                  version = "3.38.1-r1";
+                  src = overlayPrev.fetchFromGitHub {
+                    owner = "rogerbinns";
+                    repo = "apsw";
+                    rev = "3.38.1-r1";
+                    sha256 =
+                      "sha256-pbb6wCu1T1mPlgoydB1Y1AKv+kToGkdVUjiom2vTqf4=";
+                  };
+                  checkInputs = [ ];
+                  # Project uses custom test setup to exclude some tests by default, so using pytest
+                  # requires more maintenance
+                  # https://github.com/rogerbinns/apsw/issues/335
+                  checkPhase = ''
+                    python tests.py
+                  '';
+                  pytestFlagsArray = [ ];
+                  disabledTests = [ ];
+                });
+              });
+              python' =
+                overlayPrev.python3.override { inherit packageOverrides; };
+            in {
+              calibre = overlayPrev.calibre.override {
+                python3Packages = python'.pkgs;
+              };
+            })
           (self: super: {
             herbstluftwm = let version = "0.9.4";
             in super.herbstluftwm.overrideAttrs (old: {
