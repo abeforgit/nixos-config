@@ -19,6 +19,13 @@ let
           '';
     destination = "/etc/udev/rules.d/90-backlight.rules";
   };
+  oryx_udev = pkgs.writeTextFile {
+    name = "oryx_udev";
+    text = ''
+SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="1969", GROUP="plugdev"
+'';
+    destination = "/etc/udev/rules.d/50-oryx.rules";
+  };
 in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -70,7 +77,7 @@ in {
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
-  services.udev.packages = [ brightness_udev ];
+  services.udev.packages = [ brightness_udev oryx_udev ];
   services.gvfs.enable = true;
   environment.variables = {
     GDK_SCALE = "2";

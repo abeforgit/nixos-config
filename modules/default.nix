@@ -66,6 +66,7 @@ in {
     i18n.defaultLocale = "en_US.UTF-8";
     time.timeZone = "Europe/Brussels";
     users.groups.${cfg.user} = { gid = 1000; };
+    users.groups.plugdev = { };
     users.users.${cfg.user} = {
       group = cfg.user;
       uid = 1000;
@@ -90,6 +91,7 @@ in {
         "docker"
         "networkmanager"
         "lp"
+        "plugdev"
       ];
     };
     nix = {
@@ -134,7 +136,6 @@ in {
       home.packages = with pkgs;
         [
           httpie
-          firefox
           chromium
           fira-code
           pciutils
@@ -146,6 +147,22 @@ in {
           xfce.thunar-media-tags-plugin
           arandr
         ] ++ cfg.extraHomePackages;
+      programs.firefox = {
+        enable = true;
+        profiles.${cfg.user} = {
+          userChrome = ''
+                        /* Hide tab bar in FF Quantum */
+            #main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar > .toolbar-items {
+              opacity: 0;
+              pointer-events: none;
+            }
+            #main-window:not([tabsintitlebar="true"]) #TabsToolbar {
+                visibility: collapse !important;
+            }
+          '';
+
+        };
+      };
 
       home.sessionPath = [ "$HOME/.local/bin" ];
       xdg = {

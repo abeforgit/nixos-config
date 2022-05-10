@@ -196,7 +196,7 @@ in {
         palmMinWidth = 8;
         palmMinZ = 100;
         additionalOptions = ''
-          Option "FingerHigh" "60"
+          Option "FingerHigh" "50"
           Option "ClickTime" "50"
         '';
 
