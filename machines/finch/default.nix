@@ -147,6 +147,9 @@ in {
     evince
     godot-mono
   ];
+  custom.extraSystemPackages = with pkgs; [
+    sqlite
+  ];
   users.users.arne = { shell = pkgs.zsh; };
 
   # List packages installed in system profile. To search, run:

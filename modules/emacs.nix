@@ -16,10 +16,21 @@ in {
         nixfmt
         ripgrep
         git
-        nodePackages.bash-language-server
+        coreutils
         wakatime
         fd
-        sqlite
+        clang
+        xclip
+        shellcheck
+        html-tidy
+        nodePackages.bash-language-server
+        nodePackages.js-beautify
+        nodePackages.stylelint
+        graphviz
+        sbcl
+        editorconfig-core-c
+        maim
+        pandoc
       ];
       programs.emacs = {
 
