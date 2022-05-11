@@ -19,7 +19,6 @@ in {
     hardware.pulseaudio = {
       enable = true;
       extraConfig = "load-module module-switch-on-connect";
-      extraModules = [ pkgs.pulseaudio-modules-bt ];
       package = pkgs.pulseaudioFull;
     };
     home-manager.users.${config.custom.user} = { pkgs, ... }: {

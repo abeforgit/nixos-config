@@ -10,19 +10,27 @@ in {
   };
   config = mkIf cfg.enable {
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
-      imports = [ nix-doom-emacs.hmModule ];
+      home.sessionPath = [ "$HOME/.emacs.d/bin" ];
       home.packages = with pkgs; [
         hasklig
         nixfmt
         ripgrep
-        sqlite
         git
         nodePackages.bash-language-server
         wakatime
+        fd
+        sqlite
       ];
-      programs.doom-emacs = {
+      programs.emacs = {
+
         enable = true;
-        doomPrivateDir = ./.doom.d;
+        package = pkgs.emacsNativeComp;
+
+      };
+      services.emacs = {
+        enable = true;
+        package = pkgs.emacsNativeComp;
+
       };
     };
   };

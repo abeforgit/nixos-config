@@ -70,6 +70,7 @@ in {
     permittedInsecurePackages = [ "xen-4.10.4" ];
 
     allowUnfree = true;
+    allowUnfreePredicate = (pkg: true);
   };
   # Enable sound.
 
@@ -134,7 +135,7 @@ in {
   custom.git.enable = true;
   custom.intellij.enable = true;
   custom.webstorm.enable = true;
-  custom.rustup.enable = true;
+  custom.rustup.enable = false;
   custom.hostname = "finch";
   custom.rider.enable = true;
   custom.extraHomePackages = with pkgs; [

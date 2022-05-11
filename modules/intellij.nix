@@ -10,7 +10,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    custom.rustup.enable = true;
+    custom.rustup.enable = false;
     home-manager.users.${config.custom.user} = let
       devSDKs = with pkgs; {
         rustup = rustup;

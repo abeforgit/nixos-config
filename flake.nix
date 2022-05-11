@@ -40,6 +40,13 @@
       channels.nixpkgs = {
         input = nixpkgs;
         overlaysBuilder = channels: [
+          (import (builtins.fetchTarball {
+
+            url =
+              "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+            sha256 = "0m443p0lp2pmkgy0a8lizbvy2ia44zpqli422s34hpnqvzxyj2mj";
+
+          }))
           # dan-flk.overlays."nixos/spotify"
           (self: super: {
             inherit (channels.small) kitty;
