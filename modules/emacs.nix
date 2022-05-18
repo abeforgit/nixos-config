@@ -1,6 +1,10 @@
 { pkgs, config, lib, nix-doom-emacs, ... }:
 with lib;
-let cfg = config.custom.emacs;
+let
+  cfg = config.custom.emacs;
+  emacsPkg = with pkgs;
+    ((emacsPackagesFor emacsNativeComp).emacsWithPackages
+      (epkgs: [ epkgs.vterm ]));
 in {
   options.custom.emacs = {
     enable = mkOption {
@@ -26,22 +30,29 @@ in {
         nodePackages.bash-language-server
         nodePackages.js-beautify
         nodePackages.stylelint
+        nodePackages.typescript-language-server
         graphviz
         sbcl
         editorconfig-core-c
         maim
         pandoc
+        nodejs
+        python3
+        google-chrome
       ];
       programs.emacs = {
 
         enable = true;
-        package = pkgs.emacsNativeComp;
+        package = emacsPkg;
 
       };
       services.emacs = {
         enable = true;
-        package = pkgs.emacsNativeComp;
-
+        package = emacsPkg;
+        socketActivation.enable = true;
+        client = { enable = true;
+                   arguments = ["-c"];
+                 };
       };
     };
   };

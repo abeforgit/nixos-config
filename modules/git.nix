@@ -23,7 +23,7 @@ in {
         extraConfig = {
           merge.conflictstyle = "diff3";
           rerere.enabled = true;
-
+          github.user = "abeforgit";
         };
       };
       programs.gh = {

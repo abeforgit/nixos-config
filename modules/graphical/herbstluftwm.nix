@@ -28,6 +28,8 @@ in {
         font = "Fira Code 24";
         theme = "Monokai";
         extraConfig = {
+          modi = "combi,drun,ssh";
+          combi-modi = "window,drun,run";
           kb-row-down = "Down,Control+j";
           kb-row-up = "Up,Control+k";
           kb-remove-to-eol = "";
@@ -57,6 +59,7 @@ in {
           "super + shift + Return" = "kitty";
           "super + w; {s,v}" = "${hc} split {bottom, right} 0.5";
           "super + w; d" = "${hc} remove";
+          "super + e" = ''${hc} chain , rule maxage=0.5 label=temp floating=on , spawn emacsclient --eval "(emacs-everywhere)"'';
 
           "super + space; b; p" = "${hc} substitute LAST my_lastwin jumpto LAST";
           # "super + space; b; n" = "focus-last";

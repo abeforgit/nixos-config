@@ -61,6 +61,7 @@ in {
         unzip
         agenix-cli
         wally-cli
+        fup-repl
       ] ++ cfg.extraSystemPackages;
 
     i18n.defaultLocale = "en_US.UTF-8";
