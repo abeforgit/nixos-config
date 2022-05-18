@@ -46,6 +46,10 @@ in {
         package = emacsPkg;
 
       };
+      programs.vscode = {
+        enable = true;
+        package = pkgs.vscode-fhs;
+      };
       services.emacs = {
         enable = true;
         package = emacsPkg;
