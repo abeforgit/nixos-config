@@ -112,7 +112,7 @@
                 owner = "noctuid";
                 repo = "tdrop";
                 rev = version;
-                sha256 = "sha256-d5YaRH0D3G05eWjHWJjEK/FIulyeb2JaQv3fjqyw6ks=";
+                sha256 = "sha256-fHvGXaZL7MMvTnkap341B79PDDo2lOVPPcOH4AX/zXo=";
               };
             });
           })
