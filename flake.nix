@@ -105,7 +105,7 @@
 
           })
           (self: super: {
-            tdrop = let version = "ca08ab9371eda3ba19b4857ee337b371cb95c56c";
+            tdrop = let version = "797cc3626a3b8560297c3f08132c2670c3040f40";
             in super.tdrop.overrideAttrs (old: {
               inherit version;
               src = super.fetchFromGitHub {
