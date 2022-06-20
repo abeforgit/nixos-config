@@ -20,14 +20,7 @@ in {
         userEmail = "arnebertrand@gmail.com";
         delta.enable = true;
         lfs.enable = true;
-        ignores = [
-          ".direnv"
-          ".envrc"
-          "shell.nix"
-          ".idea/*"
-          "*.iml"
-          "redpencil/**/devshell.toml"
-        ];
+        ignores = [ ".direnv" ".envrc" ".idea/*" "*.iml" ];
         extraConfig = {
           merge.conflictstyle = "diff3";
           rerere.enabled = true;
@@ -35,11 +28,20 @@ in {
         };
         includes = [{
           condition = "gitdir:~/repos/redpencil/";
-          path = ~/repos/redpencil/.work_config;
+          # path = "~/repos/redpencil/.work_config";
           contents = {
-            excludesFile = builtins.toFile ".work-ignore" ''
-              shell.nix
-            '';
+            core = {
+              excludesFile = builtins.toFile ".work-ignore" ''
+                .direnv
+                .envrc
+                .idea/*
+                *.iml
+                flake.nix
+                devshell.toml
+                shell.nix
+              '';
+
+            };
           };
         }];
       };
