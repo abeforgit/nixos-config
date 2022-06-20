@@ -1,9 +1,12 @@
 {
   description = "NixOS Configurattion";
   inputs = {
-    dan-flk.url = "github:danielphan2003/flk";
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    dan-flk = {
+      url = "github:danielphan2003/flk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -13,7 +16,6 @@
       url = "github:nix-community/emacs-overlay";
       flake = false;
     };
-    nix-doom-emacs = { url = "github:nix-community/nix-doom-emacs"; };
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     agenix = {
       url = "github:ryantm/agenix/main";
@@ -22,20 +24,22 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-unstable-small
-    , home-manager, nix-doom-emacs, utils, agenix, emacs-overlay, dan-flk }:
+  outputs = inputs@{ self, nixpkgs,
+    # nixpkgs-master,
+    # nixpkgs-unstable-small ,
+    home-manager, utils, agenix, emacs-overlay, dan-flk }:
     let customPackages = callPackage: { };
     in utils.lib.mkFlake {
 
       inherit self inputs;
-      channels.master = {
-        input = nixpkgs-master;
+      # channels.master = {
+      #   input = nixpkgs-master;
 
-      };
-      channels.small = {
-        input = nixpkgs-unstable-small;
+      # };
+      # channels.small = {
+      #   input = nixpkgs-unstable-small;
 
-      };
+      # };
 
       channels.nixpkgs = {
         input = nixpkgs;
@@ -49,10 +53,10 @@
           # }))
           # dan-flk.overlays."nixos/spotify"
           (import emacs-overlay)
-          (self: super: {
-            inherit (channels.small) kitty;
-            inherit (channels.small) remarshal;
-          })
+          # (self: super: {
+          #   inherit (channels.small) kitty;
+          #   inherit (channels.small) remarshal;
+          # })
           (self: super: {
             spotify-spicetified =
               dan-flk.packages.x86_64-linux.spotify-spicetified;
@@ -168,7 +172,6 @@
         modules = [
           ({
             config._module.args = {
-              inherit nix-doom-emacs;
               agenix-cli = agenix.defaultPackage.x86_64-linux;
             };
           })

@@ -13,18 +13,35 @@ in {
   config = mkIf cfg.enable {
     custom.nvim.enable = true;
     home-manager.users.${config.custom.user} = { pkgs, home, ... }: {
+
       programs.git = {
         enable = true;
         userName = "abeforgit";
         userEmail = "arnebertrand@gmail.com";
         delta.enable = true;
         lfs.enable = true;
-        ignores = [ ".direnv" ".envrc" "shell.nix" ".idea/*" "*.iml" ];
+        ignores = [
+          ".direnv"
+          ".envrc"
+          "shell.nix"
+          ".idea/*"
+          "*.iml"
+          "redpencil/**/devshell.toml"
+        ];
         extraConfig = {
           merge.conflictstyle = "diff3";
           rerere.enabled = true;
           github.user = "abeforgit";
         };
+        includes = [{
+          condition = "gitdir:~/repos/redpencil/";
+          path = ~/repos/redpencil/.work_config;
+          contents = {
+            excludesFile = builtins.toFile ".work-ignore" ''
+              shell.nix
+            '';
+          };
+        }];
       };
       programs.gh = {
         enable = true;

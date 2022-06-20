@@ -1,4 +1,4 @@
-{ pkgs, config, lib, nix-doom-emacs, ... }:
+{ pkgs, config, lib, ... }:
 with lib;
 let
   cfg = config.custom.emacs;
