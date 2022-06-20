@@ -5,6 +5,14 @@
       url = "github:danielphan2003/flk";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+    flake-utils.url = "github:numtide/flake-utils";
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -14,7 +22,7 @@
     };
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     agenix = {
@@ -27,7 +35,7 @@
   outputs = inputs@{ self, nixpkgs,
     # nixpkgs-master,
     # nixpkgs-unstable-small ,
-    home-manager, utils, agenix, emacs-overlay, dan-flk }:
+    home-manager, utils, agenix, emacs-overlay, dan-flk, devshell, flake-utils }:
     let customPackages = callPackage: { };
     in utils.lib.mkFlake {
 
@@ -44,6 +52,8 @@
       channels.nixpkgs = {
         input = nixpkgs;
         overlaysBuilder = channels: [
+          devshell.overlay
+          emacs-overlay.overlay
           # (import (builtins.fetchTarball {
 
           #   url =
@@ -52,7 +62,6 @@
 
           # }))
           # dan-flk.overlays."nixos/spotify"
-          (import emacs-overlay)
           # (self: super: {
           #   inherit (channels.small) kitty;
           #   inherit (channels.small) remarshal;
