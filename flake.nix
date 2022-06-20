@@ -35,7 +35,8 @@
   outputs = inputs@{ self, nixpkgs,
     # nixpkgs-master,
     # nixpkgs-unstable-small ,
-    home-manager, utils, agenix, emacs-overlay, dan-flk, devshell, flake-utils }:
+    home-manager, utils, agenix, emacs-overlay, dan-flk, devshell, flake-utils
+    }:
     let customPackages = callPackage: { };
     in utils.lib.mkFlake {
 
@@ -51,6 +52,7 @@
 
       channels.nixpkgs = {
         input = nixpkgs;
+        config = { allowUnfree = true; };
         overlaysBuilder = channels: [
           devshell.overlay
           emacs-overlay.overlay
