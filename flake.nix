@@ -4,6 +4,8 @@
     dan-flk = {
       url = "github:danielphan2003/flk";
       inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.agenix.follows = "agenix";
+
     };
     devshell = {
       url = "github:numtide/devshell";
@@ -19,12 +21,17 @@
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "flake-utils";
     };
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows= "flake-utils";
     };
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    utils = {
+      url = "github:gytis-ivaskevicius/flake-utils-plus";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     agenix = {
       url = "github:ryantm/agenix/main";
       inputs.nixpkgs.follows = "nixpkgs";
