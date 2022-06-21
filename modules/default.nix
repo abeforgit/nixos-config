@@ -134,6 +134,7 @@ in {
       owner = "arne";
     };
     home-manager.users.${cfg.user} = { pkgs, home, ... }: {
+      home.stateVersion = "18.09";
       home.packages = with pkgs;
         [
           httpie
