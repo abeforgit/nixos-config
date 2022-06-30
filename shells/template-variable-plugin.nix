@@ -4,8 +4,8 @@ let
   npm-global = toString ~/.npm-installs/node16;
 in pkgs.devshell.mkShell (import ./ember-project.nix {
   inherit node_package npm-global pkgs;
-  name = "roadsign-regulations-plugin";
-  port = 4202;
+  name = "template-variable-plugin";
+  port = 4207;
 }) // {
 
 }
