@@ -17,7 +17,7 @@ in {
     {
       name = "rundev";
       help = "Start the development server";
-      command = "${ember} s --port=4202";
+      command = "${ember} s --port=${port}";
     }
     {
       name = "npm";
