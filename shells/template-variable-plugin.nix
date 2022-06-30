@@ -5,7 +5,7 @@ let
 in pkgs.devshell.mkShell (import ./ember-project.nix {
   inherit node_package npm-global pkgs;
   name = "template-variable-plugin";
-  port = 4207;
+  port = "4207";
 }) // {
 
 }

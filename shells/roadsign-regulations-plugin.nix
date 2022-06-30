@@ -5,7 +5,7 @@ let
 in pkgs.devshell.mkShell (import ./ember-project.nix {
   inherit node_package npm-global pkgs;
   name = "roadsign-regulations-plugin";
-  port = 4202;
+  port = "4202";
 }) // {
 
 }

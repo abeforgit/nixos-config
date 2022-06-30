@@ -6,5 +6,5 @@ let
 in pkgs.devshell.mkShell (import ./ember-project.nix {
   inherit node_package npm-global pkgs;
   name = "ember-rdfa-editor";
-  port = 4200;
+  port = "4200";
 }) // { }
