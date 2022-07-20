@@ -1,12 +1,6 @@
 {
   description = "NixOS Configurattion";
   inputs = {
-    dan-flk = {
-      url = "github:danielphan2003/flk";
-      inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.agenix.follows = "agenix";
-
-    };
     devshell = {
       url = "github:numtide/devshell";
       inputs = {
@@ -42,7 +36,7 @@
   outputs = inputs@{ self, nixpkgs,
     # nixpkgs-master,
     # nixpkgs-unstable-small ,
-    home-manager, utils, agenix, emacs-overlay, dan-flk, devshell, flake-utils
+    home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
     }:
     let customPackages = callPackage: { };
     in utils.lib.mkFlake {
@@ -75,12 +69,6 @@
           #   inherit (channels.small) kitty;
           #   inherit (channels.small) remarshal;
           # })
-          (self: super: {
-            spotify-spicetified =
-              dan-flk.packages.x86_64-linux.spotify-spicetified;
-            dribbblish-dynamic-theme =
-              dan-flk.packages.x86_64-linux.dribbblish-dynamic-theme;
-          })
           (overlayFinal: overlayPrev:
             let
               packageOverrides = (pythonFinal: pythonPrev: {
