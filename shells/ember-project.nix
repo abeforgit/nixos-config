@@ -10,7 +10,7 @@ in {
     }
     {
       name = "PATH";
-      prefix = npm-global;
+      prefix = "${npm-global}/bin";
     }
   ];
   commands = [
