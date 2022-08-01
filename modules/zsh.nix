@@ -52,15 +52,8 @@ in {
         };
         oh-my-zsh = {
           enable = true;
-          plugins = [
-            "docker"
-            "docker-compose"
-            "tmux"
-            "vi-mode"
-            "rust"
-            "python"
-            "gh"
-          ];
+          plugins =
+            [ "docker" "docker-compose" "tmux" "vi-mode" "rust" "python" "gh" ];
         };
         shellAliases = {
           mux = "tmuxinator";
@@ -91,7 +84,7 @@ in {
           extip = "curl ifconfig.co";
           icat = "kitty +kitten icat";
           rebuild =
-            "sudo nixos-rebuild switch --flake ~/repos/nixos-config#finch";
+            "nixos-rebuild --flake ~/repos/nixos-config#finch switch --use-remote-sudo";
           srcrc = "source ~/.zshrc";
         };
       };
