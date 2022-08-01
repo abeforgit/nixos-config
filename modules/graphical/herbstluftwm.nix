@@ -61,7 +61,8 @@ in {
           "super + w; d" = "${hc} remove";
           "super + e" = ''${hc} chain , rule maxage=0.5 label=temp floating=on , spawn emacsclient --eval "(emacs-everywhere)"'';
 
-          "super + space; b; p" = "${hc} substitute LAST my_lastwin jumpto LAST";
+          "super + p" = "${hc} cycle -1";
+          "super + n" = "${hc} cycle +1";
           # "super + space; b; n" = "focus-last";
           "super + space; r; s" = "pkill -USR1 -x sxhkd";
           "super + space; r; r" = "reload-wm";
@@ -130,7 +131,7 @@ in {
           "XF86AudioNext" = "playerctl next";
           "XF86AudioPrev" = "playerctl previous";
           "Print" = "flameshot gui";
-          "super + n" = "thunar";
+          "super + o; f" = "thunar";
         };
       };
     };
