@@ -2,7 +2,7 @@
 with lib;
 let cfg = config.custom.graphical;
 in {
-  imports = [ ./bspwm.nix ./wacom.nix ./polybar.nix ./herbstluftwm.nix ];
+  imports = [ ./wezterm.nix ./bspwm.nix ./wacom.nix ./polybar.nix ./herbstluftwm.nix ];
   options.custom.graphical = {
     enable = mkOption {
       example = true;
@@ -11,6 +11,7 @@ in {
   };
   config = mkIf cfg.enable {
     custom.bspwm.enable = false;
+    custom.wezterm.enable = true;
     custom.herbstluft.enable = true;
     custom.wacom.enable = true;
     custom.polybar.enable = true;
