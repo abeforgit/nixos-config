@@ -67,6 +67,7 @@ in {
           docker-stopall = "docker stop $(docker ps -q)";
           ssh = "kitty +kitten ssh";
           mucli = "~/repos/redpencil/mu-cli/mu";
+          emc = "emacsclient -nw";
 
           gmdh = ''git log --pretty=format:"%s%n%b" development..HEAD'';
           gitmsg = ''git log --pretty=format:"%s%n%b'';
