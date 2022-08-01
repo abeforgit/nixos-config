@@ -3,11 +3,14 @@ let
   node_package = pkgs.nodejs-16_x;
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";
-  port = 4500;
+  port = "4500";
   name = "reglementaire-bijlage";
-in {
+  root = ''"$PRJ_ROOT"'';
+  frontend = "${root}/frontend-reglementaire-bijlage";
+  backend = "${root}/app-reglementaire-bijlage";
+in pkgs.devshell.mkShell {
   inherit name;
-  packages = with pkgs; [ google-chrome ];
+  packages = with pkgs; [ google-chrome docker-compose ];
   env = [
     {
       name = "NPM_CONFIG_PREFIX";
@@ -22,12 +25,20 @@ in {
     {
       name = "up-backend";
       help = "Start the development backend";
-      command = "";
+      command = ''
+        pushd ${backend}
+        docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.override.yml up -d
+        popd
+      '';
     }
     {
       name = "up-frontend";
       help = "Start the development server";
-      command = "${ember} s --port=${port}";
+      command = ''
+        pushd ${frontend}
+        ${ember} s --port=${port} --proxy=http://localhost:4502
+        popd
+      '';
     }
     {
       name = "npm";

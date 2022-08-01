@@ -16,14 +16,14 @@ let
       SUBSYSTEM=="leds", ACTION=="add", KERNEL=="*::kbd_backlight", \
         RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/leds/%k/brightness", \
         RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness"
-          '';
+    '';
     destination = "/etc/udev/rules.d/90-backlight.rules";
   };
   oryx_udev = pkgs.writeTextFile {
     name = "oryx_udev";
     text = ''
-SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="1969", GROUP="plugdev"
-'';
+      SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="1969", GROUP="plugdev"
+    '';
     destination = "/etc/udev/rules.d/50-oryx.rules";
   };
 in {
@@ -42,6 +42,9 @@ in {
   boot.loader.grub.useOSProber = true;
 
   networking.hostName = "finch"; # Define your hostname.
+  networking.extraHosts = ''
+    127.0.0.1 reglementairebijlagen.lblod.info
+  '';
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -147,9 +150,7 @@ in {
     evince
     godot-mono
   ];
-  custom.extraSystemPackages = with pkgs; [
-    sqlite
-  ];
+  custom.extraSystemPackages = with pkgs; [ sqlite ];
   users.users.arne = { shell = pkgs.zsh; };
 
   # List packages installed in system profile. To search, run:
