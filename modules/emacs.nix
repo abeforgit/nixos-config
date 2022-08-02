@@ -39,12 +39,15 @@ in {
         nodejs
         python3
         google-chrome
+        sumneko-lua-language-server
       ];
+      home.file.lua-ls = {
+        source = "${pkgs.sumneko-lua-language-server}";
+        target = ".emacs.d/.local/etc/lsp/lua-language-server";
+      };
       programs.emacs = {
-
         enable = true;
         package = emacsPkg;
-
       };
       services.emacs = {
         enable = true;

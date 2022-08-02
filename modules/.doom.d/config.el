@@ -5,6 +5,8 @@
 (load! "email.el")
 ;; (load! "irc.el")
 
+(setq! lsp-clients-lua-language-server-bin (concat doom-etc-dir "lsp/lua-language-server/bin/lua-language-server"))
+(setq! +lua-lsp-dir (concat doom-etc-dir "lsp/lua-language-server"))
 
 ;; --- GENERAL SETTINGS ---
 (setq user-full-name "Arne Bertrand"
