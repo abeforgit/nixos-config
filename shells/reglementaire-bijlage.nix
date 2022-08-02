@@ -20,6 +20,20 @@ in pkgs.devshell.mkShell {
       name = "PATH";
       prefix = "${npm-global}/bin";
     }
+    {
+      name = "COMPOSE_FILE";
+      value =
+        "docker-compose.yml:docker-compose.dev.yml:docker-compose.override.yml";
+    }
+    {
+      name = "WOODPECKER_SERVER";
+      value = "https://build.redpencil.io";
+
+    }
+    {
+      name = "WOODPECKER_TOKEN";
+      value = "????";
+    }
   ];
   commands = [
     {
@@ -27,7 +41,16 @@ in pkgs.devshell.mkShell {
       help = "Start the development backend";
       command = ''
         pushd ${backend}
-        docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.override.yml up -d
+        docker-compose up -d
+        popd
+      '';
+    }
+    {
+      name = "down-backend";
+      help = "Stop the development backend";
+      command = ''
+        pushd ${backend}
+        docker-compose down
         popd
       '';
     }
@@ -54,6 +77,11 @@ in pkgs.devshell.mkShell {
       name = "ember";
       help = "The ember cli";
       command = ''${ember} "$@"'';
+    }
+    {
+      name = "woodpecker-cli";
+      help = "The Woodpecker cli";
+      package = pkgs.woodpecker-cli;
     }
 
   ];

@@ -12,12 +12,12 @@ in {
   config = mkIf cfg.enable {
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.packages = with pkgs; [ wezterm ];
-      xdg.configFile.weztermConfig = {
-        source = ./wezterm/wezterm.lua;
-        target = "wezterm/wezterm.lua";
+      # xdg.configFile.weztermConfig = {
+      #   source = ./wezterm/wezterm.lua;
+      #   target = "wezterm/wezterm.lua";
 
 
-      };
+      # };
     };
   };
 }
