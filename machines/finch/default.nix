@@ -149,6 +149,8 @@ in {
     calibre
     evince
     godot-mono
+    woodpecker-cli
+
   ];
   custom.extraSystemPackages = with pkgs; [ sqlite ];
   users.users.arne = { shell = pkgs.zsh; };

@@ -122,6 +122,22 @@
         "type": "github"
       }
     },
+    "nixpkgsReview": {
+      "locked": {
+        "lastModified": 1659514933,
+        "narHash": "sha256-qqQ/mJDARNo/MWBqDc7OdSCKRdnFWwPH7DqLth6VhtM=",
+        "owner": "ambroisie",
+        "repo": "nixpkgs",
+        "rev": "b00aa37ce77eeb59b1bcd4755f79b7f2189a905f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ambroisie",
+        "ref": "fix-woodpecker-ca",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -130,6 +146,7 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
+        "nixpkgsReview": "nixpkgsReview",
         "utils": "utils"
       }
     },

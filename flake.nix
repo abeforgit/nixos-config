@@ -12,6 +12,9 @@
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgsReview = {
+      url = "github:ambroisie/nixpkgs/fix-woodpecker-ca";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +36,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs,
+  outputs = inputs@{ self, nixpkgs, nixpkgsReview,
     # nixpkgs-master,
     # nixpkgs-unstable-small ,
     home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
@@ -46,6 +49,9 @@
       #   input = nixpkgs-master;
 
       # };
+      channels.review = {
+        input = nixpkgsReview;
+      };
       # channels.small = {
       #   input = nixpkgs-unstable-small;
 
@@ -65,10 +71,9 @@
 
           # }))
           # dan-flk.overlays."nixos/spotify"
-          # (self: super: {
-          #   inherit (channels.small) kitty;
-          #   inherit (channels.small) remarshal;
-          # })
+          (self: super: {
+            inherit (channels.review) woodpecker-cli;
+          })
           (overlayFinal: overlayPrev:
             let
               packageOverrides = (pythonFinal: pythonPrev: {

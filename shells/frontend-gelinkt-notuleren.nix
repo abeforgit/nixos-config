@@ -1,16 +1,15 @@
-{ pkgs, inputs }:
-let
+{pkgs, inputs}:
+let 
   node_package = pkgs.nodejs-16_x;
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";
-  port = "4500";
-  name = "reglementaire-bijlage";
+  port = "4300";
+  name = "gelinkt-notuleren";
   root = ''"$PRJ_ROOT"'';
-  frontend = "${root}/frontend-reglementaire-bijlage";
-  backend = "${root}/app-reglementaire-bijlage";
-in pkgs.devshell.mkShell {
+  frontend = "${root}/frontend-gelinkt-notuleren";
+  backend = "${root}/app-gelinkt-notuleren";
+in pkgs.devshell.mkshell {
   inherit name;
-  packages = with pkgs; [ google-chrome docker-compose ];
   env = [
     {
       name = "NPM_CONFIG_PREFIX";
@@ -35,7 +34,7 @@ in pkgs.devshell.mkShell {
       name = "up-backend";
       help = "Start the development backend";
       command = ''
-        pushd ${backend}
+        pushd "${backend}/docker-overrides/app-gn-$1"
         docker-compose up -d
         popd
       '';
@@ -44,7 +43,7 @@ in pkgs.devshell.mkShell {
       name = "down-backend";
       help = "Stop the development backend";
       command = ''
-        pushd ${backend}
+        pushd "${backend}/docker-overrides/app-gn-$1"
         docker-compose down
         popd
       '';
@@ -54,7 +53,7 @@ in pkgs.devshell.mkShell {
       help = "Start the development server";
       command = ''
         pushd ${frontend}
-        ${ember} s --port=${port} --proxy=http://localhost:4502
+        ${ember} s --port=${port} --proxy=http://localhost:4302
         popd
       '';
     }
