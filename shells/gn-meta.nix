@@ -1,10 +1,9 @@
 {pkgs, inputs}:
-let 
+let
   node_package = pkgs.nodejs-16_x;
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";
-  port = "4300";
-  name = "gelinkt-notuleren";
+  name = "gn-meta";
   root = ''"$PRJ_ROOT"'';
   frontend = "${root}/frontend-gelinkt-notuleren";
   backend = "${root}/app-gelinkt-notuleren";
