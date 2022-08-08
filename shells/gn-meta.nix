@@ -4,6 +4,7 @@ let
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";
   name = "gn-meta";
+  port = "4300";
   root = ''"$PRJ_ROOT"'';
   frontend = "${root}/frontend-gelinkt-notuleren";
   backend = "${root}/app-gelinkt-notuleren";

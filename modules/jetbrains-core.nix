@@ -22,7 +22,7 @@ with lib; {
           :map <leader><leader> <Action>(GotoFile)
           :map <leader>sp <Action>(SearchEverywhere)
           :map <leader>op :NERDTree<CR>
-          :map <leader>= <Action>(ReformatCode)
+          :map <leader>cf <Action>(ReformatCode)
           :map <leader>bb <Action>(ToggleLineBreakPoint)
           :map <leader>rw <S-F6>
           :map <C-w>d <Action>(CloseAllEditors)

@@ -1,6 +1,6 @@
 { pkgs, inputs }:
 let
-  node_package = pkgs.nodejs-14_x;
+  node_package = pkgs.nodejs-16_x;
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";
 in pkgs.devshell.mkShell (import ./ember-project.nix {
