@@ -145,15 +145,28 @@ in {
     thunderbird
     discord
     btop
+    libinput
     filezilla
     calibre
     evince
     godot-mono
     woodpecker-cli
-
+    osu-lazer
+    lorien
   ];
   custom.extraSystemPackages = with pkgs; [ sqlite ];
   users.users.arne = { shell = pkgs.zsh; };
+  hardware.opentabletdriver = {
+    enable = true;
+    daemon.enable = true;
+    blacklistedKernelModules = [
+      "wacom"
+      "hid-uclogic"
+    ];
+  };
+  systemd.extraConfig = ''
+  DefaultTimeoutStopSec=10s
+'';
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

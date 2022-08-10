@@ -13,7 +13,7 @@ in {
     custom.bspwm.enable = false;
     custom.wezterm.enable = true;
     custom.herbstluft.enable = true;
-    custom.wacom.enable = true;
+    custom.wacom.enable = false;
     custom.polybar.enable = true;
 
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
@@ -170,14 +170,14 @@ in {
     services.xserver = {
       enable = true;
       libinput = {
-        enable = false;
+        enable = true;
         touchpad = {
           tapping = true;
           scrollMethod = "twofinger";
           horizontalScrolling = true;
           disableWhileTyping = true;
           accelProfile = "adaptive";
-          accelSpeed = "1.0";
+          accelSpeed = "0";
           #          additionalOptions = ''
           #            Option "DPIScaleFactor" 2.0
           #            '';
@@ -185,7 +185,7 @@ in {
 
       };
       synaptics = {
-        enable = true;
+        enable = false;
         vertTwoFingerScroll = true;
         horizTwoFingerScroll = true;
         buttonsMap = [ 1 3 2 ];

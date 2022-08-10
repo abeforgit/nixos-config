@@ -15,8 +15,10 @@ in
       home.packages = with pkgs; [
         wacomtablet
         xf86_input_wacom
+        libwacom
       ];
     };
+    services.xserver.wacom.enable = true;
 
   };
 
