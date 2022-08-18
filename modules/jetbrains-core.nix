@@ -29,6 +29,7 @@ with lib; {
           :map <leader><leader> <Action>(GotoFile)
 
           :map <leader>gd <Action>(ActivateDebugToolWindow)
+          :map gi <Action>(GotoImplementation)
 
           :map <leader>sp <Action>(SearchEverywhere)
 

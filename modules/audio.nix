@@ -16,6 +16,7 @@ in {
     };
 
     sound.enable = true;
+    services.pipewire.enable = true;
     hardware.pulseaudio = {
       enable = true;
       extraConfig = "load-module module-switch-on-connect";

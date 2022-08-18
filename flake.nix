@@ -9,7 +9,7 @@
       };
     };
     flake-utils.url = "github:numtide/flake-utils";
-    # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgsReview = {
@@ -37,7 +37,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgsReview,
-    # nixpkgs-master,
+    nixpkgs-master,
     # nixpkgs-unstable-small ,
     home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
     }:
@@ -45,12 +45,14 @@
     in utils.lib.mkFlake {
 
       inherit self inputs;
-      # channels.master = {
-      #   input = nixpkgs-master;
+      channels.master = {
+        input = nixpkgs-master;
+        config = { allowUnfree = true; };
 
-      # };
+      };
       channels.review = {
         input = nixpkgsReview;
+        config = { allowUnfree = true; };
       };
       # channels.small = {
       #   input = nixpkgs-unstable-small;
@@ -73,6 +75,7 @@
           # dan-flk.overlays."nixos/spotify"
           (self: super: {
             inherit (channels.review) woodpecker-cli;
+            inherit (channels.master) discord;
           })
           (overlayFinal: overlayPrev:
             let

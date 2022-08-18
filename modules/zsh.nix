@@ -85,6 +85,7 @@ in {
           icat = "kitty +kitten icat";
           rebuild =
             "nixos-rebuild --flake ~/repos/nixos-config#finch switch --use-remote-sudo";
+          checkbuild = "nixos-rebuild --flake ~/repos/nixos-config#finch build && nvd diff /run/current-system ~/repos/nixos-config/result";
           srcrc = "source ~/.zshrc";
         };
       };

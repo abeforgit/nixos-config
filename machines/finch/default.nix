@@ -42,9 +42,9 @@ in {
   boot.loader.grub.useOSProber = true;
 
   networking.hostName = "finch"; # Define your hostname.
-  networking.extraHosts = ''
-    127.0.0.1 reglementairebijlagen.lblod.info
-  '';
+  # networking.extraHosts = ''
+  #   127.0.0.1 reglementairebijlagen.lblod.info
+  # '';
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -152,8 +152,13 @@ in {
     godot-mono
     woodpecker-cli
     osu-lazer
+    bitwig-studio
     lorien
+
+    nvd
+    tridactyl-native
   ];
+
   custom.extraSystemPackages = with pkgs; [ sqlite ];
   users.users.arne = { shell = pkgs.zsh; };
   hardware.opentabletdriver = {
