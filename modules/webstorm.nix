@@ -16,6 +16,7 @@ in {
         node = nodejs;
         node14 = nodejs-14_x;
         node16 = nodejs-16_x;
+        pandoc = pandoc;
       };
       extraPath = makeBinPath (builtins.attrValues devSDKs);
       webstorm = pkgs.runCommand "webstorm" {
@@ -29,6 +30,7 @@ in {
     in { ... }: {
       home.packages = with pkgs; [
         webstorm
+        pandoc
         google-chrome
         fontconfig
         dejavu_fonts

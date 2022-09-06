@@ -58,7 +58,7 @@ in {
         shellAliases = {
           mux = "tmuxinator";
           docker-stopall = "docker stop $(docker ps -q)";
-          ssh = "kitty +kitten ssh";
+          ssh = "wezterm ssh";
           mucli = "~/repos/redpencil/mu-cli/mu";
           emc = "emacsclient -nw";
 

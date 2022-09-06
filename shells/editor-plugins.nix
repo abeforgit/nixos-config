@@ -3,7 +3,7 @@ let
   node_package = pkgs.nodejs-16_x;
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";
-  name = "gelinkt-notuleren";
+  name = "editor-plugins";
   root = ''"$PRJ_ROOT"'';
 in pkgs.devshell.mkShell {
   inherit name;

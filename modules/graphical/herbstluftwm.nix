@@ -55,8 +55,8 @@ in {
         keybindings = let hc = "herbstclient";
         in {
           "super + shift + q" = "${hc} close_or_remove";
-          "super + Return" = "tdrop -ma -w 98% -x 1% -h 60% kitty";
-          "super + shift + Return" = "kitty";
+          "super + Return" = "tdrop -m -a -w 98% -x 1% -h 60% --class org.wezfurlong.wezterm wezterm";
+          "super + shift + Return" = "wezterm";
           "super + w; {s,v}" = "${hc} split {bottom, right} 0.5";
           "super + w; d" = "${hc} remove";
           "super + e" = ''${hc} chain , rule maxage=0.5 label=temp floating=on , spawn emacsclient --eval "(emacs-everywhere)"'';

@@ -4,10 +4,7 @@ let
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";
   name = "gn-meta";
-  port = "4300";
   root = ''"$PRJ_ROOT"'';
-  frontend = "${root}/frontend-gelinkt-notuleren";
-  backend = "${root}/app-gelinkt-notuleren";
 in pkgs.devshell.mkShell {
   inherit name;
   env = [
@@ -30,33 +27,6 @@ in pkgs.devshell.mkShell {
     }
   ];
   commands = [
-    {
-      name = "up-backend";
-      help = "Start the development backend";
-      command = ''
-        pushd "${backend}/docker-overrides/app-gn-$1"
-        docker-compose up -d
-        popd
-      '';
-    }
-    {
-      name = "down-backend";
-      help = "Stop the development backend";
-      command = ''
-        pushd "${backend}/docker-overrides/app-gn-$1"
-        docker-compose down
-        popd
-      '';
-    }
-    {
-      name = "up-frontend";
-      help = "Start the development server";
-      command = ''
-        pushd ${frontend}
-        ${ember} s --port=${port} --proxy=http://localhost:4302
-        popd
-      '';
-    }
     {
       name = "npm";
       help = "The node package manager";
