@@ -93,7 +93,7 @@ in {
             module-margin-right = 2;
 
             font-0 = "Fura Code Nerd Font:style=Regular:size=14;8";
-            font-1 = "Symbols Nerd Font:style=2048-em:size=28;8";
+            font-1 = "Symbols Nerd Font:style=2048-em:size=16;8";
             font-2 = "Fura Code Nerd Font:style=Regular:size=16;8";
 
             modules-left = "xworkspaces";
