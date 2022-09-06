@@ -1,12 +1,15 @@
-{ self, sources, ... }:
-let inherit (self) lib;
-in { stdenv, zlib, xorg, freetype, alsa-lib, atk, at-spi2-atk, at-spi2-core
+{ lib, stdenv, fetchurl, zlib, xorg, freetype, alsa-lib, atk, at-spi2-atk, at-spi2-core
 , cups, dbus, expat, fontconfig, glib, libdrm, libxkbcommon, mesa, nspr, nss
-, libglvnd, libudev, setJavaClassPath }:
+, libglvnd, udev, setJavaClassPath, pango, cairo }:
 let
   result = stdenv.mkDerivation {
     pname = "p-jetbrains-jdk-bin";
-    inherit (sources.p-jetbrains-jdk-bin) version src;
+    version = "17.0.4-linux-x64-b469.53";
+    src = fetchurl {
+      url =
+        "https://cache-redirector.jetbrains.com/intellij-jbr/jbr_jcef-17.0.4-linux-x64-b469.53.tar.gz";
+      sha256 = "sha256-aY5hRvSVzLxzJU+m9UjHecGKGNm5XuT/e09k77bKXew=";
+    };
 
     dontStrip = true; # See: https://github.com/NixOS/patchelf/issues/10
     postFixup = ''
@@ -20,6 +23,8 @@ let
           xorg.libXrender
           freetype
           alsa-lib
+          pango
+          cairo
 
           atk
           at-spi2-atk
@@ -45,7 +50,7 @@ let
           xorg.libXxf86vm
           # runtime?
           libglvnd
-          libudev
+          udev
           mesa.drivers
         ]
       }"

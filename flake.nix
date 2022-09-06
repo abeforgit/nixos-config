@@ -12,9 +12,7 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgsReview = {
-      url = "github:ambroisie/nixpkgs/fix-woodpecker-ca";
-    };
+    nixpkgsReview = { url = "github:ambroisie/nixpkgs/fix-woodpecker-ca"; };
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,7 +21,7 @@
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows= "flake-utils";
+      inputs.flake-utils.follows = "flake-utils";
     };
     utils = {
       url = "github:gytis-ivaskevicius/flake-utils-plus";
@@ -35,12 +33,14 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgsReview,
-    nixpkgs-master,
+  outputs = inputs@{ self, nixpkgs, nixpkgsReview, nixpkgs-master,
     # nixpkgs-unstable-small ,
-    home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
-    }:
-    let customPackages = callPackage: { };
+    home-manager, utils, agenix, emacs-overlay, devshell, flake-utils }:
+    let
+      customPackages = callPackage:
+        {
+
+        };
     in utils.lib.mkFlake {
 
       inherit self inputs;
@@ -133,6 +133,11 @@
           #     };
           #   });
           # })
+          (final: prev: {
+            jetbrains = prev.jetbrains // {
+              jdk = final.callPackage ./packages/p-jetbrains-jdk-bin { };
+            };
+          })
           (self: super: {
             godot-mono = with super;
               let
