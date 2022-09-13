@@ -1,4 +1,4 @@
-{pkgs, inputs}:
+{ pkgs, inputs }:
 let
   node_package = pkgs.nodejs-16_x;
   npm-global = toString ~/.npm-global;
