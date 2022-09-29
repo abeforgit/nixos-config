@@ -164,7 +164,7 @@
                 name = "godot-mono";
                 targetPkgs = pkgs:
                   (with pkgs; [
-                    alsaLib
+                    alsa-lib
                     dotnetCorePackages.sdk_5_0
                     libGL
                     libpulseaudio

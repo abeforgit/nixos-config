@@ -23,7 +23,18 @@ in {
         nativeBuildInputs = [ pkgs.makeWrapper ];
       } ''
               mkdir -p $out/bin
-              makeWrapper ${pkgs.jetbrains.webstorm}/bin/webstorm \
+              makeWrapper ${
+                pkgs.jetbrains.webstorm.overrideAttrs (old: {
+                  version = "2022.2.2";
+                  src = pkgs.fetchurl {
+                    sha256 =
+                      "sha256-UGsl/yZM6ILHOFdwRLraTjILH1pN2XwoiHMMkfgPBx4=";
+                    url =
+                      "https://download.jetbrains.com/webstorm/WebStorm-2022.2.2.tar.gz";
+                  };
+
+                })
+              }/bin/webstorm \
                 $out/bin/webstorm \
                 --prefix PATH : ${extraPath}
         #     '';

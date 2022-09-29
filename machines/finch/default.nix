@@ -151,7 +151,6 @@ in {
     evince
     godot-mono
     woodpecker-cli
-    osu-lazer
     bitwig-studio
     lorien
 
@@ -211,7 +210,7 @@ in {
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-    package = pkgs.bluezFull;
+    package = pkgs.bluez;
   };
   services.blueman = { enable = true; };
   # specialisation = {
