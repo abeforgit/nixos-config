@@ -33,6 +33,7 @@ in {
         nodePackages.typescript-language-server
         graphviz
         sbcl
+        lispPackages.quicklisp
         editorconfig-core-c
         maim
         pandoc
