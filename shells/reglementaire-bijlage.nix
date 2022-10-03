@@ -23,7 +23,7 @@ in pkgs.devshell.mkShell {
     {
       name = "COMPOSE_FILE";
       value =
-        "docker-compose.yml:docker-compose.dev.yml:docker-compose.override.yml";
+        "docker-compose.yml:docker-compose.override.yml";
     }
     {
       name = "WOODPECKER_SERVER";
