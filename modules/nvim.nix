@@ -3,12 +3,13 @@
 with lib;
 let cfg = config.custom.nvim;
     firenvim = pkgs.vimUtils.buildVimPlugin {
-      name = "firenvim";
+      pname = "firenvim";
+      version = "0.2.13";
       src = pkgs.fetchFromGitHub {
         owner = "glacambre";
         repo = "firenvim";
-        rev = "7320a805f51b4cf03de4e3b30088838d3f84adda";
-        hash = "sha256-BtnCgnrpwo+ziOyufyv1kmnwdzA4La5d3Cu5BLZU0k8=";
+        rev = "f679455c294c62eddee86959cfc9f1b1f79fe97d";
+        hash = "sha256-86Gr+95yunuNZGn/+XLPg1ws6z4C2VOMKt81a6+sxnI=";
       };
 
     };
