@@ -3,6 +3,7 @@ let
   node_package = pkgs.nodejs-16_x;
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";
+  pnpm = "${npm-global}/bin/pnpm";
   name = "generic";
   root = ''"$PRJ_ROOT"'';
 in pkgs.devshell.mkShell {
@@ -36,6 +37,11 @@ in pkgs.devshell.mkShell {
       name = "ember";
       help = "The ember cli";
       command = ''${ember} "$@"'';
+    }
+    {
+      name = "pnpm";
+      help = "The pnpm package manager";
+      command = ''${pnpm} "$@"'';
     }
     # {
     #   name = "woodpecker-cli";
