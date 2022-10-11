@@ -153,9 +153,10 @@ in {
     woodpecker-cli
     bitwig-studio
     lorien
-
     nvd
     tridactyl-native
+    nvtop
+    powertop
   ];
 
   custom.extraSystemPackages = with pkgs; [ sqlite ];

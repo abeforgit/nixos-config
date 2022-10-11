@@ -54,7 +54,7 @@ in {
         enable = true;
         keybindings = let hc = "herbstclient";
         in {
-          "super + shift + q" = "${hc} close_or_remove";
+          "super + shift + q" = "${hc} close_and_remove";
           "super + Return" = "tdrop -m -a -w 98% -x 1% -h 60% --class org.wezfurlong.wezterm wezterm";
           "super + shift + Return" = "wezterm";
           "super + w; {s,v}" = "${hc} split {bottom, right} 0.5";
@@ -70,7 +70,8 @@ in {
           # "super + w; {1-5}" = "bspc node -d '{I,II,III,IV,V}'";
           # "super + space; b ; b" = "swap-window";
           "super + space; super + space" = "rofi -show combi";
-          "super + d" = "rofi -show combi";
+          "super + d" = "${hc} remove";
+          "super + b" = "rofi -show combi";
           # "super + Escape" =
           #   "bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel";
           # "super + space; b; {p,n}" = ''
@@ -131,7 +132,7 @@ in {
           "XF86AudioNext" = "playerctl next";
           "XF86AudioPrev" = "playerctl previous";
           "Print" = "flameshot gui";
-          "super + o; f" = "thunar";
+          # "super + o; f" = "thunar";
         };
       };
     };
