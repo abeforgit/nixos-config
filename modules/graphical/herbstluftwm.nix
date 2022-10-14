@@ -1,7 +1,6 @@
 { pkgs, config, lib, activitywatch, ... }:
 with lib;
-let
-  cfg = config.custom.herbstluft;
+let cfg = config.custom.herbstluft;
 in {
   imports = [ ./polybar.nix ];
   options.custom.herbstluft = {
@@ -13,6 +12,32 @@ in {
   config = mkIf cfg.enable {
     custom.polybar.enable = true;
     services.xserver.windowManager.herbstluftwm = { enable = true; };
+    services.xserver = {
+      enable = true;
+      displayManager = {
+
+        defaultSession = "xfce";
+        lightdm.greeters.gtk.cursorTheme.name = "Qogir";
+        lightdm.greeters.gtk.cursorTheme.package = pkgs.qogir-icon-theme;
+      };
+      desktopManager = {
+        xterm.enable = false;
+        xfce = {
+          enable = true;
+          noDesktop = false;
+          enableXfwm = true;
+        };
+      };
+    };
+    services.dbus = {
+      enable = true;
+      # packages = with pkgs; [
+
+      #   xfce.xfce4-panel
+      #   xfce.xfdashboard
+      #   xfce.xfce4-session
+      # ];
+    };
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.packages = with pkgs; [
         fira-code
@@ -21,6 +46,13 @@ in {
         xorg.xwininfo
         xdotool
         acpilight
+        xfce.xfdashboard
+        lxappearance
+        ant-theme
+        plano-theme
+        juno-theme
+        qogir-theme
+        qogir-icon-theme
       ];
 
       programs.rofi = {
@@ -55,11 +87,13 @@ in {
         keybindings = let hc = "herbstclient";
         in {
           "super + shift + q" = "${hc} close_and_remove";
-          "super + Return" = "tdrop -m -a -w 98% -x 1% -h 60% --class org.wezfurlong.wezterm wezterm";
+          "super + Return" =
+            "tdrop -m -a -w 98% -x 1% -h 60% --class org.wezfurlong.wezterm wezterm";
           "super + shift + Return" = "wezterm";
           "super + w; {s,v}" = "${hc} split {bottom, right} 0.5";
           "super + w; d" = "${hc} remove";
-          "super + e" = ''${hc} chain , rule maxage=0.5 label=temp floating=on , spawn emacsclient --eval "(emacs-everywhere)"'';
+          "super + e" = ''
+            ${hc} chain , rule maxage=0.5 label=temp floating=on , spawn emacsclient --eval "(emacs-everywhere)"'';
 
           "super + p" = "${hc} cycle -1";
           "super + n" = "${hc} cycle +1";

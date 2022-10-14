@@ -31,11 +31,14 @@
       url = "github:ryantm/agenix/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgsReview, nixpkgs-master,
     # nixpkgs-unstable-small ,
-    home-manager, utils, agenix, emacs-overlay, devshell, flake-utils }:
+    home-manager, utils, agenix, emacs-overlay, devshell, flake-utils, rust-overlay }:
     let
       customPackages = callPackage:
         {
@@ -64,6 +67,7 @@
         overlaysBuilder = channels: [
           devshell.overlay
           emacs-overlay.overlay
+          rust-overlay.overlays.default
           # (import (builtins.fetchTarball {
 
           #   url =

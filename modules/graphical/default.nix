@@ -177,7 +177,7 @@ in {
           horizontalScrolling = true;
           disableWhileTyping = true;
           accelProfile = "adaptive";
-          accelSpeed = "0";
+          accelSpeed = "0.5";
           #          additionalOptions = ''
           #            Option "DPIScaleFactor" 2.0
           #            '';

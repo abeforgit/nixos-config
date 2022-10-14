@@ -6,8 +6,8 @@ in pkgs.devshell.mkShell {
     {
       name = "cargo";
       help = "Rust build tool";
-      package = pkgs.cargo;
+      package = pkgs.rust-bin.beta.latest.default;
     }
-  ]
+  ];
 
 }
