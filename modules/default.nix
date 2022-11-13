@@ -64,7 +64,7 @@ in {
         fup-repl
       ] ++ cfg.extraSystemPackages;
 
-    i18n.defaultLocale = "en_BE.UTF-8";
+    i18n.defaultLocale = "en_US.UTF-8";
     time.timeZone = "Europe/Brussels";
     users.groups.${cfg.user} = { gid = 1000; };
     users.groups.plugdev = { };
@@ -150,9 +150,7 @@ in {
           xfce.thunar-media-tags-plugin
           arandr
         ] ++ cfg.extraHomePackages;
-      programs.firefox = {
-        enable = true;
-      };
+      programs.firefox = { enable = true; };
 
       home.sessionPath = [ "$HOME/.local/bin" ];
       xdg = {

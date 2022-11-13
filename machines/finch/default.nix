@@ -65,6 +65,16 @@ in {
   #   keyMap = "us";
   # };
 
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_ALL = "en_US.UTF-8";
+    LANGUAGE = "en_US.UTF-8";
+    LC_MONETARY = "nl_BE.UTF-8";
+    LC_MEASUREMENT = "nl_BE.UTF-8";
+    LC_TIME = "en_GB.UTF-8";
+    LC_NUMERIC = "nl_BE.UTF-8";
+    LANG = "en_US.UTF-8";
+  };
   # Enable the X11 windowing system.
 
   # Enable CUPS to print documents.
@@ -145,6 +155,7 @@ in {
     thunderbird
     discord
     btop
+    blender
     libinput
     filezilla
     # calibre
@@ -164,14 +175,11 @@ in {
   hardware.opentabletdriver = {
     enable = true;
     daemon.enable = true;
-    blacklistedKernelModules = [
-      "wacom"
-      "hid-uclogic"
-    ];
+    blacklistedKernelModules = [ "wacom" "hid-uclogic" ];
   };
   systemd.extraConfig = ''
-  DefaultTimeoutStopSec=10s
-'';
+    DefaultTimeoutStopSec=10s
+  '';
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
