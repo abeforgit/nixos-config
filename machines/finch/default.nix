@@ -147,7 +147,7 @@ in {
     btop
     libinput
     filezilla
-    calibre
+    # calibre
     evince
     godot-mono
     woodpecker-cli
@@ -213,7 +213,7 @@ in {
     powerOnBoot = true;
     package = pkgs.bluez;
   };
-  services.blueman = { enable = true; };
+  # services.blueman = { enable = true; };
   # specialisation = {
   # 	external-display.configuration = {
   #       	system.nixos.tags = [ "external-display" ];

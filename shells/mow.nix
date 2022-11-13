@@ -28,6 +28,30 @@ in pkgs.devshell.mkShell {
       name = "WOODPECKER_SERVER";
       value = "https://build.redpencil.io";
     }
+    {
+      name = "EMBER_SIMPLE_LOGIN";
+      value = "false";
+    }
+    {
+      name = "EMBER_ACM_API_KEY";
+      value = "ae3be0bb-5c5d-447f-9916-1ea819267e53";
+    }
+    {
+      name = "EMBER_BASE_URL";
+      value = "https://roadsigns/lblod.info";
+    }
+    {
+      name = "EMBER_ACM_BASE_URL";
+      value= "https://authenticatie-ti.vlaanderen.be/op/v1/auth";
+    }
+    {
+      name = "EMBER_ACM_REDIRECT_URL";
+      value = "https://roadsigns.lblod.info/authorization/callback";
+    }
+    {
+      name = "EMBER_LOGOUT_URL";
+      value = "https://authenticatie-ti.vlaanderen.be/op/v1/logout";
+    }
   ];
   commands = [
     {

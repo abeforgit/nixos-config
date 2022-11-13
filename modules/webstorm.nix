@@ -28,7 +28,7 @@ in {
                   version = "2022.2.3";
                   src = pkgs.fetchurl {
                     sha256 =
-                      "sha256-UGsl/yZM6ILHOFdwRLraTjILH1pN2XwoiHMMkfgPBx4=";
+                      "sha256-HX1GS7y4PVr0g1mu2mqn0WUDi/qh8m/vEBl2HrJ4+iI=";
                     url =
                       "https://download.jetbrains.com/webstorm/WebStorm-2022.2.3.tar.gz";
                   };

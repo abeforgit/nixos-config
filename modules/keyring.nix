@@ -13,7 +13,7 @@ in {
   };
   config = mkIf cfg.enable {
     services.gnome.gnome-keyring.enable = true;
-    programs.seahorse.enable = true;
+    # programs.seahorse.enable = true;
 
   };
 

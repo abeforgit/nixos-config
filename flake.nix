@@ -80,63 +80,6 @@
             # inherit (channels.master) discord;
             inherit (channels.master) woodpecker-cli;
           })
-          # (overlayFinal: overlayPrev:
-          #   let
-          #     packageOverrides = (pythonFinal: pythonPrev: {
-          #       apsw = pythonPrev.apsw.overridePythonAttrs (oldAttrs: {
-          #         version = "3.38.1-r1";
-          #         src = overlayPrev.fetchFromGitHub {
-          #           owner = "rogerbinns";
-          #           repo = "apsw";
-          #           rev = "3.38.1-r1";
-          #           sha256 =
-          #             "sha256-pbb6wCu1T1mPlgoydB1Y1AKv+kToGkdVUjiom2vTqf4=";
-          #         };
-          #         checkInputs = [ ];
-          #         # Project uses custom test setup to exclude some tests by default, so using pytest
-          #         # requires more maintenance
-          #         # https://github.com/rogerbinns/apsw/issues/335
-          #         checkPhase = ''
-          #           python tests.py
-          #         '';
-          #         pytestFlagsArray = [ ];
-          #         disabledTests = [ ];
-          #       });
-          #     });
-          #     python' =
-          #       overlayPrev.python3.override { inherit packageOverrides; };
-          #   in {
-          #     calibre = overlayPrev.calibre.override {
-          #       python3Packages = python'.pkgs;
-          #     };
-          #   })
-          # (self: super: {
-          #   herbstluftwm = let version = "0.9.4";
-          #   in super.herbstluftwm.overrideAttrs (old: {
-          #     inherit version;
-          #     src = super.fetchurl {
-          #       url =
-          #         "https://herbstluftwm.org/tarballs/herbstluftwm-${version}.tar.gz";
-          #       sha256 = "sha256-7vju0HavM68qdZEcD7EhX9s0J2BqA06otE/naHLLA8w=";
-          #     };
-          #     doCheck = false;
-          #     buildInputs = old.buildInputs
-          #       ++ [ super.xorg.libXdmcp super.xorg.libXfixes ];
-          #   });
-
-          # })
-          # (self: super: {
-          #   tdrop = let version = "797cc3626a3b8560297c3f08132c2670c3040f40";
-          #   in super.tdrop.overrideAttrs (old: {
-          #     inherit version;
-          #     src = super.fetchFromGitHub {
-          #       owner = "noctuid";
-          #       repo = "tdrop";
-          #       rev = version;
-          #       sha256 = "sha256-fHvGXaZL7MMvTnkap341B79PDDo2lOVPPcOH4AX/zXo=";
-          #     };
-          #   });
-          # })
           (final: prev: {
             jetbrains = prev.jetbrains // {
               jdk = final.callPackage ./packages/p-jetbrains-jdk-bin { };

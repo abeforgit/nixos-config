@@ -10,34 +10,36 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    custom.polybar.enable = true;
+    # custom.polybar.enable = true;
     services.xserver.windowManager.herbstluftwm = { enable = true; };
+    # environment.sessionVariables = {
+    #   KDEWM = "${pkgs.herbstluftwm}/bin/herbstluftwm";
+    # };
     services.xserver = {
       enable = true;
       displayManager = {
+        sddm.enable = true;
 
-        defaultSession = "xfce";
-        lightdm.greeters.gtk.cursorTheme.name = "Qogir";
-        lightdm.greeters.gtk.cursorTheme.package = pkgs.qogir-icon-theme;
+        # defaultSession = "plasma-hlwm";
+        # lightdm.greeters.gtk.cursorTheme.name = "Qogir";
+        # lightdm.greeters.gtk.cursorTheme.package = pkgs.qogir-icon-theme;
+        session = [{
+          manage = "desktop";
+          name = "plasma-hlwm";
+          start = ''
+            KDEWM=${pkgs.herbstluftwm}/bin/herbstluftwm ${pkgs.libsForQt5.plasma5.plasma-workspace}/bin/startplasma-x11
+          '';
+          desktopNames = [ "KDE" ];
+        }];
       };
       desktopManager = {
-        xterm.enable = false;
-        xfce = {
+        plasma5 = {
           enable = true;
-          noDesktop = false;
-          enableXfwm = true;
+          runUsingSystemd = false;
         };
       };
     };
-    services.dbus = {
-      enable = true;
-      # packages = with pkgs; [
-
-      #   xfce.xfce4-panel
-      #   xfce.xfdashboard
-      #   xfce.xfce4-session
-      # ];
-    };
+    services.dbus = { enable = true; };
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.packages = with pkgs; [
         fira-code
@@ -46,13 +48,13 @@ in {
         xorg.xwininfo
         xdotool
         acpilight
-        xfce.xfdashboard
-        lxappearance
         ant-theme
+        picom
         plano-theme
         juno-theme
         qogir-theme
         qogir-icon-theme
+        pkgs.libsForQt5.plasma-browser-integration
       ];
 
       programs.rofi = {
@@ -72,11 +74,11 @@ in {
       };
       services.flameshot = { enable = true; };
 
-      home.file."reload-wm" = {
-        source = ./reload-wm.sh;
-        executable = true;
-        target = ".local/bin/reload-wm";
-      };
+      # home.file."reload-wm" = {
+      #   source = ./reload-wm.sh;
+      #   executable = true;
+      #   target = ".local/bin/reload-wm";
+      # };
       home.file."swap-window" = {
         source = ./swap-window.sh;
         executable = true;
