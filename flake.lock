@@ -21,6 +21,28 @@
         "type": "github"
       }
     },
+    "blender-bin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "blender",
+        "lastModified": 1666610385,
+        "narHash": "sha256-MXCHz3pcI4hGRnrt3sNqZFSlT9eJKSZ9xbuCjFg/R9w=",
+        "owner": "edolstra",
+        "repo": "nix-warez",
+        "rev": "87f577ae7ba471236a86b758bb0da83e034ce54c",
+        "type": "github"
+      },
+      "original": {
+        "dir": "blender",
+        "owner": "edolstra",
+        "repo": "nix-warez",
+        "type": "github"
+      }
+    },
     "devshell": {
       "inputs": {
         "flake-utils": [
@@ -188,6 +210,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "blender-bin": "blender-bin",
         "devshell": "devshell",
         "emacs-overlay": "emacs-overlay",
         "flake-utils": "flake-utils",

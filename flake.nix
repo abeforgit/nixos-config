@@ -31,14 +31,17 @@
       url = "github:ryantm/agenix/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
+    blender-bin = {
+      url = "github:edolstra/nix-warez?dir=blender";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+    rust-overlay = { url = "github:oxalica/rust-overlay"; };
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgsReview, nixpkgs-master,
     # nixpkgs-unstable-small ,
-    home-manager, utils, agenix, emacs-overlay, devshell, flake-utils, rust-overlay }:
+    home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
+    , rust-overlay, blender-bin }:
     let
       customPackages = callPackage:
         {
@@ -68,6 +71,7 @@
           devshell.overlay
           emacs-overlay.overlay
           rust-overlay.overlays.default
+          blender-bin.overlays.default
           # (import (builtins.fetchTarball {
 
           #   url =
@@ -80,6 +84,10 @@
             # inherit (channels.master) discord;
             inherit (channels.master) woodpecker-cli;
           })
+          # (final: prev: {
+
+          #   blender = prev.blender.override { cudaSupport = true; };
+          # })
           (final: prev: {
             jetbrains = prev.jetbrains // {
               jdk = final.callPackage ./packages/p-jetbrains-jdk-bin { };

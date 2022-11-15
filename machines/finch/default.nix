@@ -84,6 +84,7 @@ in {
 
     allowUnfree = true;
     allowUnfreePredicate = (pkg: true);
+    # cudaSupport = true;
   };
   # Enable sound.
 
@@ -138,6 +139,7 @@ in {
 
   custom.user = username;
   custom.graphical.enable = true;
+  custom.steam.enable = true;
   custom.emacs.enable = true;
   custom.zsh.enable = true;
   custom.vscode.enable = true;
@@ -155,7 +157,8 @@ in {
     thunderbird
     discord
     btop
-    blender
+    # cudatoolkit
+    blender_3_3
     libinput
     filezilla
     # calibre
