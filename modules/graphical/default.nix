@@ -2,8 +2,14 @@
 with lib;
 let cfg = config.custom.graphical;
 in {
-  imports =
-    [ ./wezterm.nix ./bspwm.nix ./wacom.nix ./polybar.nix ./herbstluftwm.nix ];
+  imports = [
+    ./wezterm.nix
+    ./bspwm.nix
+    ./wacom.nix
+    ./polybar.nix
+    ./herbstluftwm.nix
+    ./steam.nix
+  ];
   options.custom.graphical = {
     enable = mkOption {
       example = true;

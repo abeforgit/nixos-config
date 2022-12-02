@@ -144,7 +144,7 @@ in {
   custom.zsh.enable = true;
   custom.vscode.enable = true;
   custom.keychain.enable = true;
-  custom.keyring.enable = true;
+  custom.keyring.enable = false;
   custom.audio.enable = true;
   custom.nvim.enable = true;
   custom.git.enable = true;
