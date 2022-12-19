@@ -1,6 +1,6 @@
 { pkgs, inputs }:
 let
-  node_package = pkgs.nodejs-16_x;
+  node_package = pkgs.nodejs-18_x;
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";
   name = "gn-meta";

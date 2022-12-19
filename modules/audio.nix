@@ -15,13 +15,21 @@ in {
       owner = config.custom.user;
     };
 
-    sound.enable = true;
-    services.pipewire.enable = true;
-    hardware.pulseaudio = {
+    sound.enable = false;
+
+    security.rtkit.enable = true;
+    services.pipewire = {
       enable = true;
-      extraConfig = "load-module module-switch-on-connect";
-      package = pkgs.pulseaudioFull;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
     };
+    # hardware.pulseaudio = {
+    #   enable = true;
+    #   extraConfig = "load-module module-switch-on-connect";
+    #   package = pkgs.pulseaudioFull;
+    # };
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
 
       home.packages = with pkgs; [
