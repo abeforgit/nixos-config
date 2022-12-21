@@ -3,7 +3,7 @@ with lib;
 let
   cfg = config.custom.emacs;
   emacsPkg = with pkgs;
-    ((emacsPackagesFor emacsNativeComp).emacsWithPackages
+    ((emacsPackagesFor emacsUnstable).emacsWithPackages
       (epkgs: [ epkgs.vterm ]));
 in {
   options.custom.emacs = {

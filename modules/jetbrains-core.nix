@@ -29,9 +29,12 @@ with lib; {
           :map <leader><leader> <Action>(GotoFile)
 
           :map <leader>gd <Action>(ActivateDebugToolWindow)
-          :map gi <Action>(GotoImplementation)
+          :map gh <Action>(ShowErrorDescription)
+          :map gi <Action>(QuickImplementations)
 
           :map <leader>sp <Action>(SearchEverywhere)
+          :map <leader>ss <Action>(FindInPath)
+          :map <leader>sr <Action>(ReplaceInPath)
 
           :map <leader>op :NERDTree<CR>
 
@@ -43,6 +46,11 @@ with lib; {
           :map <leader>cx <Action>(ActivateProblemsViewToolWindow)
           :map <leader>cr <Action>(RenameElement)
           :map <leader>ca <Action>(ShowIntentionActions)
+          :map <leader>hh <Action>(HideAllWindows)
+          :map <leader>ot <Action>(ActivateTerminalToolWindow)
+          :map <leader>gg <Action>(ActivateVersionControlToolWindow)
+          :map <leader>gc <Action>(GitCheckoutFromInputAction)
+          :map <leader>go <Action>(ActivateCommitToolWindow)
 
           :map <leader>bb <Action>(Switcher)
           :map <leader>bp <Action>(Back)
