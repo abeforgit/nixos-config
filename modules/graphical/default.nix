@@ -9,6 +9,7 @@ in {
     ./polybar.nix
     ./herbstluftwm.nix
     ./steam.nix
+    ./hyprland.nix
   ];
   options.custom.graphical = {
     enable = mkOption {
@@ -20,6 +21,7 @@ in {
     custom.bspwm.enable = false;
     custom.wezterm.enable = true;
     custom.herbstluft.enable = true;
+    custom.hyprland.enable = true;
     custom.wacom.enable = false;
     custom.polybar.enable = false;
 

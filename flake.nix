@@ -8,6 +8,7 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    hyprland.url = "github:hyprwm/Hyprland";
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
@@ -41,7 +42,7 @@
   outputs = inputs@{ self, nixpkgs, nixpkgsReview, nixpkgs-master,
     # nixpkgs-unstable-small ,
     home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
-    , rust-overlay, blender-bin }:
+    , rust-overlay, blender-bin, hyprland }:
     let
       customPackages = callPackage:
         {
@@ -154,7 +155,11 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.sharedModules = [
+              hyprland.homeManagerModules.default
+            ];
           }
+          hyprland.nixosModules.default
           (./modules)
           (./machines/finch)
           agenix.nixosModules.age
