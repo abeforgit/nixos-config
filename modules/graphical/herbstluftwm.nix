@@ -85,7 +85,7 @@ in {
         target = ".local/bin/swap-window";
       };
       services.sxhkd = {
-        enable = true;
+        enable = false;
         keybindings = let hc = "herbstclient";
         in {
           "super + shift + q" = "${hc} close_and_remove";
