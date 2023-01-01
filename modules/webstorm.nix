@@ -25,12 +25,12 @@ in {
               mkdir -p $out/bin
               makeWrapper ${
                 pkgs.jetbrains.webstorm.overrideAttrs (old: {
-                  version = "2022.3";
+                  version = "2022.3.1";
                   src = pkgs.fetchurl {
                     sha256 =
-                      "sha256-pwogdPg4xKX1C5nYeXN2vz9XzbQOnHKCRlVfm0rF01s=";
+                      "sha256-14vWSUzO1R/nfYfAcED6Oinor5FzFzmQNq8WHFav2Sc=";
                     url =
-                      "https://download.jetbrains.com/webstorm/WebStorm-2022.3.tar.gz";
+                      "https://download.jetbrains.com/webstorm/WebStorm-2022.3.1.tar.gz";
                   };
 
                 })
