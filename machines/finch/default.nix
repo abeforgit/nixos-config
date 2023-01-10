@@ -173,7 +173,6 @@ in {
     lorien
     nvd
     tridactyl-native
-    nvtop
     powertop
   ];
 

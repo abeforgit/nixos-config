@@ -64,6 +64,8 @@ in {
         fup-repl
         plasma-browser-integration
         xdg-desktop-portal-kde
+        nix-tree
+        nix-query-tree-viewer
       ] ++ cfg.extraSystemPackages;
 
     i18n.defaultLocale = "en_US.UTF-8";
@@ -204,6 +206,10 @@ in {
         automount = true;
         notify = true;
         tray = "auto";
+      };
+      programs.nix-index = {
+        enable = true;
+        enableZshIntegration = true;
       };
       programs.kitty = {
         enable = true;
