@@ -86,7 +86,6 @@
           (self: super: {
             # inherit (channels.master) discord;
             inherit (channels.master) woodpecker-cli;
-            inherit (channels.master.python310Packages) httpie;
           })
           # (final: prev: {
 
