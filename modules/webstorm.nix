@@ -1,6 +1,15 @@
 { config, lib, pkgs, ... }:
 with lib;
-let cfg = config.custom.webstorm;
+let
+  cfg = config.custom.webstorm;
+  webstormPkg = pkgs.jetbrains.webstorm.overrideAttrs (old: {
+    version = "2022.3.1";
+    src = pkgs.fetchurl {
+      sha256 = "sha256-14vWSUzO1R/nfYfAcED6Oinor5FzFzmQNq8WHFav2Sc=";
+      url = "https://download.jetbrains.com/webstorm/WebStorm-2022.3.1.tar.gz";
+    };
+
+  });
 in {
   imports = [ ./jetbrains-core.nix ];
   options.custom.webstorm = {
@@ -23,18 +32,7 @@ in {
         nativeBuildInputs = [ pkgs.makeWrapper ];
       } ''
               mkdir -p $out/bin
-              makeWrapper ${
-                pkgs.jetbrains.webstorm.overrideAttrs (old: {
-                  version = "2022.3.1";
-                  src = pkgs.fetchurl {
-                    sha256 =
-                      "sha256-14vWSUzO1R/nfYfAcED6Oinor5FzFzmQNq8WHFav2Sc=";
-                    url =
-                      "https://download.jetbrains.com/webstorm/WebStorm-2022.3.1.tar.gz";
-                  };
-
-                })
-              }/bin/webstorm \
+              makeWrapper ${ webstormPkg }/bin/webstorm \
                 $out/bin/webstorm \
                 --prefix PATH : ${extraPath}
         #     '';
@@ -48,6 +46,17 @@ in {
         nerdfonts
         font-manager
       ];
+      xdg.desktopEntries = {
+        webstorm = {
+          name = "Webstorm";
+          exec = "webstorm %U";
+          icon = "${webstormPkg}/share/pixmaps/webstorm.svg";
+          terminal = false;
+          categories = [ "Development" "IDE" ];
+          type = "Application";
+
+        };
+      };
       fonts.fontconfig.enable = true;
       home.file.".local/webstorm-dev".source = let
         mkEntry = name: value: {

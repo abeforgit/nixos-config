@@ -9,6 +9,7 @@
       };
     };
     hyprland.url = "github:hyprwm/Hyprland";
+    contrib.url = "github:hyprwm/contrib";
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
@@ -42,7 +43,7 @@
   outputs = inputs@{ self, nixpkgs, nixpkgsReview, nixpkgs-master,
     # nixpkgs-unstable-small ,
     home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
-    , rust-overlay, blender-bin, hyprland }:
+    , rust-overlay, blender-bin, hyprland, contrib }:
     let
       customPackages = callPackage:
         {
@@ -71,6 +72,7 @@
         overlaysBuilder = channels: [
           devshell.overlay
           emacs-overlay.overlay
+          contrib.overlays.default
           rust-overlay.overlays.default
           blender-bin.overlays.default
           # (import (builtins.fetchTarball {

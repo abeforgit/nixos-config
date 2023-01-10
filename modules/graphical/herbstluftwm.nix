@@ -45,6 +45,7 @@ in {
         fira-code
         tdrop
         wmname
+        vlc
         xorg.xwininfo
         xdotool
         acpilight
@@ -54,7 +55,26 @@ in {
         juno-theme
         qogir-theme
         qogir-icon-theme
+        glxinfo
+        vulkan-tools
+        xorg.xdpyinfo
+        pkgs.libsForQt5.qtdbusextended
         pkgs.libsForQt5.plasma-browser-integration
+        pkgs.libsForQt5.kontact
+        pkgs.libsForQt5.kmail
+        pkgs.libsForQt5.kaccounts-providers
+        pkgs.libsForQt5.kaccounts-integration
+        pkgs.libsForQt5.korganizer
+        pkgs.libsForQt5.kalendar
+        pkgs.libsForQt5.kcharselect
+        pkgs.libsForQt5.rocs
+        ktimetracker
+        soulseekqt
+
+        pkgs.libsForQt5.kaddressbook
+        pkgs.libsForQt5.akregator
+        pkgs.libsForQt5.knotes
+
       ];
 
       programs.rofi = {
@@ -72,6 +92,40 @@ in {
           window-command = "herbstclient bring {window}";
         };
       };
+      services.fusuma = {
+        enable = true;
+        extraPackages = with pkgs; [
+          coreutils
+          xdotool
+          pkgs.libsForQt5.qtdbusextended
+          pkgs.libsForQt5.qt5.qttools
+        ];
+        settings = {
+          threshold = { swipe = 0.1; };
+          interval = { swipe = 0.7; };
+          swipe = {
+            "3" = {
+              left = {
+                command = ''
+                  ${pkgs.libsForQt5.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "Switch to Next Desktop"
+                '';
+              };
+              right = {
+                command = ''
+                  ${pkgs.libsForQt5.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "Switch to Previous Desktop"
+                '';
+              };
+              down = {
+                command = ''
+                  ${pkgs.libsForQt5.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "Overview"
+                '';
+              };
+            };
+          };
+
+        };
+
+      };
       services.flameshot = { enable = true; };
 
       # home.file."reload-wm" = {
@@ -85,7 +139,7 @@ in {
         target = ".local/bin/swap-window";
       };
       services.sxhkd = {
-        enable = false;
+        enable = true;
         keybindings = let hc = "herbstclient";
         in {
           "super + shift + q" = "${hc} close_and_remove";

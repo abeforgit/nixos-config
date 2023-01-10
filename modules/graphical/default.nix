@@ -21,7 +21,7 @@ in {
     custom.bspwm.enable = false;
     custom.wezterm.enable = true;
     custom.herbstluft.enable = true;
-    custom.hyprland.enable = true;
+    custom.hyprland.enable = false;
     custom.wacom.enable = false;
     custom.polybar.enable = false;
 

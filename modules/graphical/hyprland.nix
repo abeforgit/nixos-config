@@ -1,7 +1,27 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-let cfg = config.custom.hyprland;
+let
+  cfg = config.custom.hyprland;
+
+  configure-gtk = pkgs.writeTextFile {
+    name = "configure-gtk";
+    destination = "/bin/configure-gtk";
+    executable = true;
+    text = let
+      schema = pkgs.gsettings-desktop-schemas;
+      datadir = "${schema}/share/gsettings-schemas/${schema.name}";
+    in ''
+      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+      gnome_schema=org.gnome.desktop.interface
+      cursor_size=24
+      cursor_theme=Adwaita
+      gsettings set $gnome_schema gtk-theme 'Dracula'
+      gsettings set $gnome_schema text-scaling-factor 2
+      gsettings set $gnome_schema cursor-theme $cursor_theme
+      gsettings set $gnome_schema cursor-size $cursor_size
+    '';
+  };
 in {
   options.custom.hyprland = {
     enable = mkOption {
@@ -18,6 +38,15 @@ in {
       };
       nvidiaPatches = true;
 
+    };
+    environment.systemPackages = with pkgs; [
+      glxinfo
+      vulkan-tools
+      glmark2
+    ];
+    services.xserver = {
+      videoDrivers = [ "nvidia" ];
+      displayManager.gdm.wayland = true;
     };
     home-manager.users.${config.custom.user} = { pkgs, ... }:
       let
@@ -64,23 +93,38 @@ in {
       in {
         home.packages = with pkgs; [
           fira-code
+          acpilight
           pipewire
           wireplumber
+          glib
+          light
+          dracula-theme
+          wl-clipboard
+          xdg-utils
+          blueman
+          configure-gtk
           polkit-kde-agent
           dunst
           wlr-randr
-          eww
           wofi
           wlogout
           grim
+          grimblast
           slurp
           xorg.xprop
           wezterm
-
         ];
+        home.pointerCursor = {
+          name = "Adwaita";
+          package = pkgs.gnome.adwaita-icon-theme;
+          # size = 24;
+          x11 = {
+            enable = true;
+            defaultCursor = "Adwaita";
+          };
+        };
         home.sessionVariables = {
           # upscale steam
-          GDK_SCALE = "2";
           _JAVA_AWT_WM_NONREPARENTING = "1";
           MOZ_ENABLE_WAYLAND = "1";
           QT_QPA_PLATFORM = "wayland";
@@ -88,6 +132,11 @@ in {
           SDL_VIDEODRIVER = "wayland";
           XDG_SESSION_TYPE = "wayland";
           WLR_NO_HARDWARE_CURSORS = "1";
+        };
+        programs.eww = {
+          enable = true;
+          configDir = ./eww-config;
+          package = pkgs.eww-wayland;
         };
 
         # screen idle
@@ -106,10 +155,8 @@ in {
           timeouts = [
             {
               timeout = 300;
-              command =
-                "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
-              resumeCommand =
-                "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+              command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
+              resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
             }
             {
               timeout = 310;
@@ -118,19 +165,16 @@ in {
           ];
         };
         # systemd.user.services.swayidle.Install.WantedBy =
-         #  lib.mkForce [ "hyprland-session.target" ];
+        #  lib.mkForce [ "hyprland-session.target" ];
         wayland.windowManager.hyprland = {
           enable = true;
           nvidiaPatches = true;
           extraConfig = ''
               $mod = SUPER
-              monitor = eDP-1, preferred, auto, auto
+              monitor = eDP-1, preferred, auto, 2 
               monitor = HDMI-A-1, preferred, auto, 2
               workspace = eDP-1, 1
               workspace = HDMI-A-1, 1
-              exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
-              exec-once = wezterm
-              # exec-once = eww open bar
               misc {
                 # enable Variable Frame Rate
                 no_vfr = 0
@@ -257,6 +301,11 @@ in {
                 # cycle monitors
                 bind = $mod SHIFT, braceleft, focusmonitor, l
                 bind = $mod SHIFT, braceright, focusmonitor, r
+
+              exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
+              exec-once = wezterm
+              exec-once = eww open bar
+              exec-once = configure-gtk
           '';
 
         };

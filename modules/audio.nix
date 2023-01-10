@@ -35,8 +35,18 @@ in {
       home.packages = with pkgs; [
         pavucontrol
         spotify-tui
-        spotify-unwrapped
+        (spotify.override { deviceScaleFactor = 2; })
       ];
+
+      xdg = {
+        mimeApps = {
+            enable = true;
+            defaultApplications = {
+                "x-scheme-handler/spotify" = [ "spotify.desktop" ];
+            };
+        };
+
+      };
       services.mpris-proxy.enable = true;
       programs.ncspot = {
         enable = true;

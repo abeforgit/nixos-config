@@ -62,6 +62,8 @@ in {
         agenix-cli
         wally-cli
         fup-repl
+        plasma-browser-integration
+        xdg-desktop-portal-kde
       ] ++ cfg.extraSystemPackages;
 
     i18n.defaultLocale = "en_US.UTF-8";
@@ -134,6 +136,17 @@ in {
       file = ../secrets/authorized_keys/arne.age;
       owner = "arne";
     };
+    programs.firefox = {
+      enable = true;
+      package = pkgs.firefox.override {
+        cfg = { enablePlasmaBrowserIntegration = true; };
+      };
+    };
+    xdg = {
+        portal = {
+            enable = true;
+        };
+    };
     home-manager.users.${cfg.user} = { pkgs, home, ... }: {
       home.stateVersion = "18.09";
       home.packages = with pkgs;
@@ -144,17 +157,18 @@ in {
           pciutils
           docker-compose
           bat
+
           xfce.thunar
           xfce.thunar-volman
           xfce.thunar-archive-plugin
           xfce.thunar-media-tags-plugin
           arandr
         ] ++ cfg.extraHomePackages;
-      programs.firefox = { enable = true; };
 
       home.sessionPath = [ "$HOME/.local/bin" ];
       xdg = {
         enable = true;
+
         userDirs = {
           desktop = "$HOME/desktop";
           documents = "$HOME/documents";
