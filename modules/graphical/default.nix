@@ -24,6 +24,7 @@ in {
     custom.hyprland.enable = false;
     custom.wacom.enable = false;
     custom.polybar.enable = false;
+    stylix.image = ./totoro.jpg;
 
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.packages = with pkgs; [ wpgtk xorg.xev ];

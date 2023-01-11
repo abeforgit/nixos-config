@@ -66,6 +66,8 @@ in {
         xdg-desktop-portal-kde
         nix-tree
         nix-query-tree-viewer
+        nix-alien
+        manix
       ] ++ cfg.extraSystemPackages;
 
     i18n.defaultLocale = "en_US.UTF-8";

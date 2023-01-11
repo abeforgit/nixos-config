@@ -12,6 +12,9 @@
     contrib.url = "github:hyprwm/contrib";
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    comma.url = "github:nix-community/comma";
+    nix-alien.url = "github:thiagokokada/nix-alien";
+    stylix.url = "github:danth/stylix";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgsReview = { url = "github:ambroisie/nixpkgs/fix-woodpecker-ca"; };
@@ -43,7 +46,7 @@
   outputs = inputs@{ self, nixpkgs, nixpkgsReview, nixpkgs-master,
     # nixpkgs-unstable-small ,
     home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
-    , rust-overlay, blender-bin, hyprland, contrib }:
+    , rust-overlay, blender-bin, hyprland, contrib, comma, nix-alien, stylix }:
     let
       customPackages = callPackage:
         {
@@ -74,6 +77,7 @@
           emacs-overlay.overlay
           contrib.overlays.default
           rust-overlay.overlays.default
+          nix-alien.overlays.default
           blender-bin.overlays.default
           # (import (builtins.fetchTarball {
 
@@ -160,6 +164,7 @@
               hyprland.homeManagerModules.default
             ];
           }
+          stylix.nixosModules.stylix
           hyprland.nixosModules.default
           (./modules)
           (./machines/finch)
