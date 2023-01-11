@@ -24,7 +24,16 @@ in {
     custom.hyprland.enable = false;
     custom.wacom.enable = false;
     custom.polybar.enable = false;
-    stylix.image = ./totoro.jpg;
+    stylix = {
+      fonts = {
+        monospace = {
+          package = pkgs.fira-code;
+          name = "Fira Code";
+        };
+      };
+
+      image = ./totoro.jpg;
+    };
 
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.packages = with pkgs; [ wpgtk xorg.xev ];
