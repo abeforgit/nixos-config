@@ -31,8 +31,9 @@ in {
           name = "Fira Code";
         };
       };
+      polarity = "dark";
 
-      image = ./totoro.jpg;
+      image = ./porco.png;
     };
 
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
