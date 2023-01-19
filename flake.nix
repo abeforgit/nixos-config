@@ -13,11 +13,13 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     comma.url = "github:nix-community/comma";
-    nix-alien.url = "github:thiagokokada/nix-alien";
+    nix-alien = {
+      url = "github:thiagokokada/nix-alien";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix.url = "github:danth/stylix";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgsReview = { url = "github:ambroisie/nixpkgs/fix-woodpecker-ca"; };
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,7 +45,7 @@
     rust-overlay = { url = "github:oxalica/rust-overlay"; };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgsReview, nixpkgs-master,
+  outputs = inputs@{ self, nixpkgs, nixpkgs-master,
     # nixpkgs-unstable-small ,
     home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
     , rust-overlay, blender-bin, hyprland, contrib, comma, nix-alien, stylix }:
@@ -60,10 +62,10 @@
         config = { allowUnfree = true; };
 
       };
-      channels.review = {
-        input = nixpkgsReview;
-        config = { allowUnfree = true; };
-      };
+#      channels.review = {
+#        input = nixpkgsReview;
+#        config = { allowUnfree = true; };
+#      };
       # channels.small = {
       #   input = nixpkgs-unstable-small;
 
@@ -160,9 +162,8 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [
-              hyprland.homeManagerModules.default
-            ];
+            home-manager.sharedModules =
+              [ hyprland.homeManagerModules.default ];
           }
           stylix.nixosModules.stylix
           hyprland.nixosModules.default
