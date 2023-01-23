@@ -10,27 +10,10 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    # custom.polybar.enable = true;
-    services.xserver.windowManager.herbstluftwm = { enable = true; };
-    # environment.sessionVariables = {
-    #   KDEWM = "${pkgs.herbstluftwm}/bin/herbstluftwm";
-    # };
     services.xserver = {
       enable = true;
       displayManager = {
         sddm.enable = true;
-
-        # defaultSession = "plasma-hlwm";
-        # lightdm.greeters.gtk.cursorTheme.name = "Qogir";
-        # lightdm.greeters.gtk.cursorTheme.package = pkgs.qogir-icon-theme;
-        session = [{
-          manage = "desktop";
-          name = "plasma-hlwm";
-          start = ''
-            KDEWM=${pkgs.herbstluftwm}/bin/herbstluftwm ${pkgs.libsForQt5.plasma5.plasma-workspace}/bin/startplasma-x11
-          '';
-          desktopNames = [ "KDE" ];
-        }];
       };
       desktopManager = {
         plasma5 = {
@@ -57,6 +40,7 @@ in {
         qogir-icon-theme
         glxinfo
         vulkan-tools
+        obsidian
         xorg.xdpyinfo
         pkgs.libsForQt5.qtdbusextended
         pkgs.libsForQt5.plasma-browser-integration
@@ -139,7 +123,7 @@ in {
         target = ".local/bin/swap-window";
       };
       services.sxhkd = {
-        enable = true;
+        enable = false;
         keybindings = let hc = "herbstclient";
         in {
           "super + shift + q" = "${hc} close_and_remove";
