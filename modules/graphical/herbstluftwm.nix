@@ -54,6 +54,8 @@ in {
         pkgs.libsForQt5.rocs
         ktimetracker
         soulseekqt
+        peek
+        obs-studio
 
         pkgs.libsForQt5.kaddressbook
         pkgs.libsForQt5.akregator
