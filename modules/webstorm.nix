@@ -3,10 +3,11 @@ with lib;
 let
   cfg = config.custom.webstorm;
   webstormPkg = pkgs.jetbrains.webstorm.overrideAttrs (old: {
-    version = "2022.3.1";
+    version = "2022.3.2";
+    jdk = pkgs.jetbrains.jdk;
     src = pkgs.fetchurl {
-      sha256 = "sha256-14vWSUzO1R/nfYfAcED6Oinor5FzFzmQNq8WHFav2Sc=";
-      url = "https://download.jetbrains.com/webstorm/WebStorm-2022.3.1.tar.gz";
+      sha256 = "sha256-K2Ehd8mf8MbFQqvgBYRsOqbPFw+qAgLar+tKsWJ8N5Q=";
+      url = "https://download.jetbrains.com/webstorm/WebStorm-2022.3.2.tar.gz";
     };
 
   });

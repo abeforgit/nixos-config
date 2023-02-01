@@ -97,55 +97,55 @@
 
           #   blender = prev.blender.override { cudaSupport = true; };
           # })
-          (final: prev: {
-            jetbrains = prev.jetbrains // {
-              jdk = final.callPackage ./packages/p-jetbrains-jdk-bin { };
-            };
-          })
-#          (self: super: {
-#            godot-mono = with super;
-#              let
-#                arch = "64";
-#                version = "3.5.1";
-#                releaseName = "stable";
-#                subdir = "";
-#                pkg = stdenv.mkDerivation {
-#                  name = "godot-mono-unwrapped";
-#                  buildInputs = [ unzip ];
-#                  unpackPhase = "unzip $src";
-#                  version = version;
-#                  src = fetchurl {
-#                    url =
-#                      "https://downloads.tuxfamily.org/godotengine/${version}${subdir}/mono/Godot_v${version}-${releaseName}_mono_x11_${arch}.zip";
-#                    sha256 =
-#                      "sha256-VfJQ22q/4EuNwS7B+VSFqUw2NwtaUXTU6euuklbB9rw=";
-#                  };
-#                  installPhase = ''
-#                    cp -r . $out
-#                  '';
-#                };
-#              in buildFHSUserEnv {
-#                name = "godot-mono";
-#                targetPkgs = pkgs:
-#                  (with pkgs; [
-#                    alsa-lib
-#                    dotnetCorePackages.sdk_7_0
-#                    libGL
-#                    libpulseaudio
-#                    udev
-#                    xorg.libX11
-#                    xorg.libXcursor
-#                    xorg.libXext
-#                    xorg.libXi
-#                    xorg.libXinerama
-#                    xorg.libXrandr
-#                    xorg.libXrender
-#                    zlib
-#                  ]);
-#                runScript =
-#                  "${pkg.outPath}/Godot_v${version}-${releaseName}_mono_x11_${arch}/Godot_v${version}-${releaseName}_mono_x11.${arch}";
-#              };
+#          (final: prev: {
+#            jetbrains = prev.jetbrains // {
+#              jdk = final.callPackage ./packages/p-jetbrains-jdk-bin { };
+#            };
 #          })
+          (self: super: {
+            godot-mono = with super;
+              let
+                arch = "64";
+                version = "3.5.1";
+                releaseName = "stable";
+                subdir = "";
+                pkg = stdenv.mkDerivation {
+                  name = "godot-mono-unwrapped";
+                  buildInputs = [ unzip ];
+                  unpackPhase = "unzip $src";
+                  version = version;
+                  src = fetchurl {
+                    url =
+                      "https://downloads.tuxfamily.org/godotengine/${version}${subdir}/mono/Godot_v${version}-${releaseName}_mono_x11_${arch}.zip";
+                    sha256 =
+                      "sha256-7phG4vgq4m0h92gCMPv5kehQQ1BH7rS1c5VZ6Dx3WPc=";
+                  };
+                  installPhase = ''
+                    cp -r . $out
+                  '';
+                };
+              in buildFHSUserEnv {
+                name = "godot-mono";
+                targetPkgs = pkgs:
+                  (with pkgs; [
+                    alsa-lib
+                    dotnetCorePackages.sdk_7_0
+                    libGL
+                    libpulseaudio
+                    udev
+                    xorg.libX11
+                    xorg.libXcursor
+                    xorg.libXext
+                    xorg.libXi
+                    xorg.libXinerama
+                    xorg.libXrandr
+                    xorg.libXrender
+                    zlib
+                  ]);
+                runScript =
+                  "${pkg.outPath}/Godot_v${version}-${releaseName}_mono_x11_${arch}/Godot_v${version}-${releaseName}_mono_x11.${arch}";
+              };
+          })
 
         ];
       };
@@ -154,7 +154,7 @@
         modules = [
           ({
             config._module.args = {
-              agenix-cli = agenix.defaultPackage.x86_64-linux;
+              agenix-cli = agenix.packages.x86_64-linux.default;
             };
           })
           { nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; }

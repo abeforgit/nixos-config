@@ -12,7 +12,7 @@ in {
   config = mkIf cfg.enable {
     home-manager.users.${config.custom.user} = let
       devSDKs = with pkgs; {
-        dotnet = dotnetCorePackages.sdk_5_0;
+        dotnet = dotnetCorePackages.sdk_7_0;
         mono = mono;
         mono5 = mono5;
         godot-mono = godot-mono;
