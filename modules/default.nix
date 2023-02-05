@@ -119,8 +119,10 @@ in {
     };
     services.openssh = {
       enable = true;
-      passwordAuthentication = false;
-      permitRootLogin = "prohibit-password";
+      settings = {
+        passwordAuthentication = false;
+        permitRootLogin = "prohibit-password";
+      };
       hostKeys = [
         {
           bits = 4096;
@@ -146,11 +148,7 @@ in {
         cfg = { enablePlasmaBrowserIntegration = true; };
       };
     };
-    xdg = {
-        portal = {
-            enable = true;
-        };
-    };
+    xdg = { portal = { enable = true; }; };
     home-manager.users.${cfg.user} = { pkgs, home, ... }: {
       home.stateVersion = "18.09";
       home.packages = with pkgs;

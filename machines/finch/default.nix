@@ -169,7 +169,6 @@ in {
     evince
     godot-mono
     woodpecker-cli
-    bitwig-studio
     lorien
     nvd
     tridactyl-native
