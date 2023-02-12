@@ -15,7 +15,7 @@ in {
       programs.vscode = {
         enable = true;
         # add extension-specific deps here
-        package = pkgs.vscode-fhsWithPackages (ps: with ps; [ libgnome-keyring ]);
+#        package = pkgs.vscode-fhsWithPackages (ps: with ps; [ libgnome-keyring ]);
       };
     };
 
