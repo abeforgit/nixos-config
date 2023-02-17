@@ -91,7 +91,7 @@
           # dan-flk.overlays."nixos/spotify"
           (self: super: {
             # inherit (channels.master) discord;
-            inherit (channels.master) woodpecker-cli;
+#            inherit (channels.master) woodpecker-cli;
           })
           # (final: prev: {
 
