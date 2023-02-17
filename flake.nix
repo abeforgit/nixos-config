@@ -20,8 +20,10 @@
     stylix.url = "github:danth/stylix";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
     home-manager = {
-      url = "github:nix-community/home-manager/6d95d98b6b4876c9ab589327331196b2893581c5";
+      url =
+        "github:nix-community/home-manager/6d95d98b6b4876c9ab589327331196b2893581c5";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "flake-utils";
     };
@@ -45,7 +47,7 @@
     rust-overlay = { url = "github:oxalica/rust-overlay"; };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-master,
+  outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-stable,
     # nixpkgs-unstable-small ,
     home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
     , rust-overlay, blender-bin, hyprland, contrib, comma, nix-alien, stylix }:
@@ -62,10 +64,14 @@
         config = { allowUnfree = true; };
 
       };
-#      channels.review = {
-#        input = nixpkgsReview;
-#        config = { allowUnfree = true; };
-#      };
+      channels.stable = {
+        input = nixpkgs-stable;
+        config = { allowUnfree = true; };
+      };
+      #      channels.review = {
+      #        input = nixpkgsReview;
+      #        config = { allowUnfree = true; };
+      #      };
       # channels.small = {
       #   input = nixpkgs-unstable-small;
 
@@ -91,17 +97,18 @@
           # dan-flk.overlays."nixos/spotify"
           (self: super: {
             # inherit (channels.master) discord;
-#            inherit (channels.master) woodpecker-cli;
+            #            inherit (channels.master) woodpecker-cli;
+            inherit (channels.stable) wezterm;
           })
           # (final: prev: {
 
           #   blender = prev.blender.override { cudaSupport = true; };
           # })
-#          (final: prev: {
-#            jetbrains = prev.jetbrains // {
-#              jdk = final.callPackage ./packages/p-jetbrains-jdk-bin { };
-#            };
-#          })
+          #          (final: prev: {
+          #            jetbrains = prev.jetbrains // {
+          #              jdk = final.callPackage ./packages/p-jetbrains-jdk-bin { };
+          #            };
+          #          })
           (self: super: {
             godot-mono = with super;
               let
