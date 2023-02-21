@@ -65,8 +65,6 @@ in {
 
       programs.rofi = {
         enable = true;
-        font = "Fira Code 24";
-        theme = "Monokai";
         extraConfig = {
           modi = "combi,drun,ssh";
           combi-modi = "window,drun,run";
