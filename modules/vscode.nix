@@ -14,8 +14,9 @@ in {
     home-manager.users.${config.custom.user} = { pkgs, home, ... }: {
       programs.vscode = {
         enable = true;
-        # add extension-specific deps here
-#        package = pkgs.vscode-fhsWithPackages (ps: with ps; [ libgnome-keyring ]);
+#      extensions = with pkgs.vscode-extensions; [
+#        vscodevim.vim
+#      ];
       };
     };
 

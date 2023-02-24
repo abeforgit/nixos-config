@@ -182,6 +182,8 @@ in {
     woodpecker-cli
     lorien
     nvd
+    signal-desktop
+    plex-media-player
     tridactyl-native
     powertop
   ];
