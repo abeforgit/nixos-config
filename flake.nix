@@ -80,7 +80,7 @@
         input = nixpkgs;
         config = { allowUnfree = true; };
         overlaysBuilder = channels: [
-          devshell.overlay
+          devshell.overlays.default
           emacs-overlay.overlay
           contrib.overlays.default
           rust-overlay.overlays.default
