@@ -35,7 +35,7 @@ in {
     };
 
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
-      home.packages = with pkgs; [ wpgtk xorg.xev xorg.xkill kooha ];
+      home.packages = with pkgs; [ wpgtk xorg.xev xorg.xkill kazam ];
     };
 
     services.dbus = { enable = true; };
