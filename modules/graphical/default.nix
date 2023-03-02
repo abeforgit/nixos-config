@@ -19,8 +19,7 @@ in {
   config = mkIf cfg.enable {
     custom.bspwm.enable = false;
     custom.wezterm.enable = true;
-    custom.herbstluft.enable = true;
-    custom.hyprland.enable = false;
+    custom.kde.enable = true;
     custom.wacom.enable = false;
     custom.polybar.enable = false;
     stylix = {

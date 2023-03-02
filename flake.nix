@@ -8,7 +8,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    contrib.url = "github:hyprwm/contrib";
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     comma.url = "github:nix-community/comma";
@@ -48,7 +47,7 @@
   outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-stable,
     # nixpkgs-unstable-small ,
     home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
-    , rust-overlay, blender-bin, hyprland, contrib, comma, nix-alien, stylix }:
+    , rust-overlay, blender-bin, comma, nix-alien, stylix }:
     let
       customPackages = callPackage:
         {
@@ -81,7 +80,6 @@
         overlaysBuilder = channels: [
           devshell.overlays.default
           emacs-overlay.overlay
-          contrib.overlays.default
           rust-overlay.overlays.default
           nix-alien.overlays.default
           blender-bin.overlays.default
@@ -167,11 +165,8 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules =
-              [ hyprland.homeManagerModules.default ];
           }
           stylix.nixosModules.stylix
-          hyprland.nixosModules.default
           (./modules)
           (./machines/finch)
           agenix.nixosModules.age

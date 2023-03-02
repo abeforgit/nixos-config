@@ -1,9 +1,9 @@
 { pkgs, config, lib, activitywatch, ... }:
 with lib;
-let cfg = config.custom.herbstluft;
+let cfg = config.custom.kde;
 in {
   imports = [ ./polybar.nix ];
-  options.custom.herbstluft = {
+  options.custom.kde = {
     enable = mkOption {
       example = true;
       default = false;
