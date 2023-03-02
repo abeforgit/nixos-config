@@ -8,7 +8,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    hyprland.url = "github:hyprwm/Hyprland";
     contrib.url = "github:hyprwm/contrib";
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";

@@ -7,9 +7,8 @@ in {
     ./bspwm.nix
     ./wacom.nix
     ./polybar.nix
-    ./herbstluftwm.nix
+    ./kde.nix
     ./steam.nix
-    ./hyprland.nix
   ];
   options.custom.graphical = {
     enable = mkOption {
@@ -37,7 +36,7 @@ in {
     };
 
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
-      home.packages = with pkgs; [ wpgtk xorg.xev xorg.xkill ];
+      home.packages = with pkgs; [ wpgtk xorg.xev xorg.xkill kooha ];
     };
 
     services.dbus = { enable = true; };
