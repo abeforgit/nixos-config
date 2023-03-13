@@ -94,7 +94,7 @@
           (self: super: {
             # inherit (channels.master) discord;
             #            inherit (channels.master) woodpecker-cli;
-            inherit (channels.stable) wezterm;
+#            inherit (channels.stable) wezterm;
           })
           # (final: prev: {
 
