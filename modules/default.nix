@@ -45,6 +45,7 @@ in {
   };
 
   config = {
+    programs.zsh.enable = true;
     environment.systemPackages = with pkgs;
       [
         neovim

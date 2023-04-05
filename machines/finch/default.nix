@@ -40,6 +40,9 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
+  boot.loader.grub.default = "saved";
+  boot.loader.grub.fontSize = 32;
+  boot.loader.grub.font = pkgs.hack-font;
 
   networking.hostName = "finch"; # Define your hostname.
   # networking.extraHosts = ''

@@ -45,7 +45,6 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-stable,
-    # nixpkgs-unstable-small ,
     home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
     , rust-overlay, blender-bin, comma, nix-alien, stylix }:
     let
@@ -61,14 +60,6 @@
         config = { allowUnfree = true; };
 
       };
-      channels.stable = {
-        input = nixpkgs-stable;
-        config = { allowUnfree = true; };
-      };
-      #      channels.review = {
-      #        input = nixpkgsReview;
-      #        config = { allowUnfree = true; };
-      #      };
       # channels.small = {
       #   input = nixpkgs-unstable-small;
 
@@ -91,11 +82,6 @@
 
           # }))
           # dan-flk.overlays."nixos/spotify"
-          (self: super: {
-            # inherit (channels.master) discord;
-            #            inherit (channels.master) woodpecker-cli;
-#            inherit (channels.stable) wezterm;
-          })
           # (final: prev: {
 
           #   blender = prev.blender.override { cudaSupport = true; };
