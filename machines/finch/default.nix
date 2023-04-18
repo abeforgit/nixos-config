@@ -95,7 +95,7 @@ in {
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   nixpkgs.config = {
-    permittedInsecurePackages = [ "xen-4.10.4" "python-2.7.18.6" ];
+    permittedInsecurePackages = [ "electron-21.4.0" ];
 
     allowUnfree = true;
     allowUnfreePredicate = (pkg: true);
