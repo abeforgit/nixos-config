@@ -35,15 +35,21 @@ in {
       home.packages = with pkgs; [
         pavucontrol
         spotify-tui
-        (spotify.override { deviceScaleFactor = 2; })
+        (spotify.override {
+          callPackage = p: attrs:
+            pkgs.callPackage p (attrs // {
+              deviceScaleFactor = 2.0;
+              nss = pkgs.nss_latest;
+            });
+        })
       ];
 
       xdg = {
         mimeApps = {
-            enable = true;
-            defaultApplications = {
-                "x-scheme-handler/spotify" = [ "spotify.desktop" ];
-            };
+          enable = true;
+          defaultApplications = {
+            "x-scheme-handler/spotify" = [ "spotify.desktop" ];
+          };
         };
 
       };
