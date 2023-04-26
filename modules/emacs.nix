@@ -4,7 +4,7 @@ let
   cfg = config.custom.emacs;
   emacsPkg = with pkgs;
     ((emacsPackagesFor emacsUnstable).emacsWithPackages
-      (epkgs: [ epkgs.vterm ]));
+      (epkgs: [ epkgs.vterm epkgs.magit ]));
 in {
   options.custom.emacs = {
     enable = mkOption {

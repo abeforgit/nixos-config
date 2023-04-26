@@ -46,11 +46,13 @@ with lib; {
           :map <leader>cx <Action>(ActivateProblemsViewToolWindow)
           :map <leader>cr <Action>(RenameElement)
           :map <leader>ca <Action>(ShowIntentionActions)
+          :map <leader>cs <Action>(FileStructurePopup)
           :map <leader>hh <Action>(HideAllWindows)
           :map <leader>ot <Action>(ActivateTerminalToolWindow)
           :map <leader>gg <Action>(ActivateVersionControlToolWindow)
           :map <leader>gc <Action>(GitCheckoutFromInputAction)
           :map <leader>go <Action>(ActivateCommitToolWindow)
+          :map <leader>gr <Action>(GotoRelated)
 
           :map <leader>bb <Action>(Switcher)
           :map <leader>bp <Action>(Back)

@@ -50,7 +50,6 @@ in {
       [
         neovim
         wget
-        kitty
         nvidia-offload
         git
         git-lfs
@@ -215,7 +214,7 @@ in {
       programs.kitty = {
         enable = true;
         font.name = "Fira Code";
-        font.size = 22;
+        # font.size = 22;
         keybindings = {
           "kitty_mod+asterisk" = "change_font_size current +2.0";
           "kitty_mod+minus" = "change_font_size_current -2.0";
