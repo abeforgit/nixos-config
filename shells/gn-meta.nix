@@ -17,11 +17,6 @@ in pkgs.devshell.mkShell {
       prefix = "${npm-global}/bin";
     }
     {
-      name = "COMPOSE_FILE";
-      value =
-        "docker-compose.yml:docker-compose.dev.yml:docker-compose.override.yml";
-    }
-    {
       name = "WOODPECKER_SERVER";
       value = "https://build.redpencil.io";
     }
