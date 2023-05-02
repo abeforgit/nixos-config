@@ -35,13 +35,14 @@ in {
       home.packages = with pkgs; [
         pavucontrol
         spotify-tui
-        (spotify.override {
-          callPackage = p: attrs:
-            pkgs.callPackage p (attrs // {
-              deviceScaleFactor = 2.0;
-              nss = pkgs.nss_latest;
-            });
-        })
+        spotify
+        # (spotify.override {
+        #   callPackage = p: attrs:
+        #     pkgs.callPackage p (attrs // {
+        #       deviceScaleFactor = 2.0;
+        #       nss = pkgs.nss_latest;
+        #     });
+        # })
       ];
 
       xdg = {

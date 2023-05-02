@@ -73,6 +73,9 @@
           rust-overlay.overlays.default
           nix-alien.overlays.default
           blender-bin.overlays.default
+          # (self: super: {
+          #   inherit (channels.master) spotify;
+          # })
           # (import (builtins.fetchTarball {
 
           #   url =
