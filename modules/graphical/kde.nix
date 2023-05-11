@@ -99,9 +99,14 @@ in {
                   ${pkgs.libsForQt5.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "Switch to Previous Desktop"
                 '';
               };
-              down = {
+              up = {
                 command = ''
                   ${pkgs.libsForQt5.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "Overview"
+                '';
+              };
+              down = {
+                command = ''
+                  ${pkgs.libsForQt5.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "ExposeAll"
                 '';
               };
             };

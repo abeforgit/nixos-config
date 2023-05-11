@@ -45,9 +45,10 @@ in {
   boot.loader.grub.font = pkgs.hack-font;
 
   networking.hostName = "finch"; # Define your hostname.
-  # networking.extraHosts = ''
-  #   127.0.0.1 reglementairebijlagen.lblod.info
-  # '';
+#   networking.extraHosts = ''
+#     127.0.0.1 register.reglementairebijlage.vlaanderen.be
+#     127.0.0.1 register.reglementairebijlagen.vlaanderen.be
+#   '';
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.

@@ -73,6 +73,11 @@ in pkgs.devshell.mkShell {
       help = "The ember cli";
       command = ''${ember} "$@"'';
     }
+    {
+      name = "mkcert";
+      help = "self-signed cert generation tool";
+      package = pkgs.mkcert;
+    }
     # {
     #   name = "woodpecker-cli";
     #   help = "The Woodpecker cli";
