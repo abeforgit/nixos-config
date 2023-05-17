@@ -8,7 +8,7 @@
       };
     };
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+#    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     comma.url = "github:nix-community/comma";
     nix-alien = {
       url = "github:thiagokokada/nix-alien";
@@ -17,7 +17,7 @@
     stylix.url = "/home/arne/repos/stylix";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
+#    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +28,7 @@
       inputs.flake-utils.follows = "flake-utils";
     };
     utils = {
-      url = "github:gytis-ivaskevicius/flake-utils-plus";
+      url = "github:ravensiris/flake-utils-plus/7a8d789d4d13e45d20e6826d7b2a1757d52f2e13";
       inputs.flake-utils.follows = "flake-utils";
     };
     agenix = {
@@ -42,7 +42,9 @@
     rust-overlay = { url = "github:oxalica/rust-overlay"; };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-stable,
+  outputs = inputs@{ self, nixpkgs,
+#  nixpkgs-master,
+#  nixpkgs-stable,
     home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
     , rust-overlay, blender-bin, comma, nix-alien, stylix }:
     let
@@ -53,11 +55,11 @@
     in utils.lib.mkFlake {
 
       inherit self inputs;
-      channels.master = {
-        input = nixpkgs-master;
-        config = { allowUnfree = true; };
-
-      };
+#      channels.master = {
+#        input = nixpkgs-master;
+#        config = { allowUnfree = true; };
+#
+#      };
       # channels.small = {
       #   input = nixpkgs-unstable-small;
 
