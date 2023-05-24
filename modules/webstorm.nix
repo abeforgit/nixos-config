@@ -19,8 +19,7 @@ in {
     home-manager.users.${config.custom.user} = let
       devSDKs = with pkgs; {
         node = nodejs;
-        node14 = nodejs-14_x;
-        node16 = nodejs-16_x;
+        node18 = nodejs-18_x;
         pandoc = pandoc;
       };
       extraPath = makeBinPath (builtins.attrValues devSDKs);
