@@ -120,8 +120,8 @@ in {
     services.openssh = {
       enable = true;
       settings = {
-        passwordAuthentication = false;
-        permitRootLogin = "prohibit-password";
+        PasswordAuthentication = false;
+        PermitRootLogin = "prohibit-password";
       };
       hostKeys = [
         {
@@ -223,7 +223,6 @@ in {
         settings = {
           scrollback_lins = 10000;
           enable_audio_bell = false;
-          background_opacity = "0.9";
           confirm_os_window_close = 0;
           term = "xterm-kitty";
         };

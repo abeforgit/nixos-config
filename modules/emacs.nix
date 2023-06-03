@@ -3,7 +3,7 @@ with lib;
 let
   cfg = config.custom.emacs;
   emacsPkg = with pkgs;
-    ((emacsPackagesFor emacsUnstable).emacsWithPackages
+    ((emacsPackagesFor emacs-unstable).emacsWithPackages
       (epkgs: [ epkgs.vterm epkgs.magit ]));
 in {
   options.custom.emacs = {

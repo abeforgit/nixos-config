@@ -14,7 +14,7 @@
       url = "github:thiagokokada/nix-alien";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "/home/arne/repos/stylix";
+    stylix.url = "github:danth/stylix";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 #    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";

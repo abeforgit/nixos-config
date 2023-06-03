@@ -47,9 +47,9 @@ in {
   networking.hostName = "finch"; # Define your hostname.
 #     127.0.0.1 register.reglementairebijlage.vlaanderen.be
 #     127.0.0.1 register.reglementairebijlagen.vlaanderen.be
-#   networking.extraHosts = ''
-#     127.0.0.1 gelinkt-notuleren.lblod.info
-#   '';
+   networking.extraHosts = ''
+     127.0.0.1 gelinkt-notuleren.lblod.info
+   '';
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
