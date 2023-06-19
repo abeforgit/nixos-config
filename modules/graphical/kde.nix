@@ -45,14 +45,10 @@ in {
         pkgs.libsForQt5.qtdbusextended
         pkgs.libsForQt5.plasma-browser-integration
         pkgs.libsForQt5.kontact
-        pkgs.libsForQt5.kmail
         pkgs.libsForQt5.kaccounts-providers
         pkgs.libsForQt5.kaccounts-integration
-        pkgs.libsForQt5.korganizer
-        pkgs.libsForQt5.kalendar
         pkgs.libsForQt5.kcharselect
         pkgs.libsForQt5.rocs
-        ktimetracker
         soulseekqt
         peek
         obs-studio

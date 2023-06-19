@@ -3,8 +3,12 @@ with lib;
 let
   cfg = config.custom.emacs;
   emacsPkg = with pkgs;
-    ((emacsPackagesFor emacs-unstable).emacsWithPackages
-      (epkgs: [ epkgs.vterm epkgs.magit ]));
+    ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
+      (epkgs.treesit-grammars.with-grammars
+        (grammars: [ grammars.tree-sitter-bash ]))
+      epkgs.vterm
+      epkgs.magit
+    ]));
 in {
   options.custom.emacs = {
     enable = mkOption {
@@ -54,9 +58,10 @@ in {
         enable = true;
         package = emacsPkg;
         socketActivation.enable = true;
-        client = { enable = true;
-                   arguments = ["-c"];
-                 };
+        client = {
+          enable = true;
+          arguments = [ "-c" ];
+        };
       };
     };
   };

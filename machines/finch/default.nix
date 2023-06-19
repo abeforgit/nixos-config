@@ -47,9 +47,11 @@ in {
   networking.hostName = "finch"; # Define your hostname.
 #     127.0.0.1 register.reglementairebijlage.vlaanderen.be
 #     127.0.0.1 register.reglementairebijlagen.vlaanderen.be
-   # networking.extraHosts = ''
-   #   127.0.0.1 gelinkt-notuleren.lblod.info
-   # '';
+#      127.0.0.1 gelinkt-notuleren.lblod.info
+    networking.extraHosts = ''
+        127.0.0.1 gn.localhost
+        127.0.0.2 publication.localhost
+    '';
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -58,6 +60,8 @@ in {
   networking.useDHCP = false;
   networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.wlp82s0.useDHCP = true;
+  # the npm registry is not reachable with ipv6 for some reason
+  networking.enableIPv6 = false;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
