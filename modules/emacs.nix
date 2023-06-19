@@ -15,6 +15,7 @@ let
       epkgs.all-the-icons-gnus
       epkgs.all-the-icons-dired
       epkgs.all-the-icons-completion
+      epkgs.shfmt
 
       epkgs.vterm
       epkgs.magit
@@ -59,6 +60,7 @@ in {
         google-chrome
         sumneko-lua-language-server
         emacs-all-the-icons-fonts
+        shfmt
       ];
       home.file.lua-ls = {
         source = "${pkgs.sumneko-lua-language-server}";
