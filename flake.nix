@@ -14,7 +14,6 @@
       url = "github:thiagokokada/nix-alien";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 #    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
@@ -46,7 +45,7 @@
 #  nixpkgs-master,
 #  nixpkgs-stable,
     home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
-    , rust-overlay, blender-bin, comma, nix-alien, stylix }:
+    , rust-overlay, blender-bin, comma, nix-alien }:
     let
       customPackages = callPackage:
         {
@@ -155,7 +154,6 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
           }
-          stylix.nixosModules.stylix
           (./modules)
           (./machines/finch)
           agenix.nixosModules.age

@@ -22,17 +22,6 @@ in {
     custom.kde.enable = true;
     custom.wacom.enable = false;
     custom.polybar.enable = false;
-    stylix = {
-      fonts = {
-        monospace = {
-          package = pkgs.fira-code;
-          name = "Fira Code";
-        };
-      };
-      polarity = "dark";
-
-      image = ./porco.png;
-    };
 
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.packages = with pkgs; [ wpgtk xorg.xev xorg.xkill kazam ];

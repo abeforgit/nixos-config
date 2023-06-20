@@ -5,7 +5,7 @@ let
   emacsPkg = with pkgs;
     ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
       (epkgs.treesit-grammars.with-grammars
-        (grammars: [ grammars.tree-sitter-bash ]))
+        (grammars: [ grammars.tree-sitter-bash grammars.tree-sitter-yaml]))
       epkgs.all-the-icons
       epkgs.treemacs-all-the-icons
       epkgs.spaceline-all-the-icons
@@ -28,6 +28,9 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+        emacs-all-the-icons-fonts
+    ];
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.sessionPath = [ "$HOME/.emacs.d/bin" ];
       home.packages = with pkgs; [
