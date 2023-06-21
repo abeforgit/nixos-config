@@ -159,6 +159,7 @@ in {
   home-manager.users.arne = { pkgs, home, ... }: {
     programs.zsh.profileExtra = ''
       source ${config.age.secrets.github_auth.path}
+      source ${config.age.secrets.jira_pat.path}
     '';
   };
 
