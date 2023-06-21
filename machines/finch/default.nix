@@ -193,6 +193,7 @@ in {
     plex-media-player
     tridactyl-native
     powertop
+    anki-bin
   ];
 
   custom.extraSystemPackages = with pkgs; [ sqlite ];

@@ -80,6 +80,7 @@ in {
           gg =
             "git log --graph --pretty=format:'%C(bold)%h%Creset%C(magenta)%d%Creset %C(yellow)<%an> %C(cyan)(%cr)%Creset' --abbrev-commit --date=relative";
           gc = "git checkout";
+          ghprc = "gh pr ls | fzf | cut -f 1 | xargs gh pr checkout";
           extip = "curl ifconfig.co";
           icat = "kitty +kitten icat";
           rebuild =

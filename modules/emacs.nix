@@ -52,6 +52,8 @@ in {
         nodePackages.js-beautify
         nodePackages.stylelint
         nodePackages.typescript-language-server
+        nodePackages.yaml-language-server
+        elixir-ls
         graphviz
         sbcl
         lispPackages.quicklisp
