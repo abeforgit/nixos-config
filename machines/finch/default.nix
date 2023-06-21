@@ -149,6 +149,10 @@ in {
       file = ../../secrets/github_auth.age;
       owner = config.custom.user;
     };
+    jira_pat = {
+      file = ../../secrets/jira_pat.age;
+      owner = config.custom.user;
+    };
 
   };
 

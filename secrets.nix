@@ -11,4 +11,5 @@ in {
   "secrets/authorized_keys/root.age".publicKeys = hosts ++ users;
   "secrets/github_auth.age".publicKeys = hosts ++ users;
   "secrets/gn_prod_backup.age".publicKeys = hosts ++ users;
+  "secrets/jira_pat.age".publicKeys = hosts ++ users;
 }
