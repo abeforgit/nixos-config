@@ -194,6 +194,7 @@ in {
     tridactyl-native
     powertop
     anki-bin
+    jira-cli-go
   ];
 
   custom.extraSystemPackages = with pkgs; [ sqlite ];
