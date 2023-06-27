@@ -188,6 +188,7 @@ in {
     blender_3_3
     libinput
     filezilla
+    idasen
     # calibre
     evince
     godot-mono
