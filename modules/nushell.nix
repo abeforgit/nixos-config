@@ -64,6 +64,9 @@ in {
       };
       programs.fzf = {
         enable = true;
+      };
+      programs.atuin = {
+        enable = true;
         enableNushellIntegration = true;
       };
     };
