@@ -13,6 +13,7 @@ in {
     ./graphical
     ./emacs.nix
     ./zsh.nix
+    ./nushell.nix
     ./vscode.nix
     ./keychain.nix
     ./keyring.nix

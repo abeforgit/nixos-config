@@ -5,7 +5,7 @@ let
   emacsPkg = with pkgs;
     ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
       (epkgs.treesit-grammars.with-grammars
-        (grammars: [ grammars.tree-sitter-bash grammars.tree-sitter-yaml]))
+        (grammars: [ grammars.tree-sitter-bash grammars.tree-sitter-yaml grammars.tree-sitter-nu]))
       epkgs.all-the-icons
       epkgs.treemacs-all-the-icons
       epkgs.spaceline-all-the-icons

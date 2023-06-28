@@ -168,6 +168,7 @@ in {
   custom.steam.enable = true;
   custom.emacs.enable = true;
   custom.zsh.enable = true;
+  custom.nushell.enable = true;
   custom.vscode.enable = true;
   custom.keychain.enable = true;
   custom.keyring.enable = false;
