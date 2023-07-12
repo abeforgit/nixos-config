@@ -36,6 +36,13 @@ in {
         pavucontrol
         spotify-tui
         spotify
+        alsaUtils
+        alsa-tools
+        qjackctl
+        easyeffects
+        pw-viz
+
+
         # (spotify.override {
         #   callPackage = p: attrs:
         #     pkgs.callPackage p (attrs // {

@@ -12,6 +12,7 @@ in {
     environment.pathsToLink = [ "/share/zsh" ];
     custom.tmux.enable = true;
     home-manager.users.${config.custom.user} = { pkgs, home, ... }: {
+      home.packages = with pkgs; [ carapace tldr ];
 
       programs.starship = {
         enable = true;
@@ -36,6 +37,11 @@ in {
       programs.atuin = {
         enable = true;
         enableZshIntegration = true;
+        flags = ["--disable-up-arrow"];
+      };
+      programs.navi = {
+        enable = true;
+        enableZshIntegration = true;
       };
       programs.zsh = {
         enable = true;
@@ -48,10 +54,8 @@ in {
           enable = true;
           plugins = [
             { name = "laurenkt/zsh-vimto"; }
-            { name = "zsh-users/zsh-history-substring-search"; }
             { name = "wfxr/forgit"; }
             { name = "ael-code/zsh-colored-man-pages"; }
-            { name = "lukechilds/zsh-better-npm-completion"; }
           ];
         };
         oh-my-zsh = {
@@ -59,6 +63,10 @@ in {
           plugins =
             [ "docker" "docker-compose" "tmux" "vi-mode" "rust" "python" "gh" ];
         };
+        initExtra = ''
+          zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+          source <(carapace _carapace)
+        '';
         shellAliases = {
           mux = "tmuxinator";
           docker-stopall = "docker stop $(docker ps -q)";

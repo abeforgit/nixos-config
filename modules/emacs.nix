@@ -66,6 +66,8 @@ in {
         sumneko-lua-language-server
         emacs-all-the-icons-fonts
         shfmt
+        wkhtmltopdf-bin
+        texlive.combined.scheme-full
       ];
       home.file.lua-ls = {
         source = "${pkgs.sumneko-lua-language-server}";

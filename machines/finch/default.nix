@@ -101,7 +101,7 @@ in {
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   nixpkgs.config = {
-    permittedInsecurePackages = [ "electron-21.4.0" ];
+    permittedInsecurePackages = [ "electron-21.4.0" "openssl-1.1.1u"];
 
     allowUnfree = true;
     allowUnfreePredicate = (pkg: true);
@@ -202,6 +202,8 @@ in {
     powertop
     anki-bin
     jira-cli-go
+    usbutils
+
   ];
 
   custom.extraSystemPackages = with pkgs; [ sqlite ];

@@ -177,15 +177,15 @@ let light_theme = {
 }
 
 # External completer example
-# let carapace_completer = {|spans|
-#     carapace $spans.0 nushell $spans | from json
-# }
+let carapace_completer = {|spans|
+    carapace $spans.0 nushell $spans | from json
+}
 
 
 # The default config record. This is where much of your global configuration is setup.
 let-env config = {
   # true or false to enable or disable the welcome banner at startup
-  show_banner: true
+  show_banner: false
   ls: {
     use_ls_colors: true # use the LS_COLORS environment variable to colorize output
     clickable_links: true # enable or disable clickable links. Your terminal has to support links.
@@ -211,10 +211,10 @@ let-env config = {
   # Behavior without this configuration point will be to "humanize" the datetime display,
   # showing something like "a day ago."
 
-  datetime_format: {
-    normal: '%a, %d %b %Y %H:%M:%S %z'  # shows up in displays of variables or other datetime's outside of tables
+  # datetime_format: {
+  #   normal: '%a, %d %b %Y %H:%M:%S %z'  # shows up in displays of variables or other datetime's outside of tables
     # table: '%m/%d/%y %I:%M:%S%p'        # generally shows up in tabular outputs such as ls. commenting this out will change it to the default human readable datetime format
-  }
+  # }
 
   explore: {
     help_banner: true
@@ -277,7 +277,7 @@ let-env config = {
     max_size: 100_000 # Session has to be reloaded for this to take effect
     sync_on_enter: true # Enable to share history between multiple sessions, else you have to close the session to write history to file
     file_format: "plaintext" # "sqlite" or "plaintext"
-    isolation: true # true enables history isolation, false disables it. true will allow the history to be isolated to the current session. false will allow the history to be shared across all sessions.
+    # isolation: true # true enables history isolation, false disables it. true will allow the history to be isolated to the current session. false will allow the history to be shared across all sessions.
   }
   completions: {
     case_sensitive: false # set to true to enable case-sensitive completions
@@ -287,7 +287,7 @@ let-env config = {
     external: {
       enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up may be very slow
       max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-      completer: null # check 'carapace_completer' above as an example
+      completer: $carapace_completer # check 'carapace_completer' above as an example
     }
   }
   filesize: {
@@ -551,3 +551,5 @@ let-env config = {
     }
   ]
 }
+
+source /home/arne/.config/nushell/aliases.nu

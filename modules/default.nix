@@ -49,6 +49,7 @@ in {
     programs.zsh.enable = true;
     environment.systemPackages = with pkgs;
       [
+        psmisc
         neovim
         wget
         nvidia-offload
