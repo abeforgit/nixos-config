@@ -203,6 +203,7 @@ in {
     anki-bin
     jira-cli-go
     usbutils
+    espanso
 
   ];
 
