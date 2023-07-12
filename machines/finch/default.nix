@@ -203,7 +203,6 @@ in {
     anki-bin
     jira-cli-go
     usbutils
-    espanso
 
   ];
 
@@ -238,6 +237,7 @@ in {
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  services.espanso.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
