@@ -52,6 +52,7 @@ in {
         psmisc
         neovim
         wget
+        tree
         nvidia-offload
         git
         git-lfs
