@@ -203,6 +203,12 @@ in {
     anki-bin
     jira-cli-go
     usbutils
+    qutebrowser
+    bitwarden
+    rofi
+    rbw
+    rofi-rbw
+    pinentry-curses
 
   ];
 

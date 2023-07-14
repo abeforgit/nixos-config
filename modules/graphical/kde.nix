@@ -51,13 +51,21 @@ in {
         pkgs.libsForQt5.rocs
         soulseekqt
         peek
-        obs-studio
 
+        ffmpeg_6
         pkgs.libsForQt5.kaddressbook
         pkgs.libsForQt5.akregator
         pkgs.libsForQt5.knotes
 
       ];
+      programs.obs-studio = {
+        enable = true;
+        plugins = with pkgs.obs-studio-plugins; [
+          input-overlay
+          wlrobs
+
+        ];
+      };
 
       programs.rofi = {
         enable = true;
