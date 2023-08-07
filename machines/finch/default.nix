@@ -45,13 +45,13 @@ in {
   boot.loader.grub.font = pkgs.hack-font;
 
   networking.hostName = "finch"; # Define your hostname.
-#     127.0.0.1 register.reglementairebijlage.vlaanderen.be
-#     127.0.0.1 register.reglementairebijlagen.vlaanderen.be
-#      127.0.0.1 gelinkt-notuleren.lblod.info
-    networking.extraHosts = ''
-        127.0.0.1 gn.localhost
-        127.0.0.2 publication.localhost
-    '';
+  #     127.0.0.1 register.reglementairebijlage.vlaanderen.be
+  #     127.0.0.1 register.reglementairebijlagen.vlaanderen.be
+  #      127.0.0.1 gelinkt-notuleren.lblod.info
+  networking.extraHosts = ''
+    127.0.0.1 gn.localhost
+    127.0.0.2 publication.localhost
+  '';
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -76,14 +76,14 @@ in {
 
   nix.settings = {
     substituters = [
-    "https://nix-community.cachix.org"
-    "https://cache.nixos.org"
-    "https://cachix.cachix.org"
+      "https://nix-community.cachix.org"
+      "https://cache.nixos.org"
+      "https://cachix.cachix.org"
     ];
     trusted-public-keys = [
-    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    "cachix.cachix.org-1:eWNHQldwUO7G2VkjpnjDbWwy4KQ/HNxht7H4SSoMckM="
-    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "cachix.cachix.org-1:eWNHQldwUO7G2VkjpnjDbWwy4KQ/HNxht7H4SSoMckM="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
   };
   i18n.defaultLocale = "en_US.UTF-8";
@@ -101,7 +101,7 @@ in {
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   nixpkgs.config = {
-    permittedInsecurePackages = [ "electron-21.4.0" "openssl-1.1.1u"];
+    permittedInsecurePackages = [ "electron-21.4.0" "openssl-1.1.1v" ];
 
     allowUnfree = true;
     allowUnfreePredicate = (pkg: true);
@@ -212,6 +212,9 @@ in {
 
   ];
 
+  powermanagement = {
+    enable = true;
+  };
   custom.extraSystemPackages = with pkgs; [ sqlite ];
   users.users.arne = { shell = pkgs.zsh; };
   hardware.opentabletdriver = {

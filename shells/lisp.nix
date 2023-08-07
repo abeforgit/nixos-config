@@ -3,11 +3,12 @@ let name = "lisp";
 in pkgs.devshell.mkShell {
   inherit name;
 
+  packages = with pkgs; [ openssl ];
   commands = [
     {
       name = "sbcl";
       help = "lisp compiler";
-      package = pkgs.sbcl;
+      package = with pkgs; (sbcl.withPackages (ps: with ps; [ luckless cl_plus_ssl cl-mongo-id]));
     }
     {
       name = "quicklisp";

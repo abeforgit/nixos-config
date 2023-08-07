@@ -30,6 +30,7 @@ in {
     #   extraConfig = "load-module module-switch-on-connect";
     #   package = pkgs.pulseaudioFull;
     # };
+    programs.noisetorch.enable = true;
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
 
       home.packages = with pkgs; [
