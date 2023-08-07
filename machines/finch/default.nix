@@ -212,9 +212,6 @@ in {
 
   ];
 
-  powermanagement = {
-    enable = true;
-  };
   custom.extraSystemPackages = with pkgs; [ sqlite ];
   users.users.arne = { shell = pkgs.zsh; };
   hardware.opentabletdriver = {
