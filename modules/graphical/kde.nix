@@ -49,7 +49,6 @@ in {
         pkgs.libsForQt5.kaccounts-integration
         pkgs.libsForQt5.kcharselect
         pkgs.libsForQt5.rocs
-        soulseekqt
         peek
 
         ffmpeg_6

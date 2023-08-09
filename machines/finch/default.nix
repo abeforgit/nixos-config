@@ -165,7 +165,7 @@ in {
 
   custom.user = username;
   custom.graphical.enable = true;
-  custom.steam.enable = true;
+  custom.steam.enable = false;
   custom.emacs.enable = true;
   custom.zsh.enable = true;
   custom.nushell.enable = true;
