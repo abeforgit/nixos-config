@@ -209,6 +209,10 @@ in {
     rbw
     rofi-rbw
     pinentry-curses
+    dig.dnsutils
+    dnstop
+    dnstracer
+    dnsperf
 
   ];
 
