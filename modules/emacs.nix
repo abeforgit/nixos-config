@@ -3,7 +3,7 @@ with lib;
 let
   cfg = config.custom.emacs;
   emacsPkg = with pkgs;
-    ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
+    ((emacsPackagesFor emacs29).emacsWithPackages (epkgs: [
       (epkgs.treesit-grammars.with-grammars
         (grammars: [ grammars.tree-sitter-bash grammars.tree-sitter-yaml grammars.tree-sitter-nu]))
       epkgs.all-the-icons
@@ -16,6 +16,7 @@ let
       epkgs.all-the-icons-dired
       epkgs.all-the-icons-completion
       epkgs.shfmt
+      epkgs.sqlite3
 
       epkgs.vterm
       epkgs.magit
