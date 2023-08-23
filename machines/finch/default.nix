@@ -223,6 +223,10 @@ in {
     daemon.enable = true;
     blacklistedKernelModules = [ "wacom" "hid-uclogic" ];
   };
+  hardware.logitech.wireless = {
+    enable = true;
+    enableGraphical = true;
+  };
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
   '';
