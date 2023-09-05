@@ -8,16 +8,26 @@ let
         grammars.tree-sitter-bash
         grammars.tree-sitter-yaml
         grammars.tree-sitter-nu
+        grammars.tree-sitter-typescript
       ]))
-      epkgs.all-the-icons
-      epkgs.treemacs-all-the-icons
-      #      epkgs.spaceline-all-the-icons
+      # epkgs.all-the-icons
+      # epkgs.treemacs-all-the-icons
+      # epkgs.all-the-icons-completion
+      # epkgs.octicons
+      # epkgs.fontawesome
+      # epkgs.mode-icons
+      # # epkgs.major-mode-icons
+      # epkgs.spaceline-all-the-icons
       # epkgs.all-the-icons-ibuffer
+      # epkgs.all-the-icons-dired
+      # epkgs.nerd-icons
+      # epkgs.nerd-icons-completion
+      # epkgs.nerd-icons-dired
+      # epkgs.nerd-icons-ibuffer
+      # epkgs.treemacs-nerd-icons
       #      epkgs.all-the-icons-ivy
       #      epkgs.all-the-icons-ivy-rich
       #      epkgs.all-the-icons-gnus
-      # epkgs.all-the-icons-dired
-      #      epkgs.all-the-icons-completion
       epkgs.shfmt
 
       epkgs.vterm
@@ -31,7 +41,6 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ emacs-all-the-icons-fonts ];
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.sessionPath = [ "$HOME/.emacs.d/bin" ];
       home.packages = with pkgs; [
@@ -65,7 +74,12 @@ in {
         python3
         google-chrome
         sumneko-lua-language-server
-        #emacs-all-the-icons-fonts
+        emacs-all-the-icons-fonts
+        material-design-icons
+        material-icons
+        font-awesome
+        nerdfonts
+        weather-icons
         shfmt
         wkhtmltopdf-bin
         texlive.combined.scheme-full

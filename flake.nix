@@ -17,6 +17,7 @@
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 #    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs-revert-emacs.url = "github:NixOS/nixpkgs/976fa3369d722e76f37c77493d99829540d43845";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,6 +45,7 @@
   outputs = inputs@{ self, nixpkgs,
 #  nixpkgs-master,
 #  nixpkgs-stable,
+nixpkgs-revert-emacs,
     home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
     , rust-overlay, blender-bin, comma, nix-alien }:
     let
@@ -64,6 +66,11 @@
 
       # };
 
+       channels.revert-emacs = {
+         input = nixpkgs-revert-emacs;
+
+       };
+
       channels.nixpkgs = {
         input = nixpkgs;
         config = { allowUnfree = true; };
@@ -76,6 +83,10 @@
           # (self: super: {
           #   inherit (channels.master) spotify;
           # })
+           (self: super: {
+             inherit (channels.revert-emacs) emacsPackagesFor;
+             inherit (channels.revert-emacs) emacs29;
+           })
           # (import (builtins.fetchTarball {
 
           #   url =
