@@ -183,7 +183,7 @@ let carapace_completer = {|spans|
 
 
 # The default config record. This is where much of your global configuration is setup.
-let-env config = {
+$env.config = {
   # true or false to enable or disable the welcome banner at startup
   show_banner: false
   ls: {
@@ -306,7 +306,7 @@ let-env config = {
   # buffer_editor: "emacs" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
   use_ansi_coloring: true
   bracketed_paste: true # enable bracketed paste, currently useless on windows
-  edit_mode: vi # emacs, vi
+  edit_mode: emacs # emacs, vi
   shell_integration: true # enables terminal markers and a workaround to arrow keys stop working issue
   render_right_prompt_on_last_line: false # true or false to enable or disable right prompt to be rendered on last line of the prompt.
 

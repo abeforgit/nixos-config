@@ -4,12 +4,7 @@ let
   cfg = config.custom.emacs;
   emacsPkg = with pkgs;
     ((emacsPackagesFor emacs29).emacsWithPackages (epkgs: [
-      (epkgs.treesit-grammars.with-grammars (grammars: [
-        grammars.tree-sitter-bash
-        grammars.tree-sitter-yaml
-        grammars.tree-sitter-nu
-        grammars.tree-sitter-typescript
-      ]))
+      epkgs.treesit-grammars.with-all-grammars
       # epkgs.all-the-icons
       # epkgs.treemacs-all-the-icons
       # epkgs.all-the-icons-completion
