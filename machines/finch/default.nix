@@ -101,7 +101,7 @@ in {
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   nixpkgs.config = {
-    permittedInsecurePackages = [ "electron-21.4.0" "openssl-1.1.1v" ];
+    permittedInsecurePackages = [ "electron-21.4.0" "openssl-1.1.1w" ];
 
     allowUnfree = true;
     allowUnfreePredicate = (pkg: true);
