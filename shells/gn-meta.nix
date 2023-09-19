@@ -1,6 +1,7 @@
 { pkgs, inputs }:
 let
   pnpm = pkgs.nodePackages.pnpm;
+  yalc = pkgs.nodePackages.yalc;
   node_package = pkgs.nodejs-18_x;
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";
@@ -32,6 +33,11 @@ in pkgs.devshell.mkShell {
       name = "pnpm";
       help = "A better node package manager";
       package = pnpm;
+    }
+    {
+      name = "yalc";
+      help = "a way to link npm packages";
+      package = yalc;
     }
     {
       name = "node";
