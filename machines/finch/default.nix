@@ -100,13 +100,13 @@ in {
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-  nixpkgs.config = {
-    permittedInsecurePackages = [ "electron-21.4.0" "openssl-1.1.1w" ];
+  # nixpkgs.config = {
+  #   permittedInsecurePackages = [ "electron-21.4.0" "openssl-1.1.1w" ];
 
-    allowUnfree = true;
-    allowUnfreePredicate = (pkg: true);
-    # cudaSupport = true;
-  };
+  #   allowUnfree = true;
+  #   allowUnfreePredicate = (pkg: true);
+  #   # cudaSupport = true;
+  # };
   # Enable sound.
 
   # Enable touchpad support (enabled default in most desktopManager).

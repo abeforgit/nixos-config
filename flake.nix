@@ -3,12 +3,10 @@
   inputs = {
     devshell = {
       url = "github:numtide/devshell";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs = { nixpkgs.follows = "nixpkgs"; };
     };
     flake-utils.url = "github:numtide/flake-utils";
-#    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    #    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     comma.url = "github:nix-community/comma";
     nix-alien = {
       url = "github:thiagokokada/nix-alien";
@@ -16,8 +14,9 @@
     };
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-#    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
-    nixpkgs-revert-emacs.url = "github:NixOS/nixpkgs/976fa3369d722e76f37c77493d99829540d43845";
+    #    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs-revert-emacs.url =
+      "github:NixOS/nixpkgs/976fa3369d722e76f37c77493d99829540d43845";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +27,7 @@
       inputs.flake-utils.follows = "flake-utils";
     };
     utils = {
-      url = "github:ravensiris/flake-utils-plus/7a8d789d4d13e45d20e6826d7b2a1757d52f2e13";
+      url = "github:gytis-ivaskevicius/flake-utils-plus";
       inputs.flake-utils.follows = "flake-utils";
     };
     agenix = {
@@ -43,11 +42,10 @@
   };
 
   outputs = inputs@{ self, nixpkgs,
-#  nixpkgs-master,
-#  nixpkgs-stable,
-nixpkgs-revert-emacs,
-    home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
-    , rust-overlay, blender-bin, comma, nix-alien }:
+    #  nixpkgs-master,
+    #  nixpkgs-stable,
+    nixpkgs-revert-emacs, home-manager, utils, agenix, emacs-overlay, devshell
+    , flake-utils, rust-overlay, blender-bin, comma, nix-alien }:
     let
       customPackages = callPackage:
         {
@@ -56,24 +54,31 @@ nixpkgs-revert-emacs,
     in utils.lib.mkFlake {
 
       inherit self inputs;
-#      channels.master = {
-#        input = nixpkgs-master;
-#        config = { allowUnfree = true; };
-#
-#      };
+      #      channels.master = {
+      #        input = nixpkgs-master;
+      #        config = { allowUnfree = true; };
+      #
+      #      };
       # channels.small = {
       #   input = nixpkgs-unstable-small;
 
       # };
 
-       channels.revert-emacs = {
-         input = nixpkgs-revert-emacs;
+      channels.revert-emacs = {
+        input = nixpkgs-revert-emacs;
 
-       };
+      };
 
       channels.nixpkgs = {
         input = nixpkgs;
-        config = { allowUnfree = true; };
+        config = {
+
+          permittedInsecurePackages = [ "electron-21.4.0" "openssl-1.1.1w" ];
+
+          allowUnfree = true;
+          allowUnfreePredicate = (pkg: true);
+
+        };
         overlaysBuilder = channels: [
           devshell.overlays.default
           emacs-overlay.overlay
@@ -83,10 +88,10 @@ nixpkgs-revert-emacs,
           # (self: super: {
           #   inherit (channels.master) spotify;
           # })
-           (self: super: {
-             inherit (channels.revert-emacs) emacsPackagesFor;
-             inherit (channels.revert-emacs) emacs29;
-           })
+          (self: super: {
+            inherit (channels.revert-emacs) emacsPackagesFor;
+            inherit (channels.revert-emacs) emacs29;
+          })
           # (import (builtins.fetchTarball {
 
           #   url =
