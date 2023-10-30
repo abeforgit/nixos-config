@@ -175,11 +175,11 @@ in {
   custom.audio.enable = true;
   custom.nvim.enable = true;
   custom.git.enable = true;
-  custom.intellij.enable = true;
+  custom.intellij.enable = false;
   custom.webstorm.enable = true;
   custom.rustup.enable = false;
   custom.hostname = "finch";
-  custom.rider.enable = true;
+  custom.rider.enable = false;
   custom.extraHomePackages = with pkgs; [
     thunderbird
     discord

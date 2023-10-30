@@ -69,7 +69,6 @@ in {
         xdg-desktop-portal-kde
         nix-tree
         nix-query-tree-viewer
-        nix-alien
         manix
       ] ++ cfg.extraSystemPackages;
 
@@ -148,7 +147,9 @@ in {
     programs.firefox = {
       enable = true;
       package = pkgs.firefox.override {
-        cfg = { enablePlasmaBrowserIntegration = true; };
+        cfg = {
+          nativeMessagingHosts = [ pkgs.plasma-browser-integration ];
+        };
       };
     };
     xdg = { portal = { enable = true; }; };

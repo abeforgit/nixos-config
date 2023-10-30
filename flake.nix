@@ -6,12 +6,8 @@
       inputs = { nixpkgs.follows = "nixpkgs"; };
     };
     flake-utils.url = "github:numtide/flake-utils";
-    #    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     comma.url = "github:nix-community/comma";
-    nix-alien = {
-      url = "github:thiagokokada/nix-alien";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     #    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
@@ -42,10 +38,10 @@
   };
 
   outputs = inputs@{ self, nixpkgs,
-    #  nixpkgs-master,
+     nixpkgs-master,
     #  nixpkgs-stable,
     nixpkgs-revert-emacs, home-manager, utils, agenix, emacs-overlay, devshell
-    , flake-utils, rust-overlay, blender-bin, comma, nix-alien }:
+    , flake-utils, rust-overlay, blender-bin, comma }:
     let
       customPackages = callPackage:
         {
@@ -54,11 +50,11 @@
     in utils.lib.mkFlake {
 
       inherit self inputs;
-      #      channels.master = {
-      #        input = nixpkgs-master;
-      #        config = { allowUnfree = true; };
-      #
-      #      };
+           channels.master = {
+             input = nixpkgs-master;
+             config = { allowUnfree = true; };
+
+           };
       # channels.small = {
       #   input = nixpkgs-unstable-small;
 
@@ -83,11 +79,10 @@
           devshell.overlays.default
           emacs-overlay.overlay
           rust-overlay.overlays.default
-          nix-alien.overlays.default
           blender-bin.overlays.default
-          # (self: super: {
-          #   inherit (channels.master) spotify;
-          # })
+          (self: super: {
+            inherit (channels.master) udiskie;
+          })
           (self: super: {
             inherit (channels.revert-emacs) emacsPackagesFor;
             inherit (channels.revert-emacs) emacs29;
