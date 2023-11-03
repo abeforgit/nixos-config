@@ -43,6 +43,15 @@ in {
   boot.loader.grub.default = "saved";
   boot.loader.grub.fontSize = 32;
   boot.loader.grub.font = pkgs.hack-font;
+  # make appimages work ootb
+  boot.binfmt.registrations.appimage = {
+    wrapInterpreterInShell = false;
+    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+    recognitionType = "magic";
+    offset = 0;
+    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+    magicOrExtension = ''\x7fELF....AI\x02'';
+  };
 
   networking.hostName = "finch"; # Define your hostname.
   #     127.0.0.1 register.reglementairebijlage.vlaanderen.be
