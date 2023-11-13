@@ -36,6 +36,7 @@ in {
     options hid_apple swap_fn_leftctrl=1
     options hid_apple fnmode=2
   '';
+  boot.supportedFilesystems = [ "ntfs" ];
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -225,7 +226,7 @@ in {
 
   ];
 
-  custom.extraSystemPackages = with pkgs; [ sqlite ];
+  custom.extraSystemPackages = with pkgs; [ sqlite tailspin udiskie ntfs3g ];
   users.users.arne = { shell = pkgs.zsh; };
   hardware.opentabletdriver = {
     enable = true;
