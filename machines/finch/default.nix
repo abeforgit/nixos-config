@@ -223,10 +223,11 @@ in {
     dnstop
     dnstracer
     dnsperf
+    pinta
 
   ];
 
-  custom.extraSystemPackages = with pkgs; [ sqlite tailspin udiskie ntfs3g ];
+  custom.extraSystemPackages = with pkgs; [ sqlite tailspin udiskie ntfs3g monaspace fira-code ];
   users.users.arne = { shell = pkgs.zsh; };
   hardware.opentabletdriver = {
     enable = true;
