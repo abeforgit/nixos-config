@@ -22,7 +22,21 @@ in {
     custom.kde.enable = true;
     custom.wacom.enable = false;
     custom.polybar.enable = false;
+    fonts = {
+      enableDefaultPackages = true;
+      fontconfig = { enable = true; };
+      packages = with pkgs; [
+        fira-go
+        monaspace
+        hack-font
+        (nerdfonts.override {
+          fonts =
+            [ "FiraCode" "DroidSansMono" "Hasklig" "NerdFontsSymbolsOnly" "Hack" ];
+        })
 
+      ];
+
+    };
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.packages = with pkgs; [ wpgtk xorg.xev xorg.xkill kazam ];
     };
