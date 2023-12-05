@@ -41,7 +41,6 @@ in {
         alsa-tools
         qjackctl
         easyeffects
-        pw-viz
 
 
         # (spotify.override {
