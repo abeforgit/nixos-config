@@ -69,7 +69,7 @@
         input = nixpkgs;
         config = {
 
-          permittedInsecurePackages = [ "electron-21.4.0" "openssl-1.1.1w" ];
+          permittedInsecurePackages = [ "electron-25.9.0" "openssl-1.1.1w" ];
 
           allowUnfree = true;
           allowUnfreePredicate = (pkg: true);
