@@ -50,7 +50,6 @@ in {
         settings = {
           editor = "emacs";
           git_protocol = "ssh";
-          prompt = "enabled";
         };
       };
     };
