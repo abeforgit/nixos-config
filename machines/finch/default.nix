@@ -234,6 +234,7 @@ in {
     dnsperf
     pinta
     lazydocker
+    galaxy-buds-client
 
   ];
 

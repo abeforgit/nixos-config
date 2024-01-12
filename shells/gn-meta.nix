@@ -2,7 +2,7 @@
 let
   pnpm = pkgs.nodePackages.pnpm;
   yalc = pkgs.nodePackages.yalc;
-  node_package = pkgs.nodejs-18_x;
+  node_package = pkgs.nodejs_20;
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";
   name = "gn-meta";
