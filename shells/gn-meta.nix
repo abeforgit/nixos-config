@@ -9,6 +9,8 @@ let
   root = ''"$PRJ_ROOT"'';
 in pkgs.devshell.mkShell {
   inherit name;
+  packages = with pkgs; [ cypress playwright-test ];
+  packagesFrom = with pkgs; [ cypress playwright-driver.browsers ];
   env = [
     {
       name = "NPM_CONFIG_PREFIX";
@@ -21,6 +23,14 @@ in pkgs.devshell.mkShell {
     {
       name = "WOODPECKER_SERVER";
       value = "https://build.redpencil.io";
+    }
+    {
+      name = "PLAYWRIGHT_BROWSERS_PATH";
+      value = pkgs.playwright-driver.browsers;
+    }
+    {
+      name = "PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS";
+      value = true;
     }
   ];
   commands = [
@@ -48,6 +58,16 @@ in pkgs.devshell.mkShell {
       name = "ember";
       help = "The ember cli";
       command = ''${ember} "$@"'';
+    }
+    {
+      name = "cypress";
+      help = "The cypress cli";
+      package = pkgs.cypress;
+    }
+    {
+      name = "pw";
+      command =
+        ''rm -r node_modules/@playwright || true ; ${pkgs.playwright-test}/bin/playwright "$@"'';
     }
     # {
     #   name = "woodpecker-cli";

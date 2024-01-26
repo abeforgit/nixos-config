@@ -80,7 +80,7 @@ in {
   networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.wlp82s0.useDHCP = true;
   # the npm registry is not reachable with ipv6 for some reason
-  networking.enableIPv6 = false;
+  networking.enableIPv6 = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
