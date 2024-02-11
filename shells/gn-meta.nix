@@ -69,6 +69,10 @@ in pkgs.devshell.mkShell {
       command =
         ''rm -r node_modules/@playwright || true ; ${pkgs.playwright-test}/bin/playwright "$@"'';
     }
+    {
+      name = "yarn";
+      package = pkgs.yarn;
+    }
     # {
     #   name = "woodpecker-cli";
     #   help = "The Woodpecker cli";

@@ -144,6 +144,10 @@ in {
     videoDrivers = [ "nvidia" ];
     dpi = 192;
     layout = "us";
+    xkb = {
+      options = "eurosign:e";
+      layout = "us";
+    };
     xkbOptions = "eurosign:e";
     screenSection = ''
       Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
@@ -222,7 +226,6 @@ in {
     anki-bin
     jira-cli-go
     usbutils
-    qutebrowser
     bitwarden
     rofi
     rbw
@@ -235,6 +238,7 @@ in {
     pinta
     lazydocker
     galaxy-buds-client
+    logseq
 
   ];
 
@@ -268,6 +272,16 @@ in {
   # $ nix search wget
   virtualisation.docker = {
     enable = true;
+    daemon.settings = {
+      "default-ulimits" = {
+        "nofile" = {
+          "Hard" = 104583;
+          "Name" = "nofile";
+          "Soft" = 104583;
+        };
+      };
+
+    };
     extraOptions = "--userns-remap=${username}";
   };
 
