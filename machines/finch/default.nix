@@ -143,12 +143,10 @@ in {
   services.xserver = {
     videoDrivers = [ "nvidia" ];
     dpi = 192;
-    layout = "us";
     xkb = {
       options = "eurosign:e";
       layout = "us";
     };
-    xkbOptions = "eurosign:e";
     screenSection = ''
       Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
       Option         "AllowIndirectGLXProtocol" "off"
