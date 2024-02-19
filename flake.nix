@@ -166,12 +166,11 @@
             home-manager.useUserPackages = true;
           }
           (./modules)
-          (./machines/finch)
           agenix.nixosModules.age
         ];
 
       };
-      hosts = { finch.modules = [ ./machines/finch ]; };
+      hosts = { finch.modules = [ ./machines/finch ];  sparrow.modules = [./machines/sparrow];};
       outputsBuilder = channels:
         let pkgs = channels.nixpkgs;
         in {

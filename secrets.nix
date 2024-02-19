@@ -1,7 +1,8 @@
 let
   finch =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH77rNEmdExGH3PS71KzfiKy3KMXJlEww+CzWkVnBOKc root@finch";
-  hosts = [ finch ];
+    sparrow = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKxZZMfrNSAh8tgD099m6iQ1GwAZYiNbJPnVGUJV0Ugu root@sparrow";
+  hosts = [ finch sparrow ];
   arne =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJi650EoFD+4UzbpQWrAcjCNK97KM+8SX12h+5oI/82O agenix-user";
   users = [ arne ];

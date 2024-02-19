@@ -76,7 +76,7 @@ in {
         settings = {
           global = {
             username = "arnebertrand@gmail.com";
-            device_name = "finch";
+            device_name = config.custom.hostname;
             password_cmd =
               "${pkgs.coreutils}/bin/cat ${config.age.secrets.spotify.path}";
             bitrate = 320;
