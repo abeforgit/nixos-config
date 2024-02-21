@@ -135,17 +135,17 @@ in {
   services.udev.packages = [ oryx_udev ];
   services.gvfs.enable = true;
 
-  # age.secrets = {
-  #   github_auth = {
-  #     file = ../../secrets/github_auth.age;
-  #     owner = config.custom.user;
-  #   };
-  #   jira_pat = {
-  #     file = ../../secrets/jira_pat.age;
-  #     owner = config.custom.user;
-  #   };
+  age.secrets = {
+    github_auth = {
+      file = ../../secrets/github_auth.age;
+      owner = config.custom.user;
+    };
+    jira_pat = {
+      file = ../../secrets/jira_pat.age;
+      owner = config.custom.user;
+    };
 
-  # };
+  };
 
   home-manager.users.arne = { pkgs, home, ... }:
     {
