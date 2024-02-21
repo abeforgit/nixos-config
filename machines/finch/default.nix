@@ -253,10 +253,13 @@ in {
     simplescreenrecorder
   ];
   users.users.arne = { shell = pkgs.zsh; };
-  hardware.opentabletdriver = {
+  services.samba-wsdd = {
     enable = true;
-    daemon.enable = true;
-    blacklistedKernelModules = [ "wacom" "hid-uclogic" ];
+    openFirewall = true;
+  };
+  services.samba = {
+    enable = true;
+    openFirewall = true;
   };
   hardware.logitech.wireless = {
     enable = true;
