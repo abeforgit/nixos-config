@@ -66,6 +66,8 @@ in {
     127.0.0.1 gn.localhost
     127.0.0.2 publication.localhost
   '';
+  networking.networkmanager = { enable = true; };
+  networking.interfaces.enp8s0.useDHCP = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # services.xserver.enable = true;
@@ -174,16 +176,19 @@ in {
 
   };
 
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+
+  programs.noisetorch.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
+    wireplumber = { enable = true; };
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -198,6 +203,7 @@ in {
   custom.git.enable = true;
   custom.wezterm.enable = true;
   custom.hostname = "sparrow";
+  custom.keychain.enable = true;
   custom.extraHomePackages = with pkgs; [
     thunderbird
     discord
@@ -226,6 +232,7 @@ in {
     pinta
     lazydocker
     galaxy-buds-client
+    spotify
 
   ];
 
@@ -241,7 +248,33 @@ in {
     vokoscreen-ng
     simplescreenrecorder
     tdrop
+
+    pavucontrol
+    alsaUtils
+    alsa-tools
+    qjackctl
+    libsForQt5.kdenetwork-filesharing
+    libsForQt5.dolphin-plugins
+    nfs-utils
+    cifs-utils
+
+    gparted
   ];
+  services.samba-wsdd = {
+    # make shares visible for Windows clients
+    enable = true;
+    openFirewall = true;
+  };
+  services.samba = {
+    enable = true;
+    openFirewall = true;
+    extraConfig = ''
+      usershare path = /var/lib/samba/usershares
+      usershare max shares = 100
+      usershare allow guests = yes
+      usershare owner only = yes
+    '';
+  };
   users.users.arne = { shell = pkgs.zsh; };
   hardware.logitech.wireless = {
     enable = true;

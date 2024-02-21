@@ -76,6 +76,7 @@ in {
     time.timeZone = "Europe/Brussels";
     users.groups.${cfg.user} = { gid = 1000; };
     users.groups.plugdev = { };
+    users.groups.sambashare = { };
     users.users.${cfg.user} = {
       group = cfg.user;
       uid = 1000;
@@ -102,6 +103,7 @@ in {
         "networkmanager"
         "lp"
         "plugdev"
+        "sambashare"
       ];
     };
     nix = {

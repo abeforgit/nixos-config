@@ -63,7 +63,7 @@ in {
         oh-my-zsh = {
           enable = true;
           plugins =
-            [ "docker" "docker-compose" "tmux" "vi-mode" "rust" "python" "gh" ];
+            [ "docker" "docker-compose" "vi-mode" "python" "gh" ];
         };
         initExtra = ''
           zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
@@ -102,6 +102,7 @@ in {
           checkbuild =
             "nixos-rebuild --flake ~/repos/nixos-config#${config.custom.hostname} build && nvd diff /run/current-system ~/repos/nixos-config/result";
           srcrc = "source ~/.zshrc";
+          pose = "docker compose";
         };
       };
     };
