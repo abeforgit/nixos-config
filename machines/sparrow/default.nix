@@ -146,13 +146,7 @@ in {
     };
 
   };
-
-  home-manager.users.arne = { pkgs, home, ... }: {
-    programs.zsh.profileExtra = ''
-           source ${config.age.secrets.github_auth.path}
-           source ${config.age.secrets.jira_pat.path}
-          '';
-  };
+  networking.firewall.enable = false;
 
   fonts = {
     enableDefaultPackages = true;
@@ -232,6 +226,30 @@ in {
     lazydocker
     galaxy-buds-client
     spotify
+    ## hypr
+    tofi
+    dunst
+    xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk
+    libsForQt5.polkit-kde-agent
+    libsForQt5.qt5.qtwayland
+    qt6.qtwayland
+    xwayland
+    nwg-look
+    waybar
+    udiskie
+    hyprpaper
+
+    #from kde TODO
+    fira-code
+    vlc
+    smbmap
+    smbscan
+    samba
+    libsForQt5.kdenetwork-filesharing
+    packagekit
+
+    ffmpeg_6
 
   ];
 
@@ -248,30 +266,51 @@ in {
     simplescreenrecorder
     tdrop
 
+    wl-clipboard
+    cliphist
+    slurp
+    grim
+    watershot
+    satty
+    libsForQt5.networkmanager-qt
+
     pavucontrol
     alsaUtils
     alsa-tools
     qjackctl
     libsForQt5.kdenetwork-filesharing
-    libsForQt5.dolphin-plugins
     nfs-utils
     cifs-utils
+    smbmap
+    smbscan
+    gnome.dconf-editor
+    glib
+    libinput
 
     gparted
   ];
+  security.wrappers."mount.nfs" = {
+    setuid = true;
+    owner = "root";
+    group = "root";
+    source = "${pkgs.nfs-utils.out}/bin/mount.nfs";
+  };
   services.samba-wsdd = {
     # make shares visible for Windows clients
     enable = true;
-    openFirewall = true;
   };
   services.samba = {
     enable = true;
-    openFirewall = true;
     extraConfig = ''
+      workgroup = WORKGROUP
+      server string = sparrow
+      netbios name = sparrow
       usershare path = /var/lib/samba/usershares
       usershare max shares = 100
       usershare allow guests = yes
       usershare owner only = yes
+      guest account = arne
+      map to guest = Bad Password
     '';
   };
   users.users.arne = { shell = pkgs.zsh; };
@@ -331,12 +370,63 @@ in {
     powerOnBoot = true;
     package = pkgs.bluez;
   };
+  programs.hyprland.enable = true;
+  programs.dconf.enable = true;
 
   environment.variables = {
     GDK_SCALE = "2";
     GDK_DPI_SCALE = "0.5";
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+    POLKIT_BIN = pkgs.libsForQt5.polkit-kde-agent;
+    GDK_BACKEND = "wayland,x11";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    SDL_VIDEODRIVER = "wayland";
+    CLUTTER_BACKEND = "wayland";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    NIXOS_OZONE_WL = "1";
   };
+
+  home-manager.users.arne = { pkgs, home, ... }: {
+    programs.zsh.profileExtra = ''
+      source ${config.age.secrets.github_auth.path}
+      source ${config.age.secrets.jira_pat.path}
+    '';
+
+    home.pointerCursor = {
+      gtk.enable = true;
+      x11.enable = true;
+      package = pkgs.nordzy-cursor-theme;
+      name = "Nordzy-cursors";
+      size = 24;
+    };
+
+    programs.obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        input-overlay
+        wlrobs
+
+      ];
+    };
+    gtk = {
+      enable = true;
+      theme = {
+        package = pkgs.flat-remix-gtk;
+        name = "Flat-Remix-GTK-Grey-Darkest";
+      };
+
+      iconTheme = {
+        package = pkgs.nordzy-icon-theme;
+        name = "Nordzy";
+      };
+
+      font = {
+        name = "Sans";
+        size = 11;
+      };
+    };
+  };
+
   # services.blueman = { enable = true; };
   # specialisation = {
   # 	external-display.configuration = {
@@ -349,4 +439,3 @@ in {
   # };
 
 }
-

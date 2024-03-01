@@ -35,13 +35,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rust-overlay = { url = "github:oxalica/rust-overlay"; };
+    watershot = { url = "github:Kirottu/watershot";};
   };
 
   outputs = inputs@{ self, nixpkgs,
      nixpkgs-master,
     #  nixpkgs-stable,
     nixpkgs-revert-emacs, home-manager, utils, agenix, emacs-overlay, devshell
-    , flake-utils, rust-overlay, blender-bin, comma }:
+    , flake-utils, rust-overlay, blender-bin, comma, watershot }:
     let
       customPackages = callPackage:
         {
@@ -157,6 +158,7 @@
           ({
             config._module.args = {
               agenix-cli = agenix.packages.x86_64-linux.default;
+              watershot = watershot.packages.x86_64-linux.default;
             };
           })
           { nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; }

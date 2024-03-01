@@ -2,32 +2,7 @@
 with lib;
 let
   cfg = config.custom.emacs;
-  emacsPkg = with pkgs;
-    ((emacsPackagesFor emacs29).emacsWithPackages (epkgs: [
-      epkgs.treesit-grammars.with-all-grammars
-      # epkgs.all-the-icons
-      # epkgs.treemacs-all-the-icons
-      # epkgs.all-the-icons-completion
-      # epkgs.octicons
-      # epkgs.fontawesome
-      # epkgs.mode-icons
-      # # epkgs.major-mode-icons
-      # epkgs.spaceline-all-the-icons
-      # epkgs.all-the-icons-ibuffer
-      # epkgs.all-the-icons-dired
-      # epkgs.nerd-icons
-      # epkgs.nerd-icons-completion
-      # epkgs.nerd-icons-dired
-      # epkgs.nerd-icons-ibuffer
-      # epkgs.treemacs-nerd-icons
-      #      epkgs.all-the-icons-ivy
-      #      epkgs.all-the-icons-ivy-rich
-      #      epkgs.all-the-icons-gnus
-      epkgs.shfmt
-
-      epkgs.vterm
-      epkgs.magit
-    ]));
+  emacsPkg = pkgs.emacs29-pgtk;
 in {
   options.custom.emacs = {
     enable = mkOption {
@@ -77,6 +52,8 @@ in {
         weather-icons
         shfmt
         wkhtmltopdf-bin
+        dockfmt
+        dockerfile-language-server-nodejs
         texlive.combined.scheme-full
       ];
       home.file.lua-ls = {
@@ -86,6 +63,15 @@ in {
       programs.emacs = {
         enable = true;
         package = emacsPkg;
+        extraPackages = (epkgs: [
+
+          epkgs.shfmt
+          epkgs.treesit-grammars.with-all-grammars
+
+          epkgs.vterm
+          epkgs.magit
+
+        ]);
       };
       services.emacs = {
         enable = true;

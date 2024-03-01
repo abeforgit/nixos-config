@@ -17,11 +17,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    custom.bspwm.enable = false;
     custom.wezterm.enable = true;
-    custom.kde.enable = true;
-    custom.wacom.enable = false;
-    custom.polybar.enable = false;
     fonts = {
       enableDefaultPackages = true;
       fontconfig = { enable = true; };
@@ -30,17 +26,23 @@ in {
         monaspace
         hack-font
         (nerdfonts.override {
-          fonts =
-            [ "FiraCode" "DroidSansMono" "Hasklig" "NerdFontsSymbolsOnly" "Hack" ];
+          fonts = [
+            "FiraCode"
+            "DroidSansMono"
+            "Hasklig"
+            "NerdFontsSymbolsOnly"
+            "Hack"
+          ];
         })
 
       ];
 
     };
-    home-manager.users.${config.custom.user} = { pkgs, ... }: {
-      home.packages = with pkgs; [ wpgtk xorg.xev xorg.xkill kazam ];
-    };
 
+    services.xserver = {
+      enable = true;
+      displayManager = { sddm.enable = true; };
+    };
     services.dbus = { enable = true; };
     programs.dconf.enable = true;
   };

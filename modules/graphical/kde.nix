@@ -45,6 +45,11 @@ in {
         pkgs.libsForQt5.kaccounts-providers
         pkgs.libsForQt5.kaccounts-integration
         pkgs.libsForQt5.kcharselect
+        smbmap
+        smbscan
+        samba
+        libsForQt5.kdenetwork-filesharing
+        packagekit
 
         ffmpeg_6
         pkgs.libsForQt5.kaddressbook

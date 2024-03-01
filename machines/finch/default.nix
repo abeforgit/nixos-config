@@ -186,6 +186,7 @@ in {
 
   custom.user = username;
   custom.graphical.enable = true;
+  custom.kde.enable = true;
   custom.steam.enable = false;
   custom.emacs.enable = true;
   custom.zsh.enable = true;
@@ -237,7 +238,8 @@ in {
     lazydocker
     galaxy-buds-client
     logseq
-
+    xorg.xev
+    xorg.xkill
   ];
 
   custom.extraSystemPackages = with pkgs; [
