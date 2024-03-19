@@ -234,11 +234,14 @@ in {
     libsForQt5.polkit-kde-agent
     libsForQt5.qt5.qtwayland
     qt6.qtwayland
+    qt6ct
     xwayland
     nwg-look
     waybar
     udiskie
     hyprpaper
+    hypridle
+    hyprlock
 
     #from kde TODO
     fira-code
@@ -273,6 +276,12 @@ in {
     watershot
     satty
     libsForQt5.networkmanager-qt
+    libsForQt5.breeze-qt5
+    libsForQt5.breeze-gtk
+    libsForQt5.breeze-icons
+    adwaita-qt
+    adwaita-qt6
+    gnome.adwaita-icon-theme
 
     pavucontrol
     alsaUtils
@@ -286,9 +295,14 @@ in {
     gnome.dconf-editor
     glib
     libinput
+    copyq
 
     gparted
+    lxappearance
   ];
+  programs.steam = {
+    enable = true;
+  };
   security.wrappers."mount.nfs" = {
     setuid = true;
     owner = "root";
@@ -384,6 +398,7 @@ in {
     CLUTTER_BACKEND = "wayland";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS="1";
   };
 
   home-manager.users.arne = { pkgs, home, ... }: {
@@ -408,16 +423,25 @@ in {
 
       ];
     };
+    qt = {
+      enable = true;
+      platformTheme = "gtk";
+    };
     gtk = {
       enable = true;
       theme = {
         package = pkgs.flat-remix-gtk;
         name = "Flat-Remix-GTK-Grey-Darkest";
       };
+      cursorTheme = {
+        package = pkgs.nordzy-cursor-theme;
+        name = "Nordzy-cursors";
+        size = 24;
+      };
 
       iconTheme = {
-        package = pkgs.nordzy-icon-theme;
-        name = "Nordzy";
+        package = pkgs.flat-remix-icon-theme;
+        name = "Flat-Remix-Blue-Dark";
       };
 
       font = {
