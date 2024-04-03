@@ -31,7 +31,7 @@ in {
           # path = "~/repos/redpencil/.work_config";
           contents = {
             core = {
-              excludesFile = builtins.toFile ".work-ignore" ''
+              excludesFile = builtins.toFile "work-ignore" ''
                 .direnv
                 .envrc
                 .idea/*
