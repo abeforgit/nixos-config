@@ -207,6 +207,7 @@ in {
     filezilla
     idasen
     # calibre
+    anytype
     evince
     lorien
     nvd
