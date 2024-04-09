@@ -11,8 +11,8 @@
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     #    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
-    nixpkgs-revert-emacs.url =
-      "github:NixOS/nixpkgs/976fa3369d722e76f37c77493d99829540d43845";
+    # nixpkgs-revert-emacs.url =
+    #   "github:NixOS/nixpkgs/976fa3369d722e76f37c77493d99829540d43845";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,14 +35,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rust-overlay = { url = "github:oxalica/rust-overlay"; };
-    watershot = { url = "github:Kirottu/watershot";};
+    watershot = { url = "github:Kirottu/watershot"; };
+    wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
   };
 
-  outputs = inputs@{ self, nixpkgs,
-     nixpkgs-master,
+  outputs = inputs@{ self, nixpkgs, nixpkgs-master,
     #  nixpkgs-stable,
-    nixpkgs-revert-emacs, home-manager, utils, agenix, emacs-overlay, devshell
-    , flake-utils, rust-overlay, blender-bin, comma, watershot }:
+     home-manager, utils, agenix, emacs-overlay, devshell
+    , flake-utils, rust-overlay, blender-bin, comma, watershot, wezterm-monkeypatch }:
     let
       customPackages = callPackage:
         {
@@ -51,20 +51,20 @@
     in utils.lib.mkFlake {
 
       inherit self inputs;
-           channels.master = {
-             input = nixpkgs-master;
-             config = { allowUnfree = true; };
+      channels.master = {
+        input = nixpkgs-master;
+        config = { allowUnfree = true; };
 
-           };
+      };
       # channels.small = {
       #   input = nixpkgs-unstable-small;
 
       # };
 
-      channels.revert-emacs = {
-        input = nixpkgs-revert-emacs;
+      # channels.revert-emacs = {
+      #   input = nixpkgs-revert-emacs;
 
-      };
+      # };
 
       channels.nixpkgs = {
         input = nixpkgs;
@@ -81,12 +81,11 @@
           emacs-overlay.overlay
           rust-overlay.overlays.default
           blender-bin.overlays.default
+          (self: super: { inherit (channels.master) udiskie; })
           (self: super: {
-            inherit (channels.master) udiskie;
-          })
-          (self: super: {
-            inherit (channels.revert-emacs) emacsPackagesFor;
-            inherit (channels.revert-emacs) emacs29;
+            # inherit (channels.revert-emacs) emacsPackagesFor;
+            # inherit (channels.revert-emacs) emacs29;
+            wezterm = wezterm-monkeypatch.packages.x86_64-linux.wezterm;
           })
           # (import (builtins.fetchTarball {
 
@@ -172,7 +171,10 @@
         ];
 
       };
-      hosts = { finch.modules = [ ./machines/finch ];  sparrow.modules = [./machines/sparrow];};
+      hosts = {
+        finch.modules = [ ./machines/finch ];
+        sparrow.modules = [ ./machines/sparrow ];
+      };
       outputsBuilder = channels:
         let pkgs = channels.nixpkgs;
         in {
