@@ -15,7 +15,7 @@ in {
         dotnet = dotnetCorePackages.sdk_7_0;
         mono = mono;
         mono5 = mono5;
-        godot-mono = godot-mono;
+        # godot-mono = godot-mono;
       };
       extraPath = makeBinPath (builtins.attrValues devSDKs);
       rider = pkgs.runCommand "rider" {

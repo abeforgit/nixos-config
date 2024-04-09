@@ -214,7 +214,7 @@ in {
     idasen
     # calibre
     evince
-    godot-mono
+    # godot-mono
     woodpecker-cli
     lorien
     nvd

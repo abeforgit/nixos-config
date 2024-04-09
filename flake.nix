@@ -6,7 +6,7 @@
       inputs = { nixpkgs.follows = "nixpkgs"; };
     };
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     comma.url = "github:nix-community/comma";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -39,10 +39,11 @@
     wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-master,
+  outputs = inputs@{ self, nixpkgs,
+    # nixpkgs-master,
     #  nixpkgs-stable,
-     home-manager, utils, agenix, emacs-overlay, devshell
-    , flake-utils, rust-overlay, blender-bin, comma, watershot, wezterm-monkeypatch }:
+    home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
+    , rust-overlay, blender-bin, comma, watershot, wezterm-monkeypatch }:
     let
       customPackages = callPackage:
         {
@@ -51,11 +52,11 @@
     in utils.lib.mkFlake {
 
       inherit self inputs;
-      channels.master = {
-        input = nixpkgs-master;
-        config = { allowUnfree = true; };
+      # channels.master = {
+      #   input = nixpkgs-master;
+      #   config = { allowUnfree = true; };
 
-      };
+      # };
       # channels.small = {
       #   input = nixpkgs-unstable-small;
 
@@ -81,7 +82,7 @@
           emacs-overlay.overlay
           rust-overlay.overlays.default
           blender-bin.overlays.default
-          (self: super: { inherit (channels.master) udiskie; })
+          # (self: super: { inherit (channels.master) udiskie; })
           (self: super: {
             # inherit (channels.revert-emacs) emacsPackagesFor;
             # inherit (channels.revert-emacs) emacs29;
@@ -104,50 +105,50 @@
           #              jdk = final.callPackage ./packages/p-jetbrains-jdk-bin { };
           #            };
           #          })
-          (self: super: {
-            godot-mono = with super;
-              let
-                arch = "64";
-                version = "3.5.1";
-                releaseName = "stable";
-                subdir = "";
-                pkg = stdenv.mkDerivation {
-                  name = "godot-mono-unwrapped";
-                  buildInputs = [ unzip ];
-                  unpackPhase = "unzip $src";
-                  version = version;
-                  src = fetchurl {
-                    url =
-                      "https://downloads.tuxfamily.org/godotengine/${version}${subdir}/mono/Godot_v${version}-${releaseName}_mono_x11_${arch}.zip";
-                    sha256 =
-                      "sha256-7phG4vgq4m0h92gCMPv5kehQQ1BH7rS1c5VZ6Dx3WPc=";
-                  };
-                  installPhase = ''
-                    cp -r . $out
-                  '';
-                };
-              in buildFHSUserEnv {
-                name = "godot-mono";
-                targetPkgs = pkgs:
-                  (with pkgs; [
-                    alsa-lib
-                    dotnetCorePackages.sdk_7_0
-                    libGL
-                    libpulseaudio
-                    udev
-                    xorg.libX11
-                    xorg.libXcursor
-                    xorg.libXext
-                    xorg.libXi
-                    xorg.libXinerama
-                    xorg.libXrandr
-                    xorg.libXrender
-                    zlib
-                  ]);
-                runScript =
-                  "${pkg.outPath}/Godot_v${version}-${releaseName}_mono_x11_${arch}/Godot_v${version}-${releaseName}_mono_x11.${arch}";
-              };
-          })
+          # (self: super: {
+          #   godot-mono = with super;
+          #     let
+          #       arch = "64";
+          #       version = "3.5.1";
+          #       releaseName = "stable";
+          #       subdir = "";
+          #       pkg = stdenv.mkDerivation {
+          #         name = "godot-mono-unwrapped";
+          #         buildInputs = [ unzip ];
+          #         unpackPhase = "unzip $src";
+          #         version = version;
+          #         src = fetchurl {
+          #           url =
+          #             "https://downloads.tuxfamily.org/godotengine/${version}${subdir}/mono/Godot_v${version}-${releaseName}_mono_x11_${arch}.zip";
+          #           sha256 =
+          #             "sha256-7phG4vgq4m0h92gCMPv5kehQQ1BH7rS1c5VZ6Dx3WPc=";
+          #         };
+          #         installPhase = ''
+          #           cp -r . $out
+          #         '';
+          #       };
+          #     in buildFHSUserEnv {
+          #       name = "godot-mono";
+          #       targetPkgs = pkgs:
+          #         (with pkgs; [
+          #           alsa-lib
+          #           dotnetCorePackages.sdk_7_0
+          #           libGL
+          #           libpulseaudio
+          #           udev
+          #           xorg.libX11
+          #           xorg.libXcursor
+          #           xorg.libXext
+          #           xorg.libXi
+          #           xorg.libXinerama
+          #           xorg.libXrandr
+          #           xorg.libXrender
+          #           zlib
+          #         ]);
+          #       runScript =
+          #         "${pkg.outPath}/Godot_v${version}-${releaseName}_mono_x11_${arch}/Godot_v${version}-${releaseName}_mono_x11.${arch}";
+          #     };
+          # })
 
         ];
       };
