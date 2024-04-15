@@ -36,14 +36,16 @@
     };
     rust-overlay = { url = "github:oxalica/rust-overlay"; };
     watershot = { url = "github:Kirottu/watershot"; };
-    wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
+    # wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
   };
 
   outputs = inputs@{ self, nixpkgs,
     # nixpkgs-master,
     #  nixpkgs-stable,
     home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
-    , rust-overlay, blender-bin, comma, watershot, wezterm-monkeypatch }:
+    , rust-overlay, blender-bin, comma, watershot,
+    # wezterm-monkeypatch
+    }:
     let
       customPackages = callPackage:
         {
@@ -83,11 +85,11 @@
           rust-overlay.overlays.default
           blender-bin.overlays.default
           # (self: super: { inherit (channels.master) udiskie; })
-          (self: super: {
-            # inherit (channels.revert-emacs) emacsPackagesFor;
-            # inherit (channels.revert-emacs) emacs29;
-            wezterm = wezterm-monkeypatch.packages.x86_64-linux.wezterm;
-          })
+          # (self: super: {
+          # inherit (channels.revert-emacs) emacsPackagesFor;
+          # inherit (channels.revert-emacs) emacs29;
+          # wezterm = wezterm-monkeypatch.packages.x86_64-linux.wezterm;
+          # })
           # (import (builtins.fetchTarball {
 
           #   url =

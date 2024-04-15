@@ -15,7 +15,7 @@ in {
       home.sessionPath = [ "$HOME/.emacs.d/bin" ];
       home.packages = with pkgs; [
         hasklig
-        nixfmt
+        nixfmt-rfc-style
         ripgrep
         git
         coreutils

@@ -39,9 +39,9 @@ in {
 
     };
 
+    services.displayManager = { sddm.enable = true; };
     services.xserver = {
       enable = true;
-      displayManager = { sddm.enable = true; };
     };
     services.dbus = { enable = true; };
     programs.dconf.enable = true;
