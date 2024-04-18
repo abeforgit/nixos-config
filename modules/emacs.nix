@@ -54,7 +54,7 @@ in {
         wkhtmltopdf-bin
         dockfmt
         dockerfile-language-server-nodejs
-        texlive.combined.scheme-full
+        # texlive.combined.scheme-full
       ];
       home.file.lua-ls = {
         source = "${pkgs.sumneko-lua-language-server}";

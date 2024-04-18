@@ -35,7 +35,6 @@ in {
 
       home.packages = with pkgs; [
         pavucontrol
-        spotify-tui
         spotify
         alsaUtils
         alsa-tools
