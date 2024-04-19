@@ -3,7 +3,9 @@
   inputs = {
     devshell = {
       url = "github:numtide/devshell";
-      inputs = { nixpkgs.follows = "nixpkgs"; };
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     flake-utils.url = "github:numtide/flake-utils";
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
@@ -34,24 +36,39 @@
       url = "github:edolstra/nix-warez?dir=blender";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rust-overlay = { url = "github:oxalica/rust-overlay"; };
-    watershot = { url = "github:Kirottu/watershot"; };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+    };
+    watershot = {
+      url = "github:Kirottu/watershot";
+    };
     # wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
   };
 
-  outputs = inputs@{ self, nixpkgs,
-    # nixpkgs-master,
-    #  nixpkgs-stable,
-    home-manager, utils, agenix, emacs-overlay, devshell, flake-utils
-    , rust-overlay, blender-bin, comma, watershot,
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      # nixpkgs-master,
+      #  nixpkgs-stable,
+      home-manager,
+      utils,
+      agenix,
+      emacs-overlay,
+      devshell,
+      flake-utils,
+      rust-overlay,
+      blender-bin,
+      comma,
+      watershot,
     # wezterm-monkeypatch
     }:
     let
-      customPackages = callPackage:
-        {
+      customPackages = callPackage: {
 
-        };
-    in utils.lib.mkFlake {
+      };
+    in
+    utils.lib.mkFlake {
 
       inherit self inputs;
       # channels.master = {
@@ -73,11 +90,13 @@
         input = nixpkgs;
         config = {
 
-          permittedInsecurePackages = [ "electron-25.9.0" "openssl-1.1.1w" ];
+          permittedInsecurePackages = [
+            "electron-25.9.0"
+            "openssl-1.1.1w"
+          ];
 
           allowUnfree = true;
           allowUnfreePredicate = (pkg: true);
-
         };
         overlaysBuilder = channels: [
           devshell.overlays.default
@@ -151,7 +170,6 @@
           #         "${pkg.outPath}/Godot_v${version}-${releaseName}_mono_x11_${arch}/Godot_v${version}-${releaseName}_mono_x11.${arch}";
           #     };
           # })
-
         ];
       };
       hostDefaults = {
@@ -172,30 +190,31 @@
           (./modules)
           agenix.nixosModules.age
         ];
-
       };
       hosts = {
         finch.modules = [ ./machines/finch ];
         sparrow.modules = [ ./machines/sparrow ];
       };
-      outputsBuilder = channels:
-        let pkgs = channels.nixpkgs;
-        in {
+      outputsBuilder =
+        channels:
+        let
+          pkgs = channels.nixpkgs;
+        in
+        {
           packages = customPackages pkgs.callPackage;
-          devShells = let
-            ls = builtins.readDir ./shells;
-            files = builtins.filter (name: ls.${name} == "regular")
-              (builtins.attrNames ls);
-            shellNames = builtins.map
-              (filename: builtins.head (builtins.split "\\." filename)) files;
-            nameToValue = name:
-              import (./shells + "/${name}.nix") { inherit pkgs inputs; };
-          in builtins.listToAttrs (builtins.map (name: {
-            inherit name;
-            value = nameToValue name;
-          }) shellNames);
-
+          devShells =
+            let
+              ls = builtins.readDir ./shells;
+              files = builtins.filter (name: ls.${name} == "regular") (builtins.attrNames ls);
+              shellNames = builtins.map (filename: builtins.head (builtins.split "\\." filename)) files;
+              nameToValue = name: import (./shells + "/${name}.nix") { inherit pkgs inputs; };
+            in
+            builtins.listToAttrs (
+              builtins.map (name: {
+                inherit name;
+                value = nameToValue name;
+              }) shellNames
+            );
         };
     };
-
 }
