@@ -189,6 +189,7 @@ in {
   custom.kde.enable = true;
   custom.steam.enable = false;
   custom.emacs.enable = true;
+  custom.emacs.package = pkgs.emacs29;
   custom.zsh.enable = true;
   custom.nushell.enable = true;
   custom.vscode.enable = true;

@@ -2,12 +2,15 @@
 with lib;
 let
   cfg = config.custom.emacs;
-  emacsPkg = pkgs.emacs29-pgtk;
 in {
   options.custom.emacs = {
     enable = mkOption {
       example = true;
       default = false;
+    };
+    package = mkOption {
+      example = pkgs.emacs29-pgtk;
+      default = pkgs.emacs29-pgtk;
     };
   };
   config = mkIf cfg.enable {
@@ -62,7 +65,7 @@ in {
       };
       programs.emacs = {
         enable = true;
-        package = emacsPkg;
+        package = cfg.package;
         extraPackages = (epkgs: [
 
           epkgs.shfmt
@@ -75,7 +78,7 @@ in {
       };
       services.emacs = {
         enable = true;
-        package = emacsPkg;
+        package = cfg.package;
         socketActivation.enable = true;
         client = {
           enable = true;
