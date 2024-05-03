@@ -2,7 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   username = "arne";
@@ -35,8 +40,10 @@ let
     '';
     destination = "/etc/udev/rules.d/50-zsa.rules";
   };
-in {
-  imports = [ # Include the results of the hardware scan.
+in
+{
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -66,7 +73,9 @@ in {
     127.0.0.1 gn.localhost
     127.0.0.2 publication.localhost
   '';
-  networking.networkmanager = { enable = true; };
+  networking.networkmanager = {
+    enable = true;
+  };
   networking.interfaces.enp8s0.useDHCP = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -145,13 +154,14 @@ in {
       file = ../../secrets/jira_pat.age;
       owner = config.custom.user;
     };
-
   };
   networking.firewall.enable = false;
 
   fonts = {
     enableDefaultPackages = true;
-    fontconfig = { enable = true; };
+    fontconfig = {
+      enable = true;
+    };
     packages = with pkgs; [
       fira-go
       monaspace
@@ -165,9 +175,7 @@ in {
           "Hack"
         ];
       })
-
     ];
-
   };
 
   # sound.enable = true;
@@ -182,7 +190,9 @@ in {
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
-    wireplumber = { enable = true; };
+    wireplumber = {
+      enable = true;
+    };
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -255,7 +265,6 @@ in {
     packagekit
 
     ffmpeg_6
-
   ];
 
   custom.extraSystemPackages = with pkgs; [
@@ -329,7 +338,9 @@ in {
       map to guest = Bad Password
     '';
   };
-  users.users.arne = { shell = pkgs.zsh; };
+  users.users.arne = {
+    shell = pkgs.zsh;
+  };
   hardware.logitech.wireless = {
     enable = true;
     enableGraphical = true;
@@ -350,7 +361,6 @@ in {
           "Soft" = 104583;
         };
       };
-
     };
     extraOptions = "--userns-remap=${username}";
   };
@@ -400,58 +410,63 @@ in {
     CLUTTER_BACKEND = "wayland";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     NIXOS_OZONE_WL = "1";
-    WLR_NO_HARDWARE_CURSORS="1";
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
-  home-manager.users.arne = { pkgs, home, ... }: {
-    programs.zsh.profileExtra = ''
-      source ${config.age.secrets.github_auth.path}
-      source ${config.age.secrets.jira_pat.path}
-    '';
+  services.displayManager = {
+    sddm.enable = true;
+    sddm.wayland.enable = true;
+  };
+  home-manager.users.arne =
+    { pkgs, home, ... }:
+    {
+      programs.zsh.profileExtra = ''
+        source ${config.age.secrets.github_auth.path}
+        source ${config.age.secrets.jira_pat.path}
+      '';
 
-    home.pointerCursor = {
-      gtk.enable = true;
-      x11.enable = true;
-      package = pkgs.nordzy-cursor-theme;
-      name = "Nordzy-cursors";
-      size = 24;
-    };
-
-    programs.obs-studio = {
-      enable = true;
-      plugins = with pkgs.obs-studio-plugins; [
-        input-overlay
-        wlrobs
-
-      ];
-    };
-    qt = {
-      enable = true;
-      platformTheme = "gtk";
-    };
-    gtk = {
-      enable = true;
-      theme = {
-        package = pkgs.flat-remix-gtk;
-        name = "Flat-Remix-GTK-Grey-Darkest";
-      };
-      cursorTheme = {
+      home.pointerCursor = {
+        gtk.enable = true;
+        x11.enable = true;
         package = pkgs.nordzy-cursor-theme;
         name = "Nordzy-cursors";
         size = 24;
       };
 
-      iconTheme = {
-        package = pkgs.flat-remix-icon-theme;
-        name = "Flat-Remix-Blue-Dark";
+      programs.obs-studio = {
+        enable = true;
+        plugins = with pkgs.obs-studio-plugins; [
+          input-overlay
+          wlrobs
+        ];
       };
+      qt = {
+        enable = true;
+        platformTheme = "gtk";
+      };
+      gtk = {
+        enable = true;
+        theme = {
+          package = pkgs.flat-remix-gtk;
+          name = "Flat-Remix-GTK-Grey-Darkest";
+        };
+        cursorTheme = {
+          package = pkgs.nordzy-cursor-theme;
+          name = "Nordzy-cursors";
+          size = 24;
+        };
 
-      font = {
-        name = "Sans";
-        size = 11;
+        iconTheme = {
+          package = pkgs.flat-remix-icon-theme;
+          name = "Flat-Remix-Blue-Dark";
+        };
+
+        font = {
+          name = "Sans";
+          size = 11;
+        };
       };
     };
-  };
 
   # services.blueman = { enable = true; };
   # specialisation = {
@@ -463,5 +478,4 @@ in {
   #       	hardware.nvidia.powerManagement.finegrained = pkgs.lib.mkForce false;
   #       };
   # };
-
 }
