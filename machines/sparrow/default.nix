@@ -91,7 +91,7 @@ in {
   #  font = "Lat2-Terminus16";
   #   keyMap = "us";
   # };
-  nix.package = pkgs.nixVersions.unstable;
+  nix.package = pkgs.nixVersions.latest;
 
   nix.settings = {
     substituters = [
