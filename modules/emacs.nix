@@ -39,7 +39,6 @@ in {
         elixir-ls
         graphviz
         sbcl
-        lispPackages.quicklisp
         editorconfig-core-c
         maim
         pandoc
