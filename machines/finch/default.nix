@@ -2,7 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   username = "arne";
@@ -35,8 +40,10 @@ let
     '';
     destination = "/etc/udev/rules.d/50-zsa.rules";
   };
-in {
-  imports = [ # Include the results of the hardware scan.
+in
+{
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -104,7 +111,9 @@ in {
       "cachix.cachix.org-1:eWNHQldwUO7G2VkjpnjDbWwy4KQ/HNxht7H4SSoMckM="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
+
   };
+  nix.package = pkgs.nixVersions.latest;
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ALL = "en_US.UTF-8";
@@ -132,7 +141,10 @@ in {
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
-  services.udev.packages = [ brightness_udev oryx_udev ];
+  services.udev.packages = [
+    brightness_udev
+    oryx_udev
+  ];
   services.gvfs.enable = true;
   environment.variables = {
     GDK_SCALE = "2";
@@ -154,7 +166,9 @@ in {
     '';
   };
 
-  services.postgresql = { enable = true; };
+  services.postgresql = {
+    enable = true;
+  };
   boot.kernelParams = [ "i915.enable_dcpcd_backlight=1" ];
   hardware.nvidia = {
     nvidiaSettings = true;
@@ -174,15 +188,16 @@ in {
       file = ../../secrets/jira_pat.age;
       owner = config.custom.user;
     };
-
   };
 
-  home-manager.users.arne = { pkgs, home, ... }: {
-    programs.zsh.profileExtra = ''
-      source ${config.age.secrets.github_auth.path}
-      source ${config.age.secrets.jira_pat.path}
-    '';
-  };
+  home-manager.users.arne =
+    { pkgs, home, ... }:
+    {
+      programs.zsh.profileExtra = ''
+        source ${config.age.secrets.github_auth.path}
+        source ${config.age.secrets.jira_pat.path}
+      '';
+    };
 
   custom.user = username;
   custom.graphical.enable = true;
@@ -255,7 +270,9 @@ in {
     vokoscreen-ng
     simplescreenrecorder
   ];
-  users.users.arne = { shell = pkgs.zsh; };
+  users.users.arne = {
+    shell = pkgs.zsh;
+  };
   services.samba-wsdd = {
     enable = true;
     openFirewall = true;
@@ -284,7 +301,6 @@ in {
           "Soft" = 104583;
         };
       };
-
     };
     extraOptions = "--userns-remap=${username}";
   };
@@ -302,7 +318,6 @@ in {
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
-  services.espanso.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -316,7 +331,9 @@ in {
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
-  networking.networkmanager = { enable = true; };
+  networking.networkmanager = {
+    enable = true;
+  };
 
   hardware.bluetooth = {
     enable = true;
@@ -333,6 +350,4 @@ in {
   #       	hardware.nvidia.powerManagement.finegrained = pkgs.lib.mkForce false;
   #       };
   # };
-
 }
-
