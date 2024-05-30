@@ -12,7 +12,7 @@
     comma.url = "github:nix-community/comma";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    #    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     # nixpkgs-revert-emacs.url =
     #   "github:NixOS/nixpkgs/976fa3369d722e76f37c77493d99829540d43845";
     home-manager = {
@@ -50,7 +50,7 @@
       self,
       nixpkgs,
       # nixpkgs-master,
-      #  nixpkgs-stable,
+       nixpkgs-stable,
       home-manager,
       utils,
       agenix,
@@ -76,6 +76,11 @@
       #   config = { allowUnfree = true; };
 
       # };
+      channels.stable = {
+        input = nixpkgs-stable;
+        config = { allowUnfree = true; };
+
+      };
       # channels.small = {
       #   input = nixpkgs-unstable-small;
 
@@ -103,6 +108,7 @@
           emacs-overlay.overlay
           rust-overlay.overlays.default
           blender-bin.overlays.default
+          (self: super: { inherit (channels.stable) galaxy-buds-client; })
           # (self: super: { inherit (channels.master) udiskie; })
           # (self: super: {
           # inherit (channels.revert-emacs) emacsPackagesFor;
