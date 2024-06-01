@@ -56,6 +56,7 @@ in {
         wkhtmltopdf-bin
         dockfmt
         dockerfile-language-server-nodejs
+        eslint_d
         # texlive.combined.scheme-full
       ];
       home.file.lua-ls = {
