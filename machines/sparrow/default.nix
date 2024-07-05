@@ -292,7 +292,7 @@ in
     libsForQt5.breeze-icons
     adwaita-qt
     adwaita-qt6
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
 
     pavucontrol
     alsaUtils
@@ -303,13 +303,16 @@ in
     cifs-utils
     smbmap
     smbscan
-    gnome.dconf-editor
+    dconf-editor
     glib
     libinput
     copyq
 
     gparted
     lxappearance
+
+    xournalpp
+    rnote
   ];
   programs.steam = {
     enable = true;
@@ -398,6 +401,7 @@ in
   };
   programs.hyprland.enable = true;
   programs.dconf.enable = true;
+  programs.nix-ld.enable = true;
 
   environment.variables = {
     GDK_SCALE = "2";
@@ -442,7 +446,9 @@ in
       };
       qt = {
         enable = true;
-        platformTheme = "gtk";
+        platformTheme = {
+          name = "qt5ct";
+        };
       };
       gtk = {
         enable = true;

@@ -1,17 +1,48 @@
 { pkgs, inputs }:
 let
-  pnpm = pkgs.nodePackages.pnpm;
+  pnpm = pkgs.pnpm;
   yalc = pkgs.nodePackages.yalc;
   node_package = pkgs.nodejs_20;
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";
   name = "gn-meta";
   root = ''"$PRJ_ROOT"'';
-in pkgs.devshell.mkShell {
+in
+pkgs.devshell.mkShell {
   inherit name;
-  packages = with pkgs; [ cypress playwright-test ];
-  packagesFrom = with pkgs; [ cypress playwright-driver.browsers ];
+  packages = with pkgs; [
+    cypress
+    playwright-test
+    krb5
+    krb5.dev
+    gnumake
+    gcc
+    pkgs.stdenv.cc
+    openssl
+  ];
+
+  packagesFrom = with pkgs; [
+    cypress
+    playwright-driver.browsers
+  ];
   env = [
+    {
+      name = "NIX_LD_LIBRARY_PATH";
+      value = pkgs.lib.makeLibraryPath [
+        pkgs.stdenv.cc.cc
+        pkgs.libgit2
+        pkgs.openssh_gssapi
+        pkgs.openssl
+        pkgs.libkrb5.dev
+        pkgs.libgcc
+        pkgs.glibc.dev
+
+      ];
+    }
+    {
+      name = "NIX_LD";
+      value = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+    }
     {
       name = "NPM_CONFIG_PREFIX";
       value = npm-global;
@@ -66,8 +97,7 @@ in pkgs.devshell.mkShell {
     }
     {
       name = "pw";
-      command =
-        ''rm -r node_modules/@playwright || true ; ${pkgs.playwright-test}/bin/playwright "$@"'';
+      command = ''rm -r node_modules/@playwright || true ; ${pkgs.playwright-test}/bin/playwright "$@"'';
     }
     {
       name = "yarn";
