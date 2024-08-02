@@ -40,6 +40,7 @@ let
     '';
     destination = "/etc/udev/rules.d/50-zsa.rules";
   };
+  openrgb = pkgs.openrgb-with-all-plugins;
 in
 {
   imports = [
@@ -82,6 +83,10 @@ in
   # services.xserver.enable = true;
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
+  services.hardware.openrgb = {
+    enable = true;
+    package = openrgb;
+  };
 
   services.xserver = {
     xkb = {
@@ -254,6 +259,7 @@ in
     hyprpaper
     hypridle
     hyprlock
+    nix-output-monitor
 
     #from kde TODO
     fira-code
