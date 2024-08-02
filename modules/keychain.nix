@@ -15,7 +15,7 @@ in {
       programs.keychain = {
         enable = true;
         enableZshIntegration = true;
-        extraFlags = [ "--quiet" "--nogui"]
+        extraFlags = [ "--quiet" "--nogui"];
       };
     };
 
