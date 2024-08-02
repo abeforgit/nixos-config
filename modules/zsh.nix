@@ -99,8 +99,8 @@ in {
           ghprc = "gh pr ls | fzf | cut -f 1 | xargs gh pr checkout";
           extip = "curl ifconfig.co";
           icat = "kitty +kitten icat";
-          rebuild = "nixos-rebuild --flake ~/repos/nixos-config#${config.custom.hostname} switch --use-remote-sudo |& nom";
-          checkbuild = "nixos-rebuild --flake ~/repos/nixos-config#${config.custom.hostname} build |& nom && nvd diff /run/current-system ~/repos/nixos-config/result";
+          rebuild = "nixos-rebuild --flake ~/repos/nixos-config#${config.custom.hostname} switch --use-remote-sudo";
+          checkbuild = "nixos-rebuild --flake ~/repos/nixos-config#${config.custom.hostname} build && nvd diff /run/current-system ~/repos/nixos-config/result";
           srcrc = "source ~/.zshrc";
           pose = "docker compose";
         };
