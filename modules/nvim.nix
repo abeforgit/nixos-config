@@ -13,6 +13,16 @@ let cfg = config.custom.nvim;
       };
 
     };
+    cd-project = pkgs.vimUtils.buildVimPlugin {
+      pname = "cd-project.nvim";
+      version = "0.8.0";
+      src = pkgs.fetchFromGitHub {
+        owner = "LintaoAmons";
+        repo = "cd-project.nvim";
+        rev = "d18efcb42a39bcbc12d4dd5544da0524696d3379";
+        hash = "sha256-/YHOb0QeNkjHuJKVzPCWOExKlh84zJqsUTbWlyr1zOc=";
+      };
+    };
 in {
   options = {
     custom.nvim.enable = mkOption {
@@ -26,6 +36,7 @@ in {
 
       home.sessionVariables = {
         EDITOR = "nvim";
+        MYVIMRC = ".config/nvim/init.lua";
       };
       home.file.".config/nvim/lua" = {
         source = homeArgs.config.lib.file.mkOutOfStoreSymlink
@@ -34,49 +45,65 @@ in {
       };
       programs.neovim = {
         enable = true;
-        plugins = with pkgs.vimPlugins; [ vim-nix nerdcommenter firenvim
-        nvim-treesitter.withAllGrammars nvim-lspconfig nvim-cmp cmp-nvim-lsp ];
+        plugins = with pkgs.vimPlugins; [ 
+          lazy-nvim
+
+
+        ];
+        extraPackages = with pkgs; [
+          nodePackages.vscode-langservers-extracted
+          fd
+          ripgrep
+	  stylua
+        ];
         extraConfig = ''
-          set number
-          set textwidth=80
-          set showmatch
-          set visualbell
-
-          set smartcase
-          set incsearch
-          set hlsearch
-
-          set autoindent
-          set shiftwidth=4
-          set smartindent
-          set smarttab
-          set softtabstop=4
-          set ruler
-          set undolevels=1000
-          set backspace=indent,eol,start
-          set clipboard+=unnamedplus
-          filetype plugin on
-          let mapleader = " "
-          let g:firenvim_config = {
-              \ 'globalSettings': {
-                  \ 'alt': 'all',
-              \  },
-              \ 'localSettings': {
-                  \ '.*': {
-                      \ 'cmdline': 'neovim',
-                      \ 'priority': 0,
-                      \ 'selector': 'textarea',
-                      \ 'takeover': 'always',
-                  \ },
-              \ }
-          \ }
-          let fc = g:firenvim_config['localSettings']
-          let fc['.*'] = { 'takeover': 'never' }
           lua require('config')
-
-
-
                   '';
+        extraLuaConfig = 
+        let 
+          plugins = with pkgs.vimPlugins; [
+
+            vim-nix 
+            nerdcommenter 
+            firenvim 
+            nvim-treesitter.withAllGrammars 
+            nvim-lspconfig 
+            nvim-cmp 
+            cmp-nvim-lsp 
+            cmp-nvim-lua 
+            conform-nvim
+            bamboo-nvim
+            telescope-nvim
+            telescope-fzf-native-nvim
+            plenary-nvim
+            cd-project
+            neo-tree-nvim
+            nvim-web-devicons
+            nui-nvim
+            nvim-window-picker
+          ]; 
+          mkEntryFromDrv = drv: 
+          if lib.isDerivation drv then 
+          { name = "${lib.getName drv}"; path = drv; } 
+          else drv;
+        lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
+        in
+        ''
+          require("lazy").setup({
+            dev = {
+              path = "${lazyPath}",
+              patterns = { "." },
+              fallback = true,
+              },
+            spec = {
+	      { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
+	       { "williamboman/mason-lspconfig.nvim", enabled = false },
+	      { "williamboman/mason.nvim", enabled = false },
+              { import = "config.plugins" },
+            }
+          });
+        '';
+
       };
     };
   };
