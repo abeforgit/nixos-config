@@ -22,14 +22,20 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    home-manager.users.${config.custom.user} = { pkgs, home, ... }: {
+    home-manager.users.${config.custom.user} = homeArgs @ { pkgs, home,... }: {
 
       home.sessionVariables = {
         EDITOR = "nvim";
       };
+      home.file.".config/nvim/lua" = {
+        source = homeArgs.config.lib.file.mkOutOfStoreSymlink
+        "/home/arne/repos/nixos-config/nvim";
+        recursive = true;
+      };
       programs.neovim = {
         enable = true;
-        plugins = with pkgs.vimPlugins; [ vim-nix nerdcommenter firenvim ];
+        plugins = with pkgs.vimPlugins; [ vim-nix nerdcommenter firenvim
+        nvim-treesitter.withAllGrammars nvim-lspconfig nvim-cmp cmp-nvim-lsp ];
         extraConfig = ''
           set number
           set textwidth=80
@@ -66,6 +72,7 @@ in {
           \ }
           let fc = g:firenvim_config['localSettings']
           let fc['.*'] = { 'takeover': 'never' }
+          lua require('config')
 
 
 

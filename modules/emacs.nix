@@ -69,7 +69,6 @@ in {
         extraPackages = (epkgs: [
 
           epkgs.shfmt
-          epkgs.treesit-grammars.with-all-grammars
 
           epkgs.vterm
           epkgs.magit
