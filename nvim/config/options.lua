@@ -30,6 +30,7 @@ o.titlestring = '%f%( [%M]%)'
 o.linebreak = true
 o.breakindent = true
 o.showbreak = '-> '
+o.hidden = true
 
 vim.g.mapleader = " "
 -- let g:firenvim_config = {

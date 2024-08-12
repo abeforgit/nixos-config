@@ -1,0 +1,142 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+
+with lib;
+let
+  cfg = config.custom.nvim;
+  cd-project = pkgs.vimUtils.buildVimPlugin {
+    pname = "cd-project.nvim";
+    version = "0.8.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "LintaoAmons";
+      repo = "cd-project.nvim";
+      rev = "d18efcb42a39bcbc12d4dd5544da0524696d3379";
+      hash = "sha256-/YHOb0QeNkjHuJKVzPCWOExKlh84zJqsUTbWlyr1zOc=";
+    };
+  };
+  workspaces = pkgs.vimUtils.buildVimPlugin {
+    pname = "workspaces.nvim";
+    version = "1.0.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "natecraddock";
+      repo = "workspaces.nvim";
+      rev = "447306604259619618cd84c15b68f2ffdbc702ae";
+      hash = "sha256-YIu6Wtzb79itoilv6g/AJyqORJz14UYwTPq9kW0D8ck=";
+    };
+  };
+in
+{
+  options = {
+    custom.nvim.enable = mkOption {
+
+      example = true;
+      default = false;
+    };
+  };
+  config = mkIf cfg.enable {
+    home-manager.users.${config.custom.user} =
+      homeArgs@{ pkgs, home, ... }:
+      {
+
+        home.sessionVariables = {
+          EDITOR = "nvim";
+          MYVIMRC = ".config/nvim/init.lua";
+        };
+        home.file.".config/nvim/lua" = {
+          source = homeArgs.config.lib.file.mkOutOfStoreSymlink "/home/arne/repos/nixos-config/nvim";
+          recursive = true;
+        };
+        programs.neovim = {
+          enable = true;
+          plugins = with pkgs.vimPlugins; [
+            lazy-nvim
+
+          ];
+          extraPackages = with pkgs; [
+            nodePackages.vscode-langservers-extracted
+            fd
+            ripgrep
+            nixfmt-rfc-style
+            gh
+            glow
+          ];
+          extraConfig = ''
+            lua require('config')
+          '';
+          extraLuaConfig =
+            let
+              plugins = with pkgs.vimPlugins; [
+
+                vim-nix
+                nerdcommenter
+                firenvim
+                nvim-treesitter.withAllGrammars
+                nvim-lspconfig
+                nvim-cmp
+                cmp-nvim-lsp
+                cmp-nvim-lua
+                cmp-cmdline
+                cmp-buffer
+                cmp-git
+                conform-nvim
+                bamboo-nvim
+                telescope-nvim
+                telescope-fzf-native-nvim
+                plenary-nvim
+                cd-project
+                neo-tree-nvim
+                nvim-web-devicons
+                nui-nvim
+                nvim-window-picker
+                toggleterm-nvim
+                flatten-nvim
+                auto-session
+                dressing-nvim
+                lualine-nvim
+                neogit
+                diffview-nvim
+                octo-nvim
+                markdown-preview-nvim
+                debugprint-nvim
+                nvim-surround
+                nvim-treesitter-textobjects
+                which-key-nvim
+                workspaces
+                orgmode
+              ];
+              mkEntryFromDrv =
+                drv:
+                if lib.isDerivation drv then
+                  {
+                    name = "${lib.getName drv}";
+                    path = drv;
+                  }
+                else
+                  drv;
+              lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
+            in
+            ''
+                        require("lazy").setup({
+                          dev = {
+                            path = "${lazyPath}",
+                            patterns = { "." },
+                            fallback = true,
+                            },
+                          spec = {
+              	      { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
+              	       { "williamboman/mason-lspconfig.nvim", enabled = false },
+              	      { "williamboman/mason.nvim", enabled = false },
+                            { import = "config.plugins" },
+                          }
+                        });
+            '';
+
+        };
+      };
+  };
+
+}

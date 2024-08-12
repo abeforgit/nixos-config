@@ -1,29 +1,71 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
-let cfg = config.custom.nvim;
-    firenvim = pkgs.vimUtils.buildVimPlugin {
-      pname = "firenvim";
-      version = "0.2.13";
-      src = pkgs.fetchFromGitHub {
-        owner = "glacambre";
-        repo = "firenvim";
-        rev = "f679455c294c62eddee86959cfc9f1b1f79fe97d";
-        hash = "sha256-86Gr+95yunuNZGn/+XLPg1ws6z4C2VOMKt81a6+sxnI=";
-      };
-
+let
+  cfg = config.custom.nvim;
+  cd-project = pkgs.vimUtils.buildVimPlugin {
+    pname = "cd-project.nvim";
+    version = "0.8.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "LintaoAmons";
+      repo = "cd-project.nvim";
+      rev = "d18efcb42a39bcbc12d4dd5544da0524696d3379";
+      hash = "sha256-/YHOb0QeNkjHuJKVzPCWOExKlh84zJqsUTbWlyr1zOc=";
     };
-    cd-project = pkgs.vimUtils.buildVimPlugin {
-      pname = "cd-project.nvim";
-      version = "0.8.0";
-      src = pkgs.fetchFromGitHub {
-        owner = "LintaoAmons";
-        repo = "cd-project.nvim";
-        rev = "d18efcb42a39bcbc12d4dd5544da0524696d3379";
-        hash = "sha256-/YHOb0QeNkjHuJKVzPCWOExKlh84zJqsUTbWlyr1zOc=";
-      };
+  };
+  workspaces = pkgs.vimUtils.buildVimPlugin {
+    pname = "workspaces.nvim";
+    version = "1.0.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "natecraddock";
+      repo = "workspaces.nvim";
+      rev = "447306604259619618cd84c15b68f2ffdbc702ae";
+      hash = "sha256-YIu6Wtzb79itoilv6g/AJyqORJz14UYwTPq9kW0D8ck=";
     };
-in {
+  };
+  treesitterWithGrammars = (
+    pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+      p.bash
+      p.comment
+      p.css
+      p.dockerfile
+      p.fish
+      p.gitattributes
+      p.gitignore
+      p.go
+      p.gomod
+      p.gowork
+      p.hcl
+      # p.javascript
+      p.jq
+      p.json5
+      p.json
+      p.lua
+      p.make
+      p.markdown
+      p.nix
+      p.python
+      p.rust
+      p.toml
+      # p.typescript
+      # p.glimmer
+      p.query
+      p.vimdoc
+      p.vue
+      p.yaml
+    ])
+  );
+  treesitter-parsers = pkgs.symlinkJoin {
+    name = "treesitter-parsers";
+    paths = treesitterWithGrammars.dependencies;
+  };
+in
+{
   options = {
     custom.nvim.enable = mkOption {
 
@@ -32,80 +74,44 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    home-manager.users.${config.custom.user} = homeArgs @ { pkgs, home,... }: {
+    home-manager.users.${config.custom.user} =
+      homeArgs@{ pkgs, home, ... }:
+      {
 
-      home.sessionVariables = {
-        EDITOR = "nvim";
-        MYVIMRC = ".config/nvim/init.lua";
+        home.sessionVariables = {
+          EDITOR = "nvim";
+          MYVIMRC = ".config/nvim/init.lua";
+        };
+        home.file.".config/nvim/lua" = {
+          source = homeArgs.config.lib.file.mkOutOfStoreSymlink "/home/arne/repos/nixos-config/nvim";
+          recursive = true;
+        };
+        home.file."./.local/share/nvim/nix/nvim-treesitter/" = {
+          recursive = true;
+          source = treesitterWithGrammars;
+        };
+        programs.neovim = {
+          enable = true;
+          plugins = [ treesitterWithGrammars ];
+          coc.enable = false;
+          withNodeJs = true;
+          extraPackages = with pkgs; [
+            nodePackages.vscode-langservers-extracted
+            fd
+            ripgrep
+            nixfmt-rfc-style
+            gh
+            glow
+          ];
+          extraConfig = ''
+            lua require('config')
+          '';
+          extraLuaConfig = ''
+            vim.opt.runtimepath:append("${treesitter-parsers}")
+          '';
+
+        };
       };
-      home.file.".config/nvim/lua" = {
-        source = homeArgs.config.lib.file.mkOutOfStoreSymlink
-        "/home/arne/repos/nixos-config/nvim";
-        recursive = true;
-      };
-      programs.neovim = {
-        enable = true;
-        plugins = with pkgs.vimPlugins; [ 
-          lazy-nvim
-
-
-        ];
-        extraPackages = with pkgs; [
-          nodePackages.vscode-langservers-extracted
-          fd
-          ripgrep
-	  stylua
-        ];
-        extraConfig = ''
-          lua require('config')
-                  '';
-        extraLuaConfig = 
-        let 
-          plugins = with pkgs.vimPlugins; [
-
-            vim-nix 
-            nerdcommenter 
-            firenvim 
-            nvim-treesitter.withAllGrammars 
-            nvim-lspconfig 
-            nvim-cmp 
-            cmp-nvim-lsp 
-            cmp-nvim-lua 
-            conform-nvim
-            bamboo-nvim
-            telescope-nvim
-            telescope-fzf-native-nvim
-            plenary-nvim
-            cd-project
-            neo-tree-nvim
-            nvim-web-devicons
-            nui-nvim
-            nvim-window-picker
-          ]; 
-          mkEntryFromDrv = drv: 
-          if lib.isDerivation drv then 
-          { name = "${lib.getName drv}"; path = drv; } 
-          else drv;
-        lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
-        in
-        ''
-          require("lazy").setup({
-            dev = {
-              path = "${lazyPath}",
-              patterns = { "." },
-              fallback = true,
-              },
-            spec = {
-	      { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
-	       { "williamboman/mason-lspconfig.nvim", enabled = false },
-	      { "williamboman/mason.nvim", enabled = false },
-              { import = "config.plugins" },
-            }
-          });
-        '';
-
-      };
-    };
   };
 
 }
