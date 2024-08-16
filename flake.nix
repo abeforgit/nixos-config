@@ -8,7 +8,7 @@
       };
     };
     flake-utils.url = "github:numtide/flake-utils";
-    # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     comma.url = "github:nix-community/comma";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -49,8 +49,8 @@
     inputs@{
       self,
       nixpkgs,
-      # nixpkgs-master,
-       nixpkgs-stable,
+      nixpkgs-master,
+      nixpkgs-stable,
       home-manager,
       utils,
       agenix,
@@ -71,14 +71,18 @@
     utils.lib.mkFlake {
 
       inherit self inputs;
-      # channels.master = {
-      #   input = nixpkgs-master;
-      #   config = { allowUnfree = true; };
+      channels.master = {
+        input = nixpkgs-master;
+        config = {
+          allowUnfree = true;
+        };
 
-      # };
+      };
       channels.stable = {
         input = nixpkgs-stable;
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+        };
 
       };
       # channels.small = {
@@ -109,7 +113,10 @@
           rust-overlay.overlays.default
           blender-bin.overlays.default
           (self: super: { inherit (channels.stable) galaxy-buds-client; })
-          # (self: super: { inherit (channels.master) udiskie; })
+          (self: super: {
+            inherit (channels.master) delta;
+            inherit (channels.master) wezterm;
+          })
           # (self: super: {
           # inherit (channels.revert-emacs) emacsPackagesFor;
           # inherit (channels.revert-emacs) emacs29;
