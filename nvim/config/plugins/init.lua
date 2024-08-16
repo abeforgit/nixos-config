@@ -308,7 +308,13 @@ return {
           group = "buffers",
           expand = function()
             return require("which-key.extras").expand.buf()
-          end
+          end,
+          {
+            "<leader>bp", "<cmd>bprevious<CR>", desc = "Previous buffer"
+          },
+          {
+            "<leader>bn", "<cmd>bnext<CR>", desc = "Next buffer"
+          },
         },
         { "<leader>c", group = "code" },
         {

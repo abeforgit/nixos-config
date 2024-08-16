@@ -33,6 +33,22 @@ o.showbreak = '-> '
 o.hidden = true
 
 vim.g.mapleader = " "
+if vim.g.started_by_firenvim == true then
+  vim.g.firenvim_config = {
+    globalSettings = { alt = "all" },
+    localSettings = {
+      [".*"] = {
+        cmdline  = "neovim",
+        content  = "text",
+        priority = 0,
+        selector = "textarea",
+        takeover = "never"
+      }
+    }
+  }
+  vim.api.nvim_set_keymap("n", "<C-z>", "<Cmd>call firenvim#hide_frame()<CR>", {})
+else
+end
 -- let g:firenvim_config = {
 --     \ 'globalSettings': {
 --         \ 'alt': 'all',
