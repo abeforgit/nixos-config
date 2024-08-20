@@ -31,6 +31,7 @@ o.linebreak = true
 o.breakindent = true
 o.showbreak = '-> '
 o.hidden = true
+o.scrolloff = 3
 
 vim.g.mapleader = " "
 if vim.g.started_by_firenvim == true then

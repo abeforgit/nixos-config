@@ -21,7 +21,7 @@ local function keymap(bufnr)
   -- n('gi', 'vim.lsp.buf.implementation()')
   -- n('gt', 'vim.lsp.buf.type_definition()')
   -- n('gr', 'vim.lsp.buf.references()')
-  n('<leader>cf', 'vim.lsp.buf.format({ async = true })')
+  -- n('<leader>cf', 'vim.lsp.buf.format({ async = true })')
 
   n('<leader>u', 'vim.lsp.buf.signature_help()<CR>')
   n('gh', 'vim.lsp.buf.hover()')

@@ -234,6 +234,7 @@ in
     rofi
     rbw
     rofi-rbw
+    git-subrepo
     pinentry-curses
     dig.dnsutils
     dnstop

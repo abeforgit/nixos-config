@@ -22,12 +22,10 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = { "Telescope" },
     keys = {
-      { "<leader><leader>", "<cmd>Telescope find_files<CR>" },
-      { "<leader>ff",       "<cmd>Telescope find_files<CR>" },
-      { "<leader>sp",       "<cmd>Telescope live_grep<CR>" },
-      { "<leader>bb",       "<cmd>Telescope buffers<CR>" },
-      { "<leader>hh",       "<cmd>Telescope help_tags<CR>" },
-      { "<A-x>",            "<cmd>Telescope commands<CR>" },
+      { "<leader>sp", "<cmd>Telescope live_grep<CR>" },
+      { "<leader>bb", "<cmd>Telescope buffers<CR>" },
+      { "<leader>hh", "<cmd>Telescope help_tags<CR>" },
+      { "<A-x>",      "<cmd>Telescope commands<CR>" },
     },
     opts = {
 
@@ -425,6 +423,34 @@ return {
         "~/another_org_dir",
         "~/some/folder/*.org",
         "~/a/single/org_file.org",
+      }
+    }
+  },
+  {
+    "danielfalk/smart-open.nvim",
+    branch = "0.2.x",
+    config = function()
+      require("telescope").load_extension("smart_open")
+    end,
+    commands = { "Telescope" },
+    keys = {
+      { "<leader><leader>", "<cmd>Telescope smart_open<CR>" },
+      { "<leader>ff",       "<cmd>Telescope smart_open<CR>" },
+    },
+    dependencies = {
+      "kkharji/sqlite.lua",
+      -- Only required if using match_algorithm fzf
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      -- Optional.  If installed, native fzy will be used when match_algorithm is fzy
+      { "nvim-telescope/telescope-fzy-native.nvim" },
+    },
+  },
+  {
+    "OlegGulevskyy/better-ts-errors.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {
+      keymaps = {
+        toggle = '<leader>e', -- default '<leader>dd'
       }
     }
   }

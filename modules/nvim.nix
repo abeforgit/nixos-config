@@ -92,15 +92,24 @@ in
         };
         programs.neovim = {
           enable = true;
-          plugins = [ treesitterWithGrammars ];
+          plugins = [
+            treesitterWithGrammars
+            {
+              plugin = pkgs.vimPlugins.sqlite-lua;
+              config = "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
+            }
+          ];
           coc.enable = false;
           withNodeJs = true;
           extraPackages = with pkgs; [
             nodePackages.vscode-langservers-extracted
+            typescript-language-server
             fd
             ripgrep
+            nil
             nixfmt-rfc-style
             gh
+            yaml-language-server
             glow
           ];
           extraConfig = ''

@@ -48,9 +48,9 @@ cmp.setup({
     -- { name = 'luasnip' }, -- For luasnip users.
     -- { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
-  }, {
     { name = 'buffer' },
-  })
+  }
+  )
 })
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
