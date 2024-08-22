@@ -126,6 +126,9 @@ in
   };
   # Enable the X11 windowing system.
 
+  nixpkgs.config = {
+    permittedInsecurePackages = [ "electron-27.3.11" ];
+};
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   # nixpkgs.config = {

@@ -15,7 +15,6 @@ in {
       owner = config.custom.user;
     };
 
-    sound.enable = false;
 
     security.rtkit.enable = true;
     services.pipewire = {
