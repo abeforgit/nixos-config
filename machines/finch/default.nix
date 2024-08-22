@@ -145,6 +145,12 @@ in
     brightness_udev
     oryx_udev
   ];
+  services.thermald.enable = true;
+  services.thinkfan = {
+    enable = true;
+
+  };
+
   services.gvfs.enable = true;
   environment.variables = {
     GDK_SCALE = "2";
