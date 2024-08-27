@@ -247,8 +247,8 @@ in
     ## hypr
     tofi
     dunst
-    xdg-desktop-portal-hyprland
-    xdg-desktop-portal-gtk
+    # xdg-desktop-portal-hyprland
+    # xdg-desktop-portal-gtk
     libsForQt5.polkit-kde-agent
     libsForQt5.qt5.qtwayland
     qt6.qtwayland
@@ -258,8 +258,8 @@ in
     waybar
     udiskie
     hyprpaper
-    hypridle
-    hyprlock
+    # hypridle
+    # hyprlock
     nix-output-monitor
 
     #from kde TODO
@@ -406,7 +406,12 @@ in
     powerOnBoot = true;
     package = pkgs.bluez;
   };
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    portalPackage = pkgs.xdg-desktop-portal-wlr;
+    enable = true;
+  };
+  programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
   programs.dconf.enable = true;
   programs.nix-ld.enable = true;
 
