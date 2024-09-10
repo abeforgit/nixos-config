@@ -231,6 +231,9 @@ in
     anki-bin
     usbutils
     bitwarden
+    activitywatch
+    aw-server-rust
+    awatcher
     rofi
     rbw
     rofi-rbw
@@ -244,6 +247,7 @@ in
     lazydocker
     galaxy-buds-client
     spotify
+    krita
     ## hypr
     tofi
     dunst

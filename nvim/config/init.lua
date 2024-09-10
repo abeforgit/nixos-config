@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.opt.termguicolors = true
 vim.opt.guicursor = ""
+vim.g.title = true
 
 require("config.options")
 require("lazy").setup("config.plugins", {

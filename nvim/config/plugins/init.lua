@@ -58,36 +58,77 @@ return {
   --     vim.keymap.set("n", "<leader>pp", "<cmd>CdProject<CR>", {})
   --   end,
   -- },
-  {
-    'natecraddock/workspaces.nvim',
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    cmd = {
-      "WorkspacesAdd",
-      "WorkspacesAddDir",
-      "WorkspacesRemove",
-      "WorkspacesRemoveDir",
-      "WorkspacesRename",
-      "WorkspacesList",
-      "WorkspacesListDirs",
-      "WorkspacesOpen",
-      "WorkspacesSyncDirs",
-    },
-    keys = {
+  -- {
+  --   'natecraddock/workspaces.nvim',
+  --   dependencies = { "nvim-telescope/telescope.nvim" },
+  --   cmd = {
+  --     "WorkspacesAdd",
+  --     "WorkspacesAddDir",
+  --     "WorkspacesRemove",
+  --     "WorkspacesRemoveDir",
+  --     "WorkspacesRename",
+  --     "WorkspacesList",
+  --     "WorkspacesListDirs",
+  --     "WorkspacesOpen",
+  --     "WorkspacesSyncDirs",
+  --   },
+  --   keys = {
+  --
+  --     { "<leader>pp", "<cmd>Telescope workspaces<CR>" },
+  --     { "<leader>pa", "<cmd>WorkspacesAdd<CR>" },
+  --     { "<leader>pd", "<cmd>WorkspacesRemove<CR>" },
+  --   },
+  --   config = function(_)
+  --     require("workspaces").setup({
+  --       cd_type = "local",
+  --       auto_open = true,
+  --       auto_dir = true,
+  --     })
+  --     require("telescope").load_extension("workspaces")
+  --     vim.api.nvim_create_user_command(
+  --       'SwitchWorkspace',
+  --       function(opts)
+  --         local buf = vim.api.nvim_get_current_buf()
+  --
+  --         cmd_id = vim.api.nvim_create_autocmd(
+  --           'DirChanged',
+  --           {
+  --             callback = function(args)
+  --               if buf == vim.api.nvim_get_current_buf() then
+  --                 require('telescope.builtin').find_files({ cwd = args.file })
+  --                 vim.api.nvim_del_autocmd(cmd_id)
+  --               end
+  --
+  --               vim.api.nvim_set_current_dir(args.file)
+  --             end
+  --           }
+  --         )
+  --
+  --         require('telescope').extensions.workspaces.workspaces()
+  --       end,
+  --       { nargs = 0 }
+  --     )
+  --   end
+  -- },
 
-      { "<leader>pp", "<cmd>Telescope workspaces<CR>" },
-      { "<leader>pa", "<cmd>WorkspacesAdd<CR>" },
-      { "<leader>pd", "<cmd>WorkspacesRemove<CR>" },
+  {
+    "ahmedkhalf/project.nvim",
+    dependencies = {
+      {
+        'nvim-telescope/telescope.nvim',
+      } },
+
+    keys = {
+      -- Will use Telescope if installed or a vim.ui.select picker otherwise
+      { '<leader>pp', '<cmd>Telescope projects<CR>', desc = 'Open project' },
     },
-    config = function(_)
-      require("workspaces").setup({
-        hooks = {
-          open = { "Telescope find_files" },
-        },
-        cd_type = "local",
-        auto_open = true,
+    lazy = false,
+    config = function()
+      require("project_nvim").setup({
+        scope_chdir = 'win'
       })
-      require("telescope").load_extension("workspaces")
-    end
+      require('telescope').load_extension('projects')
+    end,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -122,7 +163,7 @@ return {
 
         "<leader>cf",
         function()
-          require("conform").format({ async = true })
+          require("conform").format({ async = true, lsp_fallback = true })
         end,
         mode = "",
         desc = "Format buffer",
@@ -140,11 +181,11 @@ return {
         typescript = { "prettier", stop_after_first = true },
         ["typescript.glimmer"] = { "prettier", stop_after_first = true },
       },
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-      },
-      notify_on_error = false,
+      -- format_on_save = {
+      --   timeout_ms = 500,
+      --   lsp_fallback = true,
+      -- },
+      notify_on_error = true,
       formatters = {
         -- We don't want to enable prettierd
         -- because it requires global installation, and then
@@ -171,13 +212,21 @@ return {
         opts = {
 
           hint = "floating-big-letter",
+          filesystem = {
+            filtered_items = {
+              visible = true,
+            },
+            follow_current_file = {
+              enabled = true,
+            }
+          }
         },
       },
     },
     opts = {},
     cmd = { "Neotree" },
     keys = {
-      { "<leader>op", "<cmd>Neotree toggle<CR>", desc = "NeoTree" },
+      { "<leader>op", "<cmd>Neotree toggle dir=./<CR>", desc = "NeoTree" },
     },
   },
   {
@@ -230,7 +279,7 @@ return {
     },
     cmd = { "Neogit" },
     keys = {
-      { "<leader>gg", "<cmd>Neogit kind=replace<CR>" }
+      { "<leader>gg", "<cmd>Neogit kind=replace cwd=%:p:h<CR>" }
     },
     opts = {}
   },
@@ -486,5 +535,189 @@ return {
       }
     },
     lazy = true
+  },
+  {
+    "rgroli/other.nvim",
+    config = function()
+      require("other-nvim").setup({
+
+        rememberBuffers = false,
+        mappings = {
+          -- builtin mappings
+          "livewire",
+          "angular",
+          "laravel",
+          "rails",
+          "golang",
+          "python",
+          "rust",
+          -- custom mapping
+          {
+            pattern = "/components/(.*)%.js$",
+            target = "/components/%1.hbs",
+            context = "component",
+          },
+          {
+            pattern = "/components/(.*)%.ts$",
+            target = "/components/%1.hbs",
+            context = "component",
+          },
+          {
+            pattern = "/components/(.*)%.hbs$",
+            target = {
+              {
+                target = "/components/%1\\(*.js\\|*.ts\\)",
+                context = "component",
+
+              },
+
+            }
+          },
+
+          {
+            pattern = "/controllers/(.*)%.js$",
+            target = {
+              {
+                target = "/templates/%1.hbs",
+                context = "template",
+              },
+              {
+                target = "/routes/%1\\(*.js\\|*.ts\\)",
+                context = "route",
+              }
+            },
+          },
+          {
+            pattern = "/controllers/(.*)%.ts$",
+            target = {
+              {
+                target = "/templates/%1.hbs",
+                context = "template",
+              },
+              {
+                target = "/routes/%1\\(*.js\\|*.ts\\)",
+                context = "route",
+              }
+            },
+          },
+          {
+            pattern = "/routes/(.*)%.js$",
+            target = {
+              {
+                target = "/templates/%1.hbs",
+                context = "template",
+              },
+              {
+                target = "/controllers/%1\\(*.js\\|*.ts\\)",
+                context = "controller",
+              }
+            },
+          },
+          {
+            pattern = "/routes/(.*)%.ts$",
+            target = {
+              {
+                target = "/templates/%1.hbs",
+                context = "template",
+              },
+              {
+                target = "/controllers/%1\\(*.js\\|*.ts\\)",
+                context = "controller",
+              }
+            },
+          },
+          {
+            pattern = "/templates/(.*)%.hbs$",
+            target = {
+              {
+                target = "/routes/%1\\(*.js\\|*.ts\\)",
+                context = "route",
+              },
+              {
+                target = "/controllers/%1\\(*.js\\|*.ts\\)",
+                context = "controller",
+              }
+            },
+          },
+        },
+        transformers = {
+          -- defining a custom transformer
+          lowercase = function(inputString)
+            return inputString:lower()
+          end
+        },
+        style = {
+          -- How the plugin paints its window borders
+          -- Allowed values are none, single, double, rounded, solid and shadow
+          border = "solid",
+
+          -- Column seperator for the window
+          seperator = "|",
+
+          -- width of the window in percent. e.g. 0.5 is 50%, 1.0 is 100%
+          width = 0.7,
+
+          -- min height in rows.
+          -- when more columns are needed this value is extended automatically
+          minHeight = 2
+        },
+      })
+    end,
+    commands = { "Other", "OtherTabNew", "OtherSplit", "OtherVSplit", "OtherClear" },
+
+    keys = {
+      {
+        "<leader>oo",
+        "<cmd>Other<CR>",
+        desc = "Open related file"
+      },
+
+    }
+
+
+  },
+  {
+    'bloznelis/before.nvim',
+    dependencies = {
+      { 'nvim-telescope/telescope.nvim', }
+    },
+    keys = {
+      {
+        "<C-h>",
+        desc = "Jump to last edit"
+      },
+
+      {
+        "<C-l>",
+        desc = "Jump to next edit"
+      },
+      {
+        "<leader>oe",
+        desc = "Jump to next edit"
+      },
+    },
+    config = function()
+      local before = require('before')
+      before.setup({ history_size = 100 })
+
+      -- Jump to previous entry in the edit history
+      vim.keymap.set('n', '<C-h>', before.jump_to_last_edit, {})
+
+      -- Jump to next entry in the edit history
+      vim.keymap.set('n', '<C-l>', before.jump_to_next_edit, {})
+
+      -- Look for previous edits in telescope (needs telescope, obviously)
+      vim.keymap.set('n', '<leader>oe', before.show_edits_in_telescope, {})
+    end
+  },
+  {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   }
+
 }

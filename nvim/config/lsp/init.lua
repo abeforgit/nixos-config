@@ -16,7 +16,7 @@ local servers = {
   "yamlls",
   -- "cssls",
   "lua_ls",
-  "tsserver",
+  "ts_ls",
   "nil_ls",
   -- "bashls",
   -- "marksman", -- https://github.com/artempyanykh/marksman
@@ -100,7 +100,7 @@ for _, serverName in ipairs(servers) do
   local server = lsp[serverName]
 
   if (server) then
-    if (serverName == 'tsserver') then
+    if (serverName == 'ts_ls') then
       server.setup({
         single_file_support = false,
         root_dir = utils.is_ts_project,
