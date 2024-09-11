@@ -180,6 +180,7 @@ in
   };
   boot.kernelParams = [ "i915.enable_dcpcd_backlight=1" ];
   hardware.nvidia = {
+    open = false;
     nvidiaSettings = true;
     modesetting.enable = true;
     prime = {
