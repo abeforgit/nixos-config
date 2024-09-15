@@ -129,20 +129,26 @@ in
   nixpkgs.config = {
     permittedInsecurePackages = [ "electron-27.3.11" ];
 };
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-  # nixpkgs.config = {
-  #   permittedInsecurePackages = [ "electron-21.4.0" "openssl-1.1.1w" ];
-
-  #   allowUnfree = true;
-  #   allowUnfreePredicate = (pkg: true);
-  #   # cudaSupport = true;
-  # };
-  # Enable sound.
-
-  # Enable touchpad support (enabled default in most desktopManager).
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  fonts = {
+    enableDefaultPackages = true;
+    fontconfig = {
+      enable = true;
+    };
+    packages = with pkgs; [
+      fira-go
+      monaspace
+      hack-font
+      (nerdfonts.override {
+        fonts = [
+          "FiraCode"
+          "DroidSansMono"
+          "Hasklig"
+          "NerdFontsSymbolsOnly"
+          "Hack"
+        ];
+      })
+    ];
+  };
 
   services.udev.packages = [
     brightness_udev
@@ -209,6 +215,13 @@ in
       '';
     };
 
+  programs.hyprland = {
+    portalPackage = pkgs.xdg-desktop-portal-wlr;
+    enable = true;
+  };
+  programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
+
   custom.user = username;
   custom.graphical.enable = true;
   custom.kde.enable = true;
@@ -234,32 +247,35 @@ in
     btop
     cachix
     # cudatoolkit
-    blender_3_3
-    libinput
     filezilla
     idasen
     # calibre
-    evince
     # godot-mono
     woodpecker-cli
     lorien
     nvd
     signal-desktop
-    plex-media-player
-    tridactyl-native
     powertop
     anki-bin
-    jira-cli-go
     usbutils
     bitwarden
-    rofi
+    tofi
+    dunst
     rbw
     rofi-rbw
     pinentry-curses
     dig.dnsutils
+    libsForQt5.polkit-kde-agent
+    libsForQt5.qt5.qtwayland
+    qt6.qtwayland
+    qt6ct
     dnstop
     dnstracer
     dnsperf
+    nwg-look
+    waybar
+    udiskie
+    hyprpaper
     pinta
     lazydocker
     galaxy-buds-client
@@ -279,6 +295,8 @@ in
     vokoscreen
     vokoscreen-ng
     simplescreenrecorder
+    copyq
+    nvtop
   ];
   users.users.arne = {
     shell = pkgs.zsh;
