@@ -296,7 +296,7 @@ in
     vokoscreen-ng
     simplescreenrecorder
     copyq
-    nvtop
+    nvtopPackages.full
   ];
   users.users.arne = {
     shell = pkgs.zsh;

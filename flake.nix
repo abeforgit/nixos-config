@@ -45,6 +45,10 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
+    wezterm = {
+      url = "github:wez/wezterm/main?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
   };
 
@@ -65,6 +69,7 @@
       comma,
       watershot,
       hyprland,
+      wezterm,
     # wezterm-monkeypatch
     }:
     let
@@ -120,13 +125,13 @@
           (self: super: { inherit (channels.stable) galaxy-buds-client; })
           (self: super: {
             inherit (channels.master) delta;
-            inherit (channels.master) wezterm;
+            # inherit (channels.master) wezterm;
           })
-          # (self: super: {
-          # inherit (channels.revert-emacs) emacsPackagesFor;
-          # inherit (channels.revert-emacs) emacs29;
-          # wezterm = wezterm-monkeypatch.packages.x86_64-linux.wezterm;
-          # })
+          (self: super: {
+            # inherit (channels.revert-emacs) emacsPackagesFor;
+            # inherit (channels.revert-emacs) emacs29;
+            wezterm = inputs.wezterm.packages.${self.system}.default;
+          })
           # (import (builtins.fetchTarball {
 
           #   url =
