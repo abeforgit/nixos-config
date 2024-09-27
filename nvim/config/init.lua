@@ -15,6 +15,11 @@ vim.g.mapleader = " "
 vim.opt.termguicolors = true
 vim.opt.guicursor = ""
 vim.g.title = true
+vim.filetype.add({
+  pattern = {
+    ['.*%.hbs'] = 'glimmer',
+  }
+})
 
 require("config.options")
 require("lazy").setup("config.plugins", {
