@@ -283,14 +283,6 @@ in
   users.users.arne = {
     shell = pkgs.zsh;
   };
-  services.samba-wsdd = {
-    enable = true;
-    openFirewall = true;
-  };
-  services.samba = {
-    enable = true;
-    openFirewall = true;
-  };
   hardware.logitech.wireless = {
     enable = true;
     enableGraphical = true;

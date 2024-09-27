@@ -271,7 +271,6 @@ in
     vlc
     smbmap
     smbscan
-    samba
     libsForQt5.kdenetwork-filesharing
     packagekit
 
@@ -333,24 +332,6 @@ in
     owner = "root";
     group = "root";
     source = "${pkgs.nfs-utils.out}/bin/mount.nfs";
-  };
-  services.samba-wsdd = {
-    # make shares visible for Windows clients
-    enable = true;
-  };
-  services.samba = {
-    enable = true;
-    extraConfig = ''
-      workgroup = WORKGROUP
-      server string = sparrow
-      netbios name = sparrow
-      usershare path = /var/lib/samba/usershares
-      usershare max shares = 100
-      usershare allow guests = yes
-      usershare owner only = yes
-      guest account = arne
-      map to guest = Bad Password
-    '';
   };
   users.users.arne = {
     shell = pkgs.zsh;
