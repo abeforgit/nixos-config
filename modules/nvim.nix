@@ -41,7 +41,7 @@ let
       p.gomod
       p.gowork
       p.hcl
-      # p.javascript
+      p.javascript
       p.jq
       p.json5
       p.json
@@ -52,8 +52,10 @@ let
       p.python
       p.rust
       p.toml
-      # p.typescript
-      # p.glimmer
+      p.typescript
+      p.glimmer
+      p.glimmer-javascript
+      p.glimmer-typescript
       p.query
       p.vimdoc
       p.vue
