@@ -6,7 +6,8 @@ return {
     require('nvim-treesitter.configs').setup {
       ensure_installed = {
         "javascript", "typescript",
-        "glimmer"
+        "glimmer", "glimmer_javascript", "glimmer_typescript", "python"
+
       },
       highlight = {
         enable = true,
