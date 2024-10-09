@@ -392,7 +392,7 @@ in
     package = pkgs.bluez;
   };
   programs.hyprland = {
-    # portalPackage = pkgs.xdg-desktop-portal-wlr;
+    portalPackage = pkgs.xdg-desktop-portal-wlr;
     enable = true;
   };
   programs.hyprlock.enable = true;
