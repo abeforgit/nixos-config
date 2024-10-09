@@ -42,6 +42,9 @@
     watershot = {
       url = "github:Kirottu/watershot";
     };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
     # wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
   };
 
@@ -61,6 +64,7 @@
       blender-bin,
       comma,
       watershot,
+      hyprland,
     # wezterm-monkeypatch
     }:
     let
@@ -108,6 +112,7 @@
           allowUnfreePredicate = (pkg: true);
         };
         overlaysBuilder = channels: [
+          hyprland.overlays.default
           devshell.overlays.default
           emacs-overlay.overlay
           rust-overlay.overlays.default
