@@ -222,7 +222,6 @@ in
     filezilla
     idasen
     # calibre
-    anytype
     evince
     lorien
     nvd
@@ -264,15 +263,10 @@ in
     hyprpaper
     # hypridle
     # hyprlock
-    nix-output-monitor
 
     #from kde TODO
     fira-code
     vlc
-    smbmap
-    smbscan
-    libsForQt5.kdenetwork-filesharing
-    packagekit
 
     ffmpeg_6
   ];
@@ -311,8 +305,6 @@ in
     libsForQt5.kdenetwork-filesharing
     nfs-utils
     cifs-utils
-    smbmap
-    smbscan
     dconf-editor
     glib
     libinput
@@ -322,7 +314,6 @@ in
     lxappearance
 
     xournalpp
-    rnote
   ];
   programs.steam = {
     enable = true;
