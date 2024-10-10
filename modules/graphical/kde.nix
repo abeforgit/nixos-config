@@ -16,10 +16,13 @@ in {
     services.xserver = {
       enable = true;
       desktopManager = {
-        plasma5 = {
-          enable = true;
-          runUsingSystemd = false;
-        };
+        # plasma5 = {
+        #   enable = true;
+        #   runUsingSystemd = false;
+        # };
+	plasma6 = {
+	  enable = true;
+	};
       };
     };
     services.dbus = { enable = true; };
