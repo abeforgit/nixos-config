@@ -215,32 +215,21 @@ in
       '';
     };
 
-  programs.hyprland = {
-    portalPackage = pkgs.xdg-desktop-portal-wlr;
-    enable = true;
-  };
-  programs.hyprlock.enable = true;
-  services.hypridle.enable = true;
 
   custom.user = username;
   custom.graphical.enable = true;
   custom.kde.enable = true;
-  custom.steam.enable = false;
   custom.emacs.enable = true;
   custom.emacs.package = pkgs.emacs29;
   custom.zsh.enable = true;
-  custom.nushell.enable = true;
   custom.vscode.enable = true;
   custom.keychain.enable = true;
   custom.keyring.enable = false;
   custom.audio.enable = true;
   custom.nvim.enable = true;
   custom.git.enable = true;
-  custom.intellij.enable = false;
-  custom.webstorm.enable = true;
   custom.rustup.enable = false;
   custom.hostname = "finch";
-  custom.rider.enable = false;
   custom.extraHomePackages = with pkgs; [
     thunderbird
     discord
@@ -251,7 +240,6 @@ in
     idasen
     # calibre
     # godot-mono
-    woodpecker-cli
     lorien
     nvd
     signal-desktop
@@ -273,9 +261,7 @@ in
     dnstracer
     dnsperf
     nwg-look
-    waybar
     udiskie
-    hyprpaper
     pinta
     lazydocker
     galaxy-buds-client

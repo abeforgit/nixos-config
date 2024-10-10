@@ -169,7 +169,6 @@ in {
           xfce.thunar-volman
           xfce.thunar-archive-plugin
           xfce.thunar-media-tags-plugin
-          arandr
         ] ++ cfg.extraHomePackages;
 
       home.sessionPath = [ "$HOME/.local/bin" ];
