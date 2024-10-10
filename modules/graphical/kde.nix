@@ -19,13 +19,11 @@ in
   config = mkIf cfg.enable {
     services.displayManager = {
       sddm.enable = true;
+      sddm.wayland.enable = true;
     };
-    services.xserver = {
-      enable = true;
-      desktopManager = {
-        plasma6 = {
-          enable = true;
-        };
+    services.desktopManager = {
+      plasma6 = {
+        enable = true;
       };
     };
     services.dbus = {
