@@ -28,7 +28,7 @@ return {
           pattern = "/components/(.*)%.hbs$",
           target = {
             {
-              target = "/components/%1\\(*.js\\|*.ts\\)",
+              target = "/components/%1\\(.js\\|.ts\\)",
               context = "component",
 
             },
@@ -44,7 +44,7 @@ return {
               context = "template",
             },
             {
-              target = "/routes/%1\\(*.js\\|*.ts\\)",
+              target = "/routes/%1\\(.js\\|.ts\\)",
               context = "route",
             }
           },
@@ -57,7 +57,7 @@ return {
               context = "template",
             },
             {
-              target = "/routes/%1\\(*.js\\|*.ts\\)",
+              target = "/routes/%1\\(.js\\|.ts\\)",
               context = "route",
             }
           },
@@ -70,7 +70,7 @@ return {
               context = "template",
             },
             {
-              target = "/controllers/%1\\(*.js\\|*.ts\\)",
+              target = "/controllers/%1\\(.js\\|.ts\\)",
               context = "controller",
             }
           },
@@ -83,7 +83,7 @@ return {
               context = "template",
             },
             {
-              target = "/controllers/%1\\(*.js\\|*.ts\\)",
+              target = "/controllers/%1\\(.js\\|.ts\\)",
               context = "controller",
             }
           },
@@ -92,11 +92,11 @@ return {
           pattern = "/templates/(.*)%.hbs$",
           target = {
             {
-              target = "/routes/%1\\(*.js\\|*.ts\\)",
+              target = "/routes/%1\\(.js\\|.ts\\)",
               context = "route",
             },
             {
-              target = "/controllers/%1\\(*.js\\|*.ts\\)",
+              target = "/controllers/%1\\(.js\\|.ts\\)",
               context = "controller",
             }
           },
