@@ -35,7 +35,7 @@ in {
       home.packages = with pkgs; [
         pavucontrol
         spotify
-        alsaUtils
+        alsa-utils
         alsa-tools
         qjackctl
         easyeffects

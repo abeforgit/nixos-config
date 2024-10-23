@@ -299,7 +299,7 @@ in
     adwaita-icon-theme
 
     pavucontrol
-    alsaUtils
+    alsa-utils
     alsa-tools
     qjackctl
     libsForQt5.kdenetwork-filesharing

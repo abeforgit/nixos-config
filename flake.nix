@@ -38,6 +38,7 @@
     };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     watershot = {
       url = "github:Kirottu/watershot";
@@ -47,7 +48,7 @@
     };
     wezterm = {
       url = "github:wez/wezterm/main?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     # wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
   };
@@ -125,6 +126,7 @@
           (self: super: { inherit (channels.stable) galaxy-buds-client; })
           (self: super: {
             inherit (channels.master) delta;
+	    utillinux = super.util-linux;
             # inherit (channels.master) wezterm;
           })
           (self: super: {
