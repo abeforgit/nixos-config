@@ -26,7 +26,9 @@ return {
       ["typescript.glimmer"] = { "prettier", stop_after_first = true },
       ["handlebars"] = { "prettier", stop_after_first = true },
       ["glimmer"] = { "prettier", stop_after_first = true },
-      html = { "prettier" }
+      html = { "prettier" },
+      json = { "prettier" },
+      jsonc = { "prettier" }
     },
     -- format_on_save = {
     --   timeout_ms = 500,
