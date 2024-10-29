@@ -13,7 +13,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.opt.termguicolors = true
-vim.opt.guicursor = ""
+-- vim.opt.guicursor = ""
+vim.opt.guicursor = "n-v-c-sm:block,ci-ve:ver25,r-cr-o:hor20,i:blinkwait700-blinkoff400-blinkon250-ver40"
 vim.g.title = true
 vim.filetype.add({
   pattern = {

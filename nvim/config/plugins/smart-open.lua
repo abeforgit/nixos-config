@@ -6,8 +6,14 @@ return {
   end,
   commands = { "Telescope" },
   keys = {
-    { "<leader><leader>", "<cmd>Telescope smart_open<CR>" },
-    { "<leader>ff",       "<cmd>Telescope smart_open<CR>" },
+    { "<leader><leader>",
+
+      function()
+        require("telescope").extensions.smart_open.smart_open(
+          { cwd_only = true, filename_first = false })
+      end,
+    },
+
   },
   dependencies = {
     "kkharji/sqlite.lua",

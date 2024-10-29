@@ -13,6 +13,9 @@ in {
     custom.tmux.enable = true;
     home-manager.users.${config.custom.user} = { pkgs, home, ... }: {
       home.packages = with pkgs; [ carapace tldr ];
+      home.sessionVariables = {
+
+      };
 
       programs.starship = {
         enable = true;
@@ -98,11 +101,13 @@ in {
           gc = "git checkout";
           ghprc = "gh pr ls | fzf | cut -f 1 | xargs gh pr checkout";
           extip = "curl ifconfig.co";
-          icat = "kitty +kitten icat";
+          icat = "wezterm imgcat";
           rebuild = "nixos-rebuild --flake ~/repos/nixos-config#${config.custom.hostname} switch --use-remote-sudo";
           checkbuild = "nixos-rebuild --flake ~/repos/nixos-config#${config.custom.hostname} build && nvd diff /run/current-system ~/repos/nixos-config/result";
           srcrc = "source ~/.zshrc";
           pose = "docker compose";
+	  wsh = "wezterm ssh";
+	  vim = "nvim";
         };
       };
     };

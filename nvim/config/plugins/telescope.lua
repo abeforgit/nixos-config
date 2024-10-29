@@ -8,13 +8,19 @@ return {
     { "<leader>hh", "<cmd>Telescope help_tags<CR>" },
     { "<A-x>",      "<cmd>Telescope commands<CR>" },
   },
-  opts = {
-
-    extensions = {
-      workspaces = {
-        -- keep insert mode after selection in the picker, default is false
-        keep_insert = true,
-      }
+  config = function()
+    require('telescope').setup {
+      pickers = {
+      },
+      extensions = {
+        workspaces = {
+          -- keep insert mode after selection in the picker, default is false
+          keep_insert = true,
+        },
+        smart_open = {
+          match_algorithm = "fzf",
+        },
+      },
     }
-  },
+  end
 }

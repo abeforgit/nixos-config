@@ -214,6 +214,9 @@ in
   custom.hostname = "sparrow";
   custom.keychain.enable = true;
   custom.extraHomePackages = with pkgs; [
+    taskwarrior3
+    taskwarrior-tui
+    zk
     thunderbird
     discord
     btop
@@ -403,6 +406,7 @@ in
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     NIXOS_OZONE_WL = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
+    ZK_NOTEBOOK_DIR = "$HOME/notes";
   };
 
   services.displayManager = {
