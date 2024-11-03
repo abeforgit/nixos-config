@@ -1,8 +1,13 @@
 { pkgs, inputs }:
 let
+  oldpkgs = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/7a339d87931bba829f68e94621536cad9132971a.tar.gz";
+  }) { };
+
+  node_package = oldpkgs.nodejs_20;
   pnpm = pkgs.pnpm;
   yalc = pkgs.nodePackages.yalc;
-  node_package = pkgs.nodejs_20;
+  # node_package = pkgs.nodejs_20;
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";
   name = "gn-meta";
