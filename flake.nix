@@ -118,7 +118,7 @@
           allowUnfreePredicate = (pkg: true);
         };
         overlaysBuilder = channels: [
-          hyprland.overlays.default
+          # hyprland.overlays.default
           devshell.overlays.default
           emacs-overlay.overlay
           rust-overlay.overlays.default
@@ -126,6 +126,7 @@
           (self: super: { inherit (channels.stable) galaxy-buds-client; })
           (self: super: {
             inherit (channels.master) delta;
+            inherit (channels.master) neatvnc;
 	    utillinux = super.util-linux;
             # inherit (channels.master) wezterm;
           })

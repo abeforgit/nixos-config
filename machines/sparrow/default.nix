@@ -276,7 +276,6 @@ in
 
   custom.extraSystemPackages = with pkgs; [
     sqlite
-    tailspin
     udiskie
     ntfs3g
     monaspace
