@@ -19,6 +19,9 @@ return {
         {
           "<leader>bn", "<cmd>bnext<CR>", desc = "Next buffer"
         },
+        {
+          "<leader>bd", function() require('mini.bufremove').unshow_in_window() end, desc = "Next buffer"
+        },
       },
       { "<leader>c", group = "code" },
       {
@@ -42,8 +45,8 @@ return {
 
         -- Most attributes can be inherited or overridden on any level
         -- There's no limit to the depth of nesting
-        mode = { "n", "v" },                              -- NORMAL and VISUAL mode
-        { "<leader>qq", "<cmd>qa<cr>", desc = "Quit" },   -- no need to specify mode since it's inherited
+        mode = { "n", "v" },                            -- NORMAL and VISUAL mode
+        { "<leader>qq", "<cmd>qa<cr>", desc = "Quit" }, -- no need to specify mode since it's inherited
       }
     }
   },

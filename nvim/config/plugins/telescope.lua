@@ -12,6 +12,11 @@ return {
     require('telescope').setup {
       pickers = {
       },
+      defaults = {
+        path_display = { "filename_first" },
+        -- another decent option
+        -- path_display = { truncate = 3 },
+      },
       extensions = {
         workspaces = {
           -- keep insert mode after selection in the picker, default is false
@@ -20,6 +25,9 @@ return {
         smart_open = {
           match_algorithm = "fzf",
         },
+        frecency = {
+          show_filter_column = false,
+        }
       },
     }
   end

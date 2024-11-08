@@ -29,9 +29,10 @@ o.title = true
 o.titlestring = '%f%( [%M]%) - NVIM'
 o.linebreak = true
 o.breakindent = true
-o.showbreak = '-> '
+o.showbreak = '↪ '
 o.hidden = true
 o.scrolloff = 3
+o.cmdheight = 0
 
 vim.g.mapleader = " "
 if vim.g.started_by_firenvim == true then

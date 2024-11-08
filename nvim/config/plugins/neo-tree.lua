@@ -718,17 +718,18 @@ return {
           enabled = true,
         },
 
-        bind_to_cwd = true,  -- true creates a 2-way binding between vim's cwd and neo-tree's root
+        bind_to_cwd = true,   -- true creates a 2-way binding between vim's cwd and neo-tree's root
         cwd_target = {
-          sidebar = "window",   -- sidebar is when position = left or right
-          current = "window" -- current is when position = current
+          sidebar = "window", -- sidebar is when position = left or right
+          current = "window"  -- current is when position = current
         },
       }
     },
   },
   cmd = { "Neotree" },
   keys = {
-    { "<leader>op", "<cmd>Neotree reveal reveal_force_cwd toggle left dir=./<CR>", desc = "NeoTree" },
-    { "<leader>ff", "<cmd>Neotree reveal reveal_force_cwd filesystem float dir=./<CR>", desc = "File browser" },
+    { "<leader>op", "<cmd>Neotree reveal reveal_force_cwd toggle left dir=./<CR>", desc = "Toggle neoTree" },
+    { "<leader>0",  "<cmd>Neotree focus<CR>",        desc = "Focus neotree" }
+    -- { "<leader>ff", "<cmd>Neotree reveal reveal_force_cwd filesystem float dir=./<CR>", desc = "File browser" },
   },
 }

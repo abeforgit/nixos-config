@@ -5,6 +5,7 @@ local utils = require('config.lsp.utils')
 require('config.lsp.config')
 require('config.lsp.completion')
 
+function setup(opts)
 local servers = {
   --------------
   -- Languages
@@ -87,8 +88,9 @@ local mySettings = {
 
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp')
-    .default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- local capabilities = require('cmp_nvim_lsp')
+--     .default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 local conditional_features = function(client, bufnr)
   -- if client.server_capabilities.inlayHintProvider then
@@ -96,56 +98,59 @@ local conditional_features = function(client, bufnr)
   -- end
 end
 
-for _, serverName in ipairs(servers) do
-  local server = lsp[serverName]
-
-  if (server) then
-    if (serverName == 'ts_ls') then
-      server.setup({
-        single_file_support = false,
-        root_dir = utils.is_ts_project,
-        capabilities = capabilities,
-        settings = mySettings[serverName],
-        on_attach = function(client, bufnr)
-          keymap(bufnr)
-          conditional_features(client, bufnr)
-        end
-      })
-    elseif (serverName == 'glint') then
-      server.setup({
-        root_dir = utils.is_glint_project,
-        capabilities = capabilities,
-        settings = mySettings[serverName],
-        on_attach = function(client, bufnr)
-          keymap(bufnr)
-          conditional_features(client, bufnr)
-        end
-      })
-    elseif (serverName == 'eslint') then
-      server.setup({
-        filetypes = {
-          "javascript", "typescript",
-          "typescript.glimmer", "javascript.glimmer",
-          "json",
-          "markdown"
-        },
-        on_attach = function(client, bufnr)
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
-          })
-          conditional_features(client, bufnr)
-        end,
-      })
-    else
-      server.setup({
-        capabilities = capabilities,
-        settings = mySettings[serverName],
-        on_attach = function(client, bufnr)
-          keymap(bufnr)
-          conditional_features(client, bufnr)
-        end
-      })
-    end
-  end
+local blink = require('blink.cmp')
+-- for _, serverName in ipairs(servers) do
+--   local server = lsp[serverName]
+--
+--   if (server) then
+--     if (serverName == 'ts_ls') then
+--       server.setup({
+--         single_file_support = false,
+--         root_dir = utils.is_ts_project,
+--         settings = mySettings[serverName],
+--         on_attach = function(client, bufnr)
+--           keymap(bufnr)
+--           conditional_features(client, bufnr)
+--         end
+--       })
+--     elseif (serverName == 'glint') then
+--       server.setup({
+--         root_dir = utils.is_glint_project,
+--         settings = mySettings[serverName],
+--         on_attach = function(client, bufnr)
+--           keymap(bufnr)
+--           conditional_features(client, bufnr)
+--         end
+--       })
+--     elseif (serverName == 'eslint') then
+--       server.setup({
+--         filetypes = {
+--           "javascript", "typescript",
+--           "typescript.glimmer", "javascript.glimmer",
+--           "json",
+--           "markdown"
+--         },
+--         on_attach = function(client, bufnr)
+--           vim.api.nvim_create_autocmd("BufWritePre", {
+--             buffer = bufnr,
+--             command = "EslintFixAll",
+--           })
+--           conditional_features(client, bufnr)
+--         end,
+--       })
+--     else
+--       server.setup({
+--         settings = mySettings[serverName],
+--         on_attach = function(client, bufnr)
+--           keymap(bufnr)
+--           conditional_features(client, bufnr)
+--         end
+--       })
+--     end
+--   end
+-- end
+for server, config in pairs(opts.servers or {}) do
+  config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+  lspconfig[server].setup(config)
+end
 end
