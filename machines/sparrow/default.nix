@@ -264,6 +264,7 @@ in
     waybar
     udiskie
     hyprpaper
+    fre
     # hypridle
     # hyprlock
 
