@@ -1,12 +1,13 @@
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
+  enabled = false,
   cmd = { "Telescope" },
   keys = {
     { "<leader>sp", "<cmd>Telescope live_grep<CR>" },
-    { "<leader>bb", "<cmd>Telescope buffers<CR>" },
-    { "<leader>hh", "<cmd>Telescope help_tags<CR>" },
-    { "<A-x>",      "<cmd>Telescope commands<CR>" },
+    -- { "<leader>bb", "<cmd>Telescope buffers<CR>" },
+    -- { "<leader>hh", "<cmd>Telescope help_tags<CR>" },
+    -- { "<A-x>",      "<cmd>Telescope commands<CR>" },
   },
   config = function()
     require('telescope').setup {

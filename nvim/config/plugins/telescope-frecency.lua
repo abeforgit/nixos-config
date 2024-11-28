@@ -4,7 +4,7 @@ return {
     require("telescope").load_extension "frecency"
   end,
   keys = {
-    { "<leader><leader>", "<cmd>Telescope frecency workspace=CWD<CR>" },
+    -- { "<leader><leader>", "<cmd>Telescope frecency workspace=CWD<CR>" },
     { "<leader>ff",       "<cmd>Telescope frecency workspace=CWD<CR>" }
   }
 

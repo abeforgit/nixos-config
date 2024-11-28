@@ -1,10 +1,11 @@
 return {
   "zk-org/zk-nvim",
-  config = function()
-    require("zk").setup({
-      picker = "telescope"
-    })
-  end,
+  dependencies = { "ibhagwan/fzf-lua" },
+  opts = {
+
+    picker = "fzf_lua",
+  },
+  main = "zk",
   cmd = {
     "ZkNew", "ZkNotes", "ZkTags", "ZkMatch"
   },

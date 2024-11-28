@@ -12,9 +12,9 @@ return {
       highlight = {
         enable = true,
       },
-      indent = {
-        enable = true
-      },
+      -- indent = {
+      --   enable = true
+      -- },
       ignore_install = { 'org' },
     }
     -- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()

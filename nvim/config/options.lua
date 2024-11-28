@@ -21,7 +21,7 @@ o.undolevels = 1000
 o.backspace = 'indent,eol,start'
 o.autoread = true
 opt.clipboard:append { "unnamedplus" }
-o.signcolumn = 'number'
+-- o.signcolumn = 'number'
 o.updatetime = 300
 o.undodir = '/home/arne/.local/share/nvim/_undo'
 o.undofile = true
@@ -33,9 +33,11 @@ o.showbreak = '↪ '
 o.hidden = true
 o.scrolloff = 3
 o.cmdheight = 0
+o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 vim.g.mapleader = " "
 if vim.g.started_by_firenvim == true then
+  vim.g.auto_session_enabled = false
   vim.g.firenvim_config = {
     globalSettings = { alt = "all" },
     localSettings = {

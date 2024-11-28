@@ -1,3 +1,8 @@
+local conditional_features = function(client, bufnr)
+  -- if client.server_capabilities.inlayHintProvider then
+  --     vim.lsp.buf.inlay_hint(bufnr, true)
+  -- end
+end
 local function default_attach(_, bufnr)
   local keymap = require('config.lsp.keymap')
   keymap(bufnr)
@@ -46,14 +51,15 @@ return {
           local utils = require('config.lsp.utils')
           return utils.is_glint_project(filename, bufnr)
         end,
+        cmd = { "./node_modules/@glint/core/bin/glint-language-server.js" }
       },
       eslint = {
         filetypes = { "javascript", "typescript", "typescript.glimmer", "javascript.glimmer", "markdown" },
         on_attach = function(client, bufnr)
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
-          })
+          -- vim.api.nvim_create_autocmd("BufWritePre", {
+          --   buffer = bufnr,
+          --   command = "EslintFixAll",
+          -- })
           default_attach(client, bufnr)
         end,
       },
