@@ -261,9 +261,8 @@ in
     pinta
     lazydocker
     galaxy-buds-client
-    logseq
-    xorg.xev
-    xorg.xkill
+    activitywatch
+    aw-server-rust
   ];
 
   custom.extraSystemPackages = with pkgs; [
@@ -278,6 +277,7 @@ in
     simplescreenrecorder
     copyq
     nvtopPackages.full
+    wl-clipboard
   ];
   users.users.arne = {
     shell = pkgs.zsh;
