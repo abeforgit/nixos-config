@@ -9,6 +9,10 @@ return {
   },
   opts = {
     suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+    auto_create = function()
+      local cmd = 'git rev-parse --show-top-level'
+      return vim.fn.system(cmd) == vim.cmd.pwd()
+    end
   }
 
 }

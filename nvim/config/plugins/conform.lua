@@ -28,7 +28,8 @@ return {
       ["glimmer"] = { "prettier", stop_after_first = true },
       html = { "prettier" },
       json = { "prettier" },
-      jsonc = { "prettier" }
+      jsonc = { "prettier" },
+      sparql = { "sparql_formatter" }
     },
     -- format_on_save = {
     --   timeout_ms = 500,
@@ -36,6 +37,9 @@ return {
     -- },
     notify_on_error = true,
     formatters = {
+      sparql_formatter = {
+        command = function() return os.getenv("NPM_CONFIG_PREFIX") .. "/bin/sparql-formatter" end,
+      },
       -- We don't want to enable prettierd
       -- because it requires global installation, and then
       -- we can't even have projects without prettier

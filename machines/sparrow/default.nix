@@ -185,7 +185,6 @@ in
 
   # sound.enable = true;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
 
   programs.noisetorch.enable = true;
   services.pipewire = {
@@ -286,6 +285,7 @@ in
     vokoscreen-ng
     simplescreenrecorder
     tdrop
+    jq
 
     wl-clipboard
     cliphist
@@ -315,8 +315,10 @@ in
 
     gparted
     lxappearance
+    playerctl
 
     xournalpp
+    ueberzugpp
   ];
   programs.steam = {
     enable = true;
@@ -413,9 +415,25 @@ in
     sddm.enable = true;
     sddm.wayland.enable = true;
   };
+
+  security.rtkit.enable = true;
   home-manager.users.arne =
     { pkgs, home, ... }:
     {
+      programs.ncspot = {
+        enable = true;
+        package = pkgs.ncspot.override { withMPRIS = true; withCover = true; withShareSelection = true; };
+      };
+      xdg = {
+        mimeApps = {
+          enable = true;
+          defaultApplications = {
+            "x-scheme-handler/spotify" = [ "spotify.desktop" ];
+          };
+        };
+
+      };
+      services.mpris-proxy.enable = true;
       programs.zsh.profileExtra = ''
         source ${config.age.secrets.github_auth.path}
         source ${config.age.secrets.jira_pat.path}

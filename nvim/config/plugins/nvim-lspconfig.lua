@@ -76,5 +76,15 @@ return {
       config.autostart = false
       lspconfig[server].setup(config)
     end
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'sparql',
+      callback = function(args)
+        vim.lsp.start({
+          name = 'sparql-language-server',
+          cmd = { "node", os.getenv("NPM_CONFIG_PREFIX") .. "/bin/sparql-language-server", "--stdio" },
+          root_dir = vim.fn.getcwd(),
+        })
+      end
+    })
   end,
 }

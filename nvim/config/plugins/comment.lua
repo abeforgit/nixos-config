@@ -8,5 +8,6 @@ return {
     require('Comment').setup()
     local ft = require('Comment.ft')
     ft.set('glimmer', { '{{!--%s--}}', '{{!--%s--}}' })
+    ft.set('sparql', { '#' })
   end
 }

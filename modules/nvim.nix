@@ -56,6 +56,8 @@ let
       p.glimmer
       p.glimmer-javascript
       p.glimmer-typescript
+      p.sparql
+      p.turtle
       p.query
       p.vimdoc
       p.vue
