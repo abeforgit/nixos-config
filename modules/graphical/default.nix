@@ -34,15 +34,11 @@ in
         fira-go
         monaspace
         hack-font
-        (nerdfonts.override {
-          fonts = [
-            "FiraCode"
-            "DroidSansMono"
-            "Hasklig"
-            "NerdFontsSymbolsOnly"
-            "Hack"
-          ];
-        })
+        nerd-fonts.fira-code
+        nerd-fonts.droid-sans-mono
+        nerd-fonts.hasklug
+        nerd-fonts.symbols-only
+        nerd-fonts.hack
       ];
     };
 
