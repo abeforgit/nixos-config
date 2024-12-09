@@ -162,23 +162,6 @@ in
   };
   networking.firewall.enable = false;
 
-  fonts = {
-    enableDefaultPackages = true;
-    fontconfig = {
-      enable = true;
-    };
-    packages = with pkgs; [
-      fira-go
-      monaspace
-      hack-font
-      nerd-fonts.fira-code
-      nerd-fonts.droid-sans-mono
-      nerd-fonts.hasklug
-      nerd-fonts.symbols-only
-      nerd-fonts.hack
-    ];
-  };
-
   # sound.enable = true;
   hardware.pulseaudio.enable = false;
 

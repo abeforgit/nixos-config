@@ -48,15 +48,6 @@ in
           webstorm
           pandoc
           google-chrome
-          fontconfig
-          dejavu_fonts
-
-          nerd-fonts.fira-code
-          nerd-fonts.droid-sans-mono
-          nerd-fonts.hasklug
-          nerd-fonts.symbols-only
-          nerd-fonts.hack
-          font-manager
         ];
         xdg.desktopEntries = {
           webstorm = {

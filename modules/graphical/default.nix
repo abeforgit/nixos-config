@@ -16,6 +16,7 @@ in
     ./polybar.nix
     ./kde.nix
     ./steam.nix
+    ./fonts.nix
   ];
   options.custom.graphical = {
     enable = mkOption {
@@ -25,22 +26,7 @@ in
   };
   config = mkIf cfg.enable {
     custom.wezterm.enable = true;
-    fonts = {
-      enableDefaultPackages = true;
-      fontconfig = {
-        enable = true;
-      };
-      packages = with pkgs; [
-        fira-go
-        monaspace
-        hack-font
-        nerd-fonts.fira-code
-        nerd-fonts.droid-sans-mono
-        nerd-fonts.hasklug
-        nerd-fonts.symbols-only
-        nerd-fonts.hack
-      ];
-    };
+    custom.fonts.enable = true;
 
     services.displayManager = {
       sddm.enable = true;

@@ -57,12 +57,6 @@ in
           emacs-all-the-icons-fonts
           material-design-icons
           material-icons
-          font-awesome
-          nerd-fonts.fira-code
-          nerd-fonts.droid-sans-mono
-          nerd-fonts.hasklug
-          nerd-fonts.symbols-only
-          nerd-fonts.hack
           weather-icons
           shfmt
           wkhtmltopdf-bin
