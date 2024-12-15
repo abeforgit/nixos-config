@@ -126,7 +126,7 @@
           (self: super: { inherit (channels.stable) galaxy-buds-client; })
           (self: super: {
             inherit (channels.master) delta;
-            inherit (channels.master) neatvnc;
+            # inherit (channels.master) neatvnc;
 	    utillinux = super.util-linux;
             # inherit (channels.master) wezterm;
           })
