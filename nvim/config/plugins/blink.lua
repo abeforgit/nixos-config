@@ -6,24 +6,21 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    completion = {
-      enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev", "ripgrep" }
-    },
-    providers = {
-      lsp = { fallback_for = { "lazydev" } },
-      lazydev = {
-        name = "LazyDev",
-        module = "lazydev.integrations.blink"
-      },
-      ripgrep = {
-        name = "Ripgrep",
-        module = "blink-cmp-rg",
-      }
+    sources = {
+      default = { "lsp", "path", "snippets", "buffer", "lazydev", "ripgrep" },
+      providers = {
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          fallbacks = { "lsp" }
+        },
+        ripgrep = {
+          name = "Ripgrep",
+          module = "blink-cmp-rg",
+        }
 
+      },
     },
-    keymap = { preset = 'super-tab' },
-    highlight = {
-      use_nvim_cmp_as_default = true
-    }
+    keymap = { preset = 'super-tab' }
   }
 }
