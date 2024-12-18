@@ -103,6 +103,7 @@ in
               config = "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
             }
           ];
+          extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks ];
           coc.enable = false;
           withNodeJs = true;
           extraPackages = with pkgs; [
