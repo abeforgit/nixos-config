@@ -163,7 +163,7 @@ in
   networking.firewall.enable = false;
 
   # sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 
   programs.noisetorch.enable = true;
   services.pipewire = {

@@ -24,7 +24,7 @@ in {
       pulse.enable = true;
       jack.enable = true;
     };
-    # hardware.pulseaudio = {
+    # services.pulseaudio = {
     #   enable = true;
     #   extraConfig = "load-module module-switch-on-connect";
     #   package = pkgs.pulseaudioFull;
