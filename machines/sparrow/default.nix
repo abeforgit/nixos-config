@@ -201,6 +201,7 @@ in
     cachix
     # cudatoolkit
     filezilla
+    obsidian
     idasen
     # calibre
     evince
