@@ -4,7 +4,7 @@ let
     url = "https://github.com/NixOS/nixpkgs/archive/7a339d87931bba829f68e94621536cad9132971a.tar.gz";
   }) { };
 
-  node_package = oldpkgs.nodejs_20;
+  node_package = pkgs.nodejs_22;
   pnpm = pkgs.pnpm;
   yalc = pkgs.nodePackages.yalc;
   # node_package = pkgs.nodejs_20;
@@ -12,6 +12,15 @@ let
   ember = "${npm-global}/bin/ember";
   name = "gn-meta";
   root = ''"$PRJ_ROOT"'';
+  wpPkgs = import (builtins.fetchGit {
+    # Descriptive name to make the store path easier to identify
+    name = "my-old-revision";
+    url = "https://github.com/NixOS/nixpkgs/";
+    ref = "refs/heads/nixpkgs-unstable";
+    rev = "7a339d87931bba829f68e94621536cad9132971a";
+  }) { };
+
+  woodpecker = wpPkgs.woodpecker-cli;
 in
 pkgs.devshell.mkShell {
   inherit name;
@@ -108,11 +117,11 @@ pkgs.devshell.mkShell {
       name = "yarn";
       package = pkgs.yarn;
     }
-    # {
-    #   name = "woodpecker-cli";
-    #   help = "The Woodpecker cli";
-    #   package = pkgs.woodpecker-cli;
-    # }
+    {
+      name = "woodpecker-cli";
+      help = "The Woodpecker cli";
+      package = woodpecker;
+    }
 
   ];
 }

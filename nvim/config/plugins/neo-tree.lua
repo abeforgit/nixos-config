@@ -471,11 +471,11 @@ local defaultConfig = {
     --         The first field in each component is the name of the function to call.
     --         The rest of the fields are passed to the function as the "config" argument.
     filtered_items = {
-      visible = false,                       -- when true, they will just be displayed differently than normal items
+      visible = true,                        -- when true, they will just be displayed differently than normal items
       force_visible_in_empty_folder = false, -- when true, hidden files will be shown if the root folder is otherwise empty
       show_hidden_count = true,              -- when true, the number of hidden items in each folder will be shown as the last entry
-      hide_dotfiles = true,
-      hide_gitignored = true,
+      hide_dotfiles = false,
+      hide_gitignored = false,
       hide_hidden = true, -- only works on Windows for hidden files/directories
       hide_by_name = {
         ".DS_Store",
@@ -488,6 +488,7 @@ local defaultConfig = {
       },
       always_show = { -- remains visible even if other settings would normally hide it
         --".gitignored",
+        'docker-compose.override.yml'
       },
       always_show_by_pattern = { -- uses glob style patterns
         --".env*",
@@ -713,12 +714,18 @@ return {
         find_by_full_path_words = true,
         filtered_items = {
           visible = true,
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          always_show = { -- remains visible even if other settings would normally hide it
+            --".gitignored",
+            'docker-compose.override.yml'
+          },
         },
         follow_current_file = {
           enabled = true,
         },
 
-        bind_to_cwd = true,   -- true creates a 2-way binding between vim's cwd and neo-tree's root
+        -- bind_to_cwd = true,   -- true creates a 2-way binding between vim's cwd and neo-tree's root
         cwd_target = {
           sidebar = "window", -- sidebar is when position = left or right
           current = "window"  -- current is when position = current
@@ -729,7 +736,7 @@ return {
   cmd = { "Neotree" },
   keys = {
     { "<leader>op", "<cmd>Neotree reveal reveal_force_cwd toggle left dir=./<CR>", desc = "Toggle neoTree" },
-    { "<leader>0",  "<cmd>Neotree focus<CR>",        desc = "Focus neotree" }
+    { "<leader>0",  "<cmd>Neotree focus<CR>",                                      desc = "Focus neotree" }
     -- { "<leader>ff", "<cmd>Neotree reveal reveal_force_cwd filesystem float dir=./<CR>", desc = "File browser" },
   },
 }

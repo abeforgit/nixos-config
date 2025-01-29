@@ -11,16 +11,20 @@ return {
   ---@type blink.cmp.Config
   opts = {
     sources = {
-      default = { "lsp", "path", "snippets", "buffer", "lazydev", "ripgrep", "obsidian", "obsidian_new", "obsidian_tags" },
+      default = { "lsp", "path", "snippets", "buffer", "lazydev",
+        "ripgrep",
+        "obsidian", "obsidian_new", "obsidian_tags" },
       providers = {
         lazydev = {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
-          fallbacks = { "lsp" }
+          fallbacks = { "lsp" },
+          enabled = function() return vim.tbl_contains({ "lua" }, vim.bo.filetype) end
         },
         ripgrep = {
           name = "Ripgrep",
           module = "blink-cmp-rg",
+          enabled = false,
         },
         obsidian = {
           name = "obsidian",
