@@ -81,11 +81,11 @@ in {
       group = cfg.user;
       uid = 1000;
       subUidRanges = [{
-        count = 65534;
+        count = 65536;
         startUid = 1000;
       }];
       subGidRanges = [{
-        count = 65534;
+        count = 65536;
         startGid = 1000;
       }];
       isNormalUser = true;
