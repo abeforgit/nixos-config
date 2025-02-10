@@ -33,7 +33,7 @@ o.showbreak = '↪ '
 o.hidden = true
 o.scrolloff = 3
 o.cmdheight = 0
-o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+o.sessionoptions = "blank,buffers,curdir,folds,tabpages,winsize,winpos,terminal,localoptions"
 
 vim.g.mapleader = " "
 if vim.g.started_by_firenvim == true then

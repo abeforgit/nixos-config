@@ -12,7 +12,7 @@ return {
   },
 
   keys = {
-    { "<leader><leader>", "<cmd>FzfMru<CR>" },
+    { "<leader><leader>", "<cmd>FzfLua files<CR>" },
     { "<leader>;",        "<cmd>FzfLua resume<CR>" },
     { "<leader>bb",       "<cmd>FzfLua  buffers<CR>" },
     { "<leader>hh",       "<cmd>FzfLua helptags<CR>" },

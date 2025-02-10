@@ -63,7 +63,11 @@ return {
           default_attach(client, bufnr)
         end,
       },
-    }
+      cssls = {
+        filetypes = { "css", "scss", "less" }
+      }
+    },
+
   },
   lazy = false,
   config = function(_, opts)

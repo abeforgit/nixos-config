@@ -1,5 +1,0 @@
-(sel	/home/arne/repos/nixos-config/nvim/config/plugins/fzf-lua.lua	/^          function(sel)$/
-clean_path	/home/arne/repos/nixos-config/nvim/config/plugins/fzf-lua.lua	/^    local function clean_path(str)$/
-dump	/home/arne/repos/nixos-config/nvim/config/plugins/fzf-lua.lua	/^    local function dump(o)$/
-fzf_mru	/home/arne/repos/nixos-config/nvim/config/plugins/fzf-lua.lua	/^    local function fzf_mru(opts)$/
-get_hash	/home/arne/repos/nixos-config/nvim/config/plugins/fzf-lua.lua	/^    local function get_hash()$/
