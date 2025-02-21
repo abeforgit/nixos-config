@@ -35,6 +35,7 @@ o.scrolloff = 3
 o.cmdheight = 0
 o.sessionoptions = "blank,buffers,curdir,folds,tabpages,winsize,winpos,terminal,localoptions"
 
+
 vim.g.mapleader = " "
 if vim.g.started_by_firenvim == true then
   vim.g.auto_session_enabled = false

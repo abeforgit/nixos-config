@@ -1,4 +1,10 @@
-{ config, lib, pkgs, agenix-cli, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  agenix-cli,
+  ...
+}:
 let
   cfg = config.custom;
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
@@ -8,7 +14,8 @@ let
     export __VK_LAYER_NV_optimus=NVIDIA_only
     exec -a "$0" "$@"
   '';
-in {
+in
+{
   imports = [
     ./graphical
     ./emacs.nix
@@ -47,7 +54,8 @@ in {
 
   config = {
     programs.zsh.enable = true;
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
+      with pkgs;
       [
         psmisc
         neovim
@@ -70,24 +78,31 @@ in {
         nix-tree
         nix-query-tree-viewer
         manix
-      ] ++ cfg.extraSystemPackages;
+      ]
+      ++ cfg.extraSystemPackages;
 
     i18n.defaultLocale = "en_US.UTF-8";
     time.timeZone = "Europe/Brussels";
-    users.groups.${cfg.user} = { gid = 1000; };
+    users.groups.${cfg.user} = {
+      gid = 1000;
+    };
     users.groups.plugdev = { };
     users.groups.sambashare = { };
     users.users.${cfg.user} = {
       group = cfg.user;
       uid = 1000;
-      subUidRanges = [{
-        count = 65536;
-        startUid = 1000;
-      }];
-      subGidRanges = [{
-        count = 65536;
-        startGid = 1000;
-      }];
+      subUidRanges = [
+        {
+          count = 65536;
+          startUid = 1000;
+        }
+      ];
+      subGidRanges = [
+        {
+          count = 65536;
+          startGid = 1000;
+        }
+      ];
       isNormalUser = true;
       createHome = true;
       extraGroups = [
@@ -139,8 +154,7 @@ in {
       ];
       authorizedKeysFiles = [ "/run/agenix/authorized_keys/%u" ];
     };
-    age.secrets."authorized_keys/root".file =
-      ../secrets/authorized_keys/root.age;
+    age.secrets."authorized_keys/root".file = ../secrets/authorized_keys/root.age;
     age.secrets."authorized_keys/arne" = {
       file = ../secrets/authorized_keys/arne.age;
       owner = "arne";
@@ -153,85 +167,96 @@ in {
         };
       };
     };
-    xdg = { portal = { enable = true; }; };
-    home-manager.users.${cfg.user} = { pkgs, home, ... }: {
-      home.stateVersion = "18.09";
-      home.packages = with pkgs;
-        [
-          httpie
-          chromium
-          fira-code
-          pciutils
-          docker-compose
-          bat
-
-          xfce.thunar
-          xfce.thunar-volman
-          xfce.thunar-archive-plugin
-          xfce.thunar-media-tags-plugin
-        ] ++ cfg.extraHomePackages;
-
-      home.sessionPath = [ "$HOME/.local/bin" ];
-      xdg = {
+    xdg = {
+      portal = {
         enable = true;
+      };
+    };
+    home-manager.users.${cfg.user} =
+      { pkgs, home, ... }:
+      {
+        home.stateVersion = "18.09";
+        home.packages =
+          with pkgs;
+          [
+            httpie
+            (chromium.override (e: rec {
+              commandLineArgs = "--enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo";
 
-        userDirs = {
-          desktop = "$HOME/desktop";
-          documents = "$HOME/documents";
-          download = "$HOME/downloads";
-          music = "$HOME/music";
-          pictures = "$HOME/pictures";
-          publicShare = "$HOME/desktop";
-          templates = "$HOME/templates";
-          videos = "$HOME/videos";
-        };
-        mime.enable = true;
-        configFile."mimeapps.list".force = true;
-        mimeApps = {
+            }))
+            fira-code
+            pciutils
+            docker-compose
+            bat
+
+            xfce.thunar
+            xfce.thunar-volman
+            xfce.thunar-archive-plugin
+            xfce.thunar-media-tags-plugin
+          ]
+          ++ cfg.extraHomePackages;
+
+        home.sessionPath = [ "$HOME/.local/bin" ];
+        xdg = {
           enable = true;
-          defaultApplications = {
-            "image/png" = [ "org.kde.okular.desktop" ];
-            "image/jpg" = [ "org.kde.okular.desktop" ];
-            "image/jpeg" = [ "org.kde.okular.desktop" ];
-            "application/pdf" = [ "org.pwmt.zathura.desktop" ];
 
-            "text/html" = [ "firefox.desktop" ];
-            "x-scheme-handler/about" = [ "firefox.desktop" ];
-            "x-scheme-handler/http" = [ "firefox.desktop" ];
-            "x-scheme-handler/https" = [ "firefox.desktop" ];
-            "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+          userDirs = {
+            desktop = "$HOME/desktop";
+            documents = "$HOME/documents";
+            download = "$HOME/downloads";
+            music = "$HOME/music";
+            pictures = "$HOME/pictures";
+            publicShare = "$HOME/desktop";
+            templates = "$HOME/templates";
+            videos = "$HOME/videos";
+          };
+          mime.enable = true;
+          configFile."mimeapps.list".force = true;
+          mimeApps = {
+            enable = true;
+            defaultApplications = {
+              "image/png" = [ "org.kde.okular.desktop" ];
+              "image/jpg" = [ "org.kde.okular.desktop" ];
+              "image/jpeg" = [ "org.kde.okular.desktop" ];
+              "application/pdf" = [ "org.pwmt.zathura.desktop" ];
 
-            "x-scheme-handler/msteams" = [ "teams.desktop" ];
+              "text/html" = [ "firefox.desktop" ];
+              "x-scheme-handler/about" = [ "firefox.desktop" ];
+              "x-scheme-handler/http" = [ "firefox.desktop" ];
+              "x-scheme-handler/https" = [ "firefox.desktop" ];
+              "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+
+              "x-scheme-handler/msteams" = [ "teams.desktop" ];
+            };
+          };
+        };
+        services.udiskie = {
+          enable = true;
+          automount = true;
+          notify = true;
+          tray = "auto";
+        };
+        programs.nix-index = {
+          enable = true;
+          enableZshIntegration = true;
+        };
+        programs.kitty = {
+          enable = true;
+          font.name = "Fira Code";
+          # font.size = 22;
+          keybindings = {
+            "kitty_mod+asterisk" = "change_font_size current +2.0";
+            "kitty_mod+minus" = "change_font_size_current -2.0";
+          };
+
+          settings = {
+            scrollback_lins = 10000;
+            enable_audio_bell = false;
+            confirm_os_window_close = 0;
+            term = "xterm-kitty";
           };
         };
       };
-      services.udiskie = {
-        enable = true;
-        automount = true;
-        notify = true;
-        tray = "auto";
-      };
-      programs.nix-index = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-      programs.kitty = {
-        enable = true;
-        font.name = "Fira Code";
-        # font.size = 22;
-        keybindings = {
-          "kitty_mod+asterisk" = "change_font_size current +2.0";
-          "kitty_mod+minus" = "change_font_size_current -2.0";
-        };
-
-        settings = {
-          scrollback_lins = 10000;
-          enable_audio_bell = false;
-          confirm_os_window_close = 0;
-          term = "xterm-kitty";
-        };
-      };
-    };
   };
 
 }
