@@ -262,6 +262,7 @@ in
     copyq
     nvtopPackages.full
     wl-clipboard
+    kdePackages.xdg-desktop-portal-kde
   ];
   users.users.arne = {
     shell = pkgs.zsh;

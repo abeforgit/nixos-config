@@ -48,7 +48,6 @@ in
           graphviz
           sbcl
           editorconfig-core-c
-          maim
           pandoc
           nodejs
           python3

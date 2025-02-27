@@ -73,8 +73,6 @@ in
         agenix-cli
         wally-cli
         fup-repl
-        plasma-browser-integration
-        xdg-desktop-portal-kde
         nix-tree
         nix-query-tree-viewer
         manix
