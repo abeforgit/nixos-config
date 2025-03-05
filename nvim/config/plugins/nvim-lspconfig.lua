@@ -51,7 +51,7 @@ return {
           local utils = require('config.lsp.utils')
           return utils.is_glint_project(filename, bufnr)
         end,
-        cmd = { "./node_modules/@glint/core/bin/glint-language-server.js", "--stdio" }
+        cmd = { "./node_modules/@glint/core/bin/glint-language-server.js" }
       },
       eslint = {
         filetypes = { "javascript", "typescript", "typescript.glimmer", "javascript.glimmer", "markdown" },

@@ -19,6 +19,7 @@ return {
     { "<leader>hb",       "<cmd>FzfLua keymaps<CR>" },
     { "<A-x>",            "<cmd>FzfLua commands<CR>" },
     { "<leader>sp",       "<cmd>FzfLua grep_project<CR>" },
+    { '<leader>ca',       '<cmd>FzfLua lsp_code_actions<CR>' }
   },
   cmd = { "FzfMru", "FzfLua" },
   config = function(_, lazyOpts)
