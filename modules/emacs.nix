@@ -15,8 +15,8 @@ in
       default = false;
     };
     package = mkOption {
-      example = pkgs.emacs29-pgtk;
-      default = pkgs.emacs29-pgtk;
+      example = pkgs.emacs30-pgtk;
+      default = pkgs.emacs30-pgtk;
     };
   };
   config = mkIf cfg.enable {

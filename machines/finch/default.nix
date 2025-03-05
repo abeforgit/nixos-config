@@ -200,7 +200,7 @@ in
   custom.graphical.enable = true;
   custom.kde.enable = true;
   custom.emacs.enable = true;
-  custom.emacs.package = pkgs.emacs29;
+  custom.emacs.package = pkgs.emacs30;
   custom.zsh.enable = true;
   custom.vscode.enable = true;
   custom.keychain.enable = true;
