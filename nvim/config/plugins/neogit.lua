@@ -1,16 +1,26 @@
 return {
   "NeogitOrg/neogit",
-  version = '2.0.0',
+  -- version = '2.0.0',
+  -- commit = 'e0a8674',
+  version = "2.0.0",
+  -- lazy = false,
   dependencies = {
-    "nvim-lua/plenary.nvim",    -- required
-    "sindrets/diffview.nvim",   -- optional - Diff integration
+    "nvim-lua/plenary.nvim",  -- required
+    "sindrets/diffview.nvim", -- optional - Diff integration
 
     -- Only one of these is needed, not both.
-    "nvim-telescope/telescope.nvim",   -- optional
+    "ibhagwan/fzf-lua",
   },
   cmd = { "Neogit" },
   keys = {
-    { "<leader>gg", "<cmd>Neogit kind=replace cwd=%:p:h<CR>" }
+    { "<leader>gg", "<cmd>Neogit cwd=%:p:h<CR>" }
   },
-  opts = {}
+  opts = {
+    -- -- auto_show_console = false
+    -- commit_editor = {
+    --
+    --   spell_check = false,
+    --   -- show_staged_diff = false
+    -- }
+  }
 }

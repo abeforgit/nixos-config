@@ -19,9 +19,6 @@ return {
         {
           "<leader>bn", "<cmd>bnext<CR>", desc = "Next buffer"
         },
-        {
-          "<leader>bd", function() require('mini.bufremove').unshow_in_window() end, desc = "Next buffer"
-        },
       },
       { "<leader>c", group = "code" },
       {

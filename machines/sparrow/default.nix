@@ -226,6 +226,7 @@ in
     dnsperf
     pinta
     lazydocker
+    lazygit
     galaxy-buds-client
     spotify
     krita

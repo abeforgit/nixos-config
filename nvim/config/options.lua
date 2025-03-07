@@ -32,8 +32,8 @@ o.breakindent = true
 o.showbreak = '↪ '
 o.hidden = true
 o.scrolloff = 3
-o.cmdheight = 0
-o.sessionoptions = "blank,buffers,curdir,folds,tabpages,winsize,winpos,terminal,localoptions"
+-- o.cmdheight = 0
+o.sessionoptions = "blank,curdir,folds,winsize,winpos,terminal,localoptions"
 
 
 vim.g.mapleader = " "

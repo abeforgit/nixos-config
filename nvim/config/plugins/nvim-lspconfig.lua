@@ -51,7 +51,7 @@ return {
           local utils = require('config.lsp.utils')
           return utils.is_glint_project(filename, bufnr)
         end,
-        cmd = { "./node_modules/@glint/core/bin/glint-language-server.js" }
+        cmd = { "./node_modules/@glint/core/bin/glint-language-server.js", "--stdio" }
       },
       eslint = {
         filetypes = { "javascript", "typescript", "typescript.glimmer", "javascript.glimmer", "markdown" },
@@ -77,7 +77,7 @@ return {
       if not config.on_attach then
         config.on_attach = default_attach
       end
-      config.autostart = false
+      -- config.autostart = false
       lspconfig[server].setup(config)
     end
     vim.api.nvim_create_autocmd('FileType', {

@@ -227,6 +227,7 @@ in
     anki-bin
     usbutils
     bitwarden
+    lazygit
     tofi
     dunst
     rbw
