@@ -16,11 +16,11 @@ local function keymap(bufnr)
 
   -- Global keymaps (no-remap by default, cause... sanity)
   -- handled by Glance
-  n('gD', 'vim.lsp.buf.declaration()')
-  n('gd', 'vim.lsp.buf.definition()')
-  n('gi', 'vim.lsp.buf.implementation()')
-  n('gt', 'vim.lsp.buf.type_definition()')
-  n('gr', 'vim.lsp.buf.references()')
+  -- n('gD', 'vim.lsp.buf.declaration()')
+  -- n('gd', 'vim.lsp.buf.definition()')
+  -- n('gi', 'vim.lsp.buf.implementation()')
+  -- n('gt', 'vim.lsp.buf.type_definition()')
+  -- n('gr', 'vim.lsp.buf.references()')
   -- n('<leader>cf', 'vim.lsp.buf.format({ async = true })')
 
   n('<leader>u', 'vim.lsp.buf.signature_help()<CR>')

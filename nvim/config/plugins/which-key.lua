@@ -21,6 +21,10 @@ return {
         },
       },
       { "<leader>c", group = "code" },
+      { "<C-w>n",    "<cmd>tabnext<CR>",     desc = "Go to next tab" },
+      { "<C-w>p",    "<cmd>tabprevious<CR>", desc = "Go to previous tab" },
+      { "<C-w>c",    "<cmd>tabnew<CR>",      desc = "Create new tab" },
+      { "<C-w>d",    "<cmd>close<CR>",       desc = "Close window" },
       {
         "<leader>p",
         group = "projects",

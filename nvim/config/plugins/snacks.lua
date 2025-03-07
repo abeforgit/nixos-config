@@ -8,15 +8,29 @@ return {
     dashboard = { enabled = true },
     bufdelete = { enabled = true },
     rename = { enabled = true },
+    toggle = { enabled = true },
     picker = {
       enabled = true,
+      previewers = {
+        diff = {
+          builtin = true,    -- use Neovim for previewing diffs (true) or use an external tool (false)
+          cmd = { "delta" }, -- example to show a diff with delta
+        },
+      },
       sources = {
-        explorer = {}
+        explorer = {},
+        undo = {
+          preview = "diff",
+        }
+      },
+      projects = {
+        -- dev = { "~/repos" }
       },
 
       matcher = {
         frecency = true,
       },
+      words = { enabled = true },
       win = {
         input = {
           keys = {
@@ -108,9 +122,8 @@ return {
 
         }
       }
-    }
-
-
+    },
+    terminal = { enabled = true }
 
   },
   keys = {
@@ -131,12 +144,51 @@ return {
     -- LSP
     { "gd",              function() Snacks.picker.lsp_definitions() end,       desc = "Goto Definition" },
     { "gD",              function() Snacks.picker.lsp_declarations() end,      desc = "Goto Declaration" },
-    { "gr",              function() Snacks.picker.lsp_references() end,        nowait = true,                  desc = "References" },
+    { "gr",              function() Snacks.picker.lsp_references() end,        desc = "References" },
     { "gI",              function() Snacks.picker.lsp_implementations() end,   desc = "Goto Implementation" },
     { "gy",              function() Snacks.picker.lsp_type_definitions() end,  desc = "Goto T[y]pe Definition" },
     { "<leader>ss",      function() Snacks.picker.lsp_symbols() end,           desc = "LSP Symbols" },
     { "<leader>sS",      function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+    { '<leader>s"',      function() Snacks.picker.registers() end,             desc = "Registers" },
+    { '<leader>s/',      function() Snacks.picker.search_history() end,        desc = "Search History" },
+    { "<leader>sa",      function() Snacks.picker.autocmds() end,              desc = "Autocmds" },
+    { "<leader>hh",      function() Snacks.picker.help() end,                  desc = "Help Pages" },
     { "<leader>gl",      function() Snacks.lazygit() end,                      desc = "Lazygit" },
     { "<leader>fR",      function() Snacks.rename.rename_file() end,           desc = "Rename File" },
-  }
+    { "<c-\\>",          function() Snacks.terminal() end,                     mode = { "n", "t" },            desc = "Toggle Terminal" },
+    { "<leader>ot",      function() Snacks.terminal() end,                     desc = "Toggle Terminal" },
+    { "<c-_>",           function() Snacks.terminal() end,                     desc = "which_key_ignore" },
+    { "]]",              function() Snacks.words.jump(vim.v.count1) end,       desc = "Next Reference",        mode = { "n", "t" } },
+    { "[[",              function() Snacks.words.jump(-vim.v.count1) end,      desc = "Prev Reference",        mode = { "n", "t" } },
+    { "<leader>tt",      function() Snacks.picker.colorschemes() end,          desc = "Colorschemes" },
+  },
+  init = function()
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "VeryLazy",
+      callback = function()
+        -- Setup some globals for debugging (lazy-loaded)
+        -- _G.dd = function(...)
+        --   Snacks.debug.inspect(...)
+        -- end
+        -- _G.bt = function()
+        --   Snacks.debug.backtrace()
+        -- end
+        -- vim.print = _G.dd -- Override print to use snacks for `:=` command
+
+        -- Create some toggle mappings
+        Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>ts")
+        Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>tw")
+        Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>tL")
+        Snacks.toggle.diagnostics():map("<leader>td")
+        Snacks.toggle.line_number():map("<leader>tl")
+        Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map(
+          "<leader>tc")
+        Snacks.toggle.treesitter():map("<leader>tT")
+        Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>tb")
+        Snacks.toggle.inlay_hints():map("<leader>th")
+        Snacks.toggle.indent():map("<leader>tg")
+        Snacks.toggle.dim():map("<leader>tD")
+      end,
+    })
+  end,
 }

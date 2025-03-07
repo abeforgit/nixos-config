@@ -15,6 +15,14 @@ return {
       lualine_y = {},
       lualine_z = {}
     },
-    extensions = { 'neo-tree' }
+    tabline = {
+      lualine_a = { { 'windows', disabled_buftypes = { 'quickfix', 'prompt', 'nofile' } } },
+      -- lualine_b = { 'branch' },
+      -- lualine_c = { 'filename' },
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = { 'tabs' }
+    },
+    extensions = { 'lazy', 'trouble' }
   }
 }
