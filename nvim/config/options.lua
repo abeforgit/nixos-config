@@ -37,6 +37,7 @@ o.sessionoptions = "blank,curdir,folds,winsize,winpos,terminal,localoptions"
 
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 if vim.g.started_by_firenvim == true then
   vim.g.auto_session_enabled = false
   vim.g.firenvim_config = {
