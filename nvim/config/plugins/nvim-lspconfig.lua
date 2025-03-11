@@ -60,6 +60,12 @@ return {
           --   buffer = bufnr,
           --   command = "EslintFixAll",
           -- })
+
+          if client.name == "eslint" then
+            client.server_capabilities.documentFormattingProvider = true
+          elseif client.name == "tsserver" then
+            client.server_capabilities.documentFormattingProvider = false
+          end
           default_attach(client, bufnr)
         end,
       },
