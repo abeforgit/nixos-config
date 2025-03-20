@@ -68,7 +68,7 @@ in {
       services.spotifyd = {
         enable = true;
         package = pkgs.spotifyd.override {
-          withKeyring = true;
+          # withKeyring = true;
           withPulseAudio = true;
           withMpris = true;
         };
