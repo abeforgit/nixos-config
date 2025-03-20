@@ -16,6 +16,7 @@ return {
     { "<leader>gg", "<cmd>Neogit cwd=%:p:h<CR>" }
   },
   opts = {
+    kind = "replace"
     -- -- auto_show_console = false
     -- commit_editor = {
     --

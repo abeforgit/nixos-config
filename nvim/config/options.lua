@@ -8,6 +8,7 @@ o.number = true
 o.textwidth = 80
 o.showmatch = true
 o.visualbell = true
+o.ignorecase = true
 o.smartcase = true
 o.incsearch = true
 o.hlsearch = true
@@ -33,7 +34,7 @@ o.showbreak = '↪ '
 o.hidden = true
 o.scrolloff = 3
 -- o.cmdheight = 0
-o.sessionoptions = "blank,curdir,folds,winsize,winpos,terminal,localoptions"
+o.sessionoptions = "curdir,folds,winsize,winpos,terminal,localoptions"
 
 
 vim.g.mapleader = " "

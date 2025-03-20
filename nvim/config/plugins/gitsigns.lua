@@ -18,7 +18,7 @@ return {
         else
           gitsigns.nav_hunk('next')
         end
-      end)
+      end, { desc = "goto next hunk" })
 
       map('n', '[c', function()
         if vim.wo.diff then
@@ -26,24 +26,36 @@ return {
         else
           gitsigns.nav_hunk('prev')
         end
-      end)
+      end, { desc = "goto previous hunk" })
 
       -- Actions
-      map('n', '<leader>gs', gitsigns.stage_hunk)
-      map('n', '<leader>gr', gitsigns.reset_hunk)
-      map('v', '<leader>gs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
-      map('v', '<leader>gr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
-      map('n', '<leader>gS', gitsigns.stage_buffer)
-      map('n', '<leader>gR', gitsigns.reset_buffer)
-      map('n', '<leader>gp', gitsigns.preview_hunk)
-      -- map('n', '<leader>hb', function() gitsigns.blame_line{full=true} end)
-      -- map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
-      map('n', '<leader>gd', gitsigns.diffthis)
-      map('n', '<leader>gD', function() gitsigns.diffthis('~') end)
-      map('n', '<leader>gd', gitsigns.toggle_deleted)
+      map('n', '<leader>gs', gitsigns.stage_hunk, { desc = "git stage hunk" })
+      map('n', '<leader>gr', gitsigns.reset_hunk, { desc = "git reset hunk" })
+      map('v', '<leader>gs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+        { desc = "git stage region" })
+      map('v', '<leader>gr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+        { desc = "git reset region" })
+      map('n', '<leader>gS', gitsigns.stage_buffer, { desc = "git stage buffer" })
+      map('n', '<leader>gR', gitsigns.reset_buffer, { desc = "git reset buffer" })
+      map('n', '<leader>gp', gitsigns.preview_hunk, { desc = "git preview hunk" })
+      map('n', '<leader>gd', gitsigns.diffthis, { desc = "diffthis hunk" })
+      map('n', '<leader>gD', function() gitsigns.diffthis('~') end, { desc = "diffthis buffer" })
+
+
 
       -- Text object
-      map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+      map({ 'o', 'x' }, 'ih', gitsigns.select_hunk, { desc = "Select hunk" })
+
+      local snacks = require('snacks');
+      local config = require('gitsigns.config').config;
+
+      snacks.toggle.new({
+        name = "Git word diff",
+        get = function()
+          return config.word_diff;
+        end,
+        set = function(state) gitsigns.toggle_word_diff(state) end
+      }):map("<leader>tgw")
     end
   }
 }

@@ -23,11 +23,6 @@ local function keymap(bufnr)
   -- n('gr', 'vim.lsp.buf.references()')
   -- n('<leader>cf', 'vim.lsp.buf.format({ async = true })')
 
-  n('<leader>u', 'vim.lsp.buf.signature_help()<CR>')
-  n('gh', 'vim.lsp.buf.hover()')
-  n('<leader>e', 'vim.diagnostic.open_float()')
-  -- n('<leader>ca', 'vim.lsp.buf.code_action()')
-  n('<leader>cr', 'vim.lsp.buf.rename()')
 end
 
 return keymap

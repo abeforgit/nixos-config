@@ -15,7 +15,8 @@ return {
 
             function()
               -- If Neotree is open, close it
-              vim.cmd 'Neotree close'
+
+              -- vim.cmd 'Neotree close'
 
               -- Close any tabs with these filetypes
               local fts_to_match = { 'Neogit', 'Diffview' }
