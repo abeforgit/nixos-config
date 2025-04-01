@@ -139,6 +139,10 @@ in
     enable = true;
 
   };
+  services.displayManager = {
+    sddm.enable = true;
+    sddm.wayland.enable = true;
+  };
 
   services.gvfs.enable = true;
   environment.variables = {
@@ -211,7 +215,7 @@ in
 
   custom.user = username;
   custom.graphical.enable = true;
-  custom.kde.enable = true;
+  custom.kde.enable = false;
   custom.emacs.enable = true;
   custom.emacs.package = pkgs.emacs30;
   custom.zsh.enable = true;
