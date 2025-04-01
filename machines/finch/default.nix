@@ -128,7 +128,7 @@ in
 
   nixpkgs.config = {
     permittedInsecurePackages = [ "electron-27.3.11" ];
-};
+  };
 
   services.udev.packages = [
     brightness_udev
@@ -144,9 +144,16 @@ in
   environment.variables = {
     # GDK_SCALE = "2";
     # GDK_DPI_SCALE = "0.5";
-    _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+    # _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+    GDK_BACKEND = "wayland,x11";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    SDL_VIDEODRIVER = "wayland";
+    CLUTTER_BACKEND = "wayland";
   };
 
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
   services.xserver = {
     videoDrivers = [ "nvidia" ];
     dpi = 192;
@@ -169,12 +176,19 @@ in
     open = false;
     nvidiaSettings = true;
     modesetting.enable = true;
+    powerManagement.finegrained = true;
     prime = {
-      sync.enable = true;
+      reverseSync.enable = true;
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
     };
   };
+  programs.hyprland = {
+    # portalPackage = pkgs.xdg-desktop-portal-wlr;
+    enable = true;
+  };
+  programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
   age.secrets = {
     github_auth = {
       file = ../../secrets/github_auth.age;
@@ -194,7 +208,6 @@ in
         source ${config.age.secrets.jira_pat.path}
       '';
     };
-
 
   custom.user = username;
   custom.graphical.enable = true;
@@ -227,8 +240,10 @@ in
     anki-bin
     usbutils
     bitwarden
+    obsidian
     lazygit
     tofi
+    hyprpaper
     dunst
     rbw
     rofi-rbw
@@ -243,6 +258,7 @@ in
     dnsperf
     nwg-look
     udiskie
+    waybar
     pinta
     lazydocker
     galaxy-buds-client
@@ -264,6 +280,7 @@ in
     nvtopPackages.full
     wl-clipboard
     kdePackages.xdg-desktop-portal-kde
+    kdePackages.filelight
   ];
   users.users.arne = {
     shell = pkgs.zsh;
