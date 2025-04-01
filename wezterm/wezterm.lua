@@ -26,7 +26,7 @@ config.mouse_bindings = {
 }
 config.hide_mouse_cursor_when_typing = false
 config.xcursor_size = 24
-config.xcursor_theme = Nordzy_cursors
+-- config.xcursor_theme = Nordzy_cursors
 config.color_scheme = 'Arthur'
 config.check_for_updates = false
 config.keys = {
