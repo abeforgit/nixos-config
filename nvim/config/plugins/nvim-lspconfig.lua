@@ -7,7 +7,21 @@ local function default_attach(_, bufnr)
   local keymap = require('config.lsp.keymap')
   keymap(bufnr)
 end
+local function get_typescript_server_path(root_dir)
+  local project_root = vim.fs.dirname(vim.fs.find('node_modules', { path = root_dir, upward = true })[1])
+  return project_root and (project_root .. '/node_modules/typescript/lib') or ''
+end
 
+local glint_filetypes = {
+  'typescript',
+  'javascript',
+  'typescript.glimmer',
+  'javascript.glimmer',
+  'typescript.tsx',
+  'javascript.jsx',
+  'html.handlebars',
+  'handlebars',
+}
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
@@ -40,11 +54,56 @@ return {
         }
       },
       ts_ls = {
-        single_file_support = false,
+        filetypes = glint_filetypes,
         root_dir = function(filename, bufnr)
           local utils = require('config.lsp.utils')
           return utils.is_ts_project(filename, bufnr)
         end,
+        on_new_config = function(new_config, new_root_dir)
+          local utils = require('config.lsp.utils')
+          local info = utils.read_nearest_ts_config(new_root_dir)
+          local glintPlugin = new_root_dir .. "node_modules/@glint/tsserver-plugin"
+
+          if new_config.init_options then
+            new_config.init_options.tsdk = get_typescript_server_path(new_root_dir)
+            new_config.init_options.requestForwardingCommand = "forwardingTsRequest"
+
+
+            if (info.isGlintPlugin) then
+              print('setting up glint plugin')
+              new_config.init_options.plugins = {
+                {
+                  name = "@glint/tsserver-plugin",
+                  location = glintPlugin,
+                  languages = glint_filetypes,
+                  enableForWorkspaceTypeScriptVersions = true,
+                  configNamespace = "typescript"
+                }
+              }
+              print(glintPlugin)
+            end
+          end
+        end,
+        init_options = {
+          tsserver = { logVerbosity = 'verbose', trace = "verbose" },
+          preferences = {
+            disableAutomaticTypingAcquisition = true,
+            importModuleSpecifierPreference = "relative",
+            importModuleSpecifierEnding = "minimal",
+          },
+          plugins = {}
+        },
+        settings = {
+          hostInfo = "neovim native LS",
+          maxTsServerMemory = 8000,
+          -- implicitProjectConfig = {
+          --   experimentalDecorators = true
+          -- },
+
+          disableAutomaticTypingAcquisition = true,
+          importModuleSpecifierPreference = "relative",
+          importModuleSpecifierEnding = "minimal",
+        }
       },
       nil_ls = nil,
       glint = {
@@ -52,20 +111,20 @@ return {
           local utils = require('config.lsp.utils')
           return utils.is_glint_project(filename, bufnr)
         end,
-        on_new_config = function(config, new_root_dir)
-          local util = require 'lspconfig.util'
-          local project_root = util.find_node_modules_ancestor(new_root_dir)
-
-          -- Glint should not be installed globally.
-          local node_bin_path = util.path.join(project_root, 'node_modules', '.bin')
-          local path = node_bin_path .. util.path.path_separator .. vim.env.PATH
-          if config.cmd_env then
-            config.cmd_env.PATH = path
-          else
-            config.cmd_env = { PATH = path }
-          end
-          config.cmd = { "pnpm", "exec", "glint-language-server" }
-        end,
+        -- on_new_config = function(config, new_root_dir)
+        --   local util = require 'lspconfig.util'
+        --   local project_root = util.find_node_modules_ancestor(new_root_dir)
+        --
+        --   -- Glint should not be installed globally.
+        --   local node_bin_path = util.path.join(project_root, 'node_modules', '.bin')
+        --   local path = node_bin_path .. util.path.path_separator .. vim.env.PATH
+        --   if config.cmd_env then
+        --     config.cmd_env.PATH = path
+        --   else
+        --     config.cmd_env = { PATH = path }
+        --   end
+        --   config.cmd = { "pnpm", "exec", "glint-language-server" }
+        -- end,
       },
       eslint = {
         filetypes = { "javascript", "typescript", "typescript.glimmer", "javascript.glimmer", "markdown" },

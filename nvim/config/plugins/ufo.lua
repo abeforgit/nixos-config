@@ -31,6 +31,7 @@ return {
   dependencies = {
     'kevinhwang91/promise-async',
   },
+  enabled = false,
 
   init = function()
     local o = vim.o
