@@ -78,6 +78,23 @@ in
     enable = true;
   };
   networking.interfaces.enp8s0.useDHCP = true;
+
+  services.dnsmasq = {
+    enable = true;
+    settings = {
+      address = "/.localdev/127.0.0.1";
+      domain = "localdev";
+      local = "/localdev/";
+      bind-interfaces = true;
+      listen-address = "127.0.0.1";
+
+      # server = [
+      #   "8.8.8.8"
+      #   "8.8.4.4"
+      # ];
+    };
+
+  };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # services.xserver.enable = true;
