@@ -155,6 +155,60 @@ in
     CLUTTER_BACKEND = "wayland";
   };
 
+  home-manager.users.arne =
+    { pkgs, home, ... }:
+    {
+      home.pointerCursor = {
+        gtk.enable = true;
+        x11.enable = true;
+        package = pkgs.nordzy-cursor-theme;
+        name = "Nordzy-cursors";
+        size = 24;
+      };
+
+      xdg = {
+        mimeApps = {
+          enable = true;
+          defaultApplications = {
+            "x-scheme-handler/spotify" = [ "spotify.desktop" ];
+          };
+        };
+
+      };
+      services.mpris-proxy.enable = true;
+      programs.zsh.profileExtra = ''
+        source ${config.age.secrets.github_auth.path}
+        source ${config.age.secrets.jira_pat.path}
+      '';
+      qt = {
+        enable = true;
+        platformTheme = {
+          name = "qt5ct";
+        };
+      };
+      gtk = {
+        enable = true;
+        theme = {
+          package = pkgs.flat-remix-gtk;
+          name = "Flat-Remix-GTK-Grey-Darkest";
+        };
+        cursorTheme = {
+          package = pkgs.nordzy-cursor-theme;
+          name = "Nordzy-cursors";
+          size = 24;
+        };
+
+        iconTheme = {
+          package = pkgs.flat-remix-icon-theme;
+          name = "Flat-Remix-Blue-Dark";
+        };
+
+        font = {
+          name = "Sans";
+          size = 11;
+        };
+      };
+    };
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
@@ -204,15 +258,7 @@ in
     };
   };
 
-  home-manager.users.arne =
-    { pkgs, home, ... }:
-    {
-      programs.zsh.profileExtra = ''
-        source ${config.age.secrets.github_auth.path}
-        source ${config.age.secrets.jira_pat.path}
-      '';
-    };
-
+  programs.nix-ld.enable = true;
   custom.user = username;
   custom.graphical.enable = true;
   custom.kde.enable = false;
@@ -268,6 +314,11 @@ in
     galaxy-buds-client
     activitywatch
     aw-server-rust
+    networkmanagerapplet
+    grim
+    slurp
+    satty
+    copyq
   ];
 
   custom.extraSystemPackages = with pkgs; [
