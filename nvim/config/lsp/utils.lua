@@ -58,7 +58,7 @@ local function is_glint_project(filename, bufnr)
     return nil
   end
 
-  if (not result.isGlintPlugin) then
+  if (result.isGlintPlugin) then
     return nil
   end
 

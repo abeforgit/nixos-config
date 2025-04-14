@@ -70,7 +70,6 @@ return {
 
 
             if (info.isGlintPlugin) then
-              print('setting up glint plugin')
               new_config.init_options.plugins = {
                 {
                   name = "@glint/tsserver-plugin",
@@ -80,12 +79,11 @@ return {
                   configNamespace = "typescript"
                 }
               }
-              print(glintPlugin)
             end
           end
         end,
         init_options = {
-          tsserver = { logVerbosity = 'verbose', trace = "verbose" },
+          -- tsserver = { logVerbosity = 'verbose', trace = "verbose" },
           preferences = {
             disableAutomaticTypingAcquisition = true,
             importModuleSpecifierPreference = "relative",

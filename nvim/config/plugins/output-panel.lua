@@ -1,5 +1,6 @@
 return {
   "mhanberg/output-panel.nvim",
+  enabled = false,
   version = "*",
   event = "VeryLazy",
   config = function()
