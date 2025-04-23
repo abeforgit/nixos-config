@@ -318,6 +318,7 @@ in
 
     xournalpp
     ueberzugpp
+    atkinson-hyperlegible-mono
   ];
   programs.steam = {
     enable = true;

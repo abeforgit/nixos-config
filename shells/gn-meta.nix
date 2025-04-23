@@ -25,7 +25,6 @@ in
 pkgs.devshell.mkShell {
   inherit name;
   packages = with pkgs; [
-    cypress
     playwright-test
     krb5
     krb5.dev
@@ -36,7 +35,6 @@ pkgs.devshell.mkShell {
   ];
 
   packagesFrom = with pkgs; [
-    cypress
     playwright-driver.browsers
   ];
   env = [
@@ -103,11 +101,6 @@ pkgs.devshell.mkShell {
       name = "ember";
       help = "The ember cli";
       command = ''${ember} "$@"'';
-    }
-    {
-      name = "cypress";
-      help = "The cypress cli";
-      package = pkgs.cypress;
     }
     {
       name = "pw";

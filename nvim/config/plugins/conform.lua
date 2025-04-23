@@ -30,6 +30,8 @@ return {
       html = { "prettier" },
       json = { "prettier" },
       jsonc = { "prettier" },
+      css = { "prettier" },
+      scss = { "prettier" },
       sparql = { "sparql_formatter" }
     },
     -- format_on_save = {

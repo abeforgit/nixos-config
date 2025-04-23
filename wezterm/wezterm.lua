@@ -7,7 +7,7 @@ config.audible_bell = "Disabled"
 config.leader = { key = 'w', mods = 'ALT', timeout_milliseconds = 5000 }
 config.font_size = 12
 config.dpi = 192
-config.font = wezterm.font { family = 'Lilex Nerd Font', harfbuzz_features = { "ss02=1" } }
+config.font = wezterm.font { family = 'Atkinson Hyperlegible Mono', harfbuzz_features = { "ss02=1" } }
 config.enable_kitty_keyboard = true
 local act = wezterm.action
 config.mouse_bindings = {

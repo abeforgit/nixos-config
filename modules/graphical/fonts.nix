@@ -34,6 +34,8 @@ in
         nerd-fonts.symbols-only
         nerd-fonts.hack
         nerd-fonts.lilex
+        nerd-fonts._0xproto
+	atkinson-hyperlegible-mono
       ];
     };
   };
