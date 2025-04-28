@@ -115,8 +115,8 @@ in
 
             gmdh = ''git log --pretty=format:"%s%n%b" development..HEAD'';
             gitmsg = ''git log --pretty=format:"%s%n%b'';
-            ls = "lsd";
-            lt = "lsd --tree";
+            # ls = "lsd";
+            # lt = "lsd --tree";
             grep = "grep --colour=auto";
             egrep = "egrep --colour=auto";
             fgrep = "fgrep --colour=auto";
