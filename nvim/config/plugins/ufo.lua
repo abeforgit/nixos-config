@@ -31,14 +31,15 @@ return {
   dependencies = {
     'kevinhwang91/promise-async',
   },
-  enabled = false,
+  enabled = true,
 
   init = function()
     local o = vim.o
     o.foldcolumn = "0"
-    o.foldlevelstart = 99
+    o.foldlevelstart = -1
     o.foldlevel = 99
     o.foldenable = true
+    o.foldmethod = "manual"
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.foldingRange = {
       dynamicRegistration = false,
@@ -52,10 +53,16 @@ return {
       })
     end
   end,
+  keys = {
+    { 'zR', function() require('ufo').openAllFolds() end },
+    { 'zM', function() require('ufo').closeAllFolds() end },
+    { 'zr', function() require('ufo').openFoldsExceptKinds() end },
+    { 'zm', function() require('ufo').closeFoldsWith() end }
+  },
   opts = {
-    -- provider_selector = function(bufnr, filetype, buftype)
-    --   return { 'treesitter', 'indent' }
-    -- end,
+    provider_selector = function(bufnr, filetype, buftype)
+      return ''
+    end,
 
     close_fold_kids_for_ft = {
       default = { 'imports' }
