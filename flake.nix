@@ -132,7 +132,7 @@
           (self: super: {
             # inherit (channels.revert-emacs) emacsPackagesFor;
             # inherit (channels.revert-emacs) emacs29;
-            wezterm = inputs.wezterm.packages.${self.system}.default;
+            # wezterm = inputs.wezterm.packages.${self.system}.default;
           })
           # (import (builtins.fetchTarball {
 
