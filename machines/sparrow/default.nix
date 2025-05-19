@@ -260,6 +260,7 @@ in
     nwg-look
     waybar
     udiskie
+    jdt-language-server
     hyprpaper
     fre
     # hypridle

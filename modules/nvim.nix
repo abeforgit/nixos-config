@@ -102,6 +102,7 @@ in
               plugin = pkgs.vimPlugins.sqlite-lua;
               config = "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
             }
+	    pkgs.vimPlugins.nvim-jdtls
           ];
           extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks ];
           coc.enable = false;
@@ -116,6 +117,7 @@ in
             gh
             yaml-language-server
             glow
+	    jdt-language-server
           ];
           extraConfig = ''
             lua require('config')

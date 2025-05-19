@@ -31,6 +31,7 @@ return {
   opts = {
 
     servers = {
+      -- jdtls = {},
       yamlls = nil,
       lua_ls = {
         settings = {

@@ -32,6 +32,8 @@ pkgs.devshell.mkShell {
     gcc
     pkgs.stdenv.cc
     openssl
+    jdk
+    maven
   ];
 
   packagesFrom = with pkgs; [

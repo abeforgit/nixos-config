@@ -6,7 +6,7 @@ return {
     require('nvim-treesitter.configs').setup {
       ensure_installed = {
         "javascript", "typescript",
-        "glimmer", "glimmer_javascript", "glimmer_typescript", "python"
+        "glimmer", "glimmer_javascript", "glimmer_typescript", "python", "java", "http"
 
       },
       highlight = {
