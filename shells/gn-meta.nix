@@ -25,7 +25,7 @@ in
 pkgs.devshell.mkShell {
   inherit name;
   packages = with pkgs; [
-    playwright-test
+    # playwright-test
     krb5
     krb5.dev
     gnumake
@@ -37,7 +37,7 @@ pkgs.devshell.mkShell {
   ];
 
   packagesFrom = with pkgs; [
-    playwright-driver.browsers
+    # playwright-driver.browsers
   ];
   env = [
     {
@@ -69,10 +69,10 @@ pkgs.devshell.mkShell {
       name = "WOODPECKER_SERVER";
       value = "https://build.redpencil.io";
     }
-    {
-      name = "PLAYWRIGHT_BROWSERS_PATH";
-      value = pkgs.playwright-driver.browsers;
-    }
+    # {
+    #   name = "PLAYWRIGHT_BROWSERS_PATH";
+    #   value = pkgs.playwright-driver.browsers;
+    # }
     {
       name = "PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS";
       value = true;
@@ -104,10 +104,10 @@ pkgs.devshell.mkShell {
       help = "The ember cli";
       command = ''${ember} "$@"'';
     }
-    {
-      name = "pw";
-      command = ''rm -r node_modules/@playwright || true ; ${pkgs.playwright-test}/bin/playwright "$@"'';
-    }
+    # {
+    #   name = "pw";
+    #   command = ''rm -r node_modules/@playwright || true ; ${pkgs.playwright-test}/bin/playwright "$@"'';
+    # }
     {
       name = "yarn";
       package = pkgs.yarn;
