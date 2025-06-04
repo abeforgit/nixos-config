@@ -27,12 +27,28 @@ return {
   dependencies = {
     { "saghen/blink.cmp" },
     { "hrsh7th/nvim-cmp" },
+    { "b0o/schemastore.nvim" }
   },
   opts = {
 
     servers = {
       -- jdtls = {},
-      yamlls = nil,
+      yamlls = {
+        setupFunc = function()
+          return {
+            settings = {
+              schemaStore = {
+                -- You must disable built-in schemaStore support if you want to use
+                -- this plugin and its advanced options like `ignore`.
+                enable = false,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = "",
+              },
+              schemas = require('schemastore').yaml.schemas(),
+            }
+          }
+        end
+      },
       lua_ls = {
         settings = {
           Lua = {
@@ -53,6 +69,18 @@ return {
             },
           }
         }
+      },
+      jsonls = {
+        setupFunc = function()
+          return {
+            settings = {
+              json = {
+                schemas = require('schemastore').json.schemas(),
+                validate = { enable = true },
+              }
+            }
+          }
+        end
       },
       ts_ls = {
         filetypes = glint_filetypes,
@@ -164,8 +192,12 @@ return {
       if not config.on_attach then
         config.on_attach = default_attach
       end
-      -- config.autostart = false
-      lspconfig[server].setup(config)
+      if config.setupFunc then
+        lspconfig[server].setup(config.setupFunc())
+      else
+        -- config.autostart = false
+        lspconfig[server].setup(config)
+      end
     end
 
 

@@ -4,8 +4,9 @@ return {
   enabled = true,
   dependencies = {
     'rafamadriz/friendly-snippets',
+    { 'L3MON4D3/LuaSnip',    version = 'v2.*' },
     'epwalsh/obsidian.nvim',
-    { 'saghen/blink.compat', lazy = true, version = false }
+    { 'saghen/blink.compat', lazy = true,     version = false }
   },
   build = 'nix run .#build-plugin',
   ---@module 'blink.cmp'
@@ -13,10 +14,12 @@ return {
   opts = {
     sources = {
       default = { "lsp",
-        -- "path", "snippets", "buffer", "lazydev",
+        "path", "snippets", "lazydev",
+        -- "buffer",
         -- "ripgrep",
         -- "obsidian", "obsidian_new", "obsidian_tags"
       },
+      snippets = { preset = 'luasnip' },
       providers = {
         lsp = {
 

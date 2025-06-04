@@ -85,6 +85,8 @@ in
         home.sessionVariables = {
           EDITOR = "nvim";
           MYVIMRC = ".config/nvim/init.lua";
+          MANPAGER = "nvim +Man!";
+          VISUAL = "nvim --cmd 'let g:flatten_wait=1'";
         };
         home.file.".config/nvim/lua" = {
           source = homeArgs.config.lib.file.mkOutOfStoreSymlink "/home/arne/repos/nixos-config/nvim";
@@ -102,7 +104,7 @@ in
               plugin = pkgs.vimPlugins.sqlite-lua;
               config = "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
             }
-	    pkgs.vimPlugins.nvim-jdtls
+            pkgs.vimPlugins.nvim-jdtls
           ];
           extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks ];
           coc.enable = false;
@@ -117,7 +119,7 @@ in
             gh
             yaml-language-server
             glow
-	    jdt-language-server
+            jdt-language-server
           ];
           extraConfig = ''
             lua require('config')
