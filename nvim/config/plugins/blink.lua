@@ -19,8 +19,23 @@ return {
         -- "ripgrep",
         -- "obsidian", "obsidian_new", "obsidian_tags"
       },
-      snippets = { preset = 'luasnip' },
       providers = {
+      -- snippets = {
+      --   -- preset = 'luasnip',
+      --   -- should_show_items = function(ctx)
+      --   --   return ctx.trigger.initial_kind ~= 'trigger_character'
+      --   -- end,
+      --
+      --   expand = function(snippet)
+      --     require("luasnip").lsp_expand(snippet)
+      --   end,
+      --   active = function(filter)
+      --     if filter and filter.direction then
+      --       return require("luasnip").jumpable(filter.direction)
+      --     end
+      --     return require("luasnip").in_snippet()
+      --   end,
+      -- },
         lsp = {
 
           name = 'LSP',
@@ -44,7 +59,7 @@ return {
           min_keyword_length = 0,   -- Minimum number of characters in the keyword to trigger the provider
           -- If this provider returns 0 items, it will fallback to these providers.
           -- If multiple providers falback to the same provider, all of the providers must return 0 items for it to fallback
-          fallbacks = {},
+          fallbacks = { 'buffer' },
           score_offset = 0, -- Boost/penalize the score of the items
           override = nil,   -- Override the source's functions
         },

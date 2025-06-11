@@ -89,6 +89,9 @@ return {
           return utils.is_ts_project(filename, bufnr)
         end,
         on_new_config = function(new_config, new_root_dir)
+          if new_root_dir == '/bogus' then
+            new_config.tsdk = '/bogus'
+          end
           local utils = require('config.lsp.utils')
           local info = utils.read_nearest_ts_config(new_root_dir)
           local glintPlugin = new_root_dir .. "node_modules/@glint/tsserver-plugin"
@@ -136,6 +139,8 @@ return {
       glint = {
         root_dir = function(filename, bufnr)
           local utils = require('config.lsp.utils')
+          print('DEBUGPRINT[7]: nvim-lspconfig.lua:139: utils.is_glint_project(filename, bufnr)=' ..
+            vim.inspect(utils.is_glint_project(filename, bufnr)))
           return utils.is_glint_project(filename, bufnr)
         end,
         -- on_new_config = function(config, new_root_dir)

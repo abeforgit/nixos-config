@@ -38,8 +38,10 @@ local function read_nearest_ts_config(fromFile)
   --   this does not follow "extends" or global tsconfigs if a "one tsconfig.json"
   --   is used.
   local isGlint = string.find(contents, '"glint"')
+  print('DEBUGPRINT[5]: utils.lua:40: isGlint=' .. vim.inspect(not not isGlint))
   -- NOTE: hyphens don't work here
   local hasGlintPlugin = string.find(manifest, "@glint/tsserver")
+  print('DEBUGPRINT[6]: utils.lua:43: hasGlintPlugin=' .. vim.inspect(not not hasGlintPlugin))
 
   return {
     isGlint = not not isGlint,
@@ -58,11 +60,11 @@ local function is_glint_project(filename, bufnr)
     return nil
   end
 
-  if (result.isGlintPlugin) then
+  if result.isGlintPlugin then
     return nil
   end
 
-  if (not result.isGlint) then
+  if not result.isGlint then
     return nil
   end
 
@@ -73,15 +75,15 @@ local function is_ts_project(filename, bufnr)
   local result = read_nearest_ts_config(filename)
 
   if not result then
-    return nil
+    return '/bogus'
   end
 
-  if (result.isGlintPlugin) then
+  if result.isGlintPlugin then
     return result.rootDir
   end
 
-  if (result.isGlint) then
-    return nil
+  if result.isGlint then
+    return '/bogus'
   end
 
   return result.rootDir
