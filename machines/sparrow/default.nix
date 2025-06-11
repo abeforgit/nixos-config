@@ -291,7 +291,6 @@ in
     cliphist
     slurp
     grim
-    watershot
     satty
     libsForQt5.networkmanager-qt
     libsForQt5.breeze-qt5

@@ -39,9 +39,6 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    watershot = {
-      url = "github:Kirottu/watershot";
-    };
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
@@ -67,7 +64,6 @@
       rust-overlay,
       blender-bin,
       comma,
-      watershot,
       hyprland,
       wezterm,
     # wezterm-monkeypatch
@@ -203,7 +199,6 @@
           ({
             config._module.args = {
               agenix-cli = agenix.packages.x86_64-linux.default;
-              watershot = watershot.packages.x86_64-linux.default;
             };
           })
           { nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; }
