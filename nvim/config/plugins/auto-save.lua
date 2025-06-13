@@ -16,6 +16,10 @@ local excluded_filenames = {
 }
 
 local save_condition = function(buf)
+  if vim.g.started_by_firenvim == true then
+    print("disabling save")
+    return false
+  end
   local fn = vim.fn
   local utils = require("auto-save.utils.data")
 
@@ -35,7 +39,7 @@ return {
   cmd = "ASToggle",
   event = { "InsertLeave", "TextChanged", "BufLeave", "FocusLost" },
   opts = {
-    enabled = true,
+    enabled = false,
     trigger_events = {                          -- See :h events
       immediate_save = immediate_triggers,      -- vim events that trigger an immediate save
       defer_save = deferred_triggers,           -- vim events that trigger a deferred save (saves after `debounce_delay`)

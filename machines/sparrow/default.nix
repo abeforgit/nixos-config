@@ -263,6 +263,7 @@ in
     jdt-language-server
     hyprpaper
     fre
+    frece
     # hypridle
     # hyprlock
 

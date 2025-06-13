@@ -36,21 +36,36 @@ o.scrolloff = 3
 -- o.cmdheight = 0
 o.sessionoptions = "curdir,folds,winsize,winpos,terminal,localoptions"
 
-
+vim.api.nvim_create_autocmd("UIEnter", {
+  pattern = "*",
+  callback = function()
+    vim.cmd("if exists('g:started_by_firenvim')\nset guifont=0xproto_Nerd_Font:h18\nendif")
+  end
+})
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+-- vim.o.guifont = "0xproto_Nerd_Font:h16"
 if vim.g.started_by_firenvim == true then
   vim.g.auto_session_enabled = false
+  vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+    pattern = "*_sparql_*.txt",
+    command = "set filetype=sparql"
+  })
   vim.g.firenvim_config = {
     globalSettings = { alt = "all" },
     localSettings = {
+      ["https?.*/sparql"] = {
+        priority = 1,
+        filename = "/tmp/{hostname%32}_{pathname%32}_{selector%32}_{timestamp%32}.sparql",
+        takeover = "never"
+      },
       [".*"] = {
         cmdline  = "neovim",
         content  = "text",
         priority = 0,
         selector = "textarea",
         takeover = "never"
-      }
+      },
     }
   }
   vim.api.nvim_set_keymap("n", "<C-z>", "<Cmd>call firenvim#hide_frame()<CR>", {})

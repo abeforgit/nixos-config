@@ -5,7 +5,8 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    dashboard = { enabled = true },
+    dashboard = {
+      enabled = vim.g.started_by_firenvim ~= true },
     bufdelete = { enabled = true },
     rename = { enabled = true },
     toggle = { enabled = true },
