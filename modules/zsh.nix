@@ -134,7 +134,7 @@ in
             ghprc = "gh pr ls | fzf | cut -f 1 | xargs gh pr checkout";
             extip = "curl ifconfig.co";
             icat = "wezterm imgcat";
-            rebuild = "nixos-rebuild --flake ~/repos/nixos-config#${config.custom.hostname} switch --use-remote-sudo";
+            rebuild = "nixos-rebuild --flake ~/repos/nixos-config#${config.custom.hostname} switch --sudo";
             checkbuild = "nixos-rebuild --flake ~/repos/nixos-config#${config.custom.hostname} build && nvd diff /run/current-system ~/repos/nixos-config/result";
             srcrc = "source ~/.zshrc";
             pose = "docker compose";

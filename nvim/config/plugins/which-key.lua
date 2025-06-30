@@ -9,7 +9,7 @@ return {
     spec = {
       { 'j',     [[v:count==0?'gj':'j']], expr = true,                mode = { 'n', 'x' } },
       { 'k',     [[v:count==0?'gk':'k']], expr = true,                mode = { 'n', 'x' } },
-      { "<C-l>", "<cmd>noh<CR>",            desc = "Turn off search hl" },
+      { "<C-l>", "<cmd>noh<CR>",          desc = "Turn off search hl" },
       {
         "<leader>b",
         group = "buffers",
@@ -48,6 +48,8 @@ return {
       { "<leader>g'", desc = "Octo" },
       { "<leader>q", group = "quit/session" },
       { "<leader>n", group = "notes", icon = { icon = " ", color = "red" } },
+      { "<C-c><C-c>", "<cmd>wq<cr>", desc = "Save and quit" },
+      { "<C-c><C-k>", "<cmd>q!<cr>", desc = "Quit without saving" },
 
       {
 

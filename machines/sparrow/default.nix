@@ -199,6 +199,7 @@ in
     #media-session.enable = true;
   };
   custom.graphical.enable = true;
+  custom.nushell.enable = true;
   custom.user = username;
   custom.emacs.enable = true;
   custom.zsh.enable = true;
@@ -209,6 +210,7 @@ in
   custom.hostname = "sparrow";
   custom.keychain.enable = true;
   custom.extraHomePackages = with pkgs; [
+    alacritty
     taskwarrior3
     taskwarrior-tui
     zk
@@ -246,9 +248,14 @@ in
     lazygit
     galaxy-buds-client
     spotify
+    supersonic
+    feishin
     krita
     ## hypr
     tofi
+    wofi
+    fuzzel
+
     dunst
     # xdg-desktop-portal-hyprland
     # xdg-desktop-portal-gtk
@@ -270,6 +277,7 @@ in
     #from kde TODO
     fira-code
     vlc
+    wtype
 
     ffmpeg_6
     super-productivity
@@ -409,7 +417,7 @@ in
     # QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     # NIXOS_OZONE_WL = "1";
     # WLR_NO_HARDWARE_CURSORS = "1";
-    ZK_NOTEBOOK_DIR = "$HOME/notes";
+    ZK_NOTEBOOK_DIR = "$HOME/obsidian/default/zettel";
   };
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";

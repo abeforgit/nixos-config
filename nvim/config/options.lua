@@ -12,7 +12,7 @@ o.ignorecase = true
 o.smartcase = true
 o.incsearch = true
 o.hlsearch = true
-o.autoindent = true
+-- o.autoindent = true
 o.shiftwidth = 2
 o.smartindent = true
 o.smarttab = true
@@ -40,6 +40,13 @@ vim.api.nvim_create_autocmd("UIEnter", {
   pattern = "*",
   callback = function()
     vim.cmd("if exists('g:started_by_firenvim')\nset guifont=0xproto_Nerd_Font:h18\nendif")
+  end
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function(args)
+    vim.opt_local.conceallevel = 2
   end
 })
 vim.g.mapleader = " "

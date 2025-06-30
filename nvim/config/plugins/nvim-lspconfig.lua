@@ -32,6 +32,7 @@ return {
   opts = {
 
     servers = {
+      nushell = {},
       -- jdtls = {},
       yamlls = {
         setupFunc = function()
