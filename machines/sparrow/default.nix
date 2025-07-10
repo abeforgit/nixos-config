@@ -110,7 +110,7 @@ in
       options = "eurosign:e";
       layout = "us";
     };
-    dpi = 192;
+    # dpi = 192;
   };
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

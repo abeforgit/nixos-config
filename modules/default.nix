@@ -180,7 +180,7 @@ in
             httpie
             (chromium.override (e: rec {
               commandLineArgs =
-	      "--enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo";
+	      "--enable-features=WaylandPerSurfaceScale,WaylandUiScale,VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo --force-device-scale-factor=1.0 --gtk-version=4";
 	      }))
             fira-code
             pciutils
