@@ -271,6 +271,7 @@ in
     hyprpaper
     fre
     frece
+    yq-go
     # hypridle
     # hyprlock
 
