@@ -22,6 +22,9 @@ return {
         {
           "<leader>bn", "<cmd>bnext<CR>", desc = "Next buffer"
         },
+        {
+          "<leader>by", "<cmd>%y<CR>", desc = "Yank buffer"
+        },
       },
 
       { "<leader>c", group = "code" },
