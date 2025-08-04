@@ -344,9 +344,9 @@ in
     enable = true;
     enableGraphical = true;
   };
-  systemd.extraConfig = ''
-    DefaultTimeoutStopSec=10s
-  '';
+  systemd.settings.Manager = {
+    DefaultTimeoutStopSec = "10s";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
