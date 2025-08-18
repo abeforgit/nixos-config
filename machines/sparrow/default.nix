@@ -211,6 +211,7 @@ in
   custom.keychain.enable = true;
   custom.extraHomePackages = with pkgs; [
     alacritty
+    ast-grep
     taskwarrior3
     taskwarrior-tui
     zk
