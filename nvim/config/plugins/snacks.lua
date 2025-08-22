@@ -23,6 +23,8 @@ return {
       sources = {
         explorer = {
 
+          hidden = true,
+          ignored = true,
           actions = {
             oil = function(picker, item)
               if not item then
@@ -81,6 +83,7 @@ return {
       },
 
       matcher = {
+        cwd_bonues = true,
         frecency = true,
       },
       words = { enabled = true },

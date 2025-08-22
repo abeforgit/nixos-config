@@ -170,6 +170,15 @@ in
         enable = true;
       };
     };
+    programs.thunar.enable = true;
+    programs.thunar.plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+      thunar-media-tags-plugin
+    ];
+    programs.xfconf.enable = true;
+    services.gvfs.enable = true; # Mount, trash, and other functionalities
+    services.tumbler.enable = true; # Thumbnail support for images
     home-manager.users.${cfg.user} =
       { pkgs, home, ... }:
       {
@@ -179,18 +188,13 @@ in
           [
             httpie
             (chromium.override (e: rec {
-              commandLineArgs =
-	      "--enable-features=WaylandPerSurfaceScale,WaylandUiScale,VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo --force-device-scale-factor=1.0 --gtk-version=4";
-	      }))
+              commandLineArgs = "--enable-features=WaylandPerSurfaceScale,WaylandUiScale,VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo --force-device-scale-factor=1.0 --gtk-version=4";
+            }))
             fira-code
             pciutils
             docker-compose
             bat
 
-            xfce.thunar
-            xfce.thunar-volman
-            xfce.thunar-archive-plugin
-            xfce.thunar-media-tags-plugin
           ]
           ++ cfg.extraHomePackages;
 
