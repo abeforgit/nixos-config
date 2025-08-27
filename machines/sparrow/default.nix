@@ -434,14 +434,6 @@ in
   home-manager.users.arne =
     { pkgs, home, ... }:
     {
-      programs.ncspot = {
-        enable = true;
-        package = pkgs.ncspot.override {
-          withMPRIS = true;
-          withCover = true;
-          withShareSelection = true;
-        };
-      };
       xdg = {
         mimeApps = {
           enable = true;

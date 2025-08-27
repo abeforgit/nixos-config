@@ -61,10 +61,6 @@ in {
 
       };
       services.mpris-proxy.enable = true;
-      programs.ncspot = {
-        enable = true;
-        package = pkgs.ncspot.override { withMPRIS = true; withCover = true; withShareSelection = true; };
-      };
       services.spotifyd = {
         enable = true;
         package = pkgs.spotifyd.override {
