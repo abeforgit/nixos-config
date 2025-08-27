@@ -299,8 +299,8 @@ in
     rofi-rbw
     pinentry-curses
     dig.dnsutils
-    libsForQt5.polkit-kde-agent
-    libsForQt5.qt5.qtwayland
+    kdePackages.polkit-kde-agent-1
+    kdePackages.qtwayland
     qt6.qtwayland
     qt6ct
     dnstop

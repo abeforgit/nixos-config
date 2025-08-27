@@ -48,15 +48,15 @@ in
           vulkan-tools
           obsidian
           xorg.xdpyinfo
-          pkgs.libsForQt5.qtdbusextended
-          pkgs.libsForQt5.plasma-browser-integration
-          pkgs.libsForQt5.kaccounts-providers
-          pkgs.libsForQt5.kaccounts-integration
-          pkgs.libsForQt5.kcharselect
+          pkgs.kdePackages.qtdbusextended
+          pkgs.kdePackages.plasma-browser-integration
+          pkgs.kdePackages.kaccounts-providers
+          pkgs.kdePackages.kaccounts-integration
+          pkgs.kdePackages.kcharselect
           smbmap
           smbscan
           samba
-          libsForQt5.kdenetwork-filesharing
+          kdePackages.kdenetwork-filesharing
           packagekit
 
           ffmpeg_6
@@ -76,8 +76,8 @@ in
           extraPackages = with pkgs; [
             coreutils
             xdotool
-            pkgs.libsForQt5.qtdbusextended
-            pkgs.libsForQt5.qt5.qttools
+            pkgs.kdePackages.qtdbusextended
+            pkgs.kdePackages.qt5.qttools
           ];
           settings = {
             threshold = {
@@ -90,22 +90,22 @@ in
               "3" = {
                 left = {
                   command = ''
-                    ${pkgs.libsForQt5.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "Switch to Next Desktop"
+                    ${pkgs.kdePackages.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "Switch to Next Desktop"
                   '';
                 };
                 right = {
                   command = ''
-                    ${pkgs.libsForQt5.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "Switch to Previous Desktop"
+                    ${pkgs.kdePackages.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "Switch to Previous Desktop"
                   '';
                 };
                 up = {
                   command = ''
-                    ${pkgs.libsForQt5.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "Overview"
+                    ${pkgs.kdePackages.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "Overview"
                   '';
                 };
                 down = {
                   command = ''
-                    ${pkgs.libsForQt5.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "ExposeAll"
+                    ${pkgs.kdePackages.qt5.qttools.bin}/bin/qdbus org.kde.kglobalaccel /component/kwin org.kde.kglobalaccel.Component.invokeShortcut "ExposeAll"
                   '';
                 };
               };

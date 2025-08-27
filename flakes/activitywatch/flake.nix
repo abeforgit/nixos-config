@@ -38,7 +38,7 @@
 
       python3 = nixpkgs.legacyPackages.${platform}.python38;
       fetchFromGitHub = nixpkgs.legacyPackages.${platform}.fetchFromGitHub;
-      libsForQt5 = nixpkgs.legacyPackages.${platform}.libsForQt5;
+      # libsForQt5 = nixpkgs.legacyPackages.${platform}.libsForQt5;
       xdg-utils = nixpkgs.legacyPackages.${platform}.xdg-utils;
       pkg-config = nixpkgs.legacyPackages.${platform}.pkg-config;
       perl = nixpkgs.legacyPackages.${platform}.perl;
@@ -209,7 +209,7 @@
         nativeBuildInputs = [
           python3.pkgs.poetry
           python3.pkgs.pyqt5 # for pyrcc5
-          libsForQt5.wrapQtAppsHook
+          kdePackages.wrapQtAppsHook
           xdg-utils
         ];
 

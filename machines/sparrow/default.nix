@@ -260,8 +260,8 @@ in
     dunst
     # xdg-desktop-portal-hyprland
     # xdg-desktop-portal-gtk
-    libsForQt5.polkit-kde-agent
-    libsForQt5.qt5.qtwayland
+    kdePackages.polkit-kde-agent-1
+    kdePackages.qtwayland
     qt6.qtwayland
     qt6ct
     xwayland
@@ -303,10 +303,10 @@ in
     slurp
     grim
     satty
-    libsForQt5.networkmanager-qt
-    libsForQt5.breeze-qt5
-    libsForQt5.breeze-gtk
-    libsForQt5.breeze-icons
+    kdePackages.networkmanager-qt
+    kdePackages.breeze
+    kdePackages.breeze-gtk
+    kdePackages.breeze-icons
     adwaita-qt
     adwaita-qt6
     adwaita-icon-theme
@@ -315,7 +315,7 @@ in
     alsa-utils
     alsa-tools
     qjackctl
-    libsForQt5.kdenetwork-filesharing
+    kdePackages.kdenetwork-filesharing
     nfs-utils
     cifs-utils
     dconf-editor
@@ -411,7 +411,7 @@ in
     # GDK_SCALE = "2";
     # GDK_DPI_SCALE = "0.5";
     # _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
-    POLKIT_BIN = pkgs.libsForQt5.polkit-kde-agent;
+    POLKIT_BIN = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
     GDK_BACKEND = "wayland,x11";
     QT_QPA_PLATFORM = "wayland;xcb";
     SDL_VIDEODRIVER = "wayland";
