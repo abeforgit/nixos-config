@@ -129,7 +129,7 @@
             # inherit (channels.master) neatvnc;
 	    utillinux = super.util-linux;
             # inherit (channels.master) wezterm;
-	    nix-sweep = nix-sweep;
+	    nix-sweep = nix-sweep.packages.x86_64-linux.default;
           })
           (self: super: {
             # inherit (channels.revert-emacs) emacsPackagesFor;
