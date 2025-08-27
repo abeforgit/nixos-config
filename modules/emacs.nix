@@ -44,7 +44,6 @@ in
           nodePackages.stylelint
           nodePackages.typescript-language-server
           nodePackages.yaml-language-server
-          elixir-ls
           graphviz
           sbcl
           editorconfig-core-c

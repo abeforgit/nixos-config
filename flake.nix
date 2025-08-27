@@ -46,6 +46,10 @@
       url = "github:wez/wezterm/main?dir=nix";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-sweep = {
+      url = "github:jzbor/nix-sweep";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
   };
 
@@ -66,6 +70,7 @@
       comma,
       hyprland,
       wezterm,
+      nix-sweep,
     # wezterm-monkeypatch
     }:
     let
@@ -124,6 +129,7 @@
             # inherit (channels.master) neatvnc;
 	    utillinux = super.util-linux;
             # inherit (channels.master) wezterm;
+	    nix-sweep = nix-sweep;
           })
           (self: super: {
             # inherit (channels.revert-emacs) emacsPackagesFor;
