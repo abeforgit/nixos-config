@@ -12,5 +12,9 @@ return {
     { '<A-S-k>', function() require('smart-splits').swap_buf_up() end },
     { '<A-S-l>', function() require('smart-splits').swap_buf_right() end }
   },
-  opts = {}
+  opts = {
+    at_edge = false,
+    float_win_behavior = 'mux'
+  }
+
 }

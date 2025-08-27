@@ -12,6 +12,11 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
+    completion = {
+      accept = {
+        auto_brackets = { enabled = false }
+      }
+    },
     sources = {
       default = { "lsp",
         "path", "snippets", "lazydev",
@@ -20,22 +25,22 @@ return {
         -- "obsidian", "obsidian_new", "obsidian_tags"
       },
       providers = {
-      -- snippets = {
-      --   -- preset = 'luasnip',
-      --   -- should_show_items = function(ctx)
-      --   --   return ctx.trigger.initial_kind ~= 'trigger_character'
-      --   -- end,
-      --
-      --   expand = function(snippet)
-      --     require("luasnip").lsp_expand(snippet)
-      --   end,
-      --   active = function(filter)
-      --     if filter and filter.direction then
-      --       return require("luasnip").jumpable(filter.direction)
-      --     end
-      --     return require("luasnip").in_snippet()
-      --   end,
-      -- },
+        -- snippets = {
+        --   -- preset = 'luasnip',
+        --   -- should_show_items = function(ctx)
+        --   --   return ctx.trigger.initial_kind ~= 'trigger_character'
+        --   -- end,
+        --
+        --   expand = function(snippet)
+        --     require("luasnip").lsp_expand(snippet)
+        --   end,
+        --   active = function(filter)
+        --     if filter and filter.direction then
+        --       return require("luasnip").jumpable(filter.direction)
+        --     end
+        --     return require("luasnip").in_snippet()
+        --   end,
+        -- },
         lsp = {
 
           name = 'LSP',
