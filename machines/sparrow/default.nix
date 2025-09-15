@@ -126,6 +126,9 @@ in
   nix.package = pkgs.nixVersions.latest;
 
   nix.settings = {
+    # 128 MiB
+    download-buffer-size = 134217728;
+
     substituters = [
       "https://nix-community.cachix.org"
       "https://cache.nixos.org"
@@ -208,6 +211,7 @@ in
   custom.nvim.enable = true;
   custom.git.enable = true;
   custom.wezterm.enable = true;
+  custom.niri.enable = true;
   custom.hostname = "sparrow";
   custom.keychain.enable = true;
   custom.extraHomePackages = with pkgs; [
@@ -233,6 +237,7 @@ in
     powertop
     anki-bin
     usbutils
+    tauon
     bitwarden
     activitywatch
     aw-server-rust
@@ -262,6 +267,8 @@ in
     dunst
     # xdg-desktop-portal-hyprland
     # xdg-desktop-portal-gtk
+    # xdg-desktop-portal-gnome
+
     kdePackages.polkit-kde-agent-1
     kdePackages.qtwayland
     qt6.qtwayland
@@ -271,7 +278,7 @@ in
     waybar
     udiskie
     jdt-language-server
-    hyprpaper
+    # hyprpaper
     fre
     frece
     yq-go
@@ -285,7 +292,10 @@ in
 
     ffmpeg_6
     super-productivity
+    gpu-screen-recorder-gtk # GUI app
   ];
+
+  programs.gpu-screen-recorder.enable = true; # For promptless recording on both CLI and GUI
 
   custom.extraSystemPackages = with pkgs; [
     sqlite
@@ -358,6 +368,7 @@ in
   virtualisation.docker = {
     enable = true;
     daemon.settings = {
+      "shutdown-timeout" = 15;
       "default-ulimits" = {
         "nofile" = {
           "Hard" = 104583;
@@ -400,12 +411,12 @@ in
     powerOnBoot = true;
     package = pkgs.bluez;
   };
-  programs.hyprland = {
-    # portalPackage = pkgs.xdg-desktop-portal-wlr;
-    enable = true;
-  };
-  programs.hyprlock.enable = true;
-  services.hypridle.enable = true;
+  # programs.hyprland = {
+  #   # portalPackage = pkgs.xdg-desktop-portal-wlr;
+  #   enable = true;
+  # };
+  # programs.hyprlock.enable = true;
+  # services.hypridle.enable = true;
   programs.dconf.enable = true;
   programs.nix-ld.enable = true;
 
@@ -413,18 +424,18 @@ in
     # GDK_SCALE = "2";
     # GDK_DPI_SCALE = "0.5";
     # _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
-    POLKIT_BIN = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
-    GDK_BACKEND = "wayland,x11";
-    QT_QPA_PLATFORM = "wayland;xcb";
-    SDL_VIDEODRIVER = "wayland";
-    CLUTTER_BACKEND = "wayland";
+    # POLKIT_BIN = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+    # GDK_BACKEND = "wayland,x11";
+    # QT_QPA_PLATFORM = "wayland;xcb";
+    # SDL_VIDEODRIVER = "wayland";
+    # CLUTTER_BACKEND = "wayland";
     # QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     # NIXOS_OZONE_WL = "1";
-    # WLR_NO_HARDWARE_CURSORS = "1";
-    ZK_NOTEBOOK_DIR = "$HOME/obsidian/default/zettel";
+    # # WLR_NO_HARDWARE_CURSORS = "1";
+    # ZK_NOTEBOOK_DIR = "$HOME/obsidian/default/zettel";
   };
   environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
+    # NIXOS_OZONE_WL = "1";
   };
 
   services.displayManager = {
@@ -475,8 +486,8 @@ in
       gtk = {
         enable = true;
         theme = {
-          package = pkgs.flat-remix-gtk;
-          name = "Flat-Remix-GTK-Grey-Darkest";
+          package = pkgs.colloid-gtk-theme;
+          name = "Colloid-Dark";
         };
         cursorTheme = {
           package = pkgs.nordzy-cursor-theme;
@@ -485,8 +496,8 @@ in
         };
 
         iconTheme = {
-          package = pkgs.flat-remix-icon-theme;
-          name = "Flat-Remix-Blue-Dark";
+          package = pkgs.colloid-icon-theme;
+          name = "Colloid-Dark";
         };
 
         font = {

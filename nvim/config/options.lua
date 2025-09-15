@@ -35,6 +35,7 @@ o.breakindent = true
 o.showbreak = '↪ '
 o.hidden = true
 o.scrolloff = 3
+o.termguicolors = true
 -- o.cmdheight = 0
 o.sessionoptions = "curdir,folds,winsize,winpos,terminal,localoptions"
 

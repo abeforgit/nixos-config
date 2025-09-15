@@ -120,6 +120,14 @@ in
             yaml-language-server
             glow
             jdt-language-server
+            (mdformat.withPlugins (
+              ps: with ps; [
+                mdformat-gfm
+                mdformat-frontmatter
+                mdformat-tables
+		mdformat-simple-breaks
+              ]
+            ))
           ];
           extraConfig = ''
             lua require('config')

@@ -32,6 +32,7 @@ in
     ./webstorm.nix
     ./rustup.nix
     ./tmux.nix
+    ./niri.nix
   ];
 
   options.custom = {
@@ -163,11 +164,6 @@ in
         cfg = {
           nativeMessagingHosts = [ pkgs.plasma-browser-integration ];
         };
-      };
-    };
-    xdg = {
-      portal = {
-        enable = true;
       };
     };
     programs.thunar.enable = true;

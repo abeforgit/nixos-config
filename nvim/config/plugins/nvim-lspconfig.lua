@@ -7,21 +7,21 @@ local function default_attach(_, bufnr)
   local keymap = require('config.lsp.keymap')
   keymap(bufnr)
 end
-local function get_typescript_server_path(root_dir)
-  local project_root = vim.fs.dirname(vim.fs.find('node_modules', { path = root_dir, upward = true })[1])
-  return project_root and (project_root .. '/node_modules/typescript/lib') or ''
-end
+-- local function get_typescript_server_path(root_dir)
+--   local project_root = vim.fs.dirname(vim.fs.find('node_modules', { path = root_dir, upward = true })[1])
+--   return project_root and (project_root .. '/node_modules/typescript/lib') or ''
+-- end
 
-local glint_filetypes = {
-  'typescript',
-  'javascript',
-  'typescript.glimmer',
-  'javascript.glimmer',
-  'typescript.tsx',
-  'javascript.jsx',
-  'html.handlebars',
-  'handlebars',
-}
+-- local glint_filetypes = {
+--   'typescript',
+--   'javascript',
+--   'typescript.glimmer',
+--   'javascript.glimmer',
+--   'typescript.tsx',
+--   'javascript.jsx',
+--   'html.handlebars',
+--   'handlebars',
+-- }
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
@@ -83,60 +83,60 @@ return {
           }
         end
       },
-      ts_ls = {
-        filetypes = glint_filetypes,
-        -- root_dir = function(filename, bufnr)
-        --   local utils = require('config.lsp.utils')
-        --   return utils.is_ts_project(filename, bufnr)
-        -- end,
-        -- on_new_config = function(new_config, new_root_dir)
-        --   print('DEBUGPRINT[11]: nvim-lspconfig.lua:92: new_root_dir=' .. vim.inspect(new_root_dir))
-        --   if new_root_dir == '/bogus' then
-        --     new_config.tsdk = '/bogus'
-        --   end
-        --   local utils = require('config.lsp.utils')
-        --   local info = utils.read_nearest_ts_config(new_root_dir)
-        --   local glintPlugin = new_root_dir .. "node_modules/@glint/tsserver-plugin"
-        --
-        --   if new_config.init_options then
-        --     new_config.init_options.tsdk = get_typescript_server_path(new_root_dir)
-        --     new_config.init_options.requestForwardingCommand = "forwardingTsRequest"
-        --
-        --
-        --     if (info.isGlintPlugin) then
-        --       new_config.init_options.plugins = {
-        --         {
-        --           name = "@glint/tsserver-plugin",
-        --           location = glintPlugin,
-        --           languages = glint_filetypes,
-        --           enableForWorkspaceTypeScriptVersions = true,
-        --           configNamespace = "typescript"
-        --         }
-        --       }
-        --     end
-        --   end
-        -- end,
-        init_options = {
-          -- tsserver = { logVerbosity = 'verbose', trace = "verbose" },
-          preferences = {
-            disableAutomaticTypingAcquisition = true,
-            importModuleSpecifierPreference = "relative",
-            importModuleSpecifierEnding = "minimal",
-          },
-          plugins = {}
-        },
-        settings = {
-          hostInfo = "neovim native LS",
-          maxTsServerMemory = 8000,
-          -- implicitProjectConfig = {
-          --   experimentalDecorators = true
-          -- },
-
-          disableAutomaticTypingAcquisition = true,
-          importModuleSpecifierPreference = "relative",
-          importModuleSpecifierEnding = "minimal",
-        }
-      },
+      -- ts_ls = {
+      --   filetypes = glint_filetypes,
+      --   -- root_dir = function(filename, bufnr)
+      --   --   local utils = require('config.lsp.utils')
+      --   --   return utils.is_ts_project(filename, bufnr)
+      --   -- end,
+      --   -- on_new_config = function(new_config, new_root_dir)
+      --   --   print('DEBUGPRINT[11]: nvim-lspconfig.lua:92: new_root_dir=' .. vim.inspect(new_root_dir))
+      --   --   if new_root_dir == '/bogus' then
+      --   --     new_config.tsdk = '/bogus'
+      --   --   end
+      --   --   local utils = require('config.lsp.utils')
+      --   --   local info = utils.read_nearest_ts_config(new_root_dir)
+      --   --   local glintPlugin = new_root_dir .. "node_modules/@glint/tsserver-plugin"
+      --   --
+      --   --   if new_config.init_options then
+      --   --     new_config.init_options.tsdk = get_typescript_server_path(new_root_dir)
+      --   --     new_config.init_options.requestForwardingCommand = "forwardingTsRequest"
+      --   --
+      --   --
+      --   --     if (info.isGlintPlugin) then
+      --   --       new_config.init_options.plugins = {
+      --   --         {
+      --   --           name = "@glint/tsserver-plugin",
+      --   --           location = glintPlugin,
+      --   --           languages = glint_filetypes,
+      --   --           enableForWorkspaceTypeScriptVersions = true,
+      --   --           configNamespace = "typescript"
+      --   --         }
+      --   --       }
+      --   --     end
+      --   --   end
+      --   -- end,
+      --   init_options = {
+      --     -- tsserver = { logVerbosity = 'verbose', trace = "verbose" },
+      --     preferences = {
+      --       disableAutomaticTypingAcquisition = true,
+      --       importModuleSpecifierPreference = "relative",
+      --       importModuleSpecifierEnding = "minimal",
+      --     },
+      --     plugins = {}
+      --   },
+      --   settings = {
+      --     hostInfo = "neovim native LS",
+      --     maxTsServerMemory = 8000,
+      --     -- implicitProjectConfig = {
+      --     --   experimentalDecorators = true
+      --     -- },
+      --
+      --     disableAutomaticTypingAcquisition = true,
+      --     importModuleSpecifierPreference = "relative",
+      --     importModuleSpecifierEnding = "minimal",
+      --   }
+      -- },
       nil_ls = nil,
       -- glint = {
       --   root_dir = function(filename, bufnr)
@@ -183,6 +183,92 @@ return {
   lazy = false,
   config = function(_, opts)
     local lspconfig = require('lspconfig')
+
+    local utils = require('config.lsp.utils')
+
+    local filetypes = {
+      'typescript',
+      'javascript',
+      'typescript.glimmer',
+      'javascript.glimmer',
+      'typescript.tsx',
+      'javascript.jsx',
+      'html.handlebars',
+      'handlebars',
+    }
+
+    local function get_typescript_server_path(root_dir)
+      local project_root = vim.fs.dirname(vim.fs.find('node_modules', { path = root_dir, upward = true })[1])
+      return project_root and (project_root .. '/node_modules/typescript/lib') or ''
+    end
+
+
+    -- https://neovim.io/doc/user/lsp.html
+    vim.lsp.config('ts_ls', {
+      -- This allows us to switch types of TSServers based on the open file.
+      -- We don't always need the @glint/tsserver-plugin -- for example, in backend projects.
+      root_dir = utils.is_ts_project,
+      settings = {
+        hostInfo = "neovim native TS LS",
+        maxTsServerMemory = 8000,
+        -- implicitProjectConfig = {
+        --   experimentalDecorators = true
+        -- },
+        disableAutomaticTypingAcquisition = true,
+        importModuleSpecifierPreference = "relative",
+        importModuleSpecifierEnding = "minimal",
+      },
+      init_options = {
+        tsserver = { logVerbosity = 'verbose', trace = "verbose" },
+        preferences = {
+          disableAutomaticTypingAcquisition = true,
+          importModuleSpecifierPreference = "relative",
+          importModuleSpecifierEnding = "minimal",
+        },
+        plugins = {
+          -- All plugins need to be defined here,
+          -- even if we have to change the location later
+          {
+            name = "@glint/tsserver-plugin",
+            location = "/your/path/to/@glint/tsserver-plugin",
+            languages = filetypes
+          },
+        },
+      },
+      filetypes = filetypes,
+      on_new_config = function(new_config, new_root_dir)
+        local info = utils.read_nearest_ts_config(new_root_dir)
+        local glintPlugin = new_root_dir .. "node_modules/@glint/tsserver-plugin"
+        if new_config.init_options then
+          new_config.init_options.tsdk = get_typescript_server_path(new_root_dir)
+          new_config.init_options.requestForwardingCommand = "forwardingTsRequest"
+
+
+          if (info.isGlintPlugin) then
+            new_config.init_options.plugins = {
+              {
+                name = "@glint/tsserver-plugin",
+                location = glintPlugin,
+                languages = filetypes,
+                enableForWorkspaceTypeScriptVersions = true,
+                configNamespace = "typescript"
+              }
+            }
+          end
+        end
+      end,
+    })
+
+
+    vim.lsp.config('glint', {
+      root_dir = utils.is_glint_project,
+    })
+
+    vim.lsp.enable('ts_ls')
+    vim.lsp.enable('glint')
+
+
+
     local capabilities = vim.tbl_deep_extend(
       "force",
       {},
@@ -205,7 +291,7 @@ return {
         -- lspconfig[server].setup(config)
         vim.lsp.config(server, config)
       end
-        vim.lsp.enable(server)
+      vim.lsp.enable(server)
     end
 
 
@@ -231,11 +317,11 @@ return {
 
 
   keys = {
-    { '<leader>ca', vim.lsp.buf.code_action,    desc = "code actions (lsp)" },
-    { '<leader>co', '<cmd>LspTypescriptSourceAction<CR>',    desc = "file code actions (lsp)" },
-    { '<leader>cr', vim.lsp.buf.rename,         desc = "rename symbol (lsp)" },
-    { 'gh',         vim.lsp.buf.hover,          desc = "Show hover info" },
-    { '<leader>e',  vim.diagnostic.open_float,  desc = "Open diagnostic float" },
-    { '<leader>u',  vim.lsp.buf.signature_help, desc = "open signature_help" }
+    { '<leader>ca', vim.lsp.buf.code_action,              desc = "code actions (lsp)" },
+    { '<leader>co', '<cmd>LspTypescriptSourceAction<CR>', desc = "file code actions (lsp)" },
+    { '<leader>cr', vim.lsp.buf.rename,                   desc = "rename symbol (lsp)" },
+    { 'gh',         vim.lsp.buf.hover,                    desc = "Show hover info" },
+    { '<leader>e',  vim.diagnostic.open_float,            desc = "Open diagnostic float" },
+    { '<leader>u',  vim.lsp.buf.signature_help,           desc = "open signature_help" }
   }
 }

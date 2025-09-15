@@ -127,9 +127,9 @@
           (self: super: {
             inherit (channels.master) delta;
             # inherit (channels.master) neatvnc;
-	    utillinux = super.util-linux;
+            utillinux = super.util-linux;
             # inherit (channels.master) wezterm;
-	    nix-sweep = nix-sweep.packages.x86_64-linux.default;
+            nix-sweep = nix-sweep.packages.x86_64-linux.default;
           })
           (self: super: {
             # inherit (channels.revert-emacs) emacsPackagesFor;

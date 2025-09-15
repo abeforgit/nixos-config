@@ -21,7 +21,7 @@ return {
       -- Use a sub-list to run only the first available formatter
       nix = { 'nixfmt' },
       javascript = { "prettier", stop_after_first = true },
-      markdown = { "prettier", stop_after_first = true },
+      markdown = { "prettier", "mdformat", stop_after_first = true },
       ["javascript.glimmer"] = { "prettier", stop_after_first = true },
       typescript = { "prettier", stop_after_first = true },
       ["typescript.glimmer"] = { "prettier", stop_after_first = true },
