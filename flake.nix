@@ -48,7 +48,7 @@
     };
     nix-sweep = {
       url = "github:jzbor/nix-sweep";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     # wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
   };

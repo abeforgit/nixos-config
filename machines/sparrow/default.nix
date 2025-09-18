@@ -230,7 +230,7 @@ in
     idasen
     # calibre
     evince
-    nix-sweep
+    # nix-sweep
     lorien
     nvd
     signal-desktop

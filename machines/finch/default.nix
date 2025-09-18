@@ -291,7 +291,7 @@ in
     usbutils
     bitwarden
     obsidian
-    nix-sweep
+    # nix-sweep
     lazygit
     tofi
     hyprpaper
