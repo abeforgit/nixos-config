@@ -7,6 +7,7 @@ return {
   opts = {
     dashboard = {
       enabled = vim.g.started_by_firenvim ~= true },
+    bigfile = { enabled = true },
     bufdelete = { enabled = true },
     rename = { enabled = true },
     toggle = { enabled = true },

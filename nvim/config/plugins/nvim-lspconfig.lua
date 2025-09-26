@@ -261,7 +261,8 @@ return {
 
 
     vim.lsp.config('glint', {
-      root_dir = utils.is_glint_project,
+      -- root_dir = utils.is_glint_project,
+      filetypes = filetypes,
     })
 
     vim.lsp.enable('ts_ls')

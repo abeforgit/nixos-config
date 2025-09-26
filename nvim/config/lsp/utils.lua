@@ -149,6 +149,7 @@ end
 -- search for ROOT DIRECTORY DETECTION
 local function is_glint_project(filename, bufnr)
   local result = read_nearest_ts_config(filename)
+  print('DEBUGPRINT[13]: utils.lua:152: result=' .. vim.inspect(result))
 
   if not result then
     return nil
