@@ -260,9 +260,15 @@ return {
     })
 
 
+    local glint_filetypes = {
+      'typescript.glimmer',
+      'javascript.glimmer',
+      'html.handlebars',
+      'handlebars',
+    }
     vim.lsp.config('glint', {
-      -- root_dir = utils.is_glint_project,
-      filetypes = filetypes,
+      root_dir = utils.is_glint_project,
+      filetypes = glint_filetypes,
     })
 
     vim.lsp.enable('ts_ls')
