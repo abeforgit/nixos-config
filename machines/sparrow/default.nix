@@ -239,7 +239,7 @@ in
     anki-bin
     usbutils
     tauon
-    bitwarden
+    bitwarden-desktop
     activitywatch
     aw-server-rust
     awatcher
@@ -274,7 +274,7 @@ in
     kdePackages.polkit-kde-agent-1
     kdePackages.qtwayland
     qt6.qtwayland
-    qt6ct
+    qt6Packages.qt6ct
     xwayland
     nwg-look
     waybar

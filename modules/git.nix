@@ -23,13 +23,19 @@ in
       { pkgs, home, ... }:
       {
 
+        programs.delta = {
+          enable = true;
+          package = pkgs.delta;
+	  enableGitIntegration = true;
+        };
         programs.git = {
           enable = true;
-          userName = "abeforgit";
-          userEmail = "arnebertrand@gmail.com";
-          delta = {
-            enable = true;
-            package = pkgs.delta;
+          settings = {
+            user.name = "abeforgit";
+            user.email = "arnebertrand@gmail.com";
+            merge.conflictstyle = "diff3";
+            rerere.enabled = true;
+            github.user = "abeforgit";
           };
           lfs.enable = true;
           ignores = [
@@ -38,11 +44,6 @@ in
             ".idea/*"
             "*.iml"
           ];
-          extraConfig = {
-            merge.conflictstyle = "diff3";
-            rerere.enabled = true;
-            github.user = "abeforgit";
-          };
           includes = [
             {
               condition = "gitdir:~/repos/redpencil/";

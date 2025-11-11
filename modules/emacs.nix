@@ -30,7 +30,6 @@ in
           ripgrep
           git
           coreutils
-          wakatime
           fd
           clang
           xclip
@@ -51,20 +50,20 @@ in
           nodejs
           python3
           google-chrome
-          sumneko-lua-language-server
+          lua-language-server
           emacs-all-the-icons-fonts
           material-design-icons
           material-icons
           weather-icons
           shfmt
-          wkhtmltopdf-bin
+          wkhtmltopdf
           dockfmt
-          dockerfile-language-server-nodejs
+          dockerfile-language-server
           eslint_d
           # texlive.combined.scheme-full
         ];
         home.file.lua-ls = {
-          source = "${pkgs.sumneko-lua-language-server}";
+          source = "${pkgs.lua-language-server}";
           target = ".emacs.d/.local/etc/lsp/lua-language-server";
         };
         programs.emacs = {

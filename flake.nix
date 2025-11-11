@@ -110,7 +110,7 @@
         config = {
 
           permittedInsecurePackages = [
-            "electron-25.9.0"
+            "electron-36.9.5"
             "openssl-1.1.1w"
           ];
 

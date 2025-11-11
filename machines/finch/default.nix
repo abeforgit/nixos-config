@@ -289,7 +289,7 @@ in
     powertop
     anki-bin
     usbutils
-    bitwarden
+    bitwarden-desktop
     obsidian
     # nix-sweep
     lazygit
@@ -303,7 +303,7 @@ in
     kdePackages.polkit-kde-agent-1
     kdePackages.qtwayland
     qt6.qtwayland
-    qt6ct
+    qt6Packages.qt6ct
     dnstop
     dnstracer
     dnsperf
