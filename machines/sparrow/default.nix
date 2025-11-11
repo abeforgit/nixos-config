@@ -203,6 +203,7 @@ in
     #media-session.enable = true;
   };
   custom.graphical.enable = true;
+  custom.syncthing.enable = true;
   custom.nushell.enable = true;
   custom.user = username;
   custom.emacs.enable = true;
@@ -263,6 +264,7 @@ in
     tofi
     wofi
     fuzzel
+    picard
 
     dunst
     # xdg-desktop-portal-hyprland
@@ -421,18 +423,8 @@ in
   programs.nix-ld.enable = true;
 
   environment.variables = {
-    # GDK_SCALE = "2";
-    # GDK_DPI_SCALE = "0.5";
-    # _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
-    # POLKIT_BIN = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
-    # GDK_BACKEND = "wayland,x11";
-    # QT_QPA_PLATFORM = "wayland;xcb";
-    # SDL_VIDEODRIVER = "wayland";
-    # CLUTTER_BACKEND = "wayland";
-    # QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-    # NIXOS_OZONE_WL = "1";
-    # # WLR_NO_HARDWARE_CURSORS = "1";
-    # ZK_NOTEBOOK_DIR = "$HOME/obsidian/default/zettel";
+    POLKIT_BIN = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+    ZK_NOTEBOOK_DIR = "$HOME/obsidian/default/zettel";
   };
   environment.sessionVariables = {
     # NIXOS_OZONE_WL = "1";

@@ -18,12 +18,30 @@ in
     };
 
   };
+
   config = mkIf cfg.enable {
     programs.niri.enable = true;
     environment.systemPackages = with pkgs; [
       xwayland-satellite
       nautilus
     ];
+
+    environment.variables = {
+      # GDK_SCALE = "2";
+      # GDK_DPI_SCALE = "0.5";
+      # _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+      # POLKIT_BIN = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+      # GDK_BACKEND = "wayland,x11";
+      # QT_QPA_PLATFORM = "wayland;xcb";
+      # SDL_VIDEODRIVER = "wayland";
+      # CLUTTER_BACKEND = "wayland";
+      # QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+      # NIXOS_OZONE_WL = "1";
+      # # WLR_NO_HARDWARE_CURSORS = "1";
+    };
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
 
     services.displayManager = {
       sddm.enable = true;

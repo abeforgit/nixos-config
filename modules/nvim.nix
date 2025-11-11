@@ -120,6 +120,7 @@ in
             yaml-language-server
             glow
             jdt-language-server
+	    vtsls
             (mdformat.withPlugins (
               ps: with ps; [
                 mdformat-gfm

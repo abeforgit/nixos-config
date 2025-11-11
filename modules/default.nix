@@ -33,6 +33,7 @@ in
     ./rustup.nix
     ./tmux.nix
     ./niri.nix
+    ./syncthing.nix
   ];
 
   options.custom = {
