@@ -265,7 +265,7 @@ in
     wofi
     fuzzel
     picard
-    nicotine
+    nicotine-plus
 
     dunst
     # xdg-desktop-portal-hyprland
