@@ -1,156 +1,85 @@
-local lsp = require('lspconfig')
-local keymap = require('config.lsp.keymap')
-local utils = require('config.lsp.utils')
+local function init()
+  vim.lsp.config('eslint', {
+    settings = {
+      useFlatConfig = true,
+    },
+    filetypes = {
+      "javascript", "typescript",
+      "typescript.glimmer", "javascript.glimmer",
+      "json",
+      "markdown"
+    },
+  })
+  vim.lsp.enable('eslint');
 
-require('config.lsp.config')
-require('config.lsp.completion')
-
-function setup(opts)
-local servers = {
-  --------------
-  -- Languages
-  --
-  -- NOTE:
-  --   jsonls doesn't support jsonc (it just does JSON.parse and reports errors)
-  --------------
-  -- "html",
-  "yamlls",
-  -- "cssls",
-  "lua_ls",
-  "ts_ls",
-  "nil_ls",
-  -- "bashls",
-  -- "marksman", -- https://github.com/artempyanykh/marksman
-  -- "rust_analyzer",
-  -- Not actively using these atm
-  -- "elixirls",
-  -- "fsautocomplete",
-
-  --------------
-  -- Frameworks
-  -- "ember",
-  "glint",
-
-  --------------
-  -- Tools
-  -- "graphql",
-  -- "tailwindcss",
-  -- "graphql",
-  -- "dockerls",
-  --
-  -- --------------
-  -- -- Linting / Formatting
-  -- -- null_ls not needed for these
-  "eslint"
-}
-
-
----------------------------
--- Settings and other available servers
---  https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
----------------------------
-local mySettings = {
-  -- yamlls = {
-  --   yaml = {
-  --     keyOrdering = false
-  --   }
-  -- },
-  lua_ls = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-        -- https://github.com/neovim/nvim-lspconfig/issues/1700#issuecomment-1033127328
-        -- I don't care about proper projects.
-        -- I don't actually work in Lua outside of neovim configs
-        checkThirdParty = false
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
+  vim.lsp.config('lua_ls', {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { 'vim' },
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true),
+          -- https://github.com/neovim/nvim-lspconfig/issues/1700#issuecomment-1033127328
+          -- I don't care about proper projects.
+          -- I don't actually work in Lua outside of neovim configs
+          checkThirdParty = false
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
+        },
+      }
     }
-  },
-  -- tsserver = {
-  --   maxTsServerMemory = 8000,
-  --   implicitProjectConfig = {
-  --     experimentalDecorators = true
+  });
+  vim.lsp.enable('lua_ls');
+
+  vim.lsp.config('yamlls', {
+    settings = {
+      yaml = {
+        keyOrdering = false
+      }
+    }
+  });
+
+  vim.lsp.enable('yamlls')
+
+  -- vim.lsp.config('jsonls', {
+  --
+  --   schemaStore = {
+  --     -- You must disable built-in schemaStore support if you want to use
+  --     -- this plugin and its advanced options like `ignore`.
+  --     enable = false,
+  --     -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+  --     url = "",
   --   },
-  --   -- importModuleSpecifier = "shortest"
-  -- }
-}
+  --   schemas = require('schemastore').yaml.schemas(),
+  -- })
+  vim.lsp.enable('jsonls')
 
--- https://github.com/j-hui/fidget.nvim
--- require "fidget".setup {}
+  -- require('config.plugins.lsp.tailwind')
+  vim.lsp.enable('bashls');
 
+  vim.lsp.config('cssls', {
+    filetypes = { "css", "scss", "less" }
+  });
+  vim.lsp.enable('cssls');
+  vim.lsp.enable('dockerls');
+  require('config.lsp.typescript');
 
--- Setup lspconfig.
--- local capabilities = require('cmp_nvim_lsp')
---     .default_capabilities(vim.lsp.protocol.make_client_capabilities())
-local capabilities = require('blink.cmp').get_lsp_capabilities()
-
-local conditional_features = function(client, bufnr)
-  -- if client.server_capabilities.inlayHintProvider then
-  --     vim.lsp.buf.inlay_hint(bufnr, true)
-  -- end
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'sparql',
+    callback = function(args)
+      vim.lsp.start({
+        name = 'sparql-language-server',
+        cmd = { "node", os.getenv("NPM_CONFIG_PREFIX") .. "/bin/sparql-language-server", "--stdio" },
+        root_dir = vim.fn.getcwd(),
+      })
+    end
+  })
+  vim.lsp.config('*', {
+    capabilities = require('blink.cmp').get_lsp_capabilities()
+  })
 end
-
-local blink = require('blink.cmp')
--- for _, serverName in ipairs(servers) do
---   local server = lsp[serverName]
---
---   if (server) then
---     if (serverName == 'ts_ls') then
---       server.setup({
---         single_file_support = false,
---         root_dir = utils.is_ts_project,
---         settings = mySettings[serverName],
---         on_attach = function(client, bufnr)
---           keymap(bufnr)
---           conditional_features(client, bufnr)
---         end
---       })
---     elseif (serverName == 'glint') then
---       server.setup({
---         root_dir = utils.is_glint_project,
---         settings = mySettings[serverName],
---         on_attach = function(client, bufnr)
---           keymap(bufnr)
---           conditional_features(client, bufnr)
---         end
---       })
---     elseif (serverName == 'eslint') then
---       server.setup({
---         filetypes = {
---           "javascript", "typescript",
---           "typescript.glimmer", "javascript.glimmer",
---           "json",
---           "markdown"
---         },
---         on_attach = function(client, bufnr)
---           vim.api.nvim_create_autocmd("BufWritePre", {
---             buffer = bufnr,
---             command = "EslintFixAll",
---           })
---           conditional_features(client, bufnr)
---         end,
---       })
---     else
---       server.setup({
---         settings = mySettings[serverName],
---         on_attach = function(client, bufnr)
---           keymap(bufnr)
---           conditional_features(client, bufnr)
---         end
---       })
---     end
---   end
--- end
-for server, config in pairs(opts.servers or {}) do
-  config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
-  lspconfig[server].setup(config)
-end
-end
+return { init = init }
