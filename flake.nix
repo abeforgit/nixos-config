@@ -50,6 +50,10 @@
       url = "github:jzbor/nix-sweep";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-autobahn = {
+      url = "github:Lassulus/nix-autobahn";
+    };
+    nix-alien.url = "github:thiagokokada/nix-alien";
     # wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
   };
 
@@ -71,6 +75,8 @@
       hyprland,
       wezterm,
       nix-sweep,
+      nix-autobahn,
+      nix-alien,
     # wezterm-monkeypatch
     }:
     let
@@ -123,6 +129,7 @@
           emacs-overlay.overlay
           rust-overlay.overlays.default
           blender-bin.overlays.default
+          nix-alien.overlays.default
           (self: super: { inherit (channels.stable) galaxy-buds-client; })
           (self: super: {
             inherit (channels.master) delta;
@@ -130,6 +137,7 @@
             utillinux = super.util-linux;
             # inherit (channels.master) wezterm;
             nix-sweep = nix-sweep.packages.x86_64-linux.default;
+            nix-autobahn = nix-autobahn.packages.x86_64-linux.nix-autobahn;
           })
           (self: super: {
             # inherit (channels.revert-emacs) emacsPackagesFor;

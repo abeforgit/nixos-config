@@ -1,19 +1,35 @@
 { pkgs, inputs }:
-let name = "lisp";
-in pkgs.devshell.mkShell {
+let
+  name = "lisp";
+in
+pkgs.devshell.mkShell {
   inherit name;
 
-  packages = with pkgs; [ openssl ];
+
+  packages = with pkgs; [
+    coreutils
+    curl
+    openssl
+    gcc
+    libfixposix
+    gnumake
+  ];
+  packagesFrom = with pkgs; [
+    libfixposix
+  ];
   commands = [
     {
       name = "sbcl";
       help = "lisp compiler";
-      package = with pkgs; (sbcl.withPackages (ps: with ps; [ luckless cl_plus_ssl cl-mongo-id]));
-    }
-    {
-      name = "quicklisp";
-      help = "the lisp package manager";
-      package = pkgs.lispPackages.quicklisp;
+      package =
+        with pkgs;
+        (sbcl.withPackages (
+          ps: with ps; [
+            luckless
+            cl_plus_ssl
+            cl-mongo-id
+          ]
+        ));
     }
   ];
 }

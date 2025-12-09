@@ -295,7 +295,6 @@ in
     lazygit
     tofi
     hyprpaper
-    dunst
     rbw
     rofi-rbw
     pinentry-curses

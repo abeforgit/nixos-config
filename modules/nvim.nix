@@ -105,6 +105,7 @@ in
               config = "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
             }
             pkgs.vimPlugins.nvim-jdtls
+	    # pkgs.vimPlugins.sniprun
           ];
           extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks ];
           coc.enable = false;

@@ -267,7 +267,6 @@ in
     picard
     nicotine-plus
 
-    dunst
     # xdg-desktop-portal-hyprland
     # xdg-desktop-portal-gtk
     # xdg-desktop-portal-gnome
@@ -345,6 +344,9 @@ in
     xournalpp
     ueberzugpp
     atkinson-hyperlegible-mono
+    nix-alien
+    nix-autobahn
+    gsettings-desktop-schemas
   ];
   programs.steam = {
     enable = true;
@@ -362,6 +364,7 @@ in
     enable = true;
     enableGraphical = true;
   };
+  hardware.opengl.enable = true;
   systemd.settings.Manager = {
     DefaultTimeoutStopSec = "10s";
   };
