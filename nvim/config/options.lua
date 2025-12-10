@@ -3,6 +3,7 @@ vim.system({ 'mkdir', '/home/arne/.local/share/nvim/_undo' },
 
 local o = vim.o
 local opt = vim.opt
+o.exrc = true
 o.shell = '/etc/profiles/per-user/arne/bin/zsh'
 o.number = true
 o.textwidth = 0

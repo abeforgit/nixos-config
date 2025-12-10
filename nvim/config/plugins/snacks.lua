@@ -12,6 +12,7 @@ return {
     rename = { enabled = true },
     toggle = { enabled = true },
     git = { enabled = true },
+    gh = { enabled = true },
     gitbrowse = { enabled = true },
     picker = {
       enabled = true,
@@ -22,6 +23,20 @@ return {
         },
       },
       sources = {
+
+        projects = {
+          dev = { "~/repos" },
+          max_depth = 3,
+          projects = { "~/.config" },
+          confirm = { "lcd", "picker_files" },
+          wind = {
+            input = {
+              keys = {
+                ["<c-f>"] = { { "lcd", "picker_files" }, mode = { "n", "i" } },
+              }
+            }
+          }
+        },
         explorer = {
 
           hidden = true,
@@ -83,9 +98,6 @@ return {
           preview = "diff",
         }
       },
-      projects = {
-        -- dev = { "~/repos" }
-      },
 
       matcher = {
         cwd_bonues = true,
@@ -97,8 +109,9 @@ return {
           keys = {
             ["<Esc>"] = { "close", mode = { "n", "i" } },
             ["/"] = "toggle_focus",
-            ["<C-Down>"] = { "history_forward", mode = { "i", "n" } },
-            ["<C-Up>"] = { "history_back", mode = { "i", "n" } },
+            -- ["<C-down>"] = { "history_forward", mode = { "i", "n" } },
+            ["<C-down>"] = { function() Snacks.picker.resume() end, mode = { "i", "n" } },
+            ["<C-up>"] = { "history_back", mode = { "i", "n" } },
             ["<C-c>"] = { "cancel", mode = "i" },
             ["<C-w>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
             ["<CR>"] = { "confirm", mode = { "n", "i" } },
@@ -233,6 +246,7 @@ return {
     { '<leader>s/', function() Snacks.picker.search_history() end,        desc = "Search History" },
     { "<leader>sa", function() Snacks.picker.autocmds() end,              desc = "Autocmds" },
     { "<leader>hh", function() Snacks.picker.help() end,                  desc = "Help Pages" },
+    { "<leader>gp", function() Snacks.picker.gh_pr() end,                 desc = "Help Pages" },
     { "<leader>gl", function() Snacks.lazygit() end,                      desc = "Lazygit" },
     { "<leader>fR", function() Snacks.rename.rename_file() end,           desc = "Rename File" },
     { "<c-\\>",     function() Snacks.terminal() end,                     mode = { "n", "t" },              desc = "Toggle Terminal" },

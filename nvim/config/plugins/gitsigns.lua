@@ -31,14 +31,14 @@ return {
       -- Actions
       map('n', '<leader>gs', gitsigns.stage_hunk, { desc = "git stage hunk" })
       map('n', '<leader>gr', gitsigns.reset_hunk, { desc = "git reset hunk" })
-      map('v', '<leader>gs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+      map('v', '<leader>ghs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
         { desc = "git stage region" })
-      map('v', '<leader>gr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+      map('v', '<leader>ghr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
         { desc = "git reset region" })
       map('n', '<leader>gS', gitsigns.stage_buffer, { desc = "git stage buffer" })
       map('n', '<leader>gR', gitsigns.reset_buffer, { desc = "git reset buffer" })
-      map('n', '<leader>gp', gitsigns.preview_hunk, { desc = "git preview hunk" })
-      map('n', '<leader>gd', gitsigns.diffthis, { desc = "diffthis hunk" })
+      map('n', '<leader>ghp', gitsigns.preview_hunk, { desc = "git preview hunk" })
+      map('n', '<leader>ghd', gitsigns.diffthis, { desc = "diffthis hunk" })
       map('n', '<leader>gD', function() gitsigns.diffthis('~') end, { desc = "diffthis buffer" })
 
 
