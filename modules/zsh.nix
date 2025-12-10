@@ -99,7 +99,7 @@ in
               "gh"
             ];
           };
-          initExtra = ''
+          initContent = ''
                       zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
             	  fre_chpwd() {
             	    fre --add "$(pwd)"

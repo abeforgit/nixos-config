@@ -364,7 +364,7 @@ in
     enable = true;
     enableGraphical = true;
   };
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   systemd.settings.Manager = {
     DefaultTimeoutStopSec = "10s";
   };
