@@ -82,6 +82,23 @@ if vim.g.started_by_firenvim == true then
   vim.api.nvim_set_keymap("n", "<C-z>", "<Cmd>call firenvim#hide_frame()<CR>", {})
 else
 end
+if vim.g.neovide then
+  vim.g.neovide_scale_factor = 1.0
+  local change_scale_factor = function(delta)
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+  end
+  vim.keymap.set("n", "<C-=>", function()
+    change_scale_factor(1.25)
+  end)
+  vim.keymap.set("n", "<C-->", function()
+    change_scale_factor(1 / 1.25)
+  end)
+  -- vim.g.neovide_cursor_hack = true
+  vim.g.neovide_cursor_animation_length = 0.100
+  vim.g.neovide_cursor_short_animation_length = 0.02
+  -- vim.g.neovide_cursor_vfx_mode = "torpedo"
+  vim.o.guifont = "Fira Code,Noto_Color_Emoji:h12"
+end
 -- let g:firenvim_config = {
 --     \ 'globalSettings': {
 --         \ 'alt': 'all',

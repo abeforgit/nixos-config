@@ -311,10 +311,14 @@ in
     simplescreenrecorder
     tdrop
     jq
+    sox
 
     wl-clipboard
     cliphist
     slurp
+    inotify-tools
+    neovide
+    sshfs
     grim
     satty
     kdePackages.networkmanager-qt

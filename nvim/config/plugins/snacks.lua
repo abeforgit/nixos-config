@@ -29,10 +29,24 @@ return {
           max_depth = 3,
           projects = { "~/.config" },
           confirm = { "lcd", "picker_files" },
-          wind = {
+          win = {
             input = {
               keys = {
                 ["<c-f>"] = { { "lcd", "picker_files" }, mode = { "n", "i" } },
+                ["<c-enter>"] = { { "load_session" }, mode = { "n", "i" } },
+                ["<c-e>"] = { { "lcd", "picker_explorer" }, mode = { "n", "i" } },
+                ["<c-g>"] = { { "lcd", "picker_grep" }, mode = { "n", "i" } },
+                ["<c-r>"] = { { "lcd", "picker_recent" }, mode = { "n", "i" }, nowait = true },
+                ["<c-w>"] = { { "tcd" }, mode = { "n", "i" } },
+                ["<c-t>"] = {
+                  function(picker)
+                    vim.cmd("tabnew")
+                    Snacks.notify("New tab opened")
+                    picker:close()
+                    Snacks.picker.projects()
+                  end,
+                  mode = { "n", "i" },
+                },
               }
             }
           }
