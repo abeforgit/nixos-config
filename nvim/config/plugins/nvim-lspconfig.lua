@@ -21,8 +21,8 @@ return {
 
 
   keys = {
-    { '<leader>ca', vim.lsp.buf.code_action,              desc = "code actions (lsp)" },
-    { '<leader>co', '<cmd>LspTypescriptSourceAction<CR>', desc = "file code actions (lsp)" },
+    { '<leader>ca', vim.lsp.buf.code_action,              desc = "code actions (lsp)",   mode = { 'n', 'v' } },
+    { '<leader>co', '<cmd>LspTypescriptSourceAction<CR>', desc = "" },
     { '<leader>cr', vim.lsp.buf.rename,                   desc = "rename symbol (lsp)" },
     { 'gh',         vim.lsp.buf.hover,                    desc = "Show hover info" },
     { '<leader>e',  vim.diagnostic.open_float,            desc = "Open diagnostic float" },

@@ -29,6 +29,14 @@ return {
           max_depth = 3,
           projects = { "~/.config" },
           confirm = { "lcd", "picker_files" },
+          actions = {
+            load_new_tab = function(picker)
+              local item = picker:current()
+              vim.cmd("tabnew")
+              picker:action('tcd')
+              Snacks.picker.actions.load_session(Snacks.picker.files(), item)
+            end
+          },
           win = {
             input = {
               keys = {
@@ -39,12 +47,7 @@ return {
                 ["<c-r>"] = { { "lcd", "picker_recent" }, mode = { "n", "i" }, nowait = true },
                 ["<c-w>"] = { { "tcd" }, mode = { "n", "i" } },
                 ["<c-t>"] = {
-                  function(picker)
-                    vim.cmd("tabnew")
-                    Snacks.notify("New tab opened")
-                    picker:close()
-                    Snacks.picker.projects()
-                  end,
+                  { 'load_new_tab' },
                   mode = { "n", "i" },
                 },
               }

@@ -71,7 +71,7 @@ if vim.g.started_by_firenvim == true then
         takeover = "never"
       },
       [".*"] = {
-        cmdline  = "neovim",
+        cmdline  = "firenvim",
         content  = "text",
         priority = 0,
         selector = "textarea",
