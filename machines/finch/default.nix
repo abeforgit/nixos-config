@@ -328,7 +328,6 @@ in
     monaspace
     fira-code
     (giph.override { ffmpeg = ffmpeg-full; })
-    vokoscreen
     vokoscreen-ng
     simplescreenrecorder
     copyq
