@@ -71,6 +71,7 @@ in
           enableZshIntegration = true;
         };
         programs.zsh = {
+          # dotDir = "${config.xdg.configHome}/zsh";
           enable = true;
           enableCompletion = true;
           autosuggestion = {

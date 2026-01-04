@@ -293,7 +293,6 @@ in
     wtype
 
     ffmpeg_6
-    super-productivity
     gpu-screen-recorder-gtk # GUI app
   ];
 
