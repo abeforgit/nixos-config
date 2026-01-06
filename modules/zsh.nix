@@ -28,6 +28,7 @@ in
         home.sessionVariables = {
           FZF_CTRL_T_COMMAND = "command cat <(fre --sorted) <(fd -t d) <(fd -t d . ~)";
           FZF_CTRL_T_OPTS = "--tiebreak=index";
+	  FORGIT_COPY_CMD = "wl-copy";
         };
 
         programs.starship = {
