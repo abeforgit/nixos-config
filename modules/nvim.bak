@@ -60,7 +60,7 @@ in
             nodePackages.vscode-langservers-extracted
             fd
             ripgrep
-            nixfmt-rfc-style
+            nixfmt
             gh
             glow
           ];

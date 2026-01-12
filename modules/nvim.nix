@@ -116,7 +116,7 @@ in
             fd
             ripgrep
             nil
-            nixfmt-rfc-style
+            nixfmt
             gh
             yaml-language-server
             glow
