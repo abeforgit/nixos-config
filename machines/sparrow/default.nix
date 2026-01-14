@@ -505,7 +505,7 @@ in
       };
     };
 
-  # services.blueman = { enable = true; };
+  services.blueman = { enable = true; };
   # specialisation = {
   # 	external-display.configuration = {
   #       	system.nixos.tags = [ "external-display" ];
