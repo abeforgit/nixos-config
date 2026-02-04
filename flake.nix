@@ -54,6 +54,7 @@
       url = "github:Lassulus/nix-autobahn";
     };
     nix-alien.url = "github:thiagokokada/nix-alien";
+    polymc.url = "github:PolyMC/PolyMC";
     # wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
   };
 
@@ -76,6 +77,7 @@
       wezterm,
       nix-sweep,
       nix-autobahn,
+      polymc,
       nix-alien,
     # wezterm-monkeypatch
     }:
@@ -125,6 +127,7 @@
         };
         overlaysBuilder = channels: [
           # hyprland.overlays.default
+	  polymc.overlay
           devshell.overlays.default
           emacs-overlay.overlay
           rust-overlay.overlays.default

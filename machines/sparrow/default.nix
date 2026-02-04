@@ -111,7 +111,7 @@ in
       options = "eurosign:e";
       layout = "us";
     };
-    # dpi = 192;
+    dpi = 112;
   };
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -219,6 +219,7 @@ in
     alacritty
     ast-grep
     taskwarrior3
+    polymc
     taskwarrior-tui
     zk
     thunderbird
@@ -454,6 +455,7 @@ in
         };
 
       };
+      programs.vivaldi.enable = true;
       services.mpris-proxy.enable = true;
       programs.zsh.profileExtra = ''
         source ${config.age.secrets.github_auth.path}

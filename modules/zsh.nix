@@ -28,7 +28,7 @@ in
         home.sessionVariables = {
           FZF_CTRL_T_COMMAND = "command cat <(fre --sorted) <(fd -t d) <(fd -t d . ~)";
           FZF_CTRL_T_OPTS = "--tiebreak=index";
-	  FORGIT_COPY_CMD = "wl-copy";
+          FORGIT_COPY_CMD = "wl-copy";
         };
 
         programs.starship = {
@@ -89,6 +89,13 @@ in
               { name = "laurenkt/zsh-vimto"; }
               { name = "wfxr/forgit"; }
               { name = "ael-code/zsh-colored-man-pages"; }
+              {
+                name = "g-plane/pnpm-shell-completion";
+                tags = [
+                  "hook-build:./zplug.zsh"
+                  "defer:2"
+                ];
+              }
             ];
           };
           oh-my-zsh = {
@@ -142,6 +149,7 @@ in
             pose = "docker compose";
             wsh = "wezterm ssh";
             vim = "nvim";
+	    downstack="docker compose -p $(docker compose ls | fzf --header-lines=1 --accept-nth=1) down";
           };
         };
       };
