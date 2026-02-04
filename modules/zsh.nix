@@ -149,7 +149,7 @@ in
             pose = "docker compose";
             wsh = "wezterm ssh";
             vim = "nvim";
-	    downstack="docker compose -p $(docker compose ls | fzf --header-lines=1 --accept-nth=1) down";
+	    downstack="docker compose -p $(docker compose ls -a | fzf --header-lines=1 --accept-nth=1) down -t0";
           };
         };
       };
