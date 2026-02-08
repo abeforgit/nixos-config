@@ -278,6 +278,7 @@ in
     discord
     btop
     cachix
+    musescore
     # cudatoolkit
     filezilla
     idasen
