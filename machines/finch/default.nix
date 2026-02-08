@@ -226,9 +226,9 @@ in
     '';
   };
 
-  services.postgresql = {
-    enable = true;
-  };
+  # services.postgresql = {
+  #   enable = true;
+  # };
   boot.kernelParams = [ "i915.enable_dcpcd_backlight=1" ];
   hardware.nvidia = {
     open = false;

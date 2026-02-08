@@ -46,10 +46,10 @@
       url = "github:wez/wezterm/main?dir=nix";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-sweep = {
-      url = "github:jzbor/nix-sweep";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nix-sweep = {
+    #   url = "github:jzbor/nix-sweep";
+    #   # inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nix-autobahn = {
       url = "github:Lassulus/nix-autobahn";
     };
@@ -75,7 +75,7 @@
       comma,
       hyprland,
       wezterm,
-      nix-sweep,
+      # nix-sweep,
       nix-autobahn,
       polymc,
       nix-alien,
@@ -139,7 +139,7 @@
             # inherit (channels.master) neatvnc;
             utillinux = super.util-linux;
             # inherit (channels.master) wezterm;
-            nix-sweep = nix-sweep.packages.x86_64-linux.default;
+            # nix-sweep = nix-sweep.packages.x86_64-linux.default;
             nix-autobahn = nix-autobahn.packages.x86_64-linux.nix-autobahn;
           })
           (self: super: {
