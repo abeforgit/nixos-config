@@ -309,7 +309,6 @@ in
     (giph.override { ffmpeg = ffmpeg-full; })
     vokoscreen-ng
     simplescreenrecorder
-    tdrop
     jq
     sox
 

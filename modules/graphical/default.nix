@@ -11,9 +11,7 @@ in
 {
   imports = [
     ./wezterm.nix
-    ./bspwm.nix
     ./wacom.nix
-    ./polybar.nix
     ./kde.nix
     ./steam.nix
     ./fonts.nix

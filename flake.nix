@@ -79,7 +79,7 @@
       nix-autobahn,
       polymc,
       nix-alien,
-    # wezterm-monkeypatch
+      # wezterm-monkeypatch
     }:
     let
       customPackages = callPackage: {
@@ -127,7 +127,7 @@
         };
         overlaysBuilder = channels: [
           # hyprland.overlays.default
-	  polymc.overlay
+          polymc.overlay
           devshell.overlays.default
           emacs-overlay.overlay
           rust-overlay.overlays.default
@@ -159,11 +159,6 @@
 
           #   blender = prev.blender.override { cudaSupport = true; };
           # })
-          #          (final: prev: {
-          #            jetbrains = prev.jetbrains // {
-          #              jdk = final.callPackage ./packages/p-jetbrains-jdk-bin { };
-          #            };
-          #          })
           # (self: super: {
           #   godot-mono = with super;
           #     let

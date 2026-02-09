@@ -34,8 +34,8 @@ in
           clang
           xclip
           xdotool
-          xorg.xprop
-          xorg.xwininfo
+          xprop
+          xwininfo
           shellcheck
           html-tidy
           nodePackages.bash-language-server

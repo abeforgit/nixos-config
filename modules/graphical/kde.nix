@@ -9,7 +9,6 @@ let
   cfg = config.custom.kde;
 in
 {
-  # imports = [ ./polybar.nix ];
   options.custom.kde = {
     enable = mkOption {
       example = true;
@@ -47,7 +46,7 @@ in
           glxinfo
           vulkan-tools
           obsidian
-          xorg.xdpyinfo
+          xpdyinfo
           pkgs.kdePackages.qtdbusextended
           pkgs.kdePackages.plasma-browser-integration
           pkgs.kdePackages.kaccounts-providers
