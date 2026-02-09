@@ -216,6 +216,7 @@ in
   custom.hostname = "sparrow";
   custom.keychain.enable = true;
   custom.extraHomePackages = with pkgs; [
+    forge-mtg
     alacritty
     ast-grep
     taskwarrior3
