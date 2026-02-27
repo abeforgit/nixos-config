@@ -261,7 +261,6 @@ in
     spotify
     supersonic
     feishin
-    krita
     ## hypr
     tofi
     wofi
