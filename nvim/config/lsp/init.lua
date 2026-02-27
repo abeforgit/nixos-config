@@ -66,7 +66,6 @@ local function init()
   });
   vim.lsp.enable('cssls');
   vim.lsp.enable('dockerls');
-  require('config.lsp.typescript');
 
   vim.api.nvim_create_autocmd('FileType', {
     pattern = 'sparql',

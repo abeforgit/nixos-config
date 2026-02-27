@@ -56,6 +56,7 @@
     nix-alien.url = "github:thiagokokada/nix-alien";
     polymc.url = "github:PolyMC/PolyMC";
     # wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
+    tree-sitter.url = "github:tree-sitter/tree-sitter";
   };
 
   outputs =
@@ -79,6 +80,7 @@
       nix-autobahn,
       polymc,
       nix-alien,
+      tree-sitter,
       # wezterm-monkeypatch
     }:
     let
@@ -141,6 +143,7 @@
             # inherit (channels.master) wezterm;
             # nix-sweep = nix-sweep.packages.x86_64-linux.default;
             nix-autobahn = nix-autobahn.packages.x86_64-linux.nix-autobahn;
+	    treesitter-cli = tree-sitter.packages.x86_64-linux.cli;
           })
           (self: super: {
             # inherit (channels.revert-emacs) emacsPackagesFor;

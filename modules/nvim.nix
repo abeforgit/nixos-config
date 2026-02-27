@@ -92,14 +92,14 @@ in
           source = homeArgs.config.lib.file.mkOutOfStoreSymlink "/home/arne/repos/nixos-config/nvim";
           recursive = true;
         };
-        home.file."./.local/share/nvim/nix/nvim-treesitter/" = {
-          recursive = true;
-          source = treesitterWithGrammars;
-        };
+        # home.file."./.local/share/nvim/nix/nvim-treesitter/" = {
+        #   recursive = true;
+        #   source = treesitterWithGrammars;
+        # };
         programs.neovim = {
           enable = true;
           plugins = [
-            treesitterWithGrammars
+            # treesitterWithGrammars
             {
               plugin = pkgs.vimPlugins.sqlite-lua;
               config = "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
@@ -119,6 +119,7 @@ in
             nixfmt
             gh
             yaml-language-server
+	    treesitter-cli
             glow
             jdt-language-server
 	    vtsls
@@ -134,9 +135,9 @@ in
           extraConfig = ''
             lua require('config')
           '';
-          extraLuaConfig = ''
-            vim.opt.runtimepath:append("${treesitter-parsers}")
-          '';
+          # extraLuaConfig = ''
+          #   vim.opt.runtimepath:append("${treesitter-parsers}")
+          # '';
 
         };
       };
