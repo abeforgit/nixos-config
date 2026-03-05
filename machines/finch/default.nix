@@ -241,12 +241,6 @@ in
       nvidiaBusId = "PCI:1:0:0";
     };
   };
-  programs.hyprland = {
-    # portalPackage = pkgs.xdg-desktop-portal-wlr;
-    enable = true;
-  };
-  programs.hyprlock.enable = true;
-  services.hypridle.enable = true;
   age.secrets = {
     github_auth = {
       file = ../../secrets/github_auth.age;
@@ -259,6 +253,7 @@ in
   };
 
   programs.nix-ld.enable = true;
+  custom.niri.enable = true;
   custom.user = username;
   custom.graphical.enable = true;
   custom.kde.enable = false;
@@ -274,8 +269,6 @@ in
   custom.rustup.enable = false;
   custom.hostname = "finch";
   custom.extraHomePackages = with pkgs; [
-    thunderbird
-    discord
     btop
     cachix
     musescore
@@ -295,7 +288,6 @@ in
     # nix-sweep
     lazygit
     tofi
-    hyprpaper
     rbw
     rofi-rbw
     pinentry-curses
@@ -309,13 +301,11 @@ in
     dnsperf
     nwg-look
     udiskie
-    waybar
     pinta
     lazydocker
     galaxy-buds-client
     activitywatch
     aw-server-rust
-    networkmanagerapplet
     grim
     slurp
     satty
@@ -329,13 +319,9 @@ in
     monaspace
     fira-code
     (giph.override { ffmpeg = ffmpeg-full; })
-    vokoscreen-ng
-    simplescreenrecorder
     copyq
     nvtopPackages.full
     wl-clipboard
-    kdePackages.xdg-desktop-portal-kde
-    kdePackages.filelight
   ];
   users.users.arne = {
     shell = pkgs.zsh;
