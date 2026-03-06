@@ -43,9 +43,9 @@ in
       NIXOS_OZONE_WL = "1";
     };
 
-    services.displayManager = {
-      sddm.enable = true;
-      sddm.wayland.enable = true;
+    services.displayManager.dms-greeter = {
+      enable = true;
+      compositor.name = "niri"; # Or "hyprland" or "sway"
     };
 
     programs.dms-shell = {

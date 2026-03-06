@@ -256,7 +256,6 @@ in
   custom.niri.enable = true;
   custom.user = username;
   custom.graphical.enable = true;
-  custom.kde.enable = false;
   custom.emacs.enable = true;
   custom.emacs.package = pkgs.emacs30;
   custom.zsh.enable = true;
@@ -277,7 +276,6 @@ in
     idasen
     # calibre
     # godot-mono
-    lorien
     nvd
     signal-desktop
     powertop
