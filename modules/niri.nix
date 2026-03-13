@@ -63,6 +63,7 @@ in
       enableCalendarEvents = true; # Calendar integration (khal)
       enableClipboardPaste = true; # Pasting from the clipboard history (wtype)
     };
+    programs.dsearch.enable = true;
     home-manager.users.${config.custom.user} =
       { pkgs, home, ... }:
       {
@@ -90,7 +91,8 @@ in
 
         services.polkit-gnome.enable = true; # polkit
         home.packages = with pkgs; [
-          swaybg # wallpaper
+          # swaybg # wallpaper
+          swappy
         ];
       };
   };

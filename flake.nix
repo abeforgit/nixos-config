@@ -57,6 +57,7 @@
     polymc.url = "github:PolyMC/PolyMC";
     # wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
     tree-sitter.url = "github:tree-sitter/tree-sitter";
+
   };
 
   outputs =
@@ -143,7 +144,7 @@
             # inherit (channels.master) wezterm;
             # nix-sweep = nix-sweep.packages.x86_64-linux.default;
             nix-autobahn = nix-autobahn.packages.x86_64-linux.nix-autobahn;
-	    treesitter-cli = tree-sitter.packages.x86_64-linux.cli;
+            treesitter-cli = tree-sitter.packages.x86_64-linux.cli;
           })
           (self: super: {
             # inherit (channels.revert-emacs) emacsPackagesFor;
@@ -211,6 +212,7 @@
       hostDefaults = {
 
         modules = [
+
           ({
             config._module.args = {
               agenix-cli = agenix.packages.x86_64-linux.default;

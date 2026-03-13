@@ -41,7 +41,6 @@ in {
       #     gc = "git checkout";
       #     ghprc = ''gh pr checkout (gh pr ls | fzf | split row "\t" | get 0)'';
       #     extip = "curl ifconfig.co";
-      #     icat = "kitty +kitten icat";
       #     rebuild =
       #       "nixos-rebuild --flake ~/repos/nixos-config#finch switch --use-remote-sudo";
       #     checkbuild =

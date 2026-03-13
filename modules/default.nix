@@ -236,22 +236,6 @@ in
           enable = true;
           enableZshIntegration = true;
         };
-        programs.kitty = {
-          enable = true;
-          font.name = "Fira Code";
-          # font.size = 22;
-          keybindings = {
-            "kitty_mod+asterisk" = "change_font_size current +2.0";
-            "kitty_mod+minus" = "change_font_size_current -2.0";
-          };
-
-          settings = {
-            scrollback_lins = 10000;
-            enable_audio_bell = false;
-            confirm_os_window_close = 0;
-            term = "xterm-kitty";
-          };
-        };
       };
   };
 

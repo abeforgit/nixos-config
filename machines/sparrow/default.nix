@@ -227,6 +227,8 @@ in
     discord
     btop
     cachix
+    kitty
+    pureref
     # cudatoolkit
     filezilla
     obsidian
