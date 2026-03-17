@@ -50,6 +50,7 @@ in
         programs.zoxide = {
           enable = true;
           enableZshIntegration = true;
+	  shellWrapperName = "yy";
           options = [ "--cmd j" ];
         };
         programs.carapace = {
