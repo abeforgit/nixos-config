@@ -39,9 +39,6 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-    };
     wezterm = {
       url = "github:wez/wezterm/main?dir=nix";
       # inputs.nixpkgs.follows = "nixpkgs";
@@ -75,7 +72,6 @@
       rust-overlay,
       blender-bin,
       comma,
-      hyprland,
       wezterm,
       # nix-sweep,
       nix-autobahn,
@@ -129,7 +125,6 @@
           allowUnfreePredicate = (pkg: true);
         };
         overlaysBuilder = channels: [
-          # hyprland.overlays.default
           polymc.overlay
           devshell.overlays.default
           emacs-overlay.overlay

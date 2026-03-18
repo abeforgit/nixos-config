@@ -46,11 +46,11 @@ in
         programs.yazi = {
           enable = true;
           enableZshIntegration = true;
+          shellWrapperName = "yy";
         };
         programs.zoxide = {
           enable = true;
           enableZshIntegration = true;
-	  shellWrapperName = "yy";
           options = [ "--cmd j" ];
         };
         programs.carapace = {
@@ -150,7 +150,7 @@ in
             pose = "docker compose";
             wsh = "wezterm ssh";
             vim = "nvim";
-	    downstack="docker compose -p $(docker compose ls -a | fzf --header-lines=1 --accept-nth=1) down -t0";
+            downstack = "docker compose -p $(docker compose ls -a | fzf --header-lines=1 --accept-nth=1) down -t0";
           };
         };
       };
