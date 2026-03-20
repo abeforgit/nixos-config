@@ -180,6 +180,7 @@ in
         source ${config.age.secrets.github_auth.path}
         source ${config.age.secrets.jira_pat.path}
       '';
+      programs.vivaldi.enable = true;
       qt = {
         enable = true;
         platformTheme = {
