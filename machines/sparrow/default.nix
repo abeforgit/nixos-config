@@ -269,6 +269,10 @@ in
     fuzzel
     picard
     nicotine-plus
+    hledger
+    hledger-fmt
+    hledger-ui
+    hledger-web
 
     # xdg-desktop-portal-hyprland
     # xdg-desktop-portal-gtk

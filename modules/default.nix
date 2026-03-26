@@ -216,11 +216,11 @@ in
               "image/jpeg" = [ "org.kde.okular.desktop" ];
               "application/pdf" = [ "org.pwmt.zathura.desktop" ];
 
-              "text/html" = [ "firefox.desktop" ];
-              "x-scheme-handler/about" = [ "firefox.desktop" ];
-              "x-scheme-handler/http" = [ "firefox.desktop" ];
-              "x-scheme-handler/https" = [ "firefox.desktop" ];
-              "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+              "text/html" = [ "vivaldi.desktop" ];
+              "x-scheme-handler/about" = [ "vivaldi.desktop" ];
+              "x-scheme-handler/http" = [ "vivaldi.desktop" ];
+              "x-scheme-handler/https" = [ "vivaldi.desktop" ];
+              "x-scheme-handler/unknown" = [ "vivaldi.desktop" ];
 
               "x-scheme-handler/msteams" = [ "teams.desktop" ];
             };

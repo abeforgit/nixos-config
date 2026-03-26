@@ -32,7 +32,8 @@ return {
       jsonc = { "prettier" },
       css = { "prettier" },
       scss = { "prettier" },
-      sparql = { "sparql_formatter" }
+      sparql = { "sparql_formatter" },
+      ledger = { "hledger-fmt" }
     },
     -- format_on_save = {
     --   timeout_ms = 500,

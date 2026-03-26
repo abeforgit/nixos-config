@@ -6,7 +6,8 @@ return {
     'rafamadriz/friendly-snippets',
     { 'L3MON4D3/LuaSnip',    version = 'v2.*' },
     'epwalsh/obsidian.nvim',
-    { 'saghen/blink.compat', lazy = true,     version = false }
+    { 'saghen/blink.compat', lazy = true,     version = false },
+    { 'kirasok/cmp-hledger', lazy = true }
   },
   build = 'nix run .#build-plugin',
   ---@module 'blink.cmp'
@@ -44,10 +45,17 @@ return {
       default = { "lsp",
         "path", "snippets", "lazydev",
         "buffer",
+        "hledger",
         -- "ripgrep",
         -- "obsidian", "obsidian_new", "obsidian_tags"
       },
       providers = {
+
+        hledger = {
+          name = "hledger",
+          module = "blink.compat.source",
+          enabled = function() return vim.tbl_contains({ "ledger" }, vim.bo.filetype) end
+        },
         -- snippets = {
         --   -- preset = 'luasnip',
         --   -- should_show_items = function(ctx)
