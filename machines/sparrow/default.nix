@@ -215,6 +215,7 @@ in
   custom.niri.enable = true;
   custom.hostname = "sparrow";
   custom.keychain.enable = true;
+  custom.finance.enable = true;
   custom.extraHomePackages = with pkgs; [
     forge-mtg
     alacritty
@@ -269,10 +270,6 @@ in
     fuzzel
     picard
     nicotine-plus
-    hledger
-    hledger-fmt
-    hledger-ui
-    hledger-web
 
     # xdg-desktop-portal-hyprland
     # xdg-desktop-portal-gtk

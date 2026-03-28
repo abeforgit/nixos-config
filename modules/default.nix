@@ -31,6 +31,7 @@ in
     ./tmux.nix
     ./niri.nix
     ./syncthing.nix
+    ./finance.nix
   ];
 
   options.custom = {
