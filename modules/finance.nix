@@ -26,6 +26,7 @@ in
           hledger-fmt
           hledger-ui
           hledger-web
+	  haskellPackages.hledger-flow
 
           beancount
           fava
