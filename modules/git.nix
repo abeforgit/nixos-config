@@ -44,6 +44,7 @@ in
             ".idea/*"
             "*.iml"
           ];
+	  signing.format = "openpgp";
           includes = [
             {
               condition = "gitdir:~/repos/redpencil/";

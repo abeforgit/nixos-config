@@ -32,7 +32,7 @@ in pkgs.devshell.mkShell {
     {
       name = "pnpm";
       help = "alternative package manager";
-      package = pkgs.nodePackages.pnpm;
+      package = pkgs.pnpm;
     }
     {
       name = "ember";

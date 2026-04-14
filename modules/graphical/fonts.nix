@@ -26,6 +26,8 @@ in
         font-awesome
         font-manager
         dejavu_fonts
+	noto-fonts
+	noto-fonts-cjk-sans
 
         hack-font
         nerd-fonts.fira-code

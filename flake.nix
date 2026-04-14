@@ -13,8 +13,6 @@
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
-    # nixpkgs-revert-emacs.url =
-    #   "github:NixOS/nixpkgs/976fa3369d722e76f37c77493d99829540d43845";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,18 +39,12 @@
     };
     wezterm = {
       url = "github:wez/wezterm/main?dir=nix";
-      # inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nix-sweep = {
-    #   url = "github:jzbor/nix-sweep";
-    #   # inputs.nixpkgs.follows = "nixpkgs";
-    # };
     nix-autobahn = {
       url = "github:Lassulus/nix-autobahn";
     };
     nix-alien.url = "github:thiagokokada/nix-alien";
     polymc.url = "github:PolyMC/PolyMC";
-    # wezterm-monkeypatch = { url = "github:ErrorNoInternet/configuration.nix"; };
     tree-sitter.url = "github:tree-sitter/tree-sitter";
 
   };
@@ -73,12 +65,10 @@
       blender-bin,
       comma,
       wezterm,
-      # nix-sweep,
       nix-autobahn,
       polymc,
       nix-alien,
       tree-sitter,
-      # wezterm-monkeypatch
     }:
     let
       customPackages = callPackage: {
@@ -102,15 +92,6 @@
         };
 
       };
-      # channels.small = {
-      #   input = nixpkgs-unstable-small;
-
-      # };
-
-      # channels.revert-emacs = {
-      #   input = nixpkgs-revert-emacs;
-
-      # };
 
       channels.nixpkgs = {
         input = nixpkgs;
@@ -133,75 +114,11 @@
           nix-alien.overlays.default
           (self: super: { inherit (channels.stable) galaxy-buds-client; })
           (self: super: {
-            # inherit (channels.master) delta;
-            # inherit (channels.master) neatvnc;
             utillinux = super.util-linux;
             # inherit (channels.master) wezterm;
-            # nix-sweep = nix-sweep.packages.x86_64-linux.default;
             nix-autobahn = nix-autobahn.packages.x86_64-linux.nix-autobahn;
             treesitter-cli = tree-sitter.packages.x86_64-linux.cli;
           })
-          (self: super: {
-            # inherit (channels.revert-emacs) emacsPackagesFor;
-            # inherit (channels.revert-emacs) emacs29;
-            # wezterm = inputs.wezterm.packages.${self.system}.default;
-          })
-          # (import (builtins.fetchTarball {
-
-          #   url =
-          #     "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-          #   sha256 = "0m443p0lp2pmkgy0a8lizbvy2ia44zpqli422s34hpnqvzxyj2mj";
-
-          # }))
-          # dan-flk.overlays."nixos/spotify"
-          # (final: prev: {
-
-          #   blender = prev.blender.override { cudaSupport = true; };
-          # })
-          # (self: super: {
-          #   godot-mono = with super;
-          #     let
-          #       arch = "64";
-          #       version = "3.5.1";
-          #       releaseName = "stable";
-          #       subdir = "";
-          #       pkg = stdenv.mkDerivation {
-          #         name = "godot-mono-unwrapped";
-          #         buildInputs = [ unzip ];
-          #         unpackPhase = "unzip $src";
-          #         version = version;
-          #         src = fetchurl {
-          #           url =
-          #             "https://downloads.tuxfamily.org/godotengine/${version}${subdir}/mono/Godot_v${version}-${releaseName}_mono_x11_${arch}.zip";
-          #           sha256 =
-          #             "sha256-7phG4vgq4m0h92gCMPv5kehQQ1BH7rS1c5VZ6Dx3WPc=";
-          #         };
-          #         installPhase = ''
-          #           cp -r . $out
-          #         '';
-          #       };
-          #     in buildFHSUserEnv {
-          #       name = "godot-mono";
-          #       targetPkgs = pkgs:
-          #         (with pkgs; [
-          #           alsa-lib
-          #           dotnetCorePackages.sdk_7_0
-          #           libGL
-          #           libpulseaudio
-          #           udev
-          #           xorg.libX11
-          #           xorg.libXcursor
-          #           xorg.libXext
-          #           xorg.libXi
-          #           xorg.libXinerama
-          #           xorg.libXrandr
-          #           xorg.libXrender
-          #           zlib
-          #         ]);
-          #       runScript =
-          #         "${pkg.outPath}/Godot_v${version}-${releaseName}_mono_x11_${arch}/Godot_v${version}-${releaseName}_mono_x11.${arch}";
-          #     };
-          # })
         ];
       };
       hostDefaults = {

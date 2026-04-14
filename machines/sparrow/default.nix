@@ -202,6 +202,7 @@ in
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+  fonts.fontDir.enable = true;
   custom.graphical.enable = true;
   custom.syncthing.enable = true;
   custom.nushell.enable = true;
@@ -479,37 +480,40 @@ in
           wlrobs
         ];
       };
-      qt = {
-        enable = true;
-        platformTheme = {
-          name = "qt5ct";
-        };
-      };
-      gtk = {
-        enable = true;
-        theme = {
-          package = pkgs.colloid-gtk-theme;
-          name = "Colloid-Dark";
-        };
-        cursorTheme = {
-          package = pkgs.nordzy-cursor-theme;
-          name = "Nordzy-cursors";
-          size = 24;
-        };
-
-        iconTheme = {
-          package = pkgs.colloid-icon-theme;
-          name = "Colloid-Dark";
-        };
-
-        font = {
-          name = "Sans";
-          size = 11;
-        };
-      };
+      # qt = {
+      #   enable = true;
+      #   platformTheme = {
+      #     name = "qt5ct";
+      #   };
+      # };
+      # gtk = {
+      #   enable = true;
+      #   gtk4.theme = null;
+      #   theme = {
+      #     package = pkgs.colloid-gtk-theme;
+      #     name = "Colloid-Dark";
+      #   };
+      #   cursorTheme = {
+      #     package = pkgs.nordzy-cursor-theme;
+      #     name = "Nordzy-cursors";
+      #     size = 24;
+      #   };
+      #
+      #   iconTheme = {
+      #     package = pkgs.colloid-icon-theme;
+      #     name = "Colloid-Dark";
+      #   };
+      #
+      #   font = {
+      #     name = "Sans";
+      #     size = 11;
+      #   };
+      # };
     };
 
-  services.blueman = { enable = true; };
+  services.blueman = {
+    enable = true;
+  };
   # specialisation = {
   # 	external-display.configuration = {
   #       	system.nixos.tags = [ "external-display" ];

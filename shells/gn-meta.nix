@@ -6,7 +6,7 @@ let
 
   node_package = pkgs.nodejs_22;
   pnpm = pkgs.pnpm;
-  yalc = pkgs.nodePackages.yalc;
+  yalc = pkgs.yalc;
   # node_package = pkgs.nodejs_20;
   npm-global = toString ~/.npm-global;
   ember = "${npm-global}/bin/ember";

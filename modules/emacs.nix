@@ -38,11 +38,6 @@ in
           xwininfo
           shellcheck
           html-tidy
-          nodePackages.bash-language-server
-          nodePackages.js-beautify
-          nodePackages.stylelint
-          nodePackages.typescript-language-server
-          nodePackages.yaml-language-server
           graphviz
           sbcl
           editorconfig-core-c

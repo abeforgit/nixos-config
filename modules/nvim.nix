@@ -111,7 +111,7 @@ in
           coc.enable = false;
           withNodeJs = true;
           extraPackages = with pkgs; [
-            nodePackages.vscode-langservers-extracted
+            vscode-langservers-extracted
             typescript-language-server
             fd
             ripgrep
