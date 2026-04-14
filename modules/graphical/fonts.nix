@@ -21,13 +21,15 @@ in
         enable = true;
       };
       packages = with pkgs; [
+        baekmuk-ttf
+        rounded-mgenplus
         fira-go
         monaspace
         font-awesome
         font-manager
         dejavu_fonts
-	noto-fonts
-	noto-fonts-cjk-sans
+        noto-fonts
+        noto-fonts-cjk-sans
 
         hack-font
         nerd-fonts.fira-code
@@ -37,7 +39,7 @@ in
         nerd-fonts.hack
         nerd-fonts.lilex
         nerd-fonts._0xproto
-	atkinson-hyperlegible-mono
+        atkinson-hyperlegible-mono
       ];
     };
   };
