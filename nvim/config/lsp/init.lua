@@ -1,7 +1,7 @@
 local function init()
   vim.lsp.config('eslint', {
     settings = {
-      useFlatConfig = true,
+      -- useFlatConfig = false,
     },
     filetypes = {
       "javascript", "typescript",
