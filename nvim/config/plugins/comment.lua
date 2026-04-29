@@ -1,6 +1,7 @@
 return {
-  'numToStr/Comment.nvim',
+  'softvisio/Comment.nvim',
   lazy = false,
+  branch = "fix/patch-treesitter",
   opts = {
     -- add any options here
   },
