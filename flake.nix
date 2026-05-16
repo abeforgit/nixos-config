@@ -44,7 +44,10 @@
       url = "github:Lassulus/nix-autobahn";
     };
     nix-alien.url = "github:thiagokokada/nix-alien";
-    polymc.url = "github:PolyMC/PolyMC";
+    polymc = {
+      url = "github:PolyMC/PolyMC";
+
+    };
     tree-sitter.url = "github:tree-sitter/tree-sitter";
 
   };
@@ -106,6 +109,8 @@
           allowUnfreePredicate = (pkg: true);
         };
         overlaysBuilder = channels: [
+	  # polymc doesn't know yet these have moved
+          (self: super: { extra-cmake-modules = self.kdePackages.extra-cmake-modules; })
           polymc.overlay
           devshell.overlays.default
           emacs-overlay.overlay
