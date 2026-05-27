@@ -246,9 +246,6 @@ in
     usbutils
     tauon
     bitwarden-desktop
-    activitywatch
-    aw-server-rust
-    awatcher
     rofi
     rbw
     rofi-rbw

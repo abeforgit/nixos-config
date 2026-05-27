@@ -302,8 +302,6 @@ in
     pinta
     lazydocker
     galaxy-buds-client
-    activitywatch
-    aw-server-rust
     grim
     slurp
     satty

@@ -1,5 +1,6 @@
 return {
   "lowitea/aw-watcher.nvim",
+  enabled = false,
   opts = {   -- required, but can be empty table: {}
     -- add any options here
     -- for example:

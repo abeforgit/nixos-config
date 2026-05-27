@@ -1,4 +1,4 @@
-{ pkgs, config, lib, activitywatch, ... }:
+{ pkgs, config, lib, ... }:
 with lib;
 let cfg = config.custom.steam;
 in {
