@@ -230,7 +230,6 @@ in
     btop
     cachix
     kitty
-    pureref
     # cudatoolkit
     filezilla
     obsidian

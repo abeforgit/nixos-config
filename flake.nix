@@ -101,8 +101,7 @@
         config = {
 
           permittedInsecurePackages = [
-            "electron-36.9.5"
-            "openssl-1.1.1w"
+            "electron-39.8.10"
           ];
 
           allowUnfree = true;
