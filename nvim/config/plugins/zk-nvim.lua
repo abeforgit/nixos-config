@@ -1,7 +1,24 @@
 return {
   "zk-org/zk-nvim",
+  lazy = false,
   opts = {
+
     picker = "snacks_picker",
+    lsp = {
+      -- `config` is passed to `vim.lsp.start(config)`
+      config = {
+        name = "zk",
+        cmd = { "zk", "lsp" },
+        filetypes = { "markdown" },
+        -- on_attach = ...
+        -- etc, see `:h vim.lsp.start()`
+      },
+
+      -- automatically attach buffers in a zk notebook that match the given filetypes
+      auto_attach = {
+        enabled = true,
+      },
+    },
   },
   main = "zk",
   cmd = {
@@ -18,7 +35,7 @@ return {
     },
     {
       "<leader>zf",
-      "<Cmd>Zkotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>"
+      "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>"
     },
     {
       "<leader>zf",

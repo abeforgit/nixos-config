@@ -5,6 +5,10 @@ return {
   branch = "main",
   config = function()
     require('nvim-treesitter').setup({
+      highlight = {
+        -- ...
+        additional_vim_regex_highlighting = { "markdown" }
+      },
 
     })
     vim.api.nvim_create_autocmd('FileType', {

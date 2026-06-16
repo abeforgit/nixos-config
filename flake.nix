@@ -38,7 +38,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wezterm = {
-      url = "github:wez/wezterm/main?dir=nix";
+      url = "github:wez/wezterm/891bed31b75f7a71b78e8f42ad07ae89bf99a7de?dir=nix";
     };
     nix-autobahn = {
       url = "github:Lassulus/nix-autobahn";
@@ -49,6 +49,8 @@
 
     };
     tree-sitter.url = "github:tree-sitter/tree-sitter";
+
+    emanote.url = "github:srid/emanote";
 
   };
 
@@ -72,6 +74,7 @@
       polymc,
       nix-alien,
       tree-sitter,
+      emanote,
     }:
     let
       customPackages = callPackage: {
@@ -108,7 +111,7 @@
           allowUnfreePredicate = (pkg: true);
         };
         overlaysBuilder = channels: [
-	  # polymc doesn't know yet these have moved
+          # polymc doesn't know yet these have moved
           (self: super: { extra-cmake-modules = self.kdePackages.extra-cmake-modules; })
           polymc.overlay
           devshell.overlays.default
@@ -139,6 +142,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.sharedModules = [ emanote.homeManagerModule ];
           }
           (./modules)
           agenix.nixosModules.age

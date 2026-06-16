@@ -454,6 +454,9 @@ in
         };
 
       };
+      services.emanote = {
+        enable = true;
+      };
       programs.vivaldi.enable = true;
       services.mpris-proxy.enable = true;
       programs.zsh.profileExtra = ''
