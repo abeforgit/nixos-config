@@ -4,6 +4,7 @@ return {
   -- branch = "main",
   lazy = false,
   enabled = true,
+  dir = "~/repos/blink.cmp/result",
   dependencies = {
     'saghen/blink.lib',
     'rafamadriz/friendly-snippets',
@@ -12,6 +13,7 @@ return {
     { 'saghen/blink.compat', lazy = true,     version = false },
     { 'kirasok/cmp-hledger', lazy = true }
   },
+  -- build = 'nix run .#build-plugin',
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {

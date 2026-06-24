@@ -88,6 +88,7 @@ in
   networking.interfaces.wlp82s0.useDHCP = true;
   # the npm registry is not reachable with ipv6 for some reason
   networking.enableIPv6 = true;
+  networking.resolvconf.dnsExtensionMechanism = false;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -134,6 +135,9 @@ in
     brightness_udev
     oryx_udev
   ];
+  services.upower = {
+    enable = true;
+  };
   services.thermald.enable = true;
   services.thinkfan = {
     enable = true;
@@ -253,13 +257,17 @@ in
   };
 
   programs.nix-ld.enable = true;
+  programs.captive-browser = {
+    enable = true;
+    interface = "wlp82s0";
+    };
   custom.niri.enable = true;
   custom.user = username;
   custom.graphical.enable = true;
   custom.emacs.enable = true;
   custom.emacs.package = pkgs.emacs30;
   custom.zsh.enable = true;
-  custom.vscode.enable = true;
+  # custom.vscode.enable = true;
   custom.keychain.enable = true;
   custom.keyring.enable = false;
   custom.audio.enable = true;
@@ -277,17 +285,17 @@ in
     # calibre
     # godot-mono
     nvd
-    signal-desktop
+    # signal-desktop
     powertop
     anki-bin
     usbutils
-    bitwarden-desktop
+    # bitwarden-desktop
     obsidian
     # nix-sweep
     lazygit
-    tofi
+    # tofi
     rbw
-    rofi-rbw
+    # rofi-rbw
     pinentry-curses
     dig.dnsutils
     kdePackages.polkit-kde-agent-1
@@ -300,7 +308,7 @@ in
     nwg-look
     udiskie
     pinta
-    lazydocker
+    # lazydocker
     galaxy-buds-client
     grim
     slurp
