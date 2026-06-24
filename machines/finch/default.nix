@@ -264,7 +264,7 @@ in
   custom.niri.enable = true;
   custom.user = username;
   custom.graphical.enable = true;
-  custom.emacs.enable = true;
+  custom.emacs.enable = false;
   custom.emacs.package = pkgs.emacs30;
   custom.zsh.enable = true;
   # custom.vscode.enable = true;
@@ -326,7 +326,7 @@ in
     monaspace
     fira-code
     (giph.override { ffmpeg = ffmpeg-full; })
-    copyq
+    # copyq
     nvtopPackages.full
     wl-clipboard
   ];
