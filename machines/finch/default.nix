@@ -308,6 +308,7 @@ in
     nwg-look
     udiskie
     pinta
+    supersonic
     # lazydocker
     galaxy-buds-client
     grim
