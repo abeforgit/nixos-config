@@ -38,6 +38,7 @@ return {
   version = '*',
   cmd = "ASToggle",
   event = { "InsertLeave", "TextChanged", "BufLeave", "FocusLost" },
+  enabled = false,
   opts = {
     enabled = false,
     trigger_events = {                          -- See :h events

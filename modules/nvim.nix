@@ -112,6 +112,7 @@ in
           withNodeJs = true;
           extraPackages = with pkgs; [
             vscode-langservers-extracted
+            vscode-json-languageserver
             typescript-language-server
             fd
             ripgrep

@@ -193,7 +193,7 @@ in
           ]
           ++ cfg.extraHomePackages;
 
-        home.sessionPath = [ "$HOME/.local/bin" ];
+        home.sessionPath = [ "$HOME/.local/bin" "$HOME/.local/share/pnpm/bin" ];
         xdg = {
           enable = true;
 
