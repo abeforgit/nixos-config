@@ -163,6 +163,7 @@ in
     { pkgs, home, ... }:
     {
       home.pointerCursor = {
+	enable = true;
         gtk.enable = true;
         x11.enable = true;
         package = pkgs.nordzy-cursor-theme;
@@ -326,7 +327,7 @@ in
     ntfs3g
     monaspace
     fira-code
-    (giph.override { ffmpeg = ffmpeg-full; })
+    giph
     # copyq
     nvtopPackages.full
     wl-clipboard

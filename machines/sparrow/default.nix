@@ -218,6 +218,7 @@ in
   custom.keychain.enable = true;
   custom.finance.enable = true;
   custom.extraHomePackages = with pkgs; [
+    libreoffice
     forge-mtg
     alacritty
     ast-grep
@@ -305,7 +306,7 @@ in
     ntfs3g
     monaspace
     fira-code
-    (giph.override { ffmpeg = ffmpeg-full; })
+    giph
     vokoscreen-ng
     simplescreenrecorder
     jq
@@ -465,6 +466,7 @@ in
       '';
 
       home.pointerCursor = {
+	enable = true;
         gtk.enable = true;
         x11.enable = true;
         package = pkgs.nordzy-cursor-theme;

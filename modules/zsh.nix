@@ -59,6 +59,7 @@ in
         };
         programs.fzf = {
           enable = true;
+          historyWidget.command = "";
           enableZshIntegration = true;
           defaultCommand = "cat <(fre --sorted) <(fd -t d) <(fd -t d . ~)";
         };

@@ -97,15 +97,18 @@ in
         #   source = treesitterWithGrammars;
         # };
         programs.neovim = {
+          withRuby = false;
+          withPython3 = false;
           enable = true;
           plugins = [
             # treesitterWithGrammars
             {
               plugin = pkgs.vimPlugins.sqlite-lua;
+              type = "lua";
               config = "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
             }
             pkgs.vimPlugins.nvim-jdtls
-	    # pkgs.vimPlugins.sniprun
+            # pkgs.vimPlugins.sniprun
           ];
           extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks ];
           coc.enable = false;
@@ -120,16 +123,16 @@ in
             nixfmt
             gh
             yaml-language-server
-	    treesitter-cli
+            treesitter-cli
             glow
             jdt-language-server
-	    vtsls
+            vtsls
             (mdformat.withPlugins (
               ps: with ps; [
                 mdformat-gfm
                 mdformat-frontmatter
                 mdformat-tables
-		mdformat-simple-breaks
+                mdformat-simple-breaks
               ]
             ))
           ];

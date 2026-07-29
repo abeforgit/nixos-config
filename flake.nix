@@ -122,7 +122,7 @@
           (self: super: { inherit (channels.stable) galaxy-buds-client; })
           (self: super: {
             utillinux = super.util-linux;
-            # inherit (channels.master) wezterm;
+            inherit (channels.master) niri;
             nix-autobahn = nix-autobahn.packages.x86_64-linux.nix-autobahn;
             treesitter-cli = tree-sitter.packages.x86_64-linux.cli;
           })
