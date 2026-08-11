@@ -101,12 +101,13 @@ in
           withPython3 = false;
           enable = true;
           plugins = [
+	    pkgs.vimPlugins.sqlite-lua
             # treesitterWithGrammars
-            {
-              plugin = pkgs.vimPlugins.sqlite-lua;
-              type = "lua";
-              config = "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
-            }
+            # {
+            #   plugin = pkgs.vimPlugins.sqlite-lua;
+            #   type = "lua";
+            #   config = "vim.g.sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
+            # }
             pkgs.vimPlugins.nvim-jdtls
             # pkgs.vimPlugins.sniprun
           ];

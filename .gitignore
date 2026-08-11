@@ -1,2 +1,3 @@
 result
 nvim/plugins/dankcolors.lua
+nvim/lualine/themes/dms.lua
