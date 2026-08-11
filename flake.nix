@@ -8,7 +8,7 @@
       };
     };
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     comma.url = "github:nix-community/comma";
     # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -22,7 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     utils = {
-      url = "github:gytis-ivaskevicius/flake-utils-plus";
+      url = "github:gytis-ivaskevicius/flake-utils-plus/fix/nixpkgs-config-assertion";
       inputs.flake-utils.follows = "flake-utils";
     };
     agenix = {
@@ -58,7 +58,7 @@
     inputs@{
       self,
       nixpkgs,
-      nixpkgs-master,
+      # nixpkgs-master,
       nixpkgs-stable,
       home-manager,
       utils,
@@ -84,13 +84,13 @@
     utils.lib.mkFlake {
 
       inherit self inputs;
-      channels.master = {
-        input = nixpkgs-master;
-        config = {
-          allowUnfree = true;
-        };
-
-      };
+      # channels.master = {
+      #   input = nixpkgs-master;
+      #   config = {
+      #     allowUnfree = true;
+      #   };
+      #
+      # };
       channels.stable = {
         input = nixpkgs-stable;
         config = {
@@ -122,7 +122,7 @@
           (self: super: { inherit (channels.stable) galaxy-buds-client; })
           (self: super: {
             utillinux = super.util-linux;
-            inherit (channels.master) niri;
+            # inherit (channels.master) niri;
             nix-autobahn = nix-autobahn.packages.x86_64-linux.nix-autobahn;
             treesitter-cli = tree-sitter.packages.x86_64-linux.cli;
           })

@@ -127,9 +127,6 @@ in
   };
   # Enable the X11 windowing system.
 
-  nixpkgs.config = {
-    permittedInsecurePackages = [ "electron-39.8.10" ];
-  };
 
   services.udev.packages = [
     brightness_udev

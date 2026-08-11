@@ -132,7 +132,6 @@ in
               ps: with ps; [
                 mdformat-gfm
                 mdformat-frontmatter
-                mdformat-tables
                 mdformat-simple-breaks
               ]
             ))
