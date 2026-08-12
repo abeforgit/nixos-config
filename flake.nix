@@ -38,7 +38,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wezterm = {
-      url = "github:wez/wezterm/main?dir=nix";
+      # url = "github:wez/wezterm/main?dir=nix";
+      url = "github:wez/wezterm/76b606ec597a3c0263fa60321548637451c0a547?dir=nix";
     };
     nix-autobahn = {
       url = "github:Lassulus/nix-autobahn";
