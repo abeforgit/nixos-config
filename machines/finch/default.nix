@@ -127,7 +127,6 @@ in
   };
   # Enable the X11 windowing system.
 
-
   services.udev.packages = [
     brightness_udev
     oryx_udev
@@ -160,7 +159,7 @@ in
     { pkgs, home, ... }:
     {
       home.pointerCursor = {
-	enable = true;
+        enable = true;
         gtk.enable = true;
         x11.enable = true;
         package = pkgs.nordzy-cursor-theme;
@@ -258,7 +257,7 @@ in
   programs.captive-browser = {
     enable = true;
     interface = "wlp82s0";
-    };
+  };
   custom.niri.enable = true;
   custom.user = username;
   custom.graphical.enable = true;
@@ -332,9 +331,9 @@ in
   users.users.arne = {
     shell = pkgs.zsh;
   };
+  programs.solaar.enable = true;
   hardware.logitech.wireless = {
     enable = true;
-    enableGraphical = true;
   };
   systemd.settings.Manager = {
     DefaultTimeoutStopSec = "10s";

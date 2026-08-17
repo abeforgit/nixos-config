@@ -308,7 +308,6 @@ in
     fira-code
     giph
     vokoscreen-ng
-    simplescreenrecorder
     jq
     sox
 
@@ -363,9 +362,9 @@ in
   users.users.arne = {
     shell = pkgs.zsh;
   };
+  programs.solaar.enable = true;
   hardware.logitech.wireless = {
     enable = true;
-    enableGraphical = true;
   };
   hardware.graphics.enable = true;
   systemd.settings.Manager = {
@@ -466,7 +465,7 @@ in
       '';
 
       home.pointerCursor = {
-	enable = true;
+        enable = true;
         gtk.enable = true;
         x11.enable = true;
         package = pkgs.nordzy-cursor-theme;
