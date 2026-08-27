@@ -49,7 +49,10 @@
       url = "github:PolyMC/PolyMC";
 
     };
-    tree-sitter.url = "github:tree-sitter/tree-sitter";
+    tree-sitter = {
+      url = "github:abeforgit/tree-sitter/fix/remove-dockerfile-mention";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     emanote.url = "github:srid/emanote";
 
