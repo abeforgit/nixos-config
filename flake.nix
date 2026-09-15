@@ -53,8 +53,15 @@
       url = "github:abeforgit/tree-sitter/fix/remove-dockerfile-mention";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    psysonic = {
+      url = "github:Psysonic/psysonic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     emanote.url = "github:srid/emanote";
+    tauon-nixpkgs = {
+      url = "github:alfarelcynthesis/nixpkgs/tauon-v12";
+    };
 
   };
 
@@ -78,7 +85,9 @@
       polymc,
       nix-alien,
       tree-sitter,
+      tauon-nixpkgs,
       emanote,
+      psysonic,
     }:
     let
       customPackages = callPackage: {
@@ -102,6 +111,9 @@
         };
 
       };
+      channels.tauon-fix = {
+        input = tauon-nixpkgs;
+      };
 
       channels.nixpkgs = {
         input = nixpkgs;
@@ -123,9 +135,13 @@
           rust-overlay.overlays.default
           blender-bin.overlays.default
           nix-alien.overlays.default
-          (self: super: { inherit (channels.stable) galaxy-buds-client; })
+          (self: super: {
+            inherit (channels.stable) galaxy-buds-client;
+            inherit (channels.tauon-fix) tauon;
+          })
           (self: super: {
             utillinux = super.util-linux;
+            psysonic = psysonic.packages.x86_64-linux.psysonic;
             # inherit (channels.master) niri;
             nix-autobahn = nix-autobahn.packages.x86_64-linux.nix-autobahn;
             treesitter-cli = tree-sitter.packages.x86_64-linux.cli;

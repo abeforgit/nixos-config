@@ -871,6 +871,26 @@
         "type": "github"
       }
     },
+    "psysonic": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788309849,
+        "narHash": "sha256-72A1aEZK/EZJSnE9+f4ld1l87SrGRaJMs3SCJIm7vi8=",
+        "owner": "Psysonic",
+        "repo": "psysonic",
+        "rev": "474e84f894d7aea06deb9d5fd326e57f0456f2e9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Psysonic",
+        "repo": "psysonic",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -886,7 +906,9 @@
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "polymc": "polymc",
+        "psysonic": "psysonic",
         "rust-overlay": "rust-overlay",
+        "tauon-nixpkgs": "tauon-nixpkgs",
         "tree-sitter": "tree-sitter",
         "utils": "utils_2",
         "wezterm": "wezterm"
@@ -1007,6 +1029,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tauon-nixpkgs": {
+      "locked": {
+        "lastModified": 1787685028,
+        "narHash": "sha256-mpG6fsFrTvgVzHa1bW387zXqQMooyHAtpwOXqBrOTGo=",
+        "owner": "alfarelcynthesis",
+        "repo": "nixpkgs",
+        "rev": "b03f8ac7a0548c353e5e5a826f336d7647465838",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alfarelcynthesis",
+        "ref": "tauon-v12",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },

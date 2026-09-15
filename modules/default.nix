@@ -110,6 +110,7 @@ in
         "audio"
         "input"
         "video"
+	"davfs2"
         "graphical"
         "vboxusers"
         "docker"
@@ -217,11 +218,11 @@ in
               "image/jpeg" = [ "org.kde.okular.desktop" ];
               "application/pdf" = [ "org.pwmt.zathura.desktop" ];
 
-              "text/html" = [ "vivaldi.desktop" ];
-              "x-scheme-handler/about" = [ "vivaldi.desktop" ];
-              "x-scheme-handler/http" = [ "vivaldi.desktop" ];
-              "x-scheme-handler/https" = [ "vivaldi.desktop" ];
-              "x-scheme-handler/unknown" = [ "vivaldi.desktop" ];
+              "text/html" = [ "vivaldi-stable.desktop" ];
+              "x-scheme-handler/about" = [ "vivaldi-stable.desktop" ];
+              "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
+              "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
+              "x-scheme-handler/unknown" = [ "vivaldi-stable.desktop" ];
 
               "x-scheme-handler/msteams" = [ "teams.desktop" ];
             };

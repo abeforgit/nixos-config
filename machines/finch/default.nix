@@ -306,6 +306,8 @@ in
     udiskie
     pinta
     supersonic
+    tauon
+    quodlibet-full
     # lazydocker
     galaxy-buds-client
     grim

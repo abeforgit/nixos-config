@@ -49,6 +49,26 @@ in
   ];
 
   boot.supportedFilesystems = [ "ntfs" ];
+  fileSystems."/home/arne/seedhost/dav/downloads" = {
+    device = "https://pink.seedhost.eu/abeforsheu/webdav";
+    fsType = "davfs";
+    options = [
+      "user"
+      "noauto"
+      "nofail"
+      "rw"
+    ];
+  };
+  fileSystems."/home/arne/seedhost/dav/musiclib" = {
+    device = "https://pink.seedhost.eu/abeforsheu/webdavmusic";
+    fsType = "davfs";
+    options = [
+      "user"
+      "noauto"
+      "nofail"
+      "rw"
+    ];
+  };
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -133,11 +153,13 @@ in
       "https://nix-community.cachix.org"
       "https://cache.nixos.org"
       "https://cachix.cachix.org"
+      "https://psysonic.cachix.org"
     ];
     trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "cachix.cachix.org-1:eWNHQldwUO7G2VkjpnjDbWwy4KQ/HNxht7H4SSoMckM="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "psysonic.cachix.org-1:M9cQyQ7tgvUWOQ5Pyt8ozlMoPLtOZir6MfRuTH9/VYA="
     ];
   };
   i18n.defaultLocale = "en_US.UTF-8";
@@ -187,6 +209,7 @@ in
   services.pulseaudio.enable = false;
 
   programs.noisetorch.enable = true;
+  services.davfs2.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -245,6 +268,7 @@ in
     anki-bin
     usbutils
     tauon
+    quodlibet-full
     bitwarden-desktop
     rofi
     rbw
@@ -261,6 +285,7 @@ in
     galaxy-buds-client
     spotify
     supersonic
+    psysonic
     feishin
     ## hypr
     tofi
