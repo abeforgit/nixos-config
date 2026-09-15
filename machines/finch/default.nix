@@ -262,7 +262,7 @@ in
   custom.user = username;
   custom.graphical.enable = true;
   custom.emacs.enable = false;
-  custom.emacs.package = pkgs.emacs30;
+  custom.emacs.package = pkgs.emacs;
   custom.zsh.enable = true;
   # custom.vscode.enable = true;
   custom.keychain.enable = true;
