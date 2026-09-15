@@ -181,34 +181,6 @@ in
         source ${config.age.secrets.github_auth.path}
         source ${config.age.secrets.jira_pat.path}
       '';
-      qt = {
-        enable = true;
-        platformTheme = {
-          name = "qt5ct";
-        };
-      };
-      gtk = {
-        enable = true;
-        theme = {
-          package = pkgs.flat-remix-gtk;
-          name = "Flat-Remix-GTK-Grey-Darkest";
-        };
-        cursorTheme = {
-          package = pkgs.nordzy-cursor-theme;
-          name = "Nordzy-cursors";
-          size = 24;
-        };
-
-        iconTheme = {
-          package = pkgs.flat-remix-icon-theme;
-          name = "Flat-Remix-Blue-Dark";
-        };
-
-        font = {
-          name = "Sans";
-          size = 11;
-        };
-      };
     };
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -326,6 +298,12 @@ in
     monaspace
     fira-code
     giph
+    kdePackages.breeze
+    kdePackages.breeze-gtk
+    kdePackages.breeze-icons
+    adwaita-qt
+    adwaita-qt6
+    adwaita-icon-theme
     # copyq
     nvtopPackages.full
     wl-clipboard
