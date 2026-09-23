@@ -54,12 +54,6 @@ in
         enable = true; # Systemd service for auto-start
         restartIfChanged = true; # Auto-restart dms.service when dms-shell changes
       };
-
-      # Core features
-      enableVPN = true; # VPN management widget
-      enableDynamicTheming = true; # Wallpaper-based theming (matugen)
-      enableAudioWavelength = true; # Audio visualizer (cava)
-      enableCalendarEvents = true; # Calendar integration (khal)
     };
     programs.dsearch.enable = true;
     home-manager.users.${config.custom.user} =
@@ -90,6 +84,7 @@ in
         services.polkit-gnome.enable = true; # polkit
         home.packages = with pkgs; [
           # swaybg # wallpaper
+	  khal
           swappy
         ];
       };
