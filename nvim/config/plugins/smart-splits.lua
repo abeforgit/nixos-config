@@ -13,8 +13,8 @@ return {
     { '<A-S-l>', function() require('smart-splits').swap_buf_right() end }
   },
   opts = {
-    at_edge = false,
-    float_win_behavior = 'mux'
+    move = { at_edge = "stop" },
+    -- float_win_behavior = 'mux'
   }
 
 }

@@ -13,7 +13,8 @@ return {
           importModuleSpecifierPreference = "shortest"
         }
       }
-    })
+    }
+    );
   end
 
 }
