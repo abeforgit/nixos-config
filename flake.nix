@@ -10,7 +10,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     comma.url = "github:nix-community/comma";
-    # nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     home-manager = {
@@ -71,6 +71,7 @@
       nixpkgs,
       # nixpkgs-master,
       nixpkgs-stable,
+      nixpkgs-unstable-small,
       home-manager,
       utils,
       agenix,
@@ -104,6 +105,13 @@
       #   };
       #
       # };
+      channels.small = {
+        input = nixpkgs-unstable-small;
+        config = {
+          allowUnfree = true;
+        };
+
+      };
       channels.stable = {
         input = nixpkgs-stable;
         config = {
@@ -137,6 +145,7 @@
           nix-alien.overlays.default
           (self: super: {
             inherit (channels.stable) galaxy-buds-client;
+            inherit (channels.small) typescript-language-server;
             inherit (channels.tauon-fix) tauon;
           })
           (self: super: {
